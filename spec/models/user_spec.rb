@@ -5,6 +5,7 @@ describe User do
     it { should validate_presence_of :name }
     it { should validate_presence_of :address }
     it { should validate_presence_of :postal }
+    it { should validate_presence_of :contact_number }
     it { should validate_acceptance_of :terms_of_service }
   end
 end
