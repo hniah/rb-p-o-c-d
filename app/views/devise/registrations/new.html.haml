@@ -1,48 +1,62 @@
-%h2 Sign up
+#devise-registration-new-container
+  .form-container
+    %h2 Sign up
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = devise_error_messages!
 
-  .name
-    = f.label :name
-    = f.text_field :name, autofocus: true
+      .name.form-group
+        = f.label :name
+        .input-group
+          = f.text_field :name, autofocus: true
 
-  .email
-    = f.label :email
-    = f.email_field :email
+      .email.form-group
+        = f.label :email
+        .input-group
+          = f.email_field :email
 
-  .password
-    = f.label :password
-    = f.password_field :password, autocomplete: "off"
+      .password.form-group
+        = f.label :password
+        .input-group
+          = f.password_field :password, autocomplete: "off"
 
-  .password-confirmation
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: "off"
+      .password-confirmation.form-group
+        = f.label :password_confirmation
+        .input-group
+          = f.password_field :password_confirmation, autocomplete: "off"
 
-  .address
-    = f.label :address
-    = f.text_area :address
+      .address.form-group
+        = f.label :address
+        .input-group
+          = f.text_area :address
 
-  .unit
-    = f.label :unit
-    = f.text_field :unit
+      .unit.form-group
+        = f.label :unit
+        .input-group
+          = f.text_field :unit
 
-  .postal
-    = f.label :postal
-    = f.text_field :postal
+      .postal.form-group
+        = f.label :postal
+        .input-group
+          = f.text_field :postal
 
-  .instruction
-    = f.label :instruction, 'Special Instruction'
-    = f.text_area :instruction
+      .instruction.form-group
+        = f.label :instruction, 'Special Instruction'
+        .input-group
+          = f.text_area :instruction
 
-  %label{class:"checkbox"}
-    = check_box_tag :terms_of_service, "1"
-    %span I agree to the terms of service
+      .form-group
+        .col-md-offset-2.col-md-10
+          .checkbox
+            %label
+              = check_box_tag :terms_of_service, "1"
+              I agree to the terms of service
 
-  %label{class:"checkbox"}
-    = check_box_tag :subscribe_to_mailing_list, "1"
-    %span Please subscribe me to the exciting mailing list with lots of promotion!
+      .form-group
+        .col-md-offset-2.col-md-10
+          .checkbox
+            %label
+              = check_box_tag :subscribe_to_mailing_list, "1"
+              Please subscribe me to the exciting mailing list with lots of promotion!
 
-  .submit= f.submit "Sign up"
-
-= render "devise/shared/links"
+      .submit= f.submit "Sign up"

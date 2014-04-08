@@ -1,0 +1,53 @@
+#devise-registration-new-container {
+  @extend .row;
+
+  .form-container {
+    @extend .col-md-12;
+
+    #error_explanation {
+      @extend .alert;
+      @extend .alert-danger;
+
+      h2 {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+      }
+    }
+
+    form {
+      @extend .form-horizontal;
+
+      label {
+        @extend .control-label;
+        @extend .col-md-2;
+      }
+
+      .input-group {
+        @extend .col-md-8;
+
+        input, textarea {
+          @extend .form-control;
+        }
+      }
+
+      .checkbox {
+        label {
+          @extend .col-md-6;
+          text-align: left;
+        }
+      }
+
+      input[type=submit] {
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .col-md-offset-2;
+        @extend .col-md-1;
+      }
+
+      .sign-in-link {
+        @extend .col-md-12;
+        text-align: right;
+      }
+    }
+  }
+}
