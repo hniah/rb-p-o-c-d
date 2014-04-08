@@ -1,0 +1,12 @@
+.main-nav-container {
+  @extend .container;
+
+  ul.main-nav {
+    @extend .nav;
+    @extend .nav-pills;
+  }
+}
+
+.main-body {
+  @extend .container;
+}
