@@ -9,4 +9,14 @@
 
 .main-body {
   @extend .container;
+
+  .notice {
+    @extend .alert;
+    @extend .alert-success;
+  }
+
+  .warning {
+    @extend .alert;
+    @extend .alert-danger;
+  }
 }

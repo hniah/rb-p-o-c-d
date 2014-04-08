@@ -6,8 +6,7 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %p.notice= notice
-    %p.alert= alert
+
 
     .main-nav-container
       %ul.main-nav
@@ -16,4 +15,9 @@
         %li= link_to 'Sign out', destroy_user_session_path, method: :delete
 
     .main-body
+      - if notice.present?
+        %p.notice= notice
+      - if alert.present?
+        %p.warning= alert
+
       = yield
