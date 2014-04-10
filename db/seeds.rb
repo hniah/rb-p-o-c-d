@@ -28,5 +28,5 @@ sunday = Date.today.end_of_week
 time_slot = TimeSlot.create!(
   start_time: DateTime.new(sunday.year, sunday.month, sunday.day, 8, 00),
   end_time:   DateTime.new(sunday.year, sunday.month, sunday.day, 22, 00),
-  category: :booking
+  category: :blocked
 )

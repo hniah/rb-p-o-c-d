@@ -9,10 +9,21 @@ describe TimeSlot do
 
     describe '#time_is_between_3_to_5_hours' do
       context 'Success' do
-        let(:time_slot) { build(:time_slot, end_time: 3.hours.from_now) }
 
-        it 'only accepts 3 to 5 hours duration' do
-          time_slot.valid?.should be_true
+        context 'time slot is a booking' do
+          let(:time_slot) { build(:time_slot, end_time: 3.hours.from_now) }
+
+          it 'only accepts 3 to 5 hours duration' do
+            time_slot.valid?.should be_true
+          end
+        end
+
+        context 'time slot is a blocked' do
+          let(:time_slot) { build(:time_slot, end_time: 8.hours.from_now, category: :blocked) }
+
+          it 'will not run validation' do
+            time_slot.valid?.should be_true
+          end
         end
       end
 
