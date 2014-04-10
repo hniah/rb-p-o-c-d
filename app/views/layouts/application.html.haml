@@ -10,6 +10,7 @@
 
     .main-nav-container
       %ul.main-nav
+        %li{class: display_active_menu_item(bookings_path)}= link_to 'Book a session', bookings_path
         %li{class: display_active_menu_item(new_user_registration_path)}= link_to 'Register', new_user_registration_path
         %li{class: display_active_menu_item(new_user_session_path)}= link_to 'Sign in', new_user_session_path
         %li= link_to 'Sign out', destroy_user_session_path, method: :delete
