@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'pg'
 gem 'devise'
 gem 'haml'
+gem 'enumerize'
+
+gem 'validates_timeliness', '~> 3.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
