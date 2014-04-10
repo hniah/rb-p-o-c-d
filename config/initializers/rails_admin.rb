@@ -30,5 +30,12 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+
+    # Authenticate admin only
+    config.authenticate_with do
+      warden.authenticate! scope: :admin
+    end
+    config.current_user_method &:current_admin
   end
+
 end
