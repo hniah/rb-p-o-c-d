@@ -1,1 +1,24 @@
-Monday
+%h1 Book a session
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Time
+      %th Monday
+      %th Tuesday
+      %th Wednesday
+      %th Thursday
+      %th Friday
+      %th Saturday
+      %th Sunday
+  %tbody
+    - booking_time_range.each do |time|
+      %tr
+        %th= time.strftime('%l:%M%P')
+        %td
+        %td
+        %td
+        %td
+        %td
+        %td
+        %td
