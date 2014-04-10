@@ -9,6 +9,9 @@ class TimeSlot < ActiveRecord::Base
   validates_presence_of :start_time, :end_time, :category
   validate :time_is_between_3_to_5_hours, if: :has_start_and_end_time? && :is_booking?
 
+  scope :created_after,  -> (date) { where('created_at >= ?', date) }
+  scope :created_before, -> (date) { where('created_at <= ?', date) }
+
   def time_is_between_3_to_5_hours
     duration = TimeDifference.between(start_time, end_time).in_hours
     if duration < 3 || duration > 5
