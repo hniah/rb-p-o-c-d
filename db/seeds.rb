@@ -9,6 +9,18 @@ Location.find_or_create_by!(name: 'West')
 Location.find_or_create_by!(name: 'Central')
 Location.find_or_create_by!(name: 'North-East')
 
+# Create sample customer
+User.destroy_all
+customer = User.create!(
+  email: 'customer@example.com',
+  password: '123123',
+  password_confirmation: '123123',
+  name: 'Example Customer',
+  address: 'Somewhere in Singapore',
+  postal: '651289',
+  contact_number: '6652-3568'
+)
+
 # Create sample housekeeper
 Housekeeper.destroy_all
 housekeeper = Housekeeper.create!(
@@ -26,7 +38,18 @@ housekeeper.locations << [north, east]
 TimeSlot.destroy_all
 sunday = Date.today.end_of_week
 time_slot = TimeSlot.create!(
-  start_time: DateTime.new(sunday.year, sunday.month, sunday.day, 8, 00),
-  end_time:   DateTime.new(sunday.year, sunday.month, sunday.day, 22, 00),
-  category: :blocked
+  start_time: Time.local(sunday.year, sunday.month, sunday.day, 8, 00),
+  end_time:   Time.local(sunday.year, sunday.month, sunday.day, 22, 00),
+  category: :blocked,
+  housekeeper: housekeeper,
+  user: nil
+)
+
+monday = Date.today.beginning_of_week
+time_slot = TimeSlot.create!(
+  start_time: Time.local(monday.year, monday.month, monday.day, 8, 00),
+  end_time:   Time.local(monday.year, monday.month, monday.day, 12, 00),
+  category: :booking,
+  housekeeper: housekeeper,
+  user: customer
 )

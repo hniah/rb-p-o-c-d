@@ -1,0 +1,15 @@
+#bookings-index-container {
+  .calendar-table {
+    td {
+      text-align: center;
+    }
+
+    .booking {
+      background-color: cornflowerblue;
+    }
+
+    .blocked {
+      background-color: lightslategrey;
+    }
+  }
+}

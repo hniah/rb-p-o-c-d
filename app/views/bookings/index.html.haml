@@ -1,24 +1,26 @@
-%h1 Book a session
+#bookings-index-container
+  %h1 Book a session
 
-%table.table.table-bordered
-  %thead
-    %tr
-      %th Time
-      %th Monday
-      %th Tuesday
-      %th Wednesday
-      %th Thursday
-      %th Friday
-      %th Saturday
-      %th Sunday
-  %tbody
-    - booking_time_range.each do |time|
+  %table.table.table-bordered.calendar-table
+    %thead
       %tr
-        %th= time.strftime('%l:%M%P')
-        %td
-        %td
-        %td
-        %td
-        %td
-        %td
-        %td
+        %th Time
+        %th Monday
+        %th Tuesday
+        %th Wednesday
+        %th Thursday
+        %th Friday
+        %th Saturday
+        %th Sunday
+    %tbody
+      - day = Date.today.beginning_of_week
+      - booking_time_range.each do |time|
+        %tr
+          %th= time.strftime('%l:%M%P')
+          %td!= display_booked_slot_info(@time_slots, day, time)
+          %td!= display_booked_slot_info(@time_slots, day+1, time)
+          %td!= display_booked_slot_info(@time_slots, day+2, time)
+          %td!= display_booked_slot_info(@time_slots, day+3, time)
+          %td!= display_booked_slot_info(@time_slots, day+4, time)
+          %td!= display_booked_slot_info(@time_slots, day+5, time)
+          %td!= display_booked_slot_info(@time_slots, day+6, time)
