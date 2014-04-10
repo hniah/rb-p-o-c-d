@@ -19,7 +19,7 @@
 
       label {
         @extend .control-label;
-        @extend .col-md-2;
+        @extend .col-md-3;
       }
 
       .input-group {
@@ -32,7 +32,7 @@
 
       .checkbox {
         label {
-          @extend .col-md-6;
+          @extend .col-md-8;
           text-align: left;
         }
       }

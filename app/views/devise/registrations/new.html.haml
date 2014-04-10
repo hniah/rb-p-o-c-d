@@ -6,32 +6,32 @@
       = devise_error_messages!
 
       .name.form-group
-        = f.label :name
+        = f.label :name, class: 'required'
         .input-group
           = f.text_field :name, autofocus: true
 
       .email.form-group
-        = f.label :email
+        = f.label :email, class: 'required'
         .input-group
           = f.email_field :email
 
       .password.form-group
-        = f.label :password
+        = f.label :password, class: 'required'
         .input-group
           = f.password_field :password, autocomplete: "off"
 
       .password-confirmation.form-group
-        = f.label :password_confirmation
+        = f.label :password_confirmation, class: 'required'
         .input-group
           = f.password_field :password_confirmation, autocomplete: "off"
 
       .address.form-group
-        = f.label :address
+        = f.label :address, class: 'required'
         .input-group
           = f.text_area :address
 
       .contact_number.form-group
-        = f.label :contact_number
+        = f.label :contact_number, class: 'required'
         .input-group
           = f.text_field :contact_number
 
@@ -41,7 +41,7 @@
           = f.text_field :unit
 
       .postal.form-group
-        = f.label :postal
+        = f.label :postal, class: 'required'
         .input-group
           = f.text_field :postal
 
@@ -49,13 +49,14 @@
         = f.label :instruction, 'Special Instruction'
         .input-group
           = f.text_area :instruction
+          .help-block eg. I have two dogs at home. My main priority is ironing.
 
       .form-group
         .col-md-offset-2.col-md-10
           .checkbox
             %label
               = f.check_box :terms_of_service
-              I agree to the terms of service
+              I agree to the terms of service *
 
       .form-group
         .col-md-offset-2.col-md-10
