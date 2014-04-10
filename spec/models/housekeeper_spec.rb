@@ -30,4 +30,8 @@ describe Housekeeper do
       end
     end
   end
+
+  context 'Associations' do
+    it { should have_and_belong_to_many :locations }
+  end
 end
