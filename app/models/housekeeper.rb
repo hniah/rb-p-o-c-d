@@ -1,6 +1,7 @@
 class Housekeeper < ActiveRecord::Base
   extend Enumerize
 
+  has_many :bookings
   has_and_belongs_to_many :locations
 
   enumerize :gender, in: [:male, :female]

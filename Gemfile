@@ -36,6 +36,7 @@ gem 'haml'
 gem 'enumerize'
 
 gem 'validates_timeliness', '~> 3.0'
+gem 'time_difference'
 gem 'rails_admin'
 
 group :doc do

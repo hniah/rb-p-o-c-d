@@ -8,4 +8,8 @@ describe User do
     it { should validate_presence_of :contact_number }
     it { should validate_acceptance_of :terms_of_service }
   end
+
+  context 'Associations' do
+    it { should have_many :bookings }
+  end
 end
