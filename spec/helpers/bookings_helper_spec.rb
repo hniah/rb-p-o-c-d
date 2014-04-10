@@ -6,7 +6,7 @@ describe BookingsHelper do
 
     it 'display a message if the time slot is booked' do
       time = DateTime.now.change(hour: 8, minute: 00)
-      helper.display_booked_slot_info(time_slots, Date.today, time).should == time_slots.first.housekeeper.name
+      helper.display_booked_slot_info(time_slots, Date.today, time).should include 'Booked'
     end
 
     it 'does not display anything if the time slot is empty' do
