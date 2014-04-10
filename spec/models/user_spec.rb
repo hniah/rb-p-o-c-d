@@ -10,6 +10,6 @@ describe User do
   end
 
   context 'Associations' do
-    it { should have_many :bookings }
+    it { should have_many :time_slots }
   end
 end

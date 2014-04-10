@@ -21,3 +21,12 @@ housekeeper = Housekeeper.create!(
   date_of_birth: 20.years.ago
 )
 housekeeper.locations << [north, east]
+
+# Create sample time slots
+TimeSlot.destroy_all
+sunday = Date.today.end_of_week
+time_slot = TimeSlot.create!(
+  start_time: DateTime.new(sunday.year, sunday.month, sunday.day, 8, 00),
+  end_time:   DateTime.new(sunday.year, sunday.month, sunday.day, 22, 00),
+  category: :booking
+)
