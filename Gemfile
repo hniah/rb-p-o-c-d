@@ -36,6 +36,7 @@ gem 'haml'
 gem 'enumerize'
 
 gem 'validates_timeliness', '~> 3.0'
+gem 'rails_admin'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

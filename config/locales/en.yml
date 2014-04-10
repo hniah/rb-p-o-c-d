@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        housekeeper:
+          attributes:
+            date_of_birth:
+              on_or_before: 'must be at least 18 years old'
