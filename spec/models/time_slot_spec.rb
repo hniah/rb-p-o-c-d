@@ -30,7 +30,7 @@ describe TimeSlot do
       context 'Failure' do
         let(:time_slot) { build(:time_slot, end_time: 6.hours.from_now) }
 
-        it 'does not accept any duration outside 3 to 5 hours slot' do
+        it 'does not accept any duration outside 3 to 5 hours slot for booking slots' do
           time_slot.valid?.should be_false
         end
       end
