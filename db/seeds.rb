@@ -60,7 +60,7 @@ monday = Date.today.beginning_of_week
 time_slot = TimeSlot.create!(
   start_time: Time.local(monday.year, monday.month, monday.day, 8, 00),
   end_time:   Time.local(monday.year, monday.month, monday.day, 12, 00),
-  category: :booking,
+  category: :booked,
   housekeeper: housekeeper,
   user: customer
 )

@@ -1,0 +1,4 @@
+.available{id: "#{day}_#{time.strftime('%H-%M')}"}
+  = simple_form_for time_slot, url: bookings_path, method: :post do |f|
+    = f.input :start_time, as: :hidden, value: time
+    = f.submit "Book this slot"

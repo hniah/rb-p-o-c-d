@@ -16,13 +16,13 @@ module BookingsHelper
     booked_time_slot = find_booked_time_slot(booked_time_slots, calendar_time_slot)
 
     if booked_time_slot
-      if booked_time_slot.category.booking?
-        return '<div class="booking">Booked</div>'
+      if booked_time_slot.category.booked?
+        render partial: 'bookings/booked_slot'
       else
-        return '<div class="blocked">Blocked</div>'
+        render partial: 'bookings/blocked_slot'
       end
     else
-      return ''
+      render partial: 'bookings/available_slot', locals: { day: day, time: time, time_slot: TimeSlot.new(start_time: create_date_time(day, time)) }
     end
   end
 

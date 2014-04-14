@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :time_slot do
     start_time  DateTime.now.change(hour: 8, minute: 0)
     end_time    DateTime.now.change(hour: 11, minute: 0)
-    category    :booking
+    category    'booked'
     user        { create(:user) }
     housekeeper { create(:housekeeper) }
 

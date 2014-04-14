@@ -4,9 +4,9 @@ class TimeSlot < ActiveRecord::Base
   belongs_to :user
   belongs_to :housekeeper
 
-  enumerize :category, in: [:booking, :blocked]
+  enumerize :category, in: [:booked, :blocked]
 
-  validates_presence_of :start_time, :end_time, :category, :housekeeper
+  validates_presence_of :start_time, :end_time, :category
   validate :time_is_between_3_to_5_hours, if: :has_start_and_end_time? && :is_booking?
 
   scope :created_after,  -> (date) { where('created_at >= ?', date) }
@@ -20,7 +20,7 @@ class TimeSlot < ActiveRecord::Base
   end
 
   def is_booking?
-    self.category == 'booking'
+    self.category == 'booked'
   end
 
   def has_start_and_end_time?

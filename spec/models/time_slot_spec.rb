@@ -5,8 +5,7 @@ describe TimeSlot do
     it { should validate_presence_of :start_time }
     it { should validate_presence_of :end_time }
     it { should validate_presence_of :category }
-    it { should enumerize(:category).in(:booking, :blocked)}
-    it { should validate_presence_of :housekeeper }
+    it { should enumerize(:category).in(:booked, :blocked)}
 
     describe '#time_is_between_3_to_5_hours' do
       context 'Success' do
