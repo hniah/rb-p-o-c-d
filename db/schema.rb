@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140410061116) do
+ActiveRecord::Schema.define(version: 20140414022759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,13 +35,18 @@ ActiveRecord::Schema.define(version: 20140410061116) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "housekeepers", force: true do |t|
-    t.string "name"
-    t.string "gender"
-    t.string "email"
-    t.string "contact"
-    t.text   "address"
-    t.string "postal"
-    t.date   "date_of_birth"
+    t.string   "name"
+    t.string   "gender"
+    t.string   "contact"
+    t.text     "address"
+    t.string   "postal"
+    t.date     "date_of_birth"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "experience_level"
+    t.string   "secondary_contact"
+    t.string   "language_spoken"
+    t.text     "special_remarks"
   end
 
   create_table "housekeepers_locations", force: true do |t|
