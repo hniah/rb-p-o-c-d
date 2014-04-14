@@ -32,7 +32,7 @@ class Housekeeper < ActiveRecord::Base
       field :address
       field :postal
       field :date_of_birth
-      field(:created_at) { label { "Date Joined" } }
+      field :date_joined
       field :experience_level
       field :language_spoken
       field :special_remarks

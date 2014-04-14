@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414022759) do
+ActiveRecord::Schema.define(version: 20140414034002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20140414022759) do
     t.string   "secondary_contact"
     t.string   "language_spoken"
     t.text     "special_remarks"
+    t.date     "date_joined"
   end
 
   create_table "housekeepers_locations", force: true do |t|
