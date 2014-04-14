@@ -30,11 +30,6 @@
         .input-group
           = f.text_area :address
 
-      .contact_number.form-group
-        = f.label :contact_number, class: 'required'
-        .input-group
-          = f.text_field :contact_number
-
       .unit.form-group
         = f.label :unit
         .input-group
@@ -51,6 +46,11 @@
           = f.text_area :instruction
           .help-block eg. I have two dogs at home. My main priority is ironing.
 
+      .contact_number.form-group
+        = f.label :contact_number, class: 'required'
+        .input-group
+          = f.text_field :contact_number
+
       .form-group
         .col-md-offset-2.col-md-10
           .checkbox
@@ -62,7 +62,7 @@
         .col-md-offset-2.col-md-10
           .checkbox
             %label
-              = check_box_tag :subscribe_to_mailing_list, "1"
+              = check_box_tag :subscribe_to_mailing_list, "1", html_option: { checked: 'checked' }
               Please subscribe me to the exciting mailing list with lots of promotion!
 
       .submit= f.submit "Sign up"
