@@ -41,4 +41,26 @@ describe TimeSlot do
     it { should belong_to :user }
     it { should belong_to :housekeeper }
   end
+
+  describe "#create_booking_by!" do
+    let(:user) { create :user }
+    let(:time_slot) { build(:time_slot) }
+
+    context "success" do
+      it "creates booking" do
+        expect { time_slot.create_booking_by!(user) }.to change(TimeSlot, :count).by(1)
+        time_slot.user.should eq user
+      end
+    end
+
+    context "failure" do
+      before do
+        time_slot.start_time = nil
+      end
+
+      it "should not create booking" do
+        expect { time_slot.create_booking_by!(user) }.to_not change(TimeSlot, :count)
+      end
+    end
+  end
 end

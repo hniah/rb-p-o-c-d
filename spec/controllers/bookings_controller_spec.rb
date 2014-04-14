@@ -6,9 +6,16 @@ describe BookingsController do
     let!(:current_week_time_slot) { create(:time_slot) }
     let!(:last_week_time_slot)   { create(:time_slot, created_at: 1.week.ago) }
 
-    it 'displays the calendar with time slots of the current week' do
-      sign_in user
+    def do_request
       get :index
+    end
+
+    before do
+      sign_in user
+      do_request
+    end
+
+    it 'displays the calendar with time slots of the current week' do
       assigns(:time_slots).size.should == 1
       assigns(:time_slots).first.id = current_week_time_slot.id
       render_template :index
@@ -18,9 +25,16 @@ describe BookingsController do
   describe "#new" do
     let(:user) { create :user }
 
-    it "renders :new template" do
-      sign_in user
+    def do_request
       get :new, time_slot: { start_time: DateTime.now.change(hour: 10, minute: 00) }
+    end
+
+    before do
+      sign_in user
+      do_request
+    end
+
+    it "renders :new template" do
       assigns(:time_slot).should_not be_nil
       response.should render_template :new
     end
@@ -29,14 +43,29 @@ describe BookingsController do
   describe "#create" do
     let(:user) { create(:user) }
 
-    it "should create a block of bookings" do
-      sign_in user
-      expect do
-        post :create, time_slot: attributes_for(:time_slot)
-      end.to change(TimeSlot, :count).by(1)
+    before { sign_in user }
+    before { do_request }
 
-      flash[:notice].should eq "Booking created successfully"
-      response.should redirect_to bookings_path
+    def do_request
+      post :create, time_slot: time_slot_param
+    end
+
+    context "params with start time" do
+      let(:time_slot_param) { attributes_for :time_slot }
+
+      it "should create a block of bookings" do
+        flash[:notice].should eq "Booking created successfully"
+        response.should redirect_to bookings_path
+      end
+    end
+
+    context "params without start time" do
+      let(:time_slot_param) { {lorem: "Ipsum"} }
+
+      it "should not create a block of bookings" do
+        flash[:alert].should eq "Failed to create booking"
+        response.should redirect_to bookings_path
+      end
     end
   end
 end

@@ -14,12 +14,13 @@ class BookingsController < ApplicationController
 
   def create
     @time_slot = TimeSlot.new(time_slot_param)
-    @time_slot.end_time = @time_slot.start_time + 3.hours
-    @time_slot.user = current_user
-    @time_slot.category = :booked
-    @time_slot.save!
 
-    flash[:notice] = "Booking created successfully"
+    if @time_slot.create_booking_by!(current_user)
+      flash[:notice] = "Booking created successfully"
+    else
+      flash[:alert] = "Failed to create booking"
+    end
+
     redirect_to bookings_path
   end
 
