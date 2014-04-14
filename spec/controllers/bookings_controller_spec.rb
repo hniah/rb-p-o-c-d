@@ -15,6 +15,17 @@ describe BookingsController do
     end
   end
 
+  describe "#new" do
+    let(:user) { create :user }
+
+    it "renders :new template" do
+      sign_in user
+      get :new, time_slot: { start_time: DateTime.now.change(hour: 10, minute: 00) }
+      assigns(:time_slot).should_not be_nil
+      response.should render_template :new
+    end
+  end
+
   describe "#create" do
     let(:user) { create(:user) }
 

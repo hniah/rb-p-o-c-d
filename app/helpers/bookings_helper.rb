@@ -22,7 +22,7 @@ module BookingsHelper
         render partial: 'bookings/blocked_slot'
       end
     else
-      render partial: 'bookings/available_slot', locals: { day: day, time: time, time_slot: TimeSlot.new(start_time: create_date_time(day, time)) }
+      render partial: 'bookings/available_slot', locals: { day: day, time: time, start_time: create_date_time(day, time) }
     end
   end
 

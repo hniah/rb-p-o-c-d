@@ -7,6 +7,11 @@ class BookingsController < ApplicationController
     @time_slots = @time_slots.created_before(Date.today.end_of_week)
   end
 
+  def new
+    @time_slot = TimeSlot.new(time_slot_param)
+    render :new
+  end
+
   def create
     @time_slot = TimeSlot.new(time_slot_param)
     @time_slot.end_time = @time_slot.start_time + 3.hours

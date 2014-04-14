@@ -19,11 +19,11 @@ describe 'Book a session workflow' do
     my_date = my_date.change(hour: 8, minute: 00)
     find("##{my_date.strftime('%Y-%m-%d_%H-%M')}").click_on "Book this slot"
 
+    page.should have_content "New Booking"
+
+    fill_in "Remarks", with: "Ho Chi Minh City"
+    click_on "Book this slot"
+
     page.should have_content "Booking created successfully"
-
-    # page.should have_content 'Book a session'
-
-    # click_on 'Monday 9am'
-    # page.should have_content 'Monday booked'
   end
 end
