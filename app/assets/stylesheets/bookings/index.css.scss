@@ -1,15 +1,22 @@
 #bookings-index-container {
   .calendar-table {
     td {
+      padding: 0;
       text-align: center;
     }
 
-    .booked {
-      background-color: cornflowerblue;
+    .available{
+      background-color: #5BC0DE;
+
+      a {
+        color: #5BC0DE;
+
+        &:hover {
+          color: #ffffff;
+        }
+      }
     }
 
-    .blocked {
-      background-color: lightslategrey;
-    }
+
   }
 }
