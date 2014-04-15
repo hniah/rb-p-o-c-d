@@ -21,6 +21,15 @@
   }
 }
 
+.footer{
+  @extend .container;
+
+  ul.footer-nav{
+    @extend .nav;
+    @extend .nav-pills;
+  }
+}
+
 // form styling
 label.required:after {
   content: " *";

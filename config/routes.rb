@@ -6,6 +6,8 @@ Ocd::Application.routes.draw do
   root :to => 'application#home'
 
   resources :bookings, only: [:index, :new, :create]
+  get 'job_scope_and_time_to_task' => 'pages#job_scope_and_time_to_task'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
