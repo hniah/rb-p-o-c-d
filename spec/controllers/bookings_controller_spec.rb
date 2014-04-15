@@ -24,7 +24,7 @@ describe BookingsController do
 
   describe "#new" do
     let(:user) { create :user }
-    let(:start_time) { Time.now.change(hour: 8, minute: 0) }
+    let(:start_time) { Time.now.change(hour: 8, min: 30) }
 
     def do_request
       get :new, day: start_time.day,

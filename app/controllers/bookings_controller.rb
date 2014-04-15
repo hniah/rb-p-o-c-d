@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
       month: start_time[:month],
       year: start_time[:year],
       hour: start_time[:hour],
-      minute: start_time[:minute]
+      min: start_time[:minute]
     )
   end
 
