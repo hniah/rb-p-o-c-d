@@ -1,2 +1,2 @@
 .available{id: "#{day}_#{time.strftime('%H-%M')}"}
-  = link_to "Book this slot", new_booking_path(time_slot: {start_time: start_time}), class: 'btn'
+  = link_to "Book this slot", new_booking_path(day: start_time.day, month: start_time.month, year: start_time.year, hour: start_time.hour, minute: start_time.min), class: 'btn'

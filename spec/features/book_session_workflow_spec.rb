@@ -21,9 +21,13 @@ describe 'Book a session workflow' do
 
     page.should have_content "New Booking"
 
+    select "4 hours", from: "Duration"
     fill_in "Remarks", with: "Ho Chi Minh City"
     click_on "Book this slot"
 
     page.should have_content "Booking created successfully"
+
+    my_date = my_date.change(hour: 12, minute: 00)
+    expect { find("##{my_date.strftime('%Y-%m-%d_%H-%M')}") }.to raise_error
   end
 end

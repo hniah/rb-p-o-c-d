@@ -24,9 +24,10 @@ describe BookingsController do
 
   describe "#new" do
     let(:user) { create :user }
+    let(:date) { Time.now.change(hour: 8, minute: 0) }
 
     def do_request
-      get :new, time_slot: { start_time: DateTime.now.change(hour: 10, minute: 00) }
+      get :new, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.min
     end
 
     before do
@@ -51,7 +52,7 @@ describe BookingsController do
     end
 
     context "params with start time" do
-      let(:time_slot_param) { attributes_for :time_slot }
+      let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4, remarks: "Ho Chi Minh City"}) }
 
       it "should create a block of bookings" do
         flash[:notice].should eq "Booking created successfully"

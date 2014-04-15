@@ -1,6 +1,8 @@
 class TimeSlot < ActiveRecord::Base
   extend Enumerize
 
+  attr_accessor :duration
+
   belongs_to :user
   belongs_to :housekeeper
 
@@ -27,10 +29,10 @@ class TimeSlot < ActiveRecord::Base
     self.start_time.present? && self.end_time.present?
   end
 
-  def create_booking_by!(user)
+  def create_booking_by!(user, duration = 3)
     return false unless self.start_time.is_a?(ActiveSupport::TimeWithZone)
 
-    self.end_time = self.start_time + 3.hours
+    self.end_time = self.start_time + duration.hours
     self.user = user
     self.category = :booked
     self.save!

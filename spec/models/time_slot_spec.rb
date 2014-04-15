@@ -45,10 +45,12 @@ describe TimeSlot do
   describe "#create_booking_by!" do
     let(:user) { create :user }
     let(:time_slot) { build(:time_slot) }
+    let(:duration) { 4 }
 
     context "success" do
       it "creates booking" do
-        expect { time_slot.create_booking_by!(user) }.to change(TimeSlot, :count).by(1)
+        expect { time_slot.create_booking_by!(user, duration) }.to change(TimeSlot, :count).by(1)
+        time_slot.end_time.hour.should eq 13
         time_slot.user.should eq user
       end
     end

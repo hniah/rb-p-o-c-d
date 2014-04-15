@@ -2,5 +2,6 @@
 
 = simple_form_for @time_slot, url: bookings_path, method: :post do |f|
   = f.input :start_time, as: :hidden
+  = f.input :duration, collection: [ ["3 hours", 3], ["4 hours", 4], ["5 hours", 5]]
   = f.input :remarks, as: :text
   = f.submit "Book this slot"
