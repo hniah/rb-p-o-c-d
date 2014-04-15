@@ -15,7 +15,11 @@ module BookingsHelper
     calendar_time_slot = create_date_time(day, time)
     booked_time_slot = find_booked_time_slot(booked_time_slots, calendar_time_slot)
 
-    unless booked_time_slot
+    if booked_time_slot
+      if booked_time_slot.category.booked?
+        render partial: 'bookings/booked_slot'
+      end
+      else
       render partial: 'bookings/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time)}
     end
   end
