@@ -24,10 +24,14 @@ describe BookingsController do
 
   describe "#new" do
     let(:user) { create :user }
-    let(:date) { Time.now.change(hour: 8, minute: 0) }
+    let(:start_time) { Time.now.change(hour: 8, minute: 0) }
 
     def do_request
-      get :new, day: date.day, month: date.month, year: date.year, hour: date.hour, minute: date.min
+      get :new, day: start_time.day,
+          month: start_time.month,
+          year: start_time.year,
+          hour: start_time.hour,
+          minute: start_time.min
     end
 
     before do

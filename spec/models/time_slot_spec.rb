@@ -56,9 +56,7 @@ describe TimeSlot do
     end
 
     context "failure" do
-      before do
-        time_slot.start_time = nil
-      end
+      before { time_slot.start_time = nil }
 
       it "should not create booking" do
         expect { time_slot.create_booking_by!(user) }.to_not change(TimeSlot, :count)
