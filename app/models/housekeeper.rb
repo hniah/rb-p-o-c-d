@@ -37,5 +37,10 @@ class Housekeeper < ActiveRecord::Base
       field :language_spoken
       field :special_remarks
     end
+
+    edit do
+      exclude_fields :time_slots
+    end
+
   end
 end
