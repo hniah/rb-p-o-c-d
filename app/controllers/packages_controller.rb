@@ -7,10 +7,14 @@ class PackagesController < ApplicationController
   end
 
   def do_buy_package
-    package_id = params.require(:user).permit(:package_id)[:package_id]
-    package = Package.find(package_id)
+    package = get_package
     current_user.packages << package
     flash[:notice] = "Package bought successfully"
     redirect_to bookings_path
+  end
+
+  def get_package
+    package_id = params.require(:user).permit(:package_id)[:package_id]
+    Package.find(package_id)
   end
 end

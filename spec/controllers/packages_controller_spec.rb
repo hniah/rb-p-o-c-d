@@ -31,7 +31,6 @@ describe PackagesController do
     it 'create a package for user' do
       sign_in user
       expect { do_request }.to change(user.packages, :count).by(1)
-
       response.should redirect_to bookings_path
       flash[:notice].should eq 'Package bought successfully'
     end
