@@ -34,6 +34,7 @@ gem 'pg'
 gem 'devise'
 gem 'haml'
 gem 'enumerize'
+gem 'money-rails'
 
 gem 'validates_timeliness', '~> 3.0'
 gem 'time_difference'

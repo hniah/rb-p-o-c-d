@@ -9,6 +9,9 @@ Ocd::Application.routes.draw do
   get 'job_scope_and_time_to_task' => 'pages#job_scope_and_time_to_task'
   get 'terms_and_condition' => 'pages#terms_and_condition'
 
+  get 'buy_package' => 'packages#buy_package'
+  patch 'buy_package' => 'packages#do_buy_package'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

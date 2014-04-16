@@ -65,3 +65,24 @@ time_slot = TimeSlot.create!(
   user: customer
 )
 puts "=== TimeSlot created ==="
+
+
+#Create sample packages
+Package.destroy_all
+puts "=== Package destroyed ==="
+
+packages = [
+  {name: '1 x 4-hour session', hours: 4, price_cents: 112},
+  {name: '1 x 5-hour session', hours: 5, price_cents: 140},
+  {name: '4 x 3-hour sessions', hours: 12, price_cents: 240},
+  {name: '4 x 4-hour sessions', hours: 16, price_cents: 320},
+  {name: '4 x 5-hour sessions', hours: 20, price_cents: 400},
+  {name: '12 x 3-hour sessions', hours: 36, price_cents: 648},
+  {name: '12 x 4-hour sessions', hours: 48, price_cents: 864},
+  {name: '12 x 5-hour sessions', hours: 60, price_cents: 1080},
+  {name: '24 x 3-hour sessions', hours: 72, price_cents: 1152},
+  {name: '24 x 4-hour sessions', hours: 96, price_cents: 1536},
+  {name: '24 x 5-hour sessions', hours: 120, price_cents: 1920}
+]
+
+packages.each { |p| package = Package.create!(p) }
