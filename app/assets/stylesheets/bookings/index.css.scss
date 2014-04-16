@@ -5,6 +5,15 @@
       text-align: center;
     }
 
+    tbody{
+      tr{
+        th {
+          padding-top:0 ;
+          vertical-align: top;
+        }
+      }
+    }
+
     .available{
       background-color: #5BC0DE;
 
