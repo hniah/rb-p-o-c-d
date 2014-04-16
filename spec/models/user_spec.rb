@@ -22,14 +22,6 @@ describe User do
         user.total_hours_bought.should eq 24
       end
     end
-
-    context "4 packages" do
-      let(:user) { create :user, :with_packages, number_of_packages: 4 }
-
-      it 'should total hours bought' do
-        user.total_hours_bought.should eq 48
-      end
-    end
   end
 
   describe "#total_hours_available!" do
