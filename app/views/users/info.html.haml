@@ -1,0 +1,35 @@
+.user_info_wrapper
+  %h2 USER ACCOUNT
+  %div.user_info
+    %h3 User information
+    %label Name :
+    = current_user.name
+    %br
+    %label Email :
+    = current_user.email
+    %br
+    %label Address :
+    = current_user.address
+    %br
+    %label Postal :
+    = current_user.postal
+    %br
+    %label Total bought hours  :
+    = current_user.total_hours_bought
+    %br
+    %label Current number of available hours :
+    = current_user.total_hours_available
+  %div.user_bookings
+    %h3 User bookings
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Start Time
+          %th End Time
+          %th Remarks
+      %tbody
+      - current_user.time_slots.each do |t|
+        %tr
+          %td= Time.at(t.start_time).strftime('%H:%M %d-%M-%Y')
+          %td= Time.at(t.end_time).strftime('%H:%M %d-%M-%Y')
+          %td= t.remarks

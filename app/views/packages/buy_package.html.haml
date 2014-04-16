@@ -4,4 +4,4 @@
     = f.input :package_id, collection: @packages,
         as: :select, label: 'Select your package',
         label_method: :name, value_method: :id, prompt: 'Select your package'
-    = f.submit "Buy"
+    = f.submit "Buy", class: 'btn'

@@ -41,6 +41,5 @@ class Housekeeper < ActiveRecord::Base
     edit do
       exclude_fields :time_slots
     end
-
   end
 end

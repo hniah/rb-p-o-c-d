@@ -12,6 +12,8 @@ Ocd::Application.routes.draw do
   get 'buy_package' => 'packages#buy_package'
   patch 'buy_package' => 'packages#do_buy_package'
 
+  get 'user_info' => 'users#info'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
