@@ -31,10 +31,20 @@ class TimeSlot < ActiveRecord::Base
 
   def create_booking_by!(user, duration = 3)
     return false unless self.start_time.is_a?(ActiveSupport::TimeWithZone)
-
-    self.end_time = self.start_time + duration.hours
+    end_time = self.start_time + duration.hours
+    self.end_time = end_time
     self.user = user
     self.category = :booked
+    if self.save!
+      TimeSlot.new.create_2_hours_apart!(user,end_time)
+    end
+  end
+
+  def create_2_hours_apart!(user,end_time)
+    self.user = user
+    self.category = :blocked
+    self.start_time = end_time
+    self.end_time = end_time + 2.hours
     self.save!
   end
 end

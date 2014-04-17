@@ -14,7 +14,6 @@ class BookingsController < ApplicationController
 
   def create
     @time_slot = TimeSlot.new(time_slot_param)
-
     if @time_slot.create_booking_by!(current_user, duration_param)
       flash[:notice] = "Booking created successfully"
     else

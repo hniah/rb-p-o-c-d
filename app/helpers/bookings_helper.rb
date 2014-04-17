@@ -19,7 +19,7 @@ module BookingsHelper
       if booked_time_slot.category.booked?
         render partial: 'bookings/booked_slot'
       end
-      else
+    else
       render partial: 'bookings/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time)}
     end
   end

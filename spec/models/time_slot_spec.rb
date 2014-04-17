@@ -49,7 +49,7 @@ describe TimeSlot do
 
     context "success" do
       it "creates booking" do
-        expect { time_slot.create_booking_by!(user, duration) }.to change(TimeSlot, :count).by(1)
+        expect { time_slot.create_booking_by!(user, duration) }.to change(TimeSlot, :count).by(2)
         time_slot.end_time.hour.should eq 13
         time_slot.user.should eq user
       end
@@ -60,6 +60,20 @@ describe TimeSlot do
 
       it "should not create booking" do
         expect { time_slot.create_booking_by!(user) }.to_not change(TimeSlot, :count)
+      end
+    end
+  end
+
+  describe "#create_2_hours_apart!" do
+    let(:user) { create :user }
+    let(:time_slot) { build(:time_slot) }
+    let(:time_slot_2_blocked) { build(:time_slot, :with_2_hours_apart) }
+
+    context "success" do
+      it "create time slot with 2 hours apart" do
+        expect { time_slot_2_blocked.create_2_hours_apart!(user, time_slot.end_time) }.to change(TimeSlot, :count).by(1)
+        time_slot_2_blocked.end_time.hour.should eq 14
+        time_slot_2_blocked.user.should eq user
       end
     end
   end

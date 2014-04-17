@@ -72,5 +72,6 @@ describe BookingsController do
         response.should redirect_to bookings_path
       end
     end
+
   end
 end
