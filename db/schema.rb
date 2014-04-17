@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140416020623) do
   end
 
   create_table "packages", force: true do |t|
-    t.string  "name"
+    t.integer "session_type"
     t.integer "hours"
     t.integer "price_cents",    default: 0,     null: false
     t.string  "price_currency", default: "USD", null: false

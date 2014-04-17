@@ -3,5 +3,5 @@
   = simple_form_for current_user, url: buy_package_path, method: :patch do |f|
     = f.input :package_id, collection: @packages,
         as: :select, label: 'Select your package',
-        label_method: :name, value_method: :id, prompt: 'Select your package'
+        label_method: :id, value_method: :id, prompt: 'Select your package'
     = f.submit "Buy", class: 'btn'
