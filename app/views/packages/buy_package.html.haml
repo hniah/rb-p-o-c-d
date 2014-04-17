@@ -4,11 +4,14 @@
     %thead
       %tr
         %th
-        %th.text-center Ad-hoc
+        %th.text-center
+          Ad-hoc
+          %br
+          ($28/hr)
         %th.text-center
           4 sessions
           %br
-          ($28/hr)
+          ($20/hr)
         %th.text-center
           12 sessions
           %br
@@ -17,19 +20,9 @@
           24 sessions
           %br
           ($16/hr)
-    - Package::SESSION_TYPE_LIST.each do |session_type|
+    - @sessions_type_list.each do |session_type|
       %tr
         %th= "#{session_type}-hours sessions"
         - @packages[session_type].each do |package|
-          - if package.price == 0
-            %td= "-"
-          - else
-            %td
-              = simple_form_for current_user, url: buy_package_path, method: :patch do |f|
-                = f.input :package_id, as: :hidden, input_html: { value: package.id }
-                = f.submit number_to_currency(package.price, precision: 0), class: 'btn', data: { test: package.id }
-
-
-
-
+          %td!= show_buy_package_button(package, current_user)
 
