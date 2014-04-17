@@ -72,17 +72,18 @@ Package.destroy_all
 puts "=== Package destroyed ==="
 
 packages = [
-  {type: 4, hours: 4, price_cents: 112},
-  {type: 5, hours: 5, price_cents: 140},
-  {type: 3, hours: 12, price_cents: 240},
-  {type: 4, hours: 16, price_cents: 320},
-  {type: 5, hours: 20, price_cents: 400},
-  {type: 3, hours: 36, price_cents: 648},
-  {type: 4, hours: 48, price_cents: 864},
-  {type: 5, hours: 60, price_cents: 1080},
-  {type: 3, hours: 72, price_cents: 1152},
-  {type: 4, hours: 96, price_cents: 1536},
-  {type: 5, hours: 120, price_cents: 1920}
+  {session_type: 3, hours: 0, price_cents: 0},
+  {session_type: 4, hours: 4, price_cents: 11200},
+  {session_type: 3, hours: 12, price_cents: 24000},
+  {session_type: 5, hours: 5, price_cents: 14000},
+  {session_type: 4, hours: 16, price_cents: 32000},
+  {session_type: 5, hours: 20, price_cents: 40000},
+  {session_type: 4, hours: 48, price_cents: 86400},
+  {session_type: 3, hours: 36, price_cents: 64800},
+  {session_type: 3, hours: 72, price_cents: 115200},
+  {session_type: 5, hours: 60, price_cents: 108000},
+  {session_type: 4, hours: 96, price_cents: 153600},
+  {session_type: 5, hours: 120, price_cents: 192000}
 ]
 
 packages.each { |p| package = Package.create!(p) }

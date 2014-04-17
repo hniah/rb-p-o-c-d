@@ -64,4 +64,5 @@ MoneyRails.configure do |config|
   #
   # config.no_cents_if_whole = nil
   # config.symbol = nil
+  Money.silence_core_extensions_deprecations = true
 end
