@@ -13,6 +13,7 @@ FactoryGirl.define do
     trait :with_2_hours_apart do
       start_time  DateTime.now.change(hour: 11,minute: 0)
       end_time    DateTime.now.change(hour: 13, minute: 0)
+      user nil
     end
   end
 end

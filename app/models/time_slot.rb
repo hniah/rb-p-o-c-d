@@ -36,12 +36,11 @@ class TimeSlot < ActiveRecord::Base
     self.user = user
     self.category = :booked
     if self.save!
-      TimeSlot.new.create_2_hours_apart!(user,end_time)
+      TimeSlot.new.create_2_hours_apart!(end_time)
     end
   end
 
-  def create_2_hours_apart!(user,end_time)
-    self.user = user
+  def create_2_hours_apart!(end_time)
     self.category = :blocked
     self.start_time = end_time
     self.end_time = end_time + 2.hours
