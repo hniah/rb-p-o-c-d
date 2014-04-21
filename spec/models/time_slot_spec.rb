@@ -11,10 +11,10 @@ describe TimeSlot do
       context 'Success' do
 
         context 'time slot is a booking' do
-          let(:time_slot) { time_slot = build(:time_slot) }
+          let(:time_slot) { build(:time_slot) }
 
           it 'only accepts 3 to 5 hours duration' do
-            time_slot.valid?.should be_true
+            time_slot.should be_valid
           end
         end
 
@@ -49,8 +49,8 @@ describe TimeSlot do
 
     context "success" do
       it "creates booking" do
-        expect { time_slot.create_booking_by!(user, duration) }.to change(TimeSlot, :count).by(2)
-        time_slot.end_time.hour.should eq 13
+        expect { time_slot.create_booking_by!(user, duration) }.to change(TimeSlot, :count)
+        time_slot.end_time.hour.should eq 14
         time_slot.user.should eq user
       end
     end
@@ -58,21 +58,34 @@ describe TimeSlot do
     context "failure" do
       before { time_slot.start_time = nil }
 
-      it "should not create booking" do
+      it 'should not create booking' do
         expect { time_slot.create_booking_by!(user) }.to_not change(TimeSlot, :count)
       end
     end
   end
 
-  describe "#create_2_hours_apart!" do
-    let(:time_slot) { build(:time_slot) }
-    let(:time_slot_2_blocked) { build(:time_slot, :with_2_hours_apart) }
+  describe "#bookable?" do
+    context "start time is invalid" do
+      let(:time_slot) { build(:time_slot, start_time: Time.now.change(hour: 8, min: 00)) }
 
-    context "success" do
-      it "create time slot with 2 hours apart" do
-        expect { time_slot_2_blocked.create_2_hours_apart!(time_slot.end_time) }.to change(TimeSlot, :count).by(1)
-        time_slot_2_blocked.end_time.hour.should eq 14
-        time_slot_2_blocked.user.should be_nil
+      before do
+        create(:time_slot, start_time: Time.now.change(hour: 11, min: 00), end_time: Time.now.change(hour: 14, min: 00))
+      end
+
+      it "should not allow time slot to be created" do
+        time_slot.should_not be_valid
+      end
+    end
+
+    context "end time is invalid" do
+      let(:time_slot) { build(:time_slot, start_time: Time.now.change(hour: 12, min: 00), end_time: Time.now.change(hour: 15, min: 00)) }
+
+      before do
+        create(:time_slot, start_time: Time.now.change(hour: 13, min: 00), end_time: Time.now.change(hour: 16, min: 00))
+      end
+
+      it "should not allow time slot to be created" do
+        time_slot.should_not be_valid
       end
     end
   end

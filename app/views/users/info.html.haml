@@ -34,6 +34,6 @@
       %tbody
       - current_user.time_slots.each do |t|
         %tr
-          %td= Time.at(t.start_time).strftime('%H:%M %d-%M-%Y')
-          %td= Time.at(t.end_time).strftime('%H:%M %d-%M-%Y')
+          %td= Time.at(t.start_time).strftime('%H:%M %d-%m-%Y')
+          %td= Time.at(t.end_time).strftime('%H:%M %d-%m-%Y')
           %td= t.remarks

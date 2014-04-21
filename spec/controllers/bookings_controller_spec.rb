@@ -4,7 +4,6 @@ describe BookingsController do
   describe '#index' do
     let!(:user) { create(:user) }
     let!(:current_week_time_slot) { create(:time_slot) }
-    let!(:last_week_time_slot)   { create(:time_slot, created_at: 1.week.ago) }
 
     def do_request
       get :index
@@ -24,7 +23,7 @@ describe BookingsController do
 
   describe "#new" do
     let(:user) { create :user }
-    let(:start_time) { Time.now.change(hour: 8, min: 30) }
+    let(:start_time) { Time.zone.now.change(hour: 8, min: 30) }
 
     def do_request
       get :new, day: start_time.day,
@@ -72,6 +71,5 @@ describe BookingsController do
         response.should redirect_to bookings_path
       end
     end
-
   end
 end

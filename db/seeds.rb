@@ -87,3 +87,4 @@ packages = [
 ]
 
 packages.each { |p| package = Package.create!(p) }
+puts "=== Package created ==="

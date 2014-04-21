@@ -30,7 +30,7 @@ describe User do
 
       it 'should total hours availale' do
         @total_hours_bought = user.total_hours_bought
-        @total_hours_available = @total_hours_bought - 6
+        @total_hours_available = @total_hours_bought - 8
 
         user.total_hours_available.should eq @total_hours_available
       end

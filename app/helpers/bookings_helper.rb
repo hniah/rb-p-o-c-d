@@ -31,7 +31,6 @@ module BookingsHelper
   def find_booked_time_slot(booked_time_slots, calendar_time_slot)
     booked_time_slots.find do |time_slot|
       calendar_time_slot >= time_slot.start_time && calendar_time_slot < time_slot.end_time
-      #calendar_time_slot.between?(time_slot.start_time, time_slot.end_time)
     end
   end
 end
