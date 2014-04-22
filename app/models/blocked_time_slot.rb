@@ -24,7 +24,8 @@ class BlockedTimeSlot < ActiveRecord::Base
 
       BlockedTimeSlot.new.create_blocked_2_hours(time_slot,'after')
 
-    elsif end_time >= 14*60 + 30 && end_time <= 19*60 && end_time > start_time + 3*60
+    elsif (start_time >= 14 * 60 + 30 && start_time <= 19 * 60) || ( start_time >= 13 * 60 && start_time <= 14 * 60 && end_time > start_time + 3 * 60 )
+
       BlockedTimeSlot.new.create_blocked_2_hours(time_slot,'before')
       BlockedTimeSlot.new(
         start_time: time_slot.end_time,

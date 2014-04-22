@@ -7,32 +7,6 @@ describe TimeSlot do
     it { should validate_presence_of :category }
     it { should enumerize(:category).in(:booked, :blocked)}
 
-    # describe "#time_slots_are_2_hours_apart" do
-    #   context "start time is invalid" do
-    #     let(:time_slot) { build(:time_slot, start_time: Time.zone.now.change(hour: 8, min: 00)) }
-    #
-    #     before do
-    #       create(:time_slot, start_time: Time.zone.now.change(hour: 11, min: 00), end_time: Time.zone.now.change(hour: 14, min: 00))
-    #     end
-    #
-    #     it "should not allow time slot to be created" do
-    #       time_slot.should_not be_valid
-    #     end
-    #   end
-    #
-    #   context "end time is invalid" do
-    #     let(:time_slot) { build(:time_slot, start_time: Time.zone.now.change(hour: 12, min: 00), end_time: Time.zone.now.change(hour: 15, min: 00)) }
-    #
-    #     before do
-    #       create(:time_slot, start_time: Time.zone.now.change(hour: 13, min: 00), end_time: Time.zone.now.change(hour: 16, min: 00))
-    #     end
-    #
-    #     it "should not allow time slot to be created" do
-    #       time_slot.should_not be_valid
-    #     end
-    #   end
-    # end
-
     describe '#time_is_between_3_to_5_hours' do
       context 'Success' do
 

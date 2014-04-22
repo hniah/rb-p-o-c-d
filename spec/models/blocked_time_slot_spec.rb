@@ -6,7 +6,6 @@ describe BlockedTimeSlot do
     it { should validate_presence_of :end_time}
     it { should validate_presence_of :category}
     it { should enumerize(:category).in(:blocked, :unblocked)}
-
   end
 
   context 'Association' do

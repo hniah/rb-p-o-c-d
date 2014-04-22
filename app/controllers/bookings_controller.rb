@@ -3,8 +3,8 @@ class BookingsController < ApplicationController
 
   def index
     @time_slots = TimeSlot.all
-    @time_slots = @time_slots.created_after (Time.now.beginning_of_week)
-    @time_slots = @time_slots.created_before(Time.now.end_of_week)
+    @time_slots = @time_slots.created_after (Time.zone.now.beginning_of_week)
+    @time_slots = @time_slots.created_before(Time.zone.now.end_of_week)
 
     @blocked_time_slots = BlockedTimeSlot.all
   end

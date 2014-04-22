@@ -22,22 +22,6 @@ class TimeSlot < ActiveRecord::Base
     end
   end
 
-  # def time_slots_are_2_hours_apart
-  #   time_slots = TimeSlot.all
-  #   time_slots.each do |time_slot|
-  #     blocked_start_time = time_slot.start_time - 2.hours
-  #     blocked_end_time = time_slot.end_time + 2.hours
-  #
-  #     if self.start_time.between?(blocked_start_time, blocked_end_time)
-  #       errors.add(:start_time, 'overlaps another time slot')
-  #     end
-  #
-  #     if self.end_time.between?(blocked_start_time, blocked_end_time)
-  #       errors.add(:end_time, 'overlaps another time slot')
-  #     end
-  #   end
-  # end
-
   def booked?
     self.category == 'booked'
   end

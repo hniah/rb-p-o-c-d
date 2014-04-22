@@ -18,7 +18,7 @@ describe BookingsHelper do
       let(:calendar_time_slot) { Time.zone.now.change(hour: 16, min: 00) }
 
       it "should not find booked time slot" do
-        helper.find_booked_time_slot(booked_time_slots, calendar_time_slot).should be_nil
+        helper.time_slot_used(booked_time_slots, calendar_time_slot).should be_nil
       end
     end
 
@@ -26,7 +26,7 @@ describe BookingsHelper do
       let(:calendar_time_slot) { Time.zone.now.change(hour: 10, min: 00) }
 
       it "should find booked time slot" do
-        helper.find_booked_time_slot(booked_time_slots, calendar_time_slot).should_not be_nil
+        helper.time_slot_used(booked_time_slots, calendar_time_slot).should_not be_nil
       end
     end
   end
@@ -38,7 +38,7 @@ describe BookingsHelper do
       let(:calendar_time_slot) { Time.zone.now.change(hour: 16, min: 0) }
 
       it 'should not find blocked time slot' do
-        helper.find_blocked_time_slot(blocked_time_slots, calendar_time_slot).should be_nil
+        helper.time_slot_used(blocked_time_slots, calendar_time_slot).should be_nil
       end
     end
 
@@ -46,7 +46,7 @@ describe BookingsHelper do
       let(:calendar_time_slot) { Time.zone.now.change(hour: 15, min: 0) }
 
       it 'should find blocked time slot' do
-        helper.find_blocked_time_slot(blocked_time_slots, calendar_time_slot).should be_present
+        helper.time_slot_used(blocked_time_slots, calendar_time_slot).should be_present
       end
     end
   end
