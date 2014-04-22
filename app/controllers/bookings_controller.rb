@@ -5,6 +5,8 @@ class BookingsController < ApplicationController
     @time_slots = TimeSlot.all
     @time_slots = @time_slots.created_after (Time.now.beginning_of_week)
     @time_slots = @time_slots.created_before(Time.now.end_of_week)
+
+    @blocked_time_slots = BlockedTimeSlot.all
   end
 
   def new
@@ -15,10 +17,10 @@ class BookingsController < ApplicationController
   def create
     @time_slot = TimeSlot.new(time_slot_param)
 
-    if @time_slot.create_booking_by!(current_user, duration_param)
+    if @time_slot.create_booking_by(current_user, duration_param)
       flash[:notice] = "Booking created successfully"
     else
-      flash[:alert] = "Failed to create booking"
+      flash[:alert] = "Failed to create booking: #{@time_slot.errors.full_messages.first}"
     end
     redirect_to bookings_path
   end
@@ -27,7 +29,7 @@ class BookingsController < ApplicationController
   def start_time_param
     start_time = params.permit(:day, :month, :year, :hour, :minute)
 
-    Time.now.change(
+    Time.zone.now.change(
       day: start_time[:day],
       month: start_time[:month],
       year: start_time[:year],

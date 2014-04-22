@@ -1,6 +1,5 @@
 #bookings-index-container
   %h1 Book a session
-
   %table.table.table-bordered.calendar-table
     %thead
       %tr
@@ -17,13 +16,13 @@
       - booking_time_range.each do |time|
         %tr
           %th= time.strftime('%l:%M%P')
-          %td!= display_booked_slot_info(@time_slots, day, time)
-          %td!= display_booked_slot_info(@time_slots, day+1, time)
-          %td!= display_booked_slot_info(@time_slots, day+2, time)
-          %td!= display_booked_slot_info(@time_slots, day+3, time)
-          %td!= display_booked_slot_info(@time_slots, day+4, time)
-          %td!= display_booked_slot_info(@time_slots, day+5, time)
-          %td!= display_booked_slot_info(@time_slots, day+6, time)
+          %td!= display_booked_slot_info(@time_slots, @blocked_time_slots, day, time)
+          %td!= display_booked_slot_info(@time_slots, @blocked_time_slots, day+1, time)
+          %td!= display_booked_slot_info(@time_slots, @blocked_time_slots, day+2, time)
+          %td!= display_booked_slot_info(@time_slots, @blocked_time_slots, day+3, time)
+          %td!= display_booked_slot_info(@time_slots, @blocked_time_slots, day+4, time)
+          %td!= display_booked_slot_info(@time_slots, @blocked_time_slots, day+5, time)
+          %td!= display_booked_slot_info(@time_slots, @blocked_time_slots, day+6, time)
       %tr
         %th= "10:00pm"
         %td

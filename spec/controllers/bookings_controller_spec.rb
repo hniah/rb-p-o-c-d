@@ -67,7 +67,7 @@ describe BookingsController do
       let(:time_slot_param) { {lorem: "Ipsum"} }
 
       it "should not create a block of bookings" do
-        flash[:alert].should eq "Failed to create booking"
+        flash[:alert].should eq "Failed to create booking: "
         response.should redirect_to bookings_path
       end
     end

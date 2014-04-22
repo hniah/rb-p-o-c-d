@@ -44,26 +44,41 @@ housekeeper.locations << [north, east]
 puts "=== Housekeeper created ==="
 
 # Create sample time slots
-TimeSlot.destroy_all
+BlockedTimeSlot.delete_all
+TimeSlot.delete_all
 puts "=== TimeSlot destroyed ==="
 
 sunday = Date.today.end_of_week
-time_slot = TimeSlot.create!(
-  start_time: Time.local(sunday.year, sunday.month, sunday.day, 8, 00),
-  end_time:   Time.local(sunday.year, sunday.month, sunday.day, 22, 00),
-  category: :blocked,
-  housekeeper: housekeeper,
-  user: nil
+BlockedTimeSlot.create!(
+  start_time: Time.zone.now.change(
+    year: sunday.year,
+    month: sunday.month,
+    day: sunday.day,
+    hour: 8,
+    min: 0
+  ),
+  end_time:   Time.zone.now.change(
+    year: sunday.year,
+    month: sunday.month,
+    day: sunday.day,
+    hour: 22,
+    min: 0
+  ),
+  category: :blocked
 )
 
 monday = Date.today.beginning_of_week
-time_slot = TimeSlot.create!(
-  start_time: Time.local(monday.year, monday.month, monday.day, 8, 00),
-  end_time:   Time.local(monday.year, monday.month, monday.day, 12, 00),
+TimeSlot.new(
+  start_time: Time.zone.now.change(
+    year: monday.year,
+    month: monday.month,
+    day: monday.day,
+    hour: 8,
+    min: 0
+  ),
   category: :booked,
-  housekeeper: housekeeper,
-  user: customer
-)
+  housekeeper: nil
+).create_booking_by(customer, 4)
 puts "=== TimeSlot created ==="
 
 

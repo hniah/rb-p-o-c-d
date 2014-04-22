@@ -15,7 +15,7 @@ describe 'Book a session workflow' do
     page.should have_content "Signed in successfully."
 
     click_on "Book a session"
-    my_date = DateTime.now + 2.days
+    my_date = Time.zone.now + 2.days
     my_date = my_date.change(hour: 11, min: 00)
     find("##{my_date.strftime('%Y-%m-%d_%H-%M')}").click_on "Book this slot"
 
@@ -28,6 +28,10 @@ describe 'Book a session workflow' do
     page.should have_content "Booking created successfully"
 
     my_date = my_date.change(hour: 14, min: 00)
+
+    expect { find("##{my_date.strftime('%Y-%m-%d_%H-%M')}") }.to raise_error
+
+    my_date = my_date.change(hour: 8, min: 0)
     expect { find("##{my_date.strftime('%Y-%m-%d_%H-%M')}") }.to raise_error
   end
 end
