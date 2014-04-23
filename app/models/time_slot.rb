@@ -74,4 +74,12 @@ class TimeSlot < ActiveRecord::Base
       self.end_time.change(hour: 22, min: 0)
     end
   end
+
+  def session_contains?(calendar_time)
+    calendar_time >= start_time && calendar_time < end_time
+  end
+
+  def session_blocks?(calendar_time)
+    calendar_time >= blocked_start_time && calendar_time < blocked_end_time
+  end
 end

@@ -13,14 +13,12 @@ module BookingsHelper
   end
 
   def display_booked_slot_info(booked_time_slots, day, time)
-    calendar_time_slot = create_date_time(day, time)
-    booked_time_slot = time_slot_used(booked_time_slots, calendar_time_slot)
+    calendar_time = create_date_time(day, time)
+    booked_time_slot = time_slot_used(booked_time_slots, calendar_time)
 
     if booked_time_slot
-      if booked_time_slot.booked?
-        if calendar_time_slot >= booked_time_slot.start_time && calendar_time_slot < booked_time_slot.end_time
-          render partial: 'bookings/booked_slot'
-        end
+      if booked_time_slot.booked? && booked_time_slot.session_contains?(calendar_time)
+        render partial: 'bookings/booked_slot'
       end
     else
       render partial: 'bookings/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time)}
@@ -37,9 +35,9 @@ module BookingsHelper
     )
   end
 
-  def time_slot_used( time_slots, calendar_time_slot )
+  def time_slot_used( time_slots, calendar_time )
     time_slots.find do |time_slot|
-      calendar_time_slot >= time_slot.blocked_start_time && calendar_time_slot < time_slot.blocked_end_time
+      time_slot.session_blocks?(calendar_time)
     end
   end
 end

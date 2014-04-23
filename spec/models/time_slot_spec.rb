@@ -164,4 +164,44 @@ describe TimeSlot do
       end
     end
   end
+
+  describe "#session_contains?" do
+    let(:time_slot) { build(:time_slot) }
+
+    context "calendar time is in time slot" do
+      let(:calendar_time) { time_with_zone(hour: 12, min: 0) }
+
+      it "should contains calendar time" do
+        time_slot.session_contains?(calendar_time).should be_true
+      end
+    end
+
+    context "calendar time is not in time slot" do
+      let(:calendar_time) { time_with_zone(hour: 18, min: 0) }
+
+      it "should not contains calendar time" do
+        time_slot.session_contains?(calendar_time).should_not be_true
+      end
+    end
+  end
+
+  describe "#session_blocks?" do
+    let(:time_slot) { build(:time_slot) }
+
+    context "calendar time is blocked in time slot" do
+      let(:calendar_time) { time_with_zone(hour: 10, min: 0) }
+
+      it "should contains calendar time" do
+        time_slot.session_blocks?(calendar_time).should be_true
+      end
+    end
+
+    context "calendar time is not blocked in time slot" do
+      let(:calendar_time) { time_with_zone(hour: 18, min: 0) }
+
+      it "should not contains calendar time" do
+        time_slot.session_blocks?(calendar_time).should_not be_true
+      end
+    end
+  end
 end
