@@ -1,7 +1,7 @@
 # Create admin login
 Admin.destroy_all
 puts "=== Admin destroyed ==="
-Admin.create!(email: 'admin@example.com', password: '123123', password_confirmation: '123123')
+admin = Admin.create!(email: 'admin@example.com', password: '123123', password_confirmation: '123123')
 puts "=== Admin created ==="
 
 # Create locations
@@ -44,12 +44,11 @@ housekeeper.locations << [north, east]
 puts "=== Housekeeper created ==="
 
 # Create sample time slots
-BlockedTimeSlot.delete_all
 TimeSlot.delete_all
 puts "=== TimeSlot destroyed ==="
 
 sunday = Date.today.end_of_week
-BlockedTimeSlot.create!(
+TimeSlot.create!(
   start_time: Time.zone.now.change(
     year: sunday.year,
     month: sunday.month,
@@ -57,14 +56,16 @@ BlockedTimeSlot.create!(
     hour: 8,
     min: 0
   ),
-  end_time:   Time.zone.now.change(
+  end_time: Time.zone.now.change(
     year: sunday.year,
     month: sunday.month,
     day: sunday.day,
     hour: 22,
     min: 0
   ),
-  category: :blocked
+  category: :blocked,
+  housekeeper: nil,
+  user: nil
 )
 
 monday = Date.today.beginning_of_week

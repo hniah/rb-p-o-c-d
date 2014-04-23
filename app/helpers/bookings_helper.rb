@@ -12,15 +12,16 @@ module BookingsHelper
     time_range
   end
 
-  def display_booked_slot_info(booked_time_slots, blocked_time_slots, day, time)
+  def display_booked_slot_info(booked_time_slots, day, time)
     calendar_time_slot = create_date_time(day, time)
     booked_time_slot = time_slot_used(booked_time_slots, calendar_time_slot)
-    blocked_time_slot = time_slot_used(blocked_time_slots, calendar_time_slot)
 
     if booked_time_slot
-      render partial: 'bookings/booked_slot'
-    elsif blocked_time_slot
-
+      if booked_time_slot.booked?
+        if calendar_time_slot >= booked_time_slot.start_time && calendar_time_slot < booked_time_slot.end_time
+          render partial: 'bookings/booked_slot'
+        end
+      end
     else
       render partial: 'bookings/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time)}
     end
@@ -38,7 +39,7 @@ module BookingsHelper
 
   def time_slot_used( time_slots, calendar_time_slot )
     time_slots.find do |time_slot|
-      return true if calendar_time_slot >= time_slot.start_time && calendar_time_slot < time_slot.end_time
+      calendar_time_slot >= time_slot.blocked_start_time && calendar_time_slot < time_slot.blocked_end_time
     end
   end
 end

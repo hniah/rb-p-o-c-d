@@ -45,4 +45,5 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include FeatureHelper
   config.include MoneyRails::TestHelpers
+  config.include TimeHelper
 end

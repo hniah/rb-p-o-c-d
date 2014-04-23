@@ -35,11 +35,39 @@ describe TimeSlot do
         end
       end
     end
+
+    describe '#only_2_seesions_in_day?' do
+      context 'success' do
+        let!(:time_slot) { create(:time_slot) }
+        let(:time_slots)  { build_list(:time_slot, 1) }
+
+        it 'should be allowed to create time slot' do
+          time_slots.first.save.should == true
+        end
+      end
+
+      context 'failure' do
+        let!(:time_slots) { create_list(:time_slot, 2) }
+        let(:time_slot)  { build(:time_slot) }
+
+        it 'should not be allowed to create time slot' do
+          time_slot.save.should == false
+        end
+      end
+    end
   end
 
   context 'Association' do
     it { should belong_to :user }
     it { should belong_to :housekeeper }
+  end
+
+  describe '.total_sessions_in_day' do
+    let!(:time_slots) { create_list(:time_slot, 2, created_at: Time.zone.now) }
+
+    it 'should return total sessions in day' do
+      TimeSlot.total_sessions_in_day(Time.zone.now).should == 2
+    end
   end
 
   describe "#create_booking_by" do
@@ -49,7 +77,6 @@ describe TimeSlot do
 
     context "success" do
       it "creates booking" do
-        BlockedTimeSlot.should_receive(:create_blocked_time_slots!).once
         expect { time_slot.create_booking_by(user, duration) }.to change(TimeSlot, :count)
         time_slot.end_time.hour.should eq 14
         time_slot.user.should eq user
@@ -60,8 +87,80 @@ describe TimeSlot do
       before { time_slot.start_time = nil }
 
       it 'should not create booking' do
-        BlockedTimeSlot.should_not_receive(:create_blocked_time_slots!)
         expect { time_slot.create_booking_by(user) }.to_not change(TimeSlot, :count)
+      end
+    end
+  end
+
+  describe "#blocked_start_time" do
+    let!(:time_slot) do
+      build(:time_slot, start_time: time_with_zone(hour: hour, min: min))
+    end
+    let(:min) { 0 }
+    let(:blocked_start_time_hour) { time_slot.blocked_start_time.hour }
+
+    context "starts at 10:00" do
+      let(:hour) { 10 }
+
+      it "returns the correct blocked start time" do
+        blocked_start_time_hour.should eq 8
+      end
+    end
+
+    context "start at 12:30" do
+      let(:hour) { 12 }
+      let(:min) { 30 }
+
+      it "returns the correct blocked start time" do
+        blocked_start_time_hour.should eq 8
+      end
+    end
+
+    context "starts at 13: 00" do
+      let(:hour) { 13 }
+
+      it "returns the correct blocked start time" do
+        blocked_start_time_hour.should eq 11
+      end
+    end
+
+    context "starts at 16: 00" do
+      let(:hour) { 16 }
+
+      it "returns the correct blocked start time" do
+        blocked_start_time_hour.should eq 14
+      end
+    end
+  end
+
+  describe "#blocked_end_time" do
+    let(:min){ 0 }
+    let(:time_slot) do
+      build(:time_slot, end_time: time_with_zone(hour: hour, min: min))
+    end
+
+    let(:blocked_end_time_hour) { time_slot.blocked_end_time.hour }
+
+    context "end at 13:30" do
+      let(:hour) { 13 }
+      let(:min) { 30 }
+      it 'returns the correct blocked end time' do
+        blocked_end_time_hour.should eq 15
+        time_slot.blocked_end_time.min.should eq 30
+      end
+    end
+
+    context "end at 14" do
+      let(:hour) { 14 }
+      it 'returns the correct blocked end time' do
+        blocked_end_time_hour.should eq 16
+      end
+    end
+
+    context "end at 20" do
+      let(:hour) { 20 }
+      it 'returns the correct blocked end time' do
+        blocked_end_time_hour.should eq 22
       end
     end
   end
