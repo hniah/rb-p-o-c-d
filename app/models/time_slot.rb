@@ -11,7 +11,7 @@ class TimeSlot < ActiveRecord::Base
 
   validates_presence_of :start_time, :end_time, :category
   validate :time_is_between_3_to_5_hours, if: :has_start_and_end_time? && :booked?
-  validate :only_2_sessions_in_day?
+  validate :only_2_sessions_in_day?, :restrict_booking_time
 
   scope :created_after,  -> (date) { where('created_at >= ?', date) }
   scope :created_before, -> (date) { where('created_at <= ?', date) }
@@ -79,5 +79,12 @@ class TimeSlot < ActiveRecord::Base
 
   def session_blocks?(calendar_time)
     calendar_time >= blocked_start_time && calendar_time < blocked_end_time
+  end
+
+  def restrict_booking_time
+    return false if self.start_time.nil?
+    if self.start_time.hour < 8 || self.end_time.hour > 22
+      errors.add(:time_slot, 'is restricted to only 8am to 10pm (including PH / weekend)')
+    end
   end
 end

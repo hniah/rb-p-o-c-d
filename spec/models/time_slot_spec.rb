@@ -55,6 +55,33 @@ describe TimeSlot do
         end
       end
     end
+
+    describe '#restrict_booking_time' do
+
+      context 'success' do
+        let(:time_slot) do
+          build(:time_slot,
+                start_time: time_with_zone(hour: 10, min: 0),
+                end_time: time_with_zone(hour: 13, min: 0))
+        end
+
+        it 'should be valid' do
+          time_slot.should be_valid
+        end
+      end
+
+      context 'failure' do
+        let(:time_slot) do
+          build(:time_slot,
+                start_time: time_with_zone(hour: 7, min: 0),
+                end_time: time_with_zone(hour: 10, min: 0))
+        end
+
+        it 'should not be valid' do
+          time_slot.should_not be_valid
+        end
+      end
+    end
   end
 
   context 'Association' do
