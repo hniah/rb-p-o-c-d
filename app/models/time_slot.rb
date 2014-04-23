@@ -11,7 +11,7 @@ class TimeSlot < ActiveRecord::Base
 
   validates_presence_of :start_time, :end_time, :category
   validate :time_is_between_3_to_5_hours, if: :has_start_and_end_time? && :booked?
-  validate :only_2_sessions_in_day?, on: :create
+  validate :only_2_sessions_in_day?
 
   scope :created_after,  -> (date) { where('created_at >= ?', date) }
   scope :created_before, -> (date) { where('created_at <= ?', date) }
@@ -43,16 +43,14 @@ class TimeSlot < ActiveRecord::Base
   end
 
   def only_2_sessions_in_day?
-    if self.start_time.nil?
-      return false
-    end
+    return false if self.start_time.nil?
     if TimeSlot.total_sessions_in_day(self.start_time) == 2
-      return errors[:base] << 'Only 2 sessions in day!'
+      errors[:base] << 'Only 2 sessions in day!'
     end
   end
 
   def self.total_sessions_in_day(date)
-    return TimeSlot.where(created_at: date.beginning_of_day..date.end_of_day).count
+    return TimeSlot.where(start_time: date.beginning_of_day..date.end_of_day).count
   end
 
   def blocked_start_time

@@ -36,19 +36,19 @@ describe TimeSlot do
       end
     end
 
-    describe '#only_2_seesions_in_day?' do
+    describe '#only_2_sessions_in_day?' do
       context 'success' do
-        let!(:time_slot) { create(:time_slot) }
-        let(:time_slots)  { build_list(:time_slot, 1) }
+        let!(:time_slots)  { create_list(:time_slot, 1) }
+        let!(:time_slot) { build(:time_slot) }
 
         it 'should be allowed to create time slot' do
-          time_slots.first.save.should == true
+          time_slot.save.should == true
         end
       end
 
       context 'failure' do
         let!(:time_slots) { create_list(:time_slot, 2) }
-        let(:time_slot)  { build(:time_slot) }
+        let!(:time_slot)  { build(:time_slot) }
 
         it 'should not be allowed to create time slot' do
           time_slot.save.should == false
@@ -63,10 +63,15 @@ describe TimeSlot do
   end
 
   describe '.total_sessions_in_day' do
-    let!(:time_slots) { create_list(:time_slot, 2, created_at: Time.zone.now) }
+    before do
+      create_list(:time_slot, 2,
+                  start_time: time_with_zone(hour: 10, min: 0),
+                  end_time: time_with_zone(hour: 14, min: 0))
+    end
 
     it 'should return total sessions in day' do
-      TimeSlot.total_sessions_in_day(Time.zone.now).should == 2
+      TimeSlot.total_sessions_in_day(time_with_zone).should == 2
+      TimeSlot.total_sessions_in_day(time_with_zone.tomorrow).should == 0
     end
   end
 
