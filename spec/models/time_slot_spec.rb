@@ -58,7 +58,7 @@ describe TimeSlot do
 
     describe '#restrict_booking_time' do
 
-      context 'success' do
+      context 'valid' do
         let(:time_slot) do
           build(:time_slot,
                 start_time: time_with_zone(hour: 10, min: 0),
@@ -70,11 +70,23 @@ describe TimeSlot do
         end
       end
 
-      context 'failure' do
+      context 'starts at 7:00 - 10:00' do
         let(:time_slot) do
           build(:time_slot,
                 start_time: time_with_zone(hour: 7, min: 0),
                 end_time: time_with_zone(hour: 10, min: 0))
+        end
+
+        it 'should not be valid' do
+          time_slot.should_not be_valid
+        end
+      end
+
+      context 'ends at 23:00' do
+        let(:time_slot) do
+          build(:time_slot,
+                start_time: time_with_zone(hour: 20, min: 0),
+                end_time: time_with_zone(hour: 23, min: 0))
         end
 
         it 'should not be valid' do
@@ -116,13 +128,18 @@ describe TimeSlot do
     end
 
     context "failure" do
-      before { time_slot.start_time = nil }
+      let(:time_slot) {build(:time_slot, start_time: time_with_zone(hour: 20, min: 0))}
 
       it 'should not create booking' do
-        expect { time_slot.create_booking_by(user) }.to_not change(TimeSlot, :count)
+        expect { time_slot.create_booking_by(user, 5) }.to_not change(TimeSlot, :count)
       end
     end
   end
+
+
+
+
+
 
   describe "#blocked_start_time" do
     let!(:time_slot) do

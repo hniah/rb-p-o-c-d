@@ -83,7 +83,7 @@ class TimeSlot < ActiveRecord::Base
 
   def restrict_booking_time
     return false if self.start_time.nil?
-    if self.start_time.hour < 8 || self.end_time.hour > 22
+    if self.start_time < self.start_time.change(hour: 8) || self.end_time > self.start_time.change(hour: 22)
       errors.add(:time_slot, 'is restricted to only 8am to 10pm (including PH / weekend)')
     end
   end
