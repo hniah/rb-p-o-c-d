@@ -2,7 +2,7 @@
 
 %div
   %label Start Time :
-  = Time.at(@time_slot.start_time).strftime("%H:%M %d-%B-%Y")
+  = @time_slot.start_time.strftime("%H:%M %d-%B-%Y")
 
 = simple_form_for @time_slot, url: bookings_path, method: :post do |f|
   = f.input :start_time, as: :hidden
