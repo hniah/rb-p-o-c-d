@@ -20,6 +20,8 @@ module BookingsHelper
       if booked_time_slot.booked? && booked_time_slot.session_contains?(calendar_time)
         render partial: 'bookings/booked_slot'
       end
+    elsif total_sessions(booked_time_slots, calendar_time) >= 2
+
     else
       render partial: 'bookings/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time)}
     end
@@ -39,5 +41,11 @@ module BookingsHelper
     time_slots.find do |time_slot|
       time_slot.session_blocks?(calendar_time)
     end
+  end
+
+  def total_sessions(time_slots, date)
+    time_slots.select do |time_slot|
+      time_slot.start_time.between?(date.beginning_of_day, date.end_of_day)
+    end.size
   end
 end

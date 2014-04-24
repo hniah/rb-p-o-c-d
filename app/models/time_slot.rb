@@ -51,7 +51,7 @@ class TimeSlot < ActiveRecord::Base
   end
 
   def self.total_sessions_in_day(date)
-    return TimeSlot.where(start_time: date.beginning_of_day..date.end_of_day).count
+    TimeSlot.where(start_time: date.beginning_of_day..date.end_of_day).count
   end
 
   def blocked_start_time

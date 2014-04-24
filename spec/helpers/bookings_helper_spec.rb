@@ -29,4 +29,18 @@ describe BookingsHelper do
       end
     end
   end
+
+  describe '#total_sessions' do
+    let(:calendar_time) { time_with_zone(hour: 10, min: 0) }
+
+    before do
+      create_time_slot(hour: 10, min: 0)
+      create_time_slot(hour: 16, min: 0)
+      create(:time_slot, start_time: time_with_zone + 2.days, end_time: time_with_zone + 2.days + 3.hours )
+    end
+
+    it 'should be equal 2' do
+      helper.total_sessions(TimeSlot.all, calendar_time).should eq 2
+    end
+  end
 end
