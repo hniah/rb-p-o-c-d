@@ -88,23 +88,23 @@ describe TimeSlot do
     end
 
     describe '#creatable?' do
-      context 'starts at 11:00' do
-        let(:time_slot) { build_time_slot(hour: 11, min: 0) }
+      context 'starts at 12:00' do
+        let(:time_slot) { build_time_slot({ hour: 12, min: 0 }, 3) }
 
-        before { create(:time_slot) }
+        before { create_time_slot({ hour: 9, min: 0 }, 3) }
 
-        it 'should not be invalid'do
+        it 'should not be invalid' do
           time_slot.should_not be_valid
         end
       end
 
-      context 'starts at 10:00' do
-        let(:time_slot) { build_time_slot(hour: 8, min: 0) }
+      context 'starts at 9:00' do
+        let(:time_slot) { build_time_slot(hour: 9, min: 0) }
 
-        before { create_time_slot(hour: 11, min: 0) }
+        before { create_time_slot(hour: 14, min: 0) }
 
         it 'should not be invalid'do
-          time_slot.should_not be_valid
+          time_slot.should be_valid
         end
       end
 

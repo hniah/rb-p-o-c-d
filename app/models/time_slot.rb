@@ -82,6 +82,11 @@ class TimeSlot < ActiveRecord::Base
     calendar_time >= blocked_start_time && calendar_time < blocked_end_time
   end
 
+  def blocked_by?(time_slot)
+    (self.start_time > time_slot.blocked_start_time && self.start_time < time_slot.blocked_end_time) ||
+    (self.end_time > time_slot.blocked_start_time && self.end_time < time_slot.blocked_end_time)
+  end
+
   def restrict_booking_time
     return false if self.start_time.nil?
     if self.start_time < self.start_time.change(hour: 8) || self.end_time > self.start_time.change(hour: 22)
@@ -92,7 +97,7 @@ class TimeSlot < ActiveRecord::Base
   def creatable?
     time_slots = TimeSlot.all
     time_slots.each do |time_slot|
-      if time_slot.session_blocks?(start_time) && time_slot.session_blocks?(end_time)
+      if self.blocked_by?(time_slot)
         errors.add(:time_slot,'overlaps another time slot')
       end
     end
