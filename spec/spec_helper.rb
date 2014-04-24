@@ -46,4 +46,5 @@ RSpec.configure do |config|
   config.include FeatureHelper
   config.include MoneyRails::TestHelpers
   config.include TimeHelper
+  config.include TimeSlotHelper
 end

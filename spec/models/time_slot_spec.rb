@@ -39,11 +39,7 @@ describe TimeSlot do
     describe '#only_2_sessions_in_day?' do
       context 'success' do
         let!(:time_slots)  { create_list(:time_slot, 1) }
-        let!(:time_slot) do
-          build(:time_slot,
-                start_time: time_with_zone(hour: 17, min:0)
-          )
-        end
+        let!(:time_slot) { build_time_slot({hour: 17, min: 0}) }
 
         it 'should be allowed to create time slot' do
           time_slot.save.should == true
@@ -54,8 +50,8 @@ describe TimeSlot do
         let!(:time_slot)  { build(:time_slot) }
 
         before do
-          create(:time_slot, start_time: time_with_zone(hour:8, min:0), end_time: time_with_zone(hour:11, min:0))
-          create(:time_slot, start_time: time_with_zone(hour:13, min:0), end_time: time_with_zone(hour:16, min:0))
+          create_time_slot({ hour: 8, min: 0 })
+          create_time_slot({ hour: 13, min: 0})
         end
 
         it 'should not be allowed to create time slot' do
@@ -67,11 +63,7 @@ describe TimeSlot do
     describe '#restrict_booking_time' do
 
       context 'valid' do
-        let(:time_slot) do
-          build(:time_slot,
-                start_time: time_with_zone(hour: 10, min: 0),
-                end_time: time_with_zone(hour: 13, min: 0))
-        end
+        let(:time_slot) { build_time_slot({hour: 10, min: 0}) }
 
         it 'should be valid' do
           time_slot.should be_valid
@@ -79,11 +71,7 @@ describe TimeSlot do
       end
 
       context 'starts at 7:00 - 10:00' do
-        let(:time_slot) do
-          build(:time_slot,
-                start_time: time_with_zone(hour: 7, min: 0),
-                end_time: time_with_zone(hour: 10, min: 0))
-        end
+        let(:time_slot) { build_time_slot(hour: 7, min: 0) }
 
         it 'should not be valid' do
           time_slot.should_not be_valid
@@ -91,11 +79,7 @@ describe TimeSlot do
       end
 
       context 'ends at 23:00' do
-        let(:time_slot) do
-          build(:time_slot,
-                start_time: time_with_zone(hour: 20, min: 0),
-                end_time: time_with_zone(hour: 23, min: 0))
-        end
+        let(:time_slot) { build_time_slot(hour: 20, min: 0) }
 
         it 'should not be valid' do
           time_slot.should_not be_valid
@@ -105,14 +89,9 @@ describe TimeSlot do
 
     describe '#creatable?' do
       context 'starts at 11:00' do
-        before do
-          create(:time_slot)
-        end
-        let(:time_slot) do
-          build(:time_slot,
-                start_time: time_with_zone(hour: 11, min: 0),
-                end_time: time_with_zone(hour: 15, min: 0))
-        end
+        let(:time_slot) { build_time_slot(hour: 11, min: 0) }
+
+        before { create(:time_slot) }
 
         it 'should not be invalid'do
           time_slot.should_not be_valid
@@ -120,17 +99,9 @@ describe TimeSlot do
       end
 
       context 'starts at 10:00' do
-        before do
-          create(:time_slot,
-                start_time: time_with_zone(hour: 11, min: 0),
-                end_time: time_with_zone(hour: 14, min: 0)
-          )
-        end
-        let(:time_slot) do
-          build(:time_slot,
-                start_time: time_with_zone(hour: 8, min: 0),
-                end_time: time_with_zone(hour: 11, min: 0))
-        end
+        let(:time_slot) { build_time_slot(hour: 8, min: 0) }
+
+        before { create_time_slot(hour: 11, min: 0) }
 
         it 'should not be invalid'do
           time_slot.should_not be_valid
@@ -138,14 +109,10 @@ describe TimeSlot do
       end
 
       context 'starts at 16:00' do
-        before do
-          create(:time_slot)
-        end
-        let(:time_slot) do
-          build(:time_slot,
-                start_time: time_with_zone(hour: 16, min: 0),
-                end_time: time_with_zone(hour: 20, min: 0))
-        end
+        let(:time_slot) { build_time_slot(hour: 16, min: 0) }
+
+        before { create(:time_slot) }
+
         it 'should be valid' do
           time_slot.should be_valid
         end
@@ -160,8 +127,8 @@ describe TimeSlot do
 
   describe '.total_sessions_in_day' do
     before do
-      create(:time_slot, start_time: time_with_zone(hour:8, min:0), end_time: time_with_zone(hour:11, min:0))
-      create(:time_slot, start_time: time_with_zone(hour:13, min:0), end_time: time_with_zone(hour:16, min:0))
+      create_time_slot(hour: 8, min: 0)
+      create_time_slot(hour: 13, min: 0)
     end
 
     it 'should return total sessions in day' do
@@ -184,7 +151,7 @@ describe TimeSlot do
     end
 
     context "failure" do
-      let(:time_slot) {build(:time_slot, start_time: time_with_zone(hour: 20, min: 0))}
+      let(:time_slot) { build_time_slot(hour: 20, min: 0) }
 
       it 'should not create booking' do
         expect { time_slot.create_booking_by(user, 5) }.to_not change(TimeSlot, :count)
@@ -193,9 +160,7 @@ describe TimeSlot do
   end
 
   describe "#blocked_start_time" do
-    let!(:time_slot) do
-      build(:time_slot, start_time: time_with_zone(hour: hour, min: min))
-    end
+    let!(:time_slot) { build_time_slot(hour: hour, min: min) }
     let(:min) { 0 }
     let(:blocked_start_time_hour) { time_slot.blocked_start_time.hour }
 
