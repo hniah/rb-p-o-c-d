@@ -11,7 +11,7 @@ class TimeSlot < ActiveRecord::Base
 
   validates_presence_of :start_time, :end_time, :category
   validate :time_is_between_3_to_5_hours, if: :has_start_and_end_time? && :booked?
-  validate :only_2_sessions_in_day?, :restrict_booking_time
+  validate :only_2_sessions_in_day?, :restrict_booking_time, :creatable?
 
   scope :created_after,  -> (date) { where('created_at >= ?', date) }
   scope :created_before, -> (date) { where('created_at <= ?', date) }
@@ -36,6 +36,7 @@ class TimeSlot < ActiveRecord::Base
 
   def create_booking_by(user, duration = 3)
     return false unless self.start_time.is_a?(ActiveSupport::TimeWithZone)
+
     self.end_time = self.start_time + duration.hours
     self.user = user
     self.category = :booked
@@ -85,6 +86,15 @@ class TimeSlot < ActiveRecord::Base
     return false if self.start_time.nil?
     if self.start_time < self.start_time.change(hour: 8) || self.end_time > self.start_time.change(hour: 22)
       errors.add(:time_slot, 'is restricted to only 8am to 10pm (including PH / weekend)')
+    end
+  end
+
+  def creatable?
+    time_slots = TimeSlot.all
+    time_slots.each do |time_slot|
+      if time_slot.session_blocks?(start_time) && time_slot.session_blocks?(end_time)
+        errors.add(:time_slot,'overlaps another time slot')
+      end
     end
   end
 end

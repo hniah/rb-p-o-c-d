@@ -39,7 +39,11 @@ describe TimeSlot do
     describe '#only_2_sessions_in_day?' do
       context 'success' do
         let!(:time_slots)  { create_list(:time_slot, 1) }
-        let!(:time_slot) { build(:time_slot) }
+        let!(:time_slot) do
+          build(:time_slot,
+                start_time: time_with_zone(hour: 17, min:0)
+          )
+        end
 
         it 'should be allowed to create time slot' do
           time_slot.save.should == true
@@ -47,8 +51,12 @@ describe TimeSlot do
       end
 
       context 'failure' do
-        let!(:time_slots) { create_list(:time_slot, 2) }
         let!(:time_slot)  { build(:time_slot) }
+
+        before do
+          create(:time_slot, start_time: time_with_zone(hour:8, min:0), end_time: time_with_zone(hour:11, min:0))
+          create(:time_slot, start_time: time_with_zone(hour:13, min:0), end_time: time_with_zone(hour:16, min:0))
+        end
 
         it 'should not be allowed to create time slot' do
           time_slot.save.should == false
@@ -94,6 +102,55 @@ describe TimeSlot do
         end
       end
     end
+
+    describe '#creatable?' do
+      context 'starts at 11:00' do
+        before do
+          create(:time_slot)
+        end
+        let(:time_slot) do
+          build(:time_slot,
+                start_time: time_with_zone(hour: 11, min: 0),
+                end_time: time_with_zone(hour: 15, min: 0))
+        end
+
+        it 'should not be invalid'do
+          time_slot.should_not be_valid
+        end
+      end
+
+      context 'starts at 10:00' do
+        before do
+          create(:time_slot,
+                start_time: time_with_zone(hour: 11, min: 0),
+                end_time: time_with_zone(hour: 14, min: 0)
+          )
+        end
+        let(:time_slot) do
+          build(:time_slot,
+                start_time: time_with_zone(hour: 8, min: 0),
+                end_time: time_with_zone(hour: 11, min: 0))
+        end
+
+        it 'should not be invalid'do
+          time_slot.should_not be_valid
+        end
+      end
+
+      context 'starts at 16:00' do
+        before do
+          create(:time_slot)
+        end
+        let(:time_slot) do
+          build(:time_slot,
+                start_time: time_with_zone(hour: 16, min: 0),
+                end_time: time_with_zone(hour: 20, min: 0))
+        end
+        it 'should be valid' do
+          time_slot.should be_valid
+        end
+      end
+    end
   end
 
   context 'Association' do
@@ -103,9 +160,8 @@ describe TimeSlot do
 
   describe '.total_sessions_in_day' do
     before do
-      create_list(:time_slot, 2,
-                  start_time: time_with_zone(hour: 10, min: 0),
-                  end_time: time_with_zone(hour: 14, min: 0))
+      create(:time_slot, start_time: time_with_zone(hour:8, min:0), end_time: time_with_zone(hour:11, min:0))
+      create(:time_slot, start_time: time_with_zone(hour:13, min:0), end_time: time_with_zone(hour:16, min:0))
     end
 
     it 'should return total sessions in day' do
@@ -135,11 +191,6 @@ describe TimeSlot do
       end
     end
   end
-
-
-
-
-
 
   describe "#blocked_start_time" do
     let!(:time_slot) do
