@@ -118,6 +118,19 @@ describe TimeSlot do
         end
       end
     end
+
+    describe '#unbookable_before_2_hours_from_now' do
+      let(:time_slot) do
+          build(:time_slot,
+                start_time: time_with_zone(hour: 8, min: 0) - 2.days,
+                end_time: time_with_zone(hour: 11, min: 0) - 2.days
+          )
+      end
+
+      it 'should not be valid' do
+        time_slot.should_not be_valid
+      end
+    end
   end
 
   context 'Association' do
@@ -139,7 +152,7 @@ describe TimeSlot do
 
   describe "#create_booking_by" do
     let(:user) { create :user }
-    let(:time_slot) { build(:time_slot) }
+    let(:time_slot) { build_time_slot( hour: 10, min: 0 )}
     let(:duration) { 4 }
 
     context "success" do
