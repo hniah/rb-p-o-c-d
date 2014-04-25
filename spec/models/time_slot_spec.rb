@@ -9,7 +9,6 @@ describe TimeSlot do
 
     describe '#time_slot_is_between' do
       context 'Success' do
-
         context 'time slot is a booking' do
           let(:time_slot) { build(:time_slot) }
 
@@ -61,7 +60,6 @@ describe TimeSlot do
     end
 
     describe '#restrict_booking_time' do
-
       context 'valid' do
         let(:time_slot) { build_time_slot({hour: 10, min: 0}) }
 
@@ -108,7 +106,6 @@ describe TimeSlot do
     end
 
     describe '#unbookable_after_hours' do
-
       context 'start at 8:00' do
         let(:time_slot) do
             build(:time_slot,
@@ -139,6 +136,7 @@ describe TimeSlot do
   end
 
   describe '.total_sessions_in_day' do
+    let!(:user) { create :user, :with_packages }
     before do
       create_time_slot(hour: 8, min: 0)
       create_time_slot(hour: 13, min: 0)
@@ -151,7 +149,7 @@ describe TimeSlot do
   end
 
   describe "#create_booking_by" do
-    let(:user) { create :user }
+    let(:user) { create :user, :with_packages }
     let(:time_slot) { build_time_slot( hour: 10, min: 0 )}
     let(:duration) { 4 }
 
@@ -279,6 +277,25 @@ describe TimeSlot do
 
       it "should not contains calendar time" do
         time_slot.session_blocks?(calendar_time).should_not be_true
+      end
+    end
+  end
+
+  describe '#affordable?' do
+
+    context 'success' do
+      let(:time_slot) { build(:time_slot) }
+
+      it 'should be created time slot' do
+        time_slot.should be_valid
+      end
+    end
+
+    context 'failure' do
+      let(:time_slot) { build(:time_slot, :with_unaffordable_user)}
+
+      it 'should not be created time slot' do
+        time_slot.should_not be_valid
       end
     end
   end

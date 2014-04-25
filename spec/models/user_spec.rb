@@ -14,8 +14,8 @@ describe User do
     it { should have_and_belong_to_many :packages}
   end
 
-  describe "#total_hours_bought!" do
-    context "2 packages" do
+  describe '#total_hours_bought' do
+    context '2 packages' do
       let(:user) { create :user, :with_packages, number_of_packages: 2 }
 
       it 'should total hours bought' do
@@ -24,16 +24,13 @@ describe User do
     end
   end
 
-  describe "#total_hours_available!" do
-    context "2 time_slots" do
-      let(:user) { create :user, :with_time_slots, number_of_time_slots: 2 }
+  describe '#total_current_hours' do
+    let(:user) { create :user, :with_time_slots, number_of_time_slots: 2 }
+    it 'should show total current hours' do
+      @total_hours_bought = user.total_hours_bought
+      @total_current_hours = @total_hours_bought - 8
 
-      it 'should total hours availale' do
-        @total_hours_bought = user.total_hours_bought
-        @total_hours_available = @total_hours_bought - 8
-
-        user.total_hours_available.should eq @total_hours_available
-      end
+      user.total_current_hours.should eq @total_current_hours
     end
   end
 end

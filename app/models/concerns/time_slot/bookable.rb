@@ -9,8 +9,7 @@ module Concerns::TimeSlot::Bookable
   end
 
   def create_booking_by(user, duration = 3)
-    return false unless self.start_time.is_a?(ActiveSupport::TimeWithZone)
-
+    return false if self.start_time.nil?
     self.end_time = self.start_time + duration.hours
     self.user = user
     self.category = :booked

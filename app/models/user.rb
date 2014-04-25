@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     hours
   end
 
-  def total_hours_available
+  def total_current_hours
     hours = 0
     self.time_slots.each do |t|
       number_of_hours = t.end_time.hour - t.start_time.hour
@@ -28,5 +28,4 @@ class User < ActiveRecord::Base
     end
     self.total_hours_bought - hours
   end
-
 end

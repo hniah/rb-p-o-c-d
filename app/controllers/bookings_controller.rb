@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
     else
       flash[:alert] = "Failed to create booking: #{@time_slot.errors.full_messages.first}"
     end
-    redirect_to bookings_path
+     redirect_to bookings_path
   end
 
   private

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Book a session workflow' do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, :with_packages) }
   let!(:time_slot) { create(:time_slot) }
 
   it 'allows user to book a session' do

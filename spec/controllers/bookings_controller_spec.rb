@@ -22,7 +22,7 @@ describe BookingsController do
   end
 
   describe "#new" do
-    let(:user) { create :user }
+    let(:user) { create(:user) }
     let(:start_time) { Time.zone.now.change(hour: 8, min: 30) }
 
     def do_request
@@ -45,7 +45,6 @@ describe BookingsController do
   end
 
   describe "#create" do
-    let(:user) { create(:user) }
 
     before { sign_in user }
     before { do_request }
@@ -55,6 +54,7 @@ describe BookingsController do
     end
 
     context "params with start time" do
+      let(:user) { create(:user, :with_packages) }
       let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4, remarks: "Ho Chi Minh City"}) }
 
       it "should create a block of bookings" do
@@ -64,7 +64,8 @@ describe BookingsController do
     end
 
     context "params without start time" do
-      let(:time_slot_param) { {lorem: "Ipsum"} }
+      let(:time_slot_param) { {Lorem: "Ipsum"} }
+      let(:user) { create(:user) }
 
       it "should not create a block of bookings" do
         flash[:alert].should eq "Failed to create booking: "

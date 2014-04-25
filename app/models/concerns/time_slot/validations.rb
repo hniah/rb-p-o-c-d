@@ -2,12 +2,13 @@ module Concerns::TimeSlot::Validations
   extend ActiveSupport::Concern
 
   included do
+    validate :affordable?
     validates_presence_of :start_time, :end_time, :category
-    validate :time_slot_is_between,:from => 3, :to => 5, if: :has_start_and_end_time? && :booked?
+    validate :time_slot_is_between, from: 3, to: 5, if: :has_start_and_end_time? && :booked?
     validate :creatable?
-    validate :unbookable_after_hours, :number_of_hour => 2
-    validate :restrict_booking_time, :start_hour => 8, :end_hour => 22
-    validate :limit_sessions_in_day, :number_of_sessions => 2
+    validate :unbookable_after_hours, number_of_hour: 2
+    validate :restrict_booking_time, start_hour: 8, end_hour: 22
+    validate :limit_sessions_in_day, number_of_sessions: 2
   end
 
   def limit_sessions_in_day(number_of_sessions = 2)
@@ -48,7 +49,16 @@ module Concerns::TimeSlot::Validations
   def unbookable_after_hours(number_of_hour = 2)
     return false if self.start_time.nil?
     if self.start_time <= Time.zone.now + number_of_hour.hours
-      errors.add(:time_slot, 'is only bookable after 2 hours from current time.')
+      errors.add(:time_slot, "is only bookable after #{number_of_hour} hours from current time.")
+    end
+  end
+
+  def affordable?
+    return false if start_time.nil?
+    return false if user.nil?
+    duration = TimeDifference.between(start_time, end_time).in_hours
+    if user.total_current_hours - duration < 0
+      errors.add(:time_slot,'Have not enough hour in account')
     end
   end
 end

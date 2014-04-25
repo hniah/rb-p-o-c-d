@@ -30,7 +30,7 @@ FactoryGirl.define do
         i = 0
         evaluator.number_of_time_slots.times do
           i = i + 1
-          time_slot = create(:time_slot, start_time: (Time.zone.now + i.days).change(hour: 10, min: 00), end_time: (Time.zone.now + i.days).change(hour: 14, min: 00))
+          time_slot = create(:time_slot, start_time: (Time.zone.now.tomorrow + i.days).change(hour: 10, min: 00), end_time: (Time.zone.now.tomorrow + i.days).change(hour: 14, min: 00))
           user.time_slots << time_slot
         end
       end
