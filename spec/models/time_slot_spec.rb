@@ -7,7 +7,7 @@ describe TimeSlot do
     it { should validate_presence_of :category }
     it { should enumerize(:category).in(:booked, :blocked)}
 
-    describe '#time_is_between_3_to_5_hours' do
+    describe '#time_slot_is_between' do
       context 'Success' do
 
         context 'time slot is a booking' do
@@ -22,7 +22,7 @@ describe TimeSlot do
           let(:time_slot) { build(:time_slot, :with_8_hours_slot, category: :blocked) }
 
           it 'will not run validation' do
-            time_slot.valid?.should be_true
+            time_slot.should_not be_valid
           end
         end
       end
@@ -36,7 +36,7 @@ describe TimeSlot do
       end
     end
 
-    describe '#only_2_sessions_in_day?' do
+    describe '#limit_sessions_in_day' do
       context 'success' do
         let!(:time_slots)  { create_list(:time_slot, 1) }
         let!(:time_slot) { build_time_slot({hour: 17, min: 0}) }
@@ -107,7 +107,7 @@ describe TimeSlot do
       end
     end
 
-    describe '#unbookable_after_2_hours_from_now' do
+    describe '#unbookable_after_hours' do
 
       context 'start at 8:00' do
         let(:time_slot) do
@@ -120,7 +120,7 @@ describe TimeSlot do
         it { time_slot.should_not be_valid }
       end
 
-      context 'start at 10:00' do
+      context 'start at 11:00' do
         let(:time_slot) do
           build(:time_slot,
                 start_time: Time.zone.now.change(hour: 10, min: 0),
@@ -129,17 +129,6 @@ describe TimeSlot do
         end
 
         it { time_slot.should_not be_valid }
-      end
-
-      context 'start at 12:00' do
-        let(:time_slot) do
-          build(:time_slot,
-                start_time: Time.zone.now.change(hour: 12, min: 0),
-                end_time: Time.zone.now.change(hour: 15, min: 0)
-          )
-        end
-
-        it { time_slot.should be_valid }
       end
     end
   end
