@@ -43,7 +43,7 @@ module Concerns::TimeSlot::Validations
 
   def unbookable_after_2_hours_from_now
     return false if self.start_time.nil?
-    if self.start_time <= Time.zone.now + 2.hours
+    if self.start_time <= Time.zone.now + 1.hours
       errors.add(:time_slot, 'is only bookable after 2 hours from current time.')
     end
   end

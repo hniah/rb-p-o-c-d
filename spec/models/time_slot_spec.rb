@@ -134,8 +134,8 @@ describe TimeSlot do
       context 'start at 12:00' do
         let(:time_slot) do
           build(:time_slot,
-                start_time: Time.zone.now.change(hour: 13, min: 0),
-                end_time: Time.zone.now.change(hour: 16, min: 0)
+                start_time: Time.zone.now.change(hour: 12, min: 0),
+                end_time: Time.zone.now.change(hour: 15, min: 0)
           )
         end
 
