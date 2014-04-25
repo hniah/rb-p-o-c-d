@@ -3,8 +3,7 @@ module Concerns::TimeSlot::Validations
 
   included do
     validates_presence_of :start_time, :end_time, :category
-    validate :time_slot_is_between, if: :has_start_and_end_time? && :booked?
-    validate :time_slot_is_between, :from => 3, :to => 5
+    validate :time_slot_is_between,:from => 3, :to => 5, if: :has_start_and_end_time? && :booked?
     validate :creatable?
     validate :unbookable_after_hours, :number_of_hour => 2
     validate :restrict_booking_time, :start_hour => 8, :end_hour => 22

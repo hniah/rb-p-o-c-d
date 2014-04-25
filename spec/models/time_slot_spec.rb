@@ -22,7 +22,7 @@ describe TimeSlot do
           let(:time_slot) { build(:time_slot, :with_8_hours_slot, category: :blocked) }
 
           it 'will not run validation' do
-            time_slot.should_not be_valid
+            time_slot.should be_valid
           end
         end
       end
