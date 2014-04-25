@@ -4,7 +4,7 @@ module Concerns::TimeSlot::Validations
   included do
     validates_presence_of :start_time, :end_time, :category
     validate :time_is_between_3_to_5_hours, if: :has_start_and_end_time? && :booked?
-    validate :only_2_sessions_in_day, :restrict_booking_time, :creatable?, :unbookable_before_2_hours_from_now
+    validate :only_2_sessions_in_day, :restrict_booking_time, :creatable?, :unbookable_after_2_hours_from_now
   end
 
   def only_2_sessions_in_day
@@ -41,10 +41,10 @@ module Concerns::TimeSlot::Validations
     self.start_time.present? && self.end_time.present?
   end
 
-  def unbookable_before_2_hours_from_now
+  def unbookable_after_2_hours_from_now
     return false if self.start_time.nil?
-    if self.start_time <= 2.hour.ago
-      errors.add(:time_slot, 'is only bookable to 2 hours from current time.')
+    if self.start_time <= Time.zone.now + 2.hours
+      errors.add(:time_slot, 'is only bookable after 2 hours from current time.')
     end
   end
 end
