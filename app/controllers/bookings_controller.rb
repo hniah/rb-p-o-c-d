@@ -20,7 +20,11 @@ class BookingsController < ApplicationController
     else
       flash[:alert] = "Failed to create booking: #{@time_slot.errors.full_messages.first}"
     end
-     redirect_to bookings_path
+    if @time_slot.errors.full_messages.first == 'Time slot : insufficient hours (credit) in account. Please buy packages to booking.'
+      redirect_to buy_package_path
+    else
+      redirect_to bookings_path
+    end
   end
 
   private

@@ -73,3 +73,6 @@ gem 'unicorn'
 # gem 'debugger', group: [:development, :test]
 
 gem 'simple_form'
+
+#paypal
+gem 'activemerchant'

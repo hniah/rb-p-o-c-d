@@ -58,7 +58,7 @@ module Concerns::TimeSlot::Validations
     return false if user.nil?
     duration = TimeDifference.between(start_time, end_time).in_hours
     if user.total_current_hours - duration < 0
-      errors.add(:time_slot,'Have not enough hour in account')
+      errors.add(:time_slot,': insufficient hours (credit) in account. Please buy packages to booking.')
     end
   end
 end

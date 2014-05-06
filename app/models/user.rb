@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_acceptance_of :terms_of_service
 
   has_many :time_slots
+  has_many :payments
   has_and_belongs_to_many :packages, join_table: 'users_packages'
 
   def total_hours_bought

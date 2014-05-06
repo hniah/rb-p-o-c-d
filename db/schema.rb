@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421093157) do
+ActiveRecord::Schema.define(version: 20140429022807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,17 +33,6 @@ ActiveRecord::Schema.define(version: 20140421093157) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
-
-  create_table "blocked_time_slots", force: true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "time_slot_id"
-  end
-
-  add_index "blocked_time_slots", ["time_slot_id"], name: "index_blocked_time_slots_on_time_slot_id", using: :btree
 
   create_table "housekeepers", force: true do |t|
     t.string   "name"
@@ -77,6 +66,17 @@ ActiveRecord::Schema.define(version: 20140421093157) do
     t.integer "hours"
     t.integer "price_cents",    default: 0,     null: false
     t.string  "price_currency", default: "USD", null: false
+  end
+
+  create_table "payments", force: true do |t|
+    t.string   "ip_address"
+    t.string   "express_token"
+    t.string   "express_payer_id"
+    t.integer  "user_id"
+    t.integer  "package_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "time_slots", force: true do |t|

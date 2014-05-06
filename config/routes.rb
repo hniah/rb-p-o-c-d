@@ -12,7 +12,13 @@ Ocd::Application.routes.draw do
   get 'buy_package' => 'packages#buy_package'
   patch 'buy_package' => 'packages#do_buy_package'
 
+  patch 'express_checkout' => 'payments#express_checkout'
+
   get 'user_info' => 'users#info'
+
+  get 'success_payment' => 'payments#success_payment'
+  get 'cancel_payment' => 'payments#cancel_payment'
+  resources :payments
 
 
   # The priority is based upon order of creation: first created -> highest priority.
