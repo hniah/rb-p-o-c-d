@@ -58,6 +58,7 @@ group :development, :test do
   gem "awesome_print"
   gem "capybara" # add "require 'capybara/rspec'" to spec_helper
   gem 'selenium-webdriver'
+  gem 'dotenv-rails'
 end
 
 # Use ActiveModel has_secure_password

@@ -20,3 +20,6 @@
 
 # Ignore mac stupid DS_Store
 *.DS_Store
+
+# Ignore .env
+/.env

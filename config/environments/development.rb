@@ -32,9 +32,9 @@ Ocd::Application.configure do
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {
-      login: "NghiaNT0202-facilitator_api1.gmail.com",
-      password: "1374198216",
-      signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31AF5diNobwvlSSXGObzCLepl4u3nU"
+      login: ENV['PAYPAL_LOGIN'],
+      password: ENV["PAYPAL_PASSWORD"],
+      signature: ENV["PAYPAL_SIGNATURE"]
     }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
