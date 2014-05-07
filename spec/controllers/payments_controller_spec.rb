@@ -26,9 +26,10 @@ describe PaymentsController do
       EXPRESS_GATEWAY.stub(:redirect_url_for).and_return("http://example.com?token=#{token}")
     end
 
+    before { sign_in user }
+    before { do_request }
+
     it "should redirect to paypal" do
-      sign_in user
-      do_request
       expect {payment.create_payment!(user, package, token, remote_ip) }.to change(Payment, :count).by(1)
       response.should redirect_to EXPRESS_GATEWAY.redirect_url_for(token)
     end
