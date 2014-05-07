@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
     response = EXPRESS_GATEWAY.setup_purchase(total_amount_in_cents,
                                               return_url: success_payment_url,
                                               cancel_return_url: cancel_payment_url,
-                                              currency: "USD",
+                                              currency: "SGD",
                                               allow_guest_checkout: true,
                                               items: [{name: "Package", description: "Package description", quantity: 1, amount: total_amount_in_cents}]
     )
