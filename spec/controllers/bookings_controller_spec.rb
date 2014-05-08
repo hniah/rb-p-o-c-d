@@ -45,7 +45,7 @@ describe BookingsController do
   end
 
   describe "#create" do
-
+    let!(:admin) { create(:admin) }
     before { sign_in user }
     before { do_request }
 

@@ -24,6 +24,15 @@ customer = User.create!(
   postal: '651289',
   contact_number: '6652-3568'
 )
+customer2 = User.create!(
+  email: 'customer2@example.com',
+  password: '123123',
+  password_confirmation: '123123',
+  name: 'Example Customer 2',
+  address: 'Somewhere 2 in Singapore',
+  postal: '651289',
+  contact_number: '6652-3568'
+)
 puts "=== User created ==="
 
 # Create sample housekeeper

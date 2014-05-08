@@ -13,7 +13,9 @@ module Concerns::TimeSlot::Bookable
     self.end_time = self.start_time + duration.hours
     self.user = user
     self.category = :booked
-    self.save
+    if self.save
+      AdminMailer.notification_email('new').deliver
+    end
   end
 
   def blocked_start_time
@@ -47,5 +49,9 @@ module Concerns::TimeSlot::Bookable
   def blocked_by?(time_slot)
     (self.start_time > time_slot.blocked_start_time && self.start_time < time_slot.blocked_end_time) ||
       (self.end_time > time_slot.blocked_start_time && self.end_time < time_slot.blocked_end_time)
+  end
+
+  def cancel_booking
+    self.destroy!
   end
 end

@@ -152,12 +152,14 @@ describe TimeSlot do
     let(:user) { create :user, :with_packages }
     let(:time_slot) { build_time_slot( hour: 10, min: 0 )}
     let(:duration) { 4 }
+    let!(:admin) { create :admin }
 
     context "success" do
       it "creates booking" do
         expect { time_slot.create_booking_by(user, duration) }.to change(TimeSlot, :count)
         time_slot.end_time.hour.should eq 14
         time_slot.user.should eq user
+        expect { AdminMailer.notification_email('new').deliver }.to change{ ActionMailer::Base.deliveries.count }.by(1)
       end
     end
 
@@ -297,6 +299,15 @@ describe TimeSlot do
       it 'should not be created time slot' do
         time_slot.should_not be_valid
       end
+    end
+  end
+
+  describe '#cancel_booking_by' do
+    let(:user) { create :user, :with_packages }
+    let(:time_slot) { create (:time_slot) }
+
+    it 'should be destroy' do
+      expect { time_slot.cancel_booking }.to change(TimeSlot, :count).by(0)
     end
   end
 end

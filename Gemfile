@@ -75,5 +75,8 @@ gem 'unicorn'
 
 gem 'simple_form'
 
+#letter opener
+gem "letter_opener", :group => :development
+
 #paypal
 gem 'activemerchant'

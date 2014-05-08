@@ -1,0 +1,7 @@
+FactoryGirl.define do
+  factory :admin do
+    email 'ivan@futureworkz.com'
+    password '123456'
+    password_confirmation '123456'
+  end
+end
