@@ -3,8 +3,6 @@ class BookingsController < ApplicationController
 
   def index
     @time_slots = TimeSlot.all
-    @time_slots = @time_slots.created_after (Time.zone.now.beginning_of_week)
-    @time_slots = @time_slots.created_before(Time.zone.now.end_of_week)
   end
 
   def new
@@ -25,6 +23,32 @@ class BookingsController < ApplicationController
     else
       redirect_to bookings_path
     end
+  end
+
+  def destroy
+    @time_slot = TimeSlot.find(params[:id])
+
+    if @time_slot.destroy_booking
+      flash[:notice] = "Booking is destroyed successfully"
+    end
+
+    redirect_to user_info_path
+  end
+
+  def edit
+    @time_slot = TimeSlot.find(params[:id])
+    @time_slot.duration
+    render :edit
+  end
+
+  def update
+    @time_slot = TimeSlot.find(params[:id])
+    if @time_slot.updated(params[:time_slot])
+      flash[:notice] = "Update booking successfully"
+    else
+      flash[:alert] = "Failed to update booking: #{@time_slot.errors.full_messages.first}"
+    end
+    redirect_to user_info_path
   end
 
   private

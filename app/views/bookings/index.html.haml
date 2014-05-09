@@ -13,6 +13,10 @@
         %th Sunday
     %tbody
       - day = Date.today.beginning_of_week
+      %tr
+        %th
+        - (0..6).each do |i|
+          %th= day + i
       - booking_time_range.each do |time|
         %tr
           %th= time.strftime('%l:%M%P')

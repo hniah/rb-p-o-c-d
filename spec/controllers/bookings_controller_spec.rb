@@ -4,7 +4,6 @@ describe BookingsController do
   describe '#index' do
     let!(:user) { create(:user) }
     let!(:current_week_time_slot) { create(:time_slot) }
-
     def do_request
       get :index
     end
@@ -71,6 +70,70 @@ describe BookingsController do
         flash[:alert].should eq "Failed to create booking: "
         response.should redirect_to bookings_path
       end
+    end
+  end
+
+  describe '#destroy' do
+    let!(:admin) { create(:admin) }
+    let(:user) { create(:user) }
+    let(:time_slot) { create(:time_slot) }
+    let(:id)  { time_slot.id }
+
+    before { sign_in user }
+    before { do_request }
+
+    def do_request
+      delete :destroy, id: id
+    end
+
+    it 'should be destroyed' do
+      flash[:notice].should eq "Booking is destroyed successfully"
+      expect { TimeSlot.find(id) }.to raise_error
+      response.should redirect_to user_info_path
+    end
+  end
+
+  describe '#edit' do
+    let!(:admin) { create(:admin) }
+    let(:user) { create(:user) }
+    let(:time_slot) { create(:time_slot) }
+    let(:id) { time_slot.id }
+
+    before { sign_in user }
+    before { do_request }
+
+    def do_request
+      get :edit, id: id
+    end
+
+    it 'should be display edit booking layout' do
+      response.should render_template :edit
+    end
+  end
+
+  describe '#update' do
+    let!(:admin) { create(:admin) }
+    let(:user) { create(:user) }
+    let(:time_slot) { create(:time_slot) }
+    let(:id) { time_slot.id }
+    let(:params) { {duration: "4",
+                    remarks: 'This is test',
+                    "start_time(1i)" => "2014",
+                    "start_time(2i)" => "5",
+                    "start_time(3i)" => "10",
+                    "start_time(4i)" => "11",
+                    "start_time(5i)" => "00" } }
+
+    before { sign_in user }
+    before { do_request }
+
+    def do_request
+      patch :update, id: id, time_slot: params
+    end
+
+    it 'should be redirect to booking schedule' do
+      flash[:notice].should eq "Update booking successfully"
+      response.should redirect_to user_info_path
     end
   end
 end

@@ -5,19 +5,20 @@ Ocd::Application.routes.draw do
 
   root :to => 'application#home'
 
-  resources :bookings, only: [:index, :new, :create]
-  get 'job_scope_and_time_to_task' => 'pages#job_scope_and_time_to_task'
-  get 'terms_and_condition' => 'pages#terms_and_condition'
+  resources :bookings
 
-  get 'buy_package' => 'packages#buy_package'
-  patch 'buy_package' => 'packages#do_buy_package'
+  get 'job_scope_and_time_to_task'  => 'pages#job_scope_and_time_to_task'
+  get 'terms_and_condition'         => 'pages#terms_and_condition'
 
-  patch 'express_checkout' => 'payments#express_checkout'
+  get 'buy_package'                 => 'packages#buy_package'
+  patch 'buy_package'               => 'packages#do_buy_package'
 
-  get 'user_info' => 'users#info'
+  patch 'express_checkout'          => 'payments#express_checkout'
 
-  get 'success_payment' => 'payments#success_payment'
-  get 'cancel_payment' => 'payments#cancel_payment'
+  get 'user_info'                   => 'users#info'
+
+  get 'success_payment'             => 'payments#success_payment'
+  get 'cancel_payment'              => 'payments#cancel_payment'
   resources :payments
 
 

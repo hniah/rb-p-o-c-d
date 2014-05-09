@@ -48,4 +48,8 @@ module BookingsHelper
       time_slot.start_time.between?(date.beginning_of_day, date.end_of_day)
     end.size
   end
+
+  def to_durations(start_time,end_time)
+    TimeDifference.between(start_time, end_time).in_hours.to_i
+  end
 end

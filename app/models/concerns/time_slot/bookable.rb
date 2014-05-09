@@ -1,6 +1,7 @@
 module Concerns::TimeSlot::Bookable
   extend ActiveSupport::Concern
 
+
   BLOCKED_DURATION = 2
   LEAST_SESSION_TIME = 3
 
@@ -13,8 +14,24 @@ module Concerns::TimeSlot::Bookable
     self.end_time = self.start_time + duration.hours
     self.user = user
     self.category = :booked
+    self.save!
+    AdminMailer.notification_email('new').deliver
+  end
+
+  def updated(params)
+    new_start_time = Time.zone.now.tomorrow.change(
+                    year: params["start_time(1i)"].to_i,
+                    month: params["start_time(2i)"].to_i,
+                    day: params["start_time(3i)"].to_i,
+                    hour: params["start_time(4i)"].to_i,
+                    min: params["start_time(5i)"].to_i)
+
+    return false if new_start_time.nil?
+    self.start_time = new_start_time
+    self.end_time = new_start_time + params[:duration].to_i.hours
+    self.remarks = params[:remarks]
     if self.save
-      AdminMailer.notification_email('new').deliver
+      AdminMailer.notification_email('updated').deliver
     end
   end
 
@@ -51,7 +68,8 @@ module Concerns::TimeSlot::Bookable
       (self.end_time > time_slot.blocked_start_time && self.end_time < time_slot.blocked_end_time)
   end
 
-  def cancel_booking
+  def destroy_booking
     self.destroy!
+    AdminMailer.notification_email('cancelled').deliver
   end
 end

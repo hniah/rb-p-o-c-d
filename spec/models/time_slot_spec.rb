@@ -167,7 +167,60 @@ describe TimeSlot do
       let(:time_slot) { build_time_slot(hour: 20, min: 0) }
 
       it 'should not create booking' do
-        expect { time_slot.create_booking_by(user, 5) }.to_not change(TimeSlot, :count)
+        expect { time_slot.create_booking_by(user, 5) }.to raise_error
+      end
+    end
+  end
+
+  describe "#updated" do
+    let(:user) { create :user }
+    let(:time_slot) { create(:time_slot)}
+    let!(:admin) { create :admin }
+    let(:params) { {duration: "3",
+                    remarks: 'This is test',
+                    "start_time(1i)" => "2014",
+                    "start_time(2i)" => "5",
+                    "start_time(3i)" => "10",
+                    "start_time(4i)" => "11",
+                    "start_time(5i)" => "00" } }
+
+    context "success" do
+      it "start_time should be updated" do
+        expect { time_slot.updated(params) }.to change(time_slot, :start_time)
+        time_slot.start_time.hour.should eq 11
+      end
+
+      it 'end_time should not be updated' do
+        expect { time_slot.updated(params) }.not_to change(time_slot, :end_time)
+        time_slot.end_time.hour.should eq 14
+      end
+
+      let(:params_with_duration_5) { {duration: "5",
+                                      remarks: 'This is test',
+                                      "start_time(1i)" => "2014",
+                                      "start_time(2i)" => "5",
+                                      "start_time(3i)" => "10",
+                                      "start_time(4i)" => "11",
+                                      "start_time(5i)" => "00" } }
+      it 'end_time should be updated' do
+        expect { time_slot.updated(params_with_duration_5) }.to change(time_slot, :end_time)
+        time_slot.end_time.hour.should eq 16
+      end
+
+      it 'remarks should be updated' do
+        expect { time_slot.updated(params) }.to change(time_slot, :remarks).to('This is test')
+      end
+
+      it "should be send mail for admin" do
+        expect { AdminMailer.notification_email('updated').deliver }.to change{ ActionMailer::Base.deliveries.count }.by(1)
+      end
+    end
+
+    context "failure" do
+      let(:params) { {:duration => 6, :remarks => 'This is test'} }
+
+      it 'should not create booking' do
+        expect { time_slot.updated(params) }.to raise_error
       end
     end
   end
@@ -305,9 +358,11 @@ describe TimeSlot do
   describe '#cancel_booking_by' do
     let(:user) { create :user, :with_packages }
     let(:time_slot) { create (:time_slot) }
+    let!(:admin) { create(:admin) }
 
     it 'should be destroy' do
-      expect { time_slot.cancel_booking }.to change(TimeSlot, :count).by(0)
+      expect { time_slot.destroy_booking }.to change(TimeSlot, :count).by(0)
+      expect { AdminMailer.notification_email('cancelled').deliver }.to change{ ActionMailer::Base.deliveries.count }.by(1)
     end
   end
 end

@@ -31,9 +31,13 @@
           %th Start Time
           %th End Time
           %th Remarks
+          %th Action
       %tbody
       - current_user.time_slots.each do |t|
         %tr
           %td= t.start_time.strftime('%H:%M %d-%m-%Y')
           %td= t.end_time.strftime('%H:%M %d-%m-%Y')
           %td= t.remarks
+          %td
+            %div=button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }
+            %div=button_to "Update", edit_booking_path(t) , method: :get, data: { confirm: "Are you sure?" }

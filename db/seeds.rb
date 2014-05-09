@@ -4,6 +4,28 @@ puts "=== Admin destroyed ==="
 admin = Admin.create!(email: 'admin@example.com', password: '123123', password_confirmation: '123123')
 puts "=== Admin created ==="
 
+#Create sample packages
+Package.destroy_all
+puts "=== Package destroyed ==="
+
+packages = [
+  {session_type: 3, hours: 0, price_cents: 0},
+  {session_type: 4, hours: 4, price_cents: 11200},
+  {session_type: 3, hours: 12, price_cents: 24000},
+  {session_type: 5, hours: 5, price_cents: 14000},
+  {session_type: 4, hours: 16, price_cents: 32000},
+  {session_type: 5, hours: 20, price_cents: 40000},
+  {session_type: 4, hours: 48, price_cents: 86400},
+  {session_type: 3, hours: 36, price_cents: 64800},
+  {session_type: 3, hours: 72, price_cents: 115200},
+  {session_type: 5, hours: 60, price_cents: 108000},
+  {session_type: 4, hours: 96, price_cents: 153600},
+  {session_type: 5, hours: 120, price_cents: 192000}
+]
+
+packages.each { |p| package = Package.create!(p) }
+puts "=== Package created ==="
+
 # Create locations
 north = Location.find_or_create_by!(name: 'North')
 east = Location.find_or_create_by!(name: 'East')
@@ -34,6 +56,8 @@ customer2 = User.create!(
   contact_number: '6652-3568'
 )
 puts "=== User created ==="
+
+customer.packages << Package.find_by_hours(12)
 
 # Create sample housekeeper
 Housekeeper.destroy_all
@@ -77,7 +101,7 @@ TimeSlot.create!(
   user: nil
 )
 
-monday = Date.today.beginning_of_week
+monday = Date.today.beginning_of_week + 1.week
 TimeSlot.new(
   start_time: Time.zone.now.change(
     year: monday.year,
@@ -91,25 +115,3 @@ TimeSlot.new(
 ).create_booking_by(customer, 4)
 puts "=== TimeSlot created ==="
 
-
-#Create sample packages
-Package.destroy_all
-puts "=== Package destroyed ==="
-
-packages = [
-  {session_type: 3, hours: 0, price_cents: 0},
-  {session_type: 4, hours: 4, price_cents: 11200},
-  {session_type: 3, hours: 12, price_cents: 24000},
-  {session_type: 5, hours: 5, price_cents: 14000},
-  {session_type: 4, hours: 16, price_cents: 32000},
-  {session_type: 5, hours: 20, price_cents: 40000},
-  {session_type: 4, hours: 48, price_cents: 86400},
-  {session_type: 3, hours: 36, price_cents: 64800},
-  {session_type: 3, hours: 72, price_cents: 115200},
-  {session_type: 5, hours: 60, price_cents: 108000},
-  {session_type: 4, hours: 96, price_cents: 153600},
-  {session_type: 5, hours: 120, price_cents: 192000}
-]
-
-packages.each { |p| package = Package.create!(p) }
-puts "=== Package created ==="

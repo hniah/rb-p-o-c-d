@@ -26,7 +26,7 @@ module Concerns::TimeSlot::Validations
   end
 
   def creatable?
-    time_slots = TimeSlot.all
+    time_slots = TimeSlot.all.where.not(id: self.id)
     time_slots.each do |time_slot|
       if self.blocked_by?(time_slot)
         errors.add(:time_slot,'overlaps another time slot')

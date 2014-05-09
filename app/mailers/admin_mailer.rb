@@ -8,8 +8,8 @@ class AdminMailer < ActionMailer::Base
          mail_to(admin.email, 'New booking made!!!','admin_mailer','booking_made')
        when 'updated'
          mail_to(admin.email, 'A booking updated!!!','admin_mailer','booking_updated')
-       when 'canceled'
-         mail_to(admin.email, 'A booking canceled!!!','admin_mailer','booking_canceled')
+       when 'cancelled'
+         mail_to(admin.email, 'A booking cancelled!!!','admin_mailer','booking_cancelled')
     end
   end
 

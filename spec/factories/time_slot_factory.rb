@@ -29,5 +29,10 @@ FactoryGirl.define do
       start_time  Time.zone.now.tomorrow.change(hour: 17, min: 0)
       end_time    Time.zone.now.tomorrow.change(hour: 20, min: 0)
     end
+
+    trait :next_week do
+      start_time  Time.zone.now.tomorrow.change(hour: 10, min: 0) + 1.week
+      end_time    Time.zone.now.tomorrow.change(hour: 14, min: 0) + 1.week
+    end
   end
 end
