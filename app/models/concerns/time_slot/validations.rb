@@ -8,12 +8,12 @@ module Concerns::TimeSlot::Validations
     validate :creatable?
     validate :unbookable_after_hours, number_of_hour: 2
     validate :restrict_booking_time, start_hour: 8, end_hour: 22
-    validate :limit_sessions_in_day, number_of_sessions: 2
+    validate :limit_sessions_in_day, number_of_sessions: 2, if: :new_record?
   end
 
   def limit_sessions_in_day(number_of_sessions = 2)
     return false if self.start_time.nil?
-    if TimeSlot.total_sessions_in_day(self.start_time) == number_of_sessions
+    if TimeSlot.total_sessions_in_day(self.start_time) >= number_of_sessions
       errors[:base] << "Only #{number_of_sessions} sessions in day!"
     end
   end
