@@ -178,11 +178,8 @@ describe TimeSlot do
     let!(:admin) { create :admin }
     let(:params) { {duration: "3",
                     remarks: 'This is test',
-                    "start_time(1i)" => "2014",
-                    "start_time(2i)" => "5",
-                    "start_time(3i)" => "10",
-                    "start_time(4i)" => "11",
-                    "start_time(5i)" => "00" } }
+                    start_time: Time.zone.now.tomorrow.change(hour: 11, min: 00)
+    } }
 
     context "success" do
       it "start_time should be updated" do
@@ -197,11 +194,8 @@ describe TimeSlot do
 
       let(:params_with_duration_5) { {duration: "5",
                                       remarks: 'This is test',
-                                      "start_time(1i)" => "2014",
-                                      "start_time(2i)" => "5",
-                                      "start_time(3i)" => "10",
-                                      "start_time(4i)" => "11",
-                                      "start_time(5i)" => "00" } }
+                                      start_time: Time.zone.now.tomorrow.change(hour: 11, min: 00)
+      }}
       it 'end_time should be updated' do
         expect { time_slot.updated(params_with_duration_5) }.to change(time_slot, :end_time)
         time_slot.end_time.hour.should eq 16
@@ -213,14 +207,6 @@ describe TimeSlot do
 
       it "should be send mail for admin" do
         expect { AdminMailer.notification_email('updated').deliver }.to change{ ActionMailer::Base.deliveries.count }.by(1)
-      end
-    end
-
-    context "failure" do
-      let(:params) { {:duration => 6, :remarks => 'This is test'} }
-
-      it 'should not create booking' do
-        expect { time_slot.updated(params) }.to raise_error
       end
     end
   end

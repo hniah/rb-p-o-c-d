@@ -4,8 +4,19 @@
   %label Start Time :
   = @time_slot.start_time.strftime("%H:%M %d-%B-%Y")
 = simple_form_for @time_slot, url: booking_path, method: :patch do |f|
-  = f.input :start_time, :as => :datetime, :minute_step => 30
+  = f.input :start_time, as: :datetimepicker, input_html: { value: @time_slot.start_time, size: 100 }
   = f.input :id, as: :hidden
   = f.input :duration, collection: [ ["3 hours", 3], ["4 hours", 4], ["5 hours", 5]], prompt: "Select your duration", label: 'Duration :'
   = f.input :remarks, as: :text, label: 'Remarks :'
-  = f.submit "Book this slot", class: 'btn'
+  = f.submit "Update this slot", class: 'btn'
+:javascript
+  $('input.datetimepicker').datetimepicker({
+                           	timeFormat: 'HH:mm:ss z',
+                           	dateFormat: 'yy-mm-dd',
+                           	numberOfMonths: 2,
+                           	showTime: false,
+                           	stepMinute: 30,
+                           	showSecond: false,
+                           	timezone: "+0800",
+                           	showTimezone : false,
+                           });

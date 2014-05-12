@@ -2,7 +2,7 @@ module Concerns::TimeSlot::Validations
   extend ActiveSupport::Concern
 
   included do
-    validate :affordable?
+    validate :affordable? , if: :new_record?
     validates_presence_of :start_time, :end_time, :category
     validate :time_slot_is_between, from: 3, to: 5, if: :has_start_and_end_time? && :booked?
     validate :creatable?

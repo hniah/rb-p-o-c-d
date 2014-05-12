@@ -118,11 +118,7 @@ describe BookingsController do
     let(:id) { time_slot.id }
     let(:params) { {duration: "4",
                     remarks: 'This is test',
-                    "start_time(1i)" => "2014",
-                    "start_time(2i)" => "5",
-                    "start_time(3i)" => "10",
-                    "start_time(4i)" => "11",
-                    "start_time(5i)" => "00" } }
+                    start_time: Time.zone.now.tomorrow.change(hour: 11, min: 00)} }
 
     before { sign_in user }
     before { do_request }

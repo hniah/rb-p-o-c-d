@@ -19,12 +19,7 @@ module Concerns::TimeSlot::Bookable
   end
 
   def updated(params)
-    new_start_time = Time.zone.now.tomorrow.change(
-                    year: params["start_time(1i)"].to_i,
-                    month: params["start_time(2i)"].to_i,
-                    day: params["start_time(3i)"].to_i,
-                    hour: params["start_time(4i)"].to_i,
-                    min: params["start_time(5i)"].to_i)
+    new_start_time = params[:start_time].to_datetime
 
     return false if new_start_time.nil?
     self.start_time = new_start_time
