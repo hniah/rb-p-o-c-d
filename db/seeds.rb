@@ -1,7 +1,7 @@
 # Create admin login
 Admin.destroy_all
 puts "=== Admin destroyed ==="
-admin = Admin.create!(email: 'admin@example.com', password: '123123', password_confirmation: '123123')
+admin = Admin.create!(email: 'admin@ourcleaningdepartment.com', password: '123123', password_confirmation: '123123')
 puts "=== Admin created ==="
 
 #Create sample packages

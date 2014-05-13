@@ -1,7 +1,6 @@
 module Concerns::TimeSlot::Bookable
   extend ActiveSupport::Concern
 
-
   BLOCKED_DURATION = 2
   LEAST_SESSION_TIME = 3
 
@@ -9,13 +8,12 @@ module Concerns::TimeSlot::Bookable
     self.category == 'booked'
   end
 
-  def create_booking_by(user, duration = 3)
+  def create_booking_by!(user, duration = 3)
     return false if self.start_time.nil?
     self.end_time = self.start_time + duration.hours
     self.user = user
     self.category = :booked
     self.save!
-    AdminMailer.notification_email('new').deliver
   end
 
   def updated(params)

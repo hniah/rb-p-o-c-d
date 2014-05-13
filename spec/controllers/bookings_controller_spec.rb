@@ -63,12 +63,24 @@ describe BookingsController do
     end
 
     context "params without start time" do
-      let(:time_slot_param) { {Lorem: "Ipsum"} }
+      let(:time_slot_param) { { Lorem: "Ipsum" } }
       let(:user) { create(:user) }
 
       it "should not create a block of bookings" do
-        flash[:alert].should eq "Failed to create booking: "
+        flash[:alert].should_not be_empty
+        #flash[:alert].should include "Failed to create booking: "
         response.should redirect_to bookings_path
+      end
+    end
+
+    context "time slot is not affordable" do
+      let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4, remarks: "Ho Chi Minh City"}) }
+      let(:user) { create(:user) }
+
+      it "should redirect user to buy package page" do
+        flash[:alert].should_not be_empty
+        #flash[:alert].should include "Failed to create booking: "
+        response.should redirect_to buy_package_path
       end
     end
   end

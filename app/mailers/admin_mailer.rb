@@ -3,9 +3,8 @@ class AdminMailer < ActionMailer::Base
 
   def notification_email(status_booking)
     admin = Admin.first
+
     case status_booking
-       when 'new'
-         mail_to(admin.email, 'New booking made!!!','admin_mailer','booking_made')
        when 'updated'
          mail_to(admin.email, 'A booking updated!!!','admin_mailer','booking_updated')
        when 'cancelled'

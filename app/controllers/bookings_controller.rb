@@ -1,6 +1,9 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
 
+  rescue_from TimeSlot::NotAffordableError, with: :redirect_to_buy_package
+  rescue_from RuntimeError, with: :redirect_to_bookings_path
+
   def index
     @time_slots = TimeSlot.all
   end
@@ -11,18 +14,9 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @time_slot = TimeSlot.new(time_slot_param)
-
-    if @time_slot.create_booking_by(current_user, duration_param)
-      flash[:notice] = "Booking created successfully"
-    else
-      flash[:alert] = "Failed to create booking: #{@time_slot.errors.full_messages.first}"
-    end
-    if @time_slot.errors.full_messages.first == 'Time slot : insufficient hours (credit) in account. Please buy packages to booking.'
-      redirect_to buy_package_path
-    else
-      redirect_to bookings_path
-    end
+    TimeSlot::CreationService.new(time_slot_param, current_user).execute!
+    flash[:notice] = "Booking created successfully"
+    redirect_to bookings_path
   end
 
   def destroy
@@ -70,5 +64,15 @@ class BookingsController < ApplicationController
 
   def duration_param
     time_slot_param[:duration].to_i
+  end
+
+  def redirect_to_buy_package
+    flash[:alert] = "Insufficient hours (credit) in account. Please buy packages to booking."
+    redirect_to buy_package_path
+  end
+
+  def redirect_to_bookings_path(e)
+    flash[:alert] = e.message
+    redirect_to bookings_path
   end
 end

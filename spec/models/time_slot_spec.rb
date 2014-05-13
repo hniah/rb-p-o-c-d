@@ -148,7 +148,7 @@ describe TimeSlot do
     end
   end
 
-  describe "#create_booking_by" do
+  describe "#create_booking_by!" do
     let(:user) { create :user, :with_packages }
     let(:time_slot) { build_time_slot( hour: 10, min: 0 )}
     let(:duration) { 4 }
@@ -156,10 +156,9 @@ describe TimeSlot do
 
     context "success" do
       it "creates booking" do
-        expect { time_slot.create_booking_by(user, duration) }.to change(TimeSlot, :count)
+        expect { time_slot.create_booking_by!(user, duration) }.to change(TimeSlot, :count)
         time_slot.end_time.hour.should eq 14
         time_slot.user.should eq user
-        expect { AdminMailer.notification_email('new').deliver }.to change{ ActionMailer::Base.deliveries.count }.by(1)
       end
     end
 
@@ -167,7 +166,7 @@ describe TimeSlot do
       let(:time_slot) { build_time_slot(hour: 20, min: 0) }
 
       it 'should not create booking' do
-        expect { time_slot.create_booking_by(user, 5) }.to raise_error
+        expect { time_slot.create_booking_by!(user, 5) }.to raise_error
       end
     end
   end
@@ -322,13 +321,14 @@ describe TimeSlot do
     end
   end
 
-  describe '#affordable?' do
+  describe '#affordable_by?' do
+    let(:user)      { time_slot.user }
 
     context 'success' do
       let(:time_slot) { build(:time_slot) }
 
       it 'should be created time slot' do
-        time_slot.should be_valid
+        time_slot.should be_affordable_by(user, 4)
       end
     end
 
@@ -336,7 +336,7 @@ describe TimeSlot do
       let(:time_slot) { build(:time_slot, :with_unaffordable_user)}
 
       it 'should not be created time slot' do
-        time_slot.should_not be_valid
+        time_slot.should_not be_affordable_by(user, 4)
       end
     end
   end

@@ -2,7 +2,7 @@ module Concerns::TimeSlot::Validations
   extend ActiveSupport::Concern
 
   included do
-    validate :affordable? , if: :new_record?
+    #validate :affordable? , if: :new_record?
     validates_presence_of :start_time, :end_time, :category
     validate :time_slot_is_between, from: 3, to: 5, if: :has_start_and_end_time? && :booked?
     validate :creatable?
@@ -53,12 +53,12 @@ module Concerns::TimeSlot::Validations
     end
   end
 
-  def affordable?
-    return false if start_time.nil?
-    return false if user.nil?
-    duration = TimeDifference.between(start_time, end_time).in_hours
-    if user.total_current_hours - duration < 0
-      errors.add(:time_slot,': insufficient hours (credit) in account. Please buy packages to booking.')
-    end
+  def affordable_by?(user, duration)
+    user.total_current_hours > duration
+
+    # if user.total_current_hours - duration < 0
+    #   errors.add(:user, strict: TimeSlot::NotAffordableError)
+    #   #errors.add(:time_slot, ': insufficient hours (credit) in account. Please buy packages to booking.')
+    # end
   end
 end
