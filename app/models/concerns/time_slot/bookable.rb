@@ -40,9 +40,4 @@ module Concerns::TimeSlot::Bookable
     (self.start_time > time_slot.blocked_start_time && self.start_time < time_slot.blocked_end_time) ||
       (self.end_time > time_slot.blocked_start_time && self.end_time < time_slot.blocked_end_time)
   end
-
-  def destroy_booking
-    self.destroy!
-    AdminMailer.notification_email('cancelled').deliver
-  end
 end

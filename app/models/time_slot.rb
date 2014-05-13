@@ -6,18 +6,11 @@ class TimeSlot < ActiveRecord::Base
   include Concerns::TimeSlot::Validations
   include Concerns::TimeSlot::Bookable
   include Concerns::TimeSlot::Association
+  include Concerns::TimeSlot::Exception
 
   attr_accessor :duration
 
   enumerize :category, in: [:booked, :blocked]
-
-  scope :created_after,  -> (date) { where('created_at >= ?', date) }
-  scope :created_before, -> (date) { where('created_at <= ?', date) }
-
-
-  class NotAffordableError < StandardError
-
-  end
 
   def duration
     (start_time.nil? || end_time.nil?) ?
