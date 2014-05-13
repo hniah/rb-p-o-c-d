@@ -4,19 +4,32 @@ describe BookingsController do
   describe '#index' do
     let!(:user) { create(:user) }
     let!(:current_week_time_slot) { create(:time_slot) }
+
     def do_request
       get :index
     end
 
-    before do
-      sign_in user
-      do_request
+    context "user is not signed in" do
+      before { do_request }
+
+      it { should redirect_to new_user_session_path }
+      it { should set_the_flash[:alert] }
     end
 
-    it 'displays the calendar with time slots of the current week' do
-      assigns(:time_slots).size.should == 1
-      assigns(:time_slots).first.id = current_week_time_slot.id
-      render_template :index
+    context "signed in user" do
+      before { sign_in user }
+      before { do_request }
+
+      it { should render_template :index }
+      it "should assign time slots" do
+        expect(assigns(:time_slots).size).to eq 1
+      end
+
+      context "assigned @time_slot" do
+        subject { assigns :time_slots }
+
+        it { should include current_week_time_slot }
+      end
     end
   end
 

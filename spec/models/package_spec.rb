@@ -14,7 +14,7 @@ describe Package do
   end
 
   describe ".all_packages_in_array" do
-    let!(:packages) do
+    before do
       create_list :package, 3, session_type: 3
       create_list :package, 3, session_type: 4
       create_list :package, 3, session_type: 5

@@ -9,13 +9,13 @@ describe Payment do
   end
 
   describe '#purchase_payment!' do
-    let!(:pending_payment) { create(:payment, :with_pending_status) }
+    let!(:payment) { create(:payment, :with_pending_status) }
     let(:payer_id) { '2222' }
-    let(:user) { pending_payment.user }
+    let(:user) { payment.user }
 
     it 'should be updated' do
-      expect { pending_payment.purchase!(payer_id) }.to change(pending_payment, :status).to('complete')
-      expect(user.packages).to include(pending_payment.package)
+      expect { payment.purchase!(payer_id) }.to change(payment, :status).to('complete')
+      expect(user.packages).to include(payment.package)
     end
   end
 end

@@ -18,16 +18,16 @@ describe Housekeeper do
          let(:housekeeper) { build(:housekeeper, date_of_birth: 18.years.ago) }
 
         it 'validate date of birth to be at least 18 years old' do
-          housekeeper.valid?.should be_true
+          housekeeper.should be_valid
         end
       end
 
       context 'Failure' do
-        let(:housekeeper) { build(:housekeeper, date_of_birth: Date.today) }
+        subject(:housekeeper) { build(:housekeeper, date_of_birth: Date.today) }
 
-        it 'failed validation if less than 18 years old' do
-          housekeeper.valid?.should_not be_true
-          housekeeper.errors.messages.should include :date_of_birth
+        it 'date_of_birth is invalid' do
+          housekeeper.should_not be_valid
+          expect(housekeeper.errors.messages).to include :date_of_birth
         end
       end
     end
