@@ -52,4 +52,12 @@ module BookingsHelper
   def to_durations(start_time,end_time)
     TimeDifference.between(start_time, end_time).in_hours.to_i
   end
+
+  def durations_list
+    [["3 hours", 3], ["4 hours", 4], ["5 hours", 5]]
+  end
+
+  def time_in_words(time)
+    time.strftime("%H:%M %d-%B-%Y")
+  end
 end

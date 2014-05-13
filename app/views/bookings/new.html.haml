@@ -2,9 +2,9 @@
 
 %div
   %label Start Time :
-  = @time_slot.start_time.strftime("%H:%M %d-%B-%Y")
+  = time_in_words @time_slot.start_time
 = simple_form_for @time_slot, url: bookings_path, method: :post do |f|
   = f.input :start_time, as: :hidden
-  = f.input :duration, collection: [ ["3 hours", 3], ["4 hours", 4], ["5 hours", 5]], prompt: "Select your duration", label: 'Duration :'
+  = f.input :duration, collection: durations_list, prompt: "Select your duration", label: 'Duration :'
   = f.input :remarks, as: :text, label: 'Remarks :'
   = f.submit "Book this slot", class: 'btn'
