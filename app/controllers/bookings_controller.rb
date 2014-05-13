@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
     @time_slot.duration
     render :edit
 
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound
     flash[:alert] = "Do not allow to access!"
     redirect_to user_info_path
   end

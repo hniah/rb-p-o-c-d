@@ -38,6 +38,7 @@ class PaymentsController < ApplicationController
   end
 
   protected
+
   def selected_package
     package_id = params.require(:user).permit(:package_id)[:package_id]
     Package.find(package_id)

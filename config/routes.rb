@@ -11,7 +11,6 @@ Ocd::Application.routes.draw do
   get 'terms_and_condition'         => 'pages#terms_and_condition'
 
   get 'buy_package'                 => 'packages#buy_package'
-  patch 'buy_package'               => 'packages#do_buy_package'
 
   patch 'express_checkout'          => 'payments#express_checkout'
 
