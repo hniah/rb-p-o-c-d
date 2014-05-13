@@ -102,16 +102,19 @@ TimeSlot.create!(
 )
 
 monday = Date.today.beginning_of_week + 1.week
-TimeSlot.new(
-  start_time: Time.zone.now.change(
-    year: monday.year,
-    month: monday.month,
-    day: monday.day,
-    hour: 8,
-    min: 0
-  ),
-  category: :booked,
-  housekeeper: nil
-).create_booking_by(customer, 4)
+TimeSlot::CreationService.new(
+  {
+    start_time: Time.zone.now.change(
+      year: monday.year,
+      month: monday.month,
+      day: monday.day,
+      hour: 8,
+      min: 0
+    ),
+    category: :booked,
+    housekeeper: nil
+  }, customer
+).execute!
+
 puts "=== TimeSlot created ==="
 

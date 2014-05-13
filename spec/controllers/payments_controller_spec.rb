@@ -27,28 +27,40 @@ describe PaymentsController do
     end
 
     before { sign_in user }
-    before { do_request }
 
     it "should redirect to paypal" do
-      expect {payment.create_payment!(user, package, token, remote_ip) }.to change(Payment, :count).by(1)
+      expect { do_request }.to change(Payment, :count).by(1)
       response.should redirect_to EXPRESS_GATEWAY.redirect_url_for(token)
     end
   end
 
   describe '#success_payment' do
-    let(:user) { create(:user) }
-    let!(:pending_payment) { create(:payment, :with_pending_status) }
+    let(:user) { payment.user }
+    let!(:payment) { create(:payment, :with_pending_status) }
 
     before { sign_in user }
     before { do_request }
 
     def do_request
-      get :success_payment, token: '123456789', PayerID: '2222'
+      get :success_payment, token: token, PayerID: '2222'
     end
 
-    it 'payment should be updated' do
-      flash[:notice].should eq "Package bought successfully!"
-      response.should redirect_to bookings_path
+    context "correct token" do
+      let(:token) { payment.express_token }
+
+      it 'payment should be updated' do
+        flash[:notice].should eq "Package bought successfully!"
+        response.should redirect_to bookings_path
+      end
+    end
+
+    context "incorrect token" do
+      let(:token) { "123847192837489" }
+
+      it "should not update payment" do
+        flash[:alert].should_not be_nil
+        response.should redirect_to bookings_path
+      end
     end
   end
 

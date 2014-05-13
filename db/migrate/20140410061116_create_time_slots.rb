@@ -3,7 +3,7 @@ class CreateTimeSlots < ActiveRecord::Migration
     create_table :time_slots do |t|
       t.datetime :start_time
       t.datetime :end_time
-      t.string   :category
+      t.string   :category, default: :booked
 
       t.timestamps
 

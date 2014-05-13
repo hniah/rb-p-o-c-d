@@ -14,9 +14,9 @@ class TimeSlot::CreationService
     raise TimeSlot::NotAffordableError unless @time_slot.affordable_by?(@user, duration)
 
     @time_slot.user = user
-    @time_slot.category = :booked
     @time_slot.end_time = @time_slot.start_time + @duration.hours
     @time_slot.save!
+
     notify_admin
   end
 

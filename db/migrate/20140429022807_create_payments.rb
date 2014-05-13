@@ -6,7 +6,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string :express_payer_id
       t.references :user
       t.references :package
-      t.string :status
+      t.string :status, default: :pending
       t.timestamps
     end
   end

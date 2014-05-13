@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20140429022807) do
     t.string   "express_payer_id"
     t.integer  "user_id"
     t.integer  "package_id"
-    t.string   "status"
+    t.string   "status",           default: "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20140429022807) do
   create_table "time_slots", force: true do |t|
     t.datetime "start_time"
     t.datetime "end_time"
-    t.string   "category"
+    t.string   "category",       default: "booked"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
