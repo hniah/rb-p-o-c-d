@@ -1,7 +1,7 @@
 class TimeSlot::DestructionMailer < ActionMailer::Base
   default from: "from@example.com"
 
-  def send_destruction
+  def send_notification
     mail(to: recipients,
          subject: 'A booking cancelled!!!',
          template_path:'admin_mailer',

@@ -148,8 +148,6 @@ describe TimeSlot do
     end
   end
 
-
-
   describe "#blocked_start_time" do
     let!(:time_slot) { build_time_slot(hour: hour, min: min) }
     let(:min) { 0 }
@@ -278,17 +276,6 @@ describe TimeSlot do
       it 'should not be created time slot' do
         time_slot.should_not be_affordable_by(user, 4)
       end
-    end
-  end
-
-  describe '#cancel_booking_by' do
-    let(:user) { create :user, :with_packages }
-    let(:time_slot) { create (:time_slot) }
-    let!(:admin) { create(:admin) }
-
-    it 'should be destroy' do
-      expect { time_slot.destroy_booking }.to change(TimeSlot, :count).by(0)
-      expect { AdminMailer.notification_email('cancelled').deliver }.to change{ ActionMailer::Base.deliveries.count }.by(1)
     end
   end
 end

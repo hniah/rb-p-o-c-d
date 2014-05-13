@@ -68,7 +68,6 @@ describe BookingsController do
 
       it "should not create a block of bookings" do
         flash[:alert].should_not be_empty
-        #flash[:alert].should include "Failed to create booking: "
         response.should redirect_to bookings_path
       end
     end
@@ -79,7 +78,6 @@ describe BookingsController do
 
       it "should redirect user to buy package page" do
         flash[:alert].should_not be_empty
-        #flash[:alert].should include "Failed to create booking: "
         response.should redirect_to buy_package_path
       end
     end
@@ -87,7 +85,6 @@ describe BookingsController do
 
   describe '#destroy' do
     let!(:admin) { create(:admin) }
-    let(:user) { create(:user) }
     let(:time_slot) { create(:time_slot) }
     let(:id)  { time_slot.id }
 
@@ -98,10 +95,22 @@ describe BookingsController do
       delete :destroy, id: id
     end
 
-    it 'should be destroyed' do
-      flash[:notice].should eq "Booking is destroyed successfully"
-      expect { TimeSlot.find(id) }.to raise_error
-      response.should redirect_to user_info_path
+    context 'user is the creator time slot' do
+      let(:user) { time_slot.user }
+
+      it 'should be destroyed' do
+        flash[:notice].should eq "Booking is destroyed successfully"
+        expect { TimeSlot.find(id) }.to raise_error
+        response.should redirect_to user_info_path
+      end
+    end
+
+    context 'user is not the creator time slot' do
+      let(:user) { create :user }
+
+      it 'should be redirect to user info page' do
+        response.should redirect_to user_info_path
+      end
     end
   end
 
@@ -129,7 +138,7 @@ describe BookingsController do
     context "user is not the creator of the time slot" do
       let(:user) { create :user }
 
-      it 'should be display edit booking layout' do
+      it 'should be redirect to user info page' do
         response.should redirect_to user_info_path
       end
     end
@@ -168,7 +177,5 @@ describe BookingsController do
         response.should redirect_to user_info_path
       end
     end
-
-
   end
 end

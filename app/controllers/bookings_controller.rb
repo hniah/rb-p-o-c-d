@@ -20,12 +20,14 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @time_slot = TimeSlot.find(params[:id])
+    @time_slot = TimeSlot.find_by!(id: time_slot_id, user: current_user)
 
-    if @time_slot.destroy_booking
-      flash[:notice] = "Booking is destroyed successfully"
-    end
+    TimeSlot::DestructionService.new(@time_slot).execute!
+    flash[:notice] = "Booking is destroyed successfully"
 
+  rescue Exception => e
+    flash[:notice] = 'Can not cancel!'
+  ensure
     redirect_to user_info_path
   end
 
