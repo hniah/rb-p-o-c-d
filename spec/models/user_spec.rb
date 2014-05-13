@@ -27,11 +27,10 @@ describe User do
 
   describe '#total_current_hours' do
     let(:user) { create :user, :with_time_slots, number_of_time_slots: 2 }
-    it 'should show total current hours' do
-      @total_hours_bought = user.total_hours_bought
-      @total_current_hours = @total_hours_bought - 8
+    let(:remaining_hours) { user.total_hours_bought - 8 }
 
-      user.total_current_hours.should eq @total_current_hours
+    it 'should show total current hours' do
+      user.total_current_hours.should eq remaining_hours
     end
   end
 end
