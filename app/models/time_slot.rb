@@ -1,5 +1,3 @@
-
-
 class TimeSlot < ActiveRecord::Base
   extend Enumerize
   extend Concerns::TimeSlot::Finder

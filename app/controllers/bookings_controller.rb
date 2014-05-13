@@ -30,18 +30,25 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @time_slot = TimeSlot.find(params[:id])
+    @time_slot = TimeSlot.find_by!(id: time_slot_id, user: current_user)
     @time_slot.duration
     render :edit
+
+  rescue ActiveRecord::RecordNotFound => e
+    flash[:alert] = "Do not allow to access!"
+    redirect_to user_info_path
   end
 
   def update
-    @time_slot = TimeSlot.find(params[:id])
-    if @time_slot.updated(params[:time_slot])
-      flash[:notice] = "Update booking successfully"
-    else
-      flash[:alert] = "Failed to update booking: #{@time_slot.errors.full_messages.first}"
-    end
+    @time_slot = TimeSlot.find_by!(id: time_slot_id, user: current_user)
+
+    TimeSlot::ModificationService.new(@time_slot, time_slot_param).execute!
+    flash[:notice] = "Update booking successfully"
+
+  rescue Exception => e
+    flash[:alert] = "Failed to update booking: #{e.message}"
+
+  ensure
     redirect_to user_info_path
   end
 
@@ -56,6 +63,10 @@ class BookingsController < ApplicationController
       hour: start_time[:hour],
       min: start_time[:minute]
     )
+  end
+
+  def time_slot_id
+    params.require(:id)
   end
 
   def time_slot_param

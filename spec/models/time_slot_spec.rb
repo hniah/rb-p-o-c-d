@@ -148,67 +148,7 @@ describe TimeSlot do
     end
   end
 
-  describe "#create_booking_by!" do
-    let(:user) { create :user, :with_packages }
-    let(:time_slot) { build_time_slot( hour: 10, min: 0 )}
-    let(:duration) { 4 }
-    let!(:admin) { create :admin }
 
-    context "success" do
-      it "creates booking" do
-        expect { time_slot.create_booking_by!(user, duration) }.to change(TimeSlot, :count)
-        time_slot.end_time.hour.should eq 14
-        time_slot.user.should eq user
-      end
-    end
-
-    context "failure" do
-      let(:time_slot) { build_time_slot(hour: 20, min: 0) }
-
-      it 'should not create booking' do
-        expect { time_slot.create_booking_by!(user, 5) }.to raise_error
-      end
-    end
-  end
-
-  describe "#updated" do
-    let(:user) { create :user }
-    let(:time_slot) { create(:time_slot)}
-    let!(:admin) { create :admin }
-    let(:params) { {duration: "3",
-                    remarks: 'This is test',
-                    start_time: Time.zone.now.tomorrow.change(hour: 11, min: 00)
-    } }
-
-    context "success" do
-      it "start_time should be updated" do
-        expect { time_slot.updated(params) }.to change(time_slot, :start_time)
-        time_slot.start_time.hour.should eq 11
-      end
-
-      it 'end_time should not be updated' do
-        expect { time_slot.updated(params) }.not_to change(time_slot, :end_time)
-        time_slot.end_time.hour.should eq 14
-      end
-
-      let(:params_with_duration_5) { {duration: "5",
-                                      remarks: 'This is test',
-                                      start_time: Time.zone.now.tomorrow.change(hour: 11, min: 00)
-      }}
-      it 'end_time should be updated' do
-        expect { time_slot.updated(params_with_duration_5) }.to change(time_slot, :end_time)
-        time_slot.end_time.hour.should eq 16
-      end
-
-      it 'remarks should be updated' do
-        expect { time_slot.updated(params) }.to change(time_slot, :remarks).to('This is test')
-      end
-
-      it "should be send mail for admin" do
-        expect { AdminMailer.notification_email('updated').deliver }.to change{ ActionMailer::Base.deliveries.count }.by(1)
-      end
-    end
-  end
 
   describe "#blocked_start_time" do
     let!(:time_slot) { build_time_slot(hour: hour, min: min) }

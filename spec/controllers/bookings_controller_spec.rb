@@ -107,7 +107,7 @@ describe BookingsController do
 
   describe '#edit' do
     let!(:admin) { create(:admin) }
-    let(:user) { create(:user) }
+
     let(:time_slot) { create(:time_slot) }
     let(:id) { time_slot.id }
 
@@ -118,14 +118,26 @@ describe BookingsController do
       get :edit, id: id
     end
 
-    it 'should be display edit booking layout' do
-      response.should render_template :edit
+    context "user is the creator of the time slot" do
+      let(:user) { time_slot.user }
+
+      it 'should be display edit booking layout' do
+        response.should render_template :edit
+      end
+    end
+
+    context "user is not the creator of the time slot" do
+      let(:user) { create :user }
+
+      it 'should be display edit booking layout' do
+        response.should redirect_to user_info_path
+      end
     end
   end
 
   describe '#update' do
     let!(:admin) { create(:admin) }
-    let(:user) { create(:user) }
+
     let(:time_slot) { create(:time_slot) }
     let(:id) { time_slot.id }
     let(:params) { {duration: "4",
@@ -139,9 +151,24 @@ describe BookingsController do
       patch :update, id: id, time_slot: params
     end
 
-    it 'should be redirect to booking schedule' do
-      flash[:notice].should eq "Update booking successfully"
-      response.should redirect_to user_info_path
+    context "user is the creator of the time slot" do
+      let(:user) { time_slot.user }
+
+      it 'should be redirect to booking schedule' do
+        flash[:notice].should eq "Update booking successfully"
+        response.should redirect_to user_info_path
+      end
     end
+
+    context "user is not the creator of the time slot" do
+      let(:user) { create(:user) }
+
+      it 'does not allow user to update' do
+        flash[:alert].should_not be_nil
+        response.should redirect_to user_info_path
+      end
+    end
+
+
   end
 end

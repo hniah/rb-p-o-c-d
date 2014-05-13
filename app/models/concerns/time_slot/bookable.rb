@@ -8,26 +8,6 @@ module Concerns::TimeSlot::Bookable
     self.category == 'booked'
   end
 
-  def create_booking_by!(user, duration = 3)
-    return false if self.start_time.nil?
-    self.end_time = self.start_time + duration.hours
-    self.user = user
-    self.category = :booked
-    self.save!
-  end
-
-  def updated(params)
-    new_start_time = params[:start_time].to_datetime
-
-    return false if new_start_time.nil?
-    self.start_time = new_start_time
-    self.end_time = new_start_time + params[:duration].to_i.hours
-    self.remarks = params[:remarks]
-    if self.save
-      AdminMailer.notification_email('updated').deliver
-    end
-  end
-
   def blocked_start_time
     check_time = self.start_time - (BLOCKED_DURATION + LEAST_SESSION_TIME).hours
 
