@@ -1,5 +1,8 @@
 #bookings-index-container
   %h1 Book a session
+  %div
+    =link_to 'Previous week', bookings_path(week: @week - 1), class: 'btn'
+    =link_to 'Next week', bookings_path(week: @week + 1), class: 'btn'
   %table.table.table-bordered.calendar-table
     %thead
       %tr
@@ -12,7 +15,7 @@
         %th Saturday
         %th Sunday
     %tbody
-      - day = Date.today.beginning_of_week
+      - day = Date.today.beginning_of_week + @week.week
       %tr
         %th
         - (0..6).each do |i|

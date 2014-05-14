@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
 
   def index
     @time_slots = TimeSlot.all
+    @week = week
   end
 
   def new
@@ -87,5 +88,9 @@ class BookingsController < ApplicationController
   def redirect_to_bookings_path(e)
     flash[:alert] = e.message
     redirect_to bookings_path
+  end
+
+  def week
+    params.fetch(:week, 0).to_i
   end
 end
