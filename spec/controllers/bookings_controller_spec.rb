@@ -94,6 +94,16 @@ describe BookingsController do
         response.should redirect_to buy_package_path
       end
     end
+
+    context "time slot is not unbookable" do
+      let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4, remarks: "Ho Chi Minh City", start_time: Time.zone.now.change(hour: 10, min: 0)}) }
+      let(:user) { create(:user, :with_packages) }
+
+      it "should redirect user to booking page" do
+        flash[:alert].should_not be_empty
+        response.should redirect_to bookings_path
+      end
+    end
   end
 
   describe '#destroy' do

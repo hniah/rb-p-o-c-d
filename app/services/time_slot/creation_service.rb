@@ -12,6 +12,7 @@ class TimeSlot::CreationService
   def execute!
     raise "Time Slot is invalid" if @duration.nil? || @time_slot.start_time.nil?
     raise TimeSlot::NotAffordableError unless @time_slot.affordable_by?(@user, duration)
+    raise TimeSlot::UnBookableError if @time_slot.unbookable_after?(2)
 
     @time_slot.user = user
     @time_slot.end_time = @time_slot.start_time + @duration.hours

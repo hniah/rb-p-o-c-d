@@ -96,8 +96,8 @@ describe TimeSlot do
       end
     end
 
-    describe '#unbookable_after_hours' do
-      context 'start at 8:00' do
+    describe '#unbookable_after' do
+      context 'start at 8:00 should be unbookable' do
         subject(:time_slot) do
             build(:time_slot,
                   start_time: Time.zone.now.change(hour: 8, min: 0),
@@ -105,10 +105,10 @@ describe TimeSlot do
             )
         end
 
-        it { should_not be_valid }
+        it { time_slot.should be_unbookable_after(2) }
       end
 
-      context 'start at 11:00' do
+      context 'start at 11:00 should be unbookable' do
         subject(:time_slot) do
           build(:time_slot,
                 start_time: Time.zone.now.change(hour: 10, min: 0),
@@ -116,7 +116,7 @@ describe TimeSlot do
           )
         end
 
-        it { should_not be_valid }
+        it { should be_unbookable_after(2) }
       end
     end
   end
