@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
 
   rescue_from TimeSlot::NotAffordableError, with: :redirect_to_buy_package
-  rescue_from RuntimeError, TimeSlot::UnBookableError, with: :redirect_to_bookings_path
+  rescue_from RuntimeError, TimeSlot::UnBookableError, TimeSlot::NotBetweenError, with: :redirect_to_bookings_path
 
   def index
     @time_slots = TimeSlot.all

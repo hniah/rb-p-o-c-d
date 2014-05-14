@@ -7,25 +7,25 @@ describe TimeSlot do
     it { should validate_presence_of :category }
     it { should enumerize(:category).in(:booked, :blocked)}
 
-    describe '#time_slot_is_between' do
+    describe '#end_time_valid?' do
       context 'Success' do
         context 'duration is between 3 - 5' do
           subject(:time_slot) { build(:time_slot) }
 
-          it { should be_valid }
+          it { should be_end_time_valid(3, 5) }
         end
 
         context 'blocked time slot' do
           subject(:time_slot) { build(:time_slot, :with_8_hours_slot, category: :blocked) }
 
-          it { should be_valid }
+          it { should_not be_end_time_valid(3, 5) }
         end
       end
 
       context 'time slot is not between 3 - 5' do
         subject(:time_slot) { build(:time_slot, :with_8_hours_slot) }
 
-        it { should_not be_valid }
+        it { should_not be_end_time_valid(3, 5) }
       end
     end
 

@@ -67,7 +67,8 @@ describe BookingsController do
 
     context "params with start time" do
       let(:user) { create(:user, :with_packages) }
-      let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4, remarks: "Ho Chi Minh City"}) }
+      let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4,
+                                                                remarks: "Ho Chi Minh City"}) }
 
       it "should create a block of bookings" do
         flash[:notice].should eq "Booking created successfully"
@@ -96,12 +97,32 @@ describe BookingsController do
     end
 
     context "time slot is not unbookable" do
-      let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4, remarks: "Ho Chi Minh City", start_time: Time.zone.now.change(hour: 10, min: 0)}) }
-      let(:user) { create(:user, :with_packages) }
 
-      it "should redirect user to booking page" do
-        flash[:alert].should_not be_empty
-        response.should redirect_to bookings_path
+      context 'start time should be after 2 hours' do
+        let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4,
+                                                                  remarks: "Ho Chi Minh City",
+                                                                  start_time: Time.zone.now.change(hour: 10, min: 0)
+                                                                 }) }
+        let(:user) { create(:user, :with_packages) }
+
+        it "should redirect user to booking page" do
+          flash[:alert].should_not be_empty
+          response.should redirect_to bookings_path
+        end
+      end
+
+      context 'end time should be between 3 - 5 hours' do
+        let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 1,
+                                                                  remarks: "Ho Chi Minh City",
+                                                                  start_time: time_with_zone(hour: 10, min: 0),
+                                                                  end_time: time_with_zone(hour: 11, min: 0),
+                                                                 }) }
+        let(:user) { create(:user, :with_packages) }
+
+        it "should redirect user to booking page" do
+          flash[:alert].should_not be_empty
+          response.should redirect_to bookings_path
+        end
       end
     end
   end

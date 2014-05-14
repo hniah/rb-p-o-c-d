@@ -10,12 +10,13 @@ class TimeSlot::CreationService
   end
 
   def execute!
-    raise "Time Slot is invalid" if @duration.nil? || @time_slot.start_time.nil?
-    raise TimeSlot::NotAffordableError unless @time_slot.affordable_by?(@user, duration)
-    raise TimeSlot::UnBookableError if @time_slot.unbookable_after?(2)
+    check_valid?
 
     @time_slot.user = user
     @time_slot.end_time = @time_slot.start_time + @duration.hours
+
+    raise TimeSlot::NotBetweenError unless @time_slot.end_time_valid?(3,5)
+
     @time_slot.save!
 
     notify_admin
@@ -24,5 +25,11 @@ class TimeSlot::CreationService
   protected
   def notify_admin
     TimeSlot::CreationMailer.send_notification
+  end
+
+  def check_valid?
+    raise "Time Slot is invalid" if @duration.nil? || @time_slot.start_time.nil?
+    raise TimeSlot::NotAffordableError unless @time_slot.affordable_by?(@user, duration)
+    raise TimeSlot::UnBookableError if @time_slot.unbookable_after?(2)
   end
 end

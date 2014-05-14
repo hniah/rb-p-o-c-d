@@ -3,23 +3,16 @@ module Concerns::TimeSlot::Validations
 
   included do
     validates_presence_of :start_time, :end_time, :category
-    validate :time_slot_is_between, from: 3, to: 5, if: :has_start_and_end_time? && :booked?
+
     validate :creatable?
-    validate :restrict_booking_time, start_hour: 8, end_hour: 22
+    validate :restrict_booking_time
     validate :limit_sessions_in_day, number_of_sessions: 2, if: :new_record?
   end
 
-  def limit_sessions_in_day(number_of_sessions = 2)
-    return false if self.start_time.nil?
-    if TimeSlot.total_sessions_in_day(self.start_time) >= number_of_sessions
-      errors[:base] << "Only #{number_of_sessions} sessions in day!"
-    end
-  end
-
-  def restrict_booking_time(start_hour = 8, end_hour = 22)
-    return false if self.start_time.nil?
-    if self.start_time < self.start_time.change(hour: start_hour) || self.end_time > self.start_time.change(hour: end_hour)
-      errors.add(:time_slot, "is restricted to only #{start_hour} hour to #{end_hour} hour (including PH / weekend)")
+  def end_time_valid?(from = 3, to = 5)
+    duration = to_durations(start_time, end_time)
+    if category == 'booked'
+      duration >= from && duration <= to
     end
   end
 
@@ -32,16 +25,18 @@ module Concerns::TimeSlot::Validations
     end
   end
 
-  def time_slot_is_between(from = 3, to = 5)
-    return false if start_time.nil?
-    duration = TimeDifference.between(start_time, end_time).in_hours
-    if duration < from || duration > to
-      errors.add(:end_time, "must be at between #{from} to #{to} hours from start time")
+  def restrict_booking_time(start_hour = 8, end_hour = 22)
+    return false if self.start_time.nil?
+    if self.start_time < self.start_time.change(hour: start_hour) || self.end_time > self.start_time.change(hour: end_hour)
+      errors.add(:time_slot, "is restricted to only #{start_hour} hour to #{end_hour} hour (including PH / weekend)")
     end
   end
 
-  def has_start_and_end_time?
-    self.start_time.present? && self.end_time.present?
+  def limit_sessions_in_day(number_of_sessions = 2)
+    return false if self.start_time.nil?
+    if TimeSlot.total_sessions_in_day(self.start_time) >= number_of_sessions
+      errors[:base] << "Only #{number_of_sessions} sessions in day!"
+    end
   end
 
   def unbookable_after?(number_of_hour = 2)

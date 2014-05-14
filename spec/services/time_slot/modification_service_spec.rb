@@ -9,7 +9,7 @@ describe TimeSlot::ModificationService do
       {
         duration: "5",
         remarks: 'This is test',
-        start_time: time_with_zone.change(hour: 11, min: 00)
+        start_time: time_with_zone(hour: 11, min: 00)
       }
     end
 

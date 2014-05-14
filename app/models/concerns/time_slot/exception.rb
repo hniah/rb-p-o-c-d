@@ -10,4 +10,10 @@ module Concerns::TimeSlot::Exception
       'Time Slot is only bookable after 2 hours from current time.'
     end
   end
+
+  class NotBetweenError < StandardError
+    def message
+      'End time must be at between 3 to 5 hours from start time'
+    end
+  end
 end
