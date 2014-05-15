@@ -70,21 +70,21 @@ describe TimeSlot do
       end
     end
 
-    describe '#creatable?' do
+    describe '#overlap?' do
       context 'starts at 12:00' do
-        subject { build_time_slot({ hour: 12, min: 0 }, 3) }
+        let(:time_slot) { build_time_slot({ hour: 12, min: 0 }, 3) }
 
         before { create_time_slot({ hour: 9, min: 0 }, 3) }
 
-        it { should_not be_valid }
+        it { time_slot.should be_overlap }
       end
 
       context 'starts at 9:00' do
-        subject { build_time_slot(hour: 9, min: 0) }
+        let(:time_slot) { build_time_slot(hour: 9, min: 0) }
 
         before { create_time_slot(hour: 14, min: 0) }
 
-        it { should be_valid }
+        it { time_slot.should_not be_overlap }
       end
 
       context 'starts at 16:00' do
@@ -92,7 +92,7 @@ describe TimeSlot do
 
         before { create(:time_slot) }
 
-        it { should be_valid }
+        it { should_not be_overlap }
       end
     end
 
@@ -245,16 +245,16 @@ describe TimeSlot do
   end
 
   describe '#affordable_by?' do
-    let(:user)      { time_slot.user }
+    let(:time_slot) { build(:time_slot, user: user) }
 
     context 'time slot should be created' do
-      let(:time_slot) { build(:time_slot) }
+      let(:user)      { create(:user, :with_packages) }
 
       it { time_slot.should be_affordable_by(user, 4) }
     end
 
     context 'time slot should not be created' do
-      let(:time_slot) { build(:time_slot, :with_unaffordable_user)}
+      let(:user) { create(:user) }
 
       it { time_slot.should_not be_affordable_by(user, 4) }
     end

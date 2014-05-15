@@ -13,7 +13,19 @@ module Concerns::TimeSlot::Exception
 
   class NotBetweenError < StandardError
     def message
-      'End time must be at between 3 to 5 hours from start time'
+      'End time must be at between 3 to 5 hours from start time.'
+    end
+  end
+
+  class OverlapError < StandardError
+    def message
+      'Time Slot overlaps with another time slot.'
+    end
+  end
+
+  class ActiveRecord::RecordNotFound
+    def message
+      'Record is invalid'
     end
   end
 end

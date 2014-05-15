@@ -3,7 +3,7 @@ FactoryGirl.define do
     start_time Time.zone.now.tomorrow.change(hour: 10, min: 0)
     end_time Time.zone.now.tomorrow.change(hour: 14, min: 0)
     category    'booked'
-    user        { create(:user, :with_packages) }
+    user      { create(:user) }
     housekeeper { create(:housekeeper) }
 
     trait :with_8_hours_slot do
@@ -22,12 +22,6 @@ FactoryGirl.define do
       end_time    Time.zone.now.tomorrow.change(hour: 10, min: 0)
       user  nil
       category 'blocked'
-    end
-
-    trait :with_unaffordable_user do
-      user        { create(:user) }
-      start_time  Time.zone.now.tomorrow.change(hour: 17, min: 0)
-      end_time    Time.zone.now.tomorrow.change(hour: 20, min: 0)
     end
 
     trait :next_week do

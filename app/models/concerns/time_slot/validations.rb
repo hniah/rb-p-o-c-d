@@ -4,7 +4,6 @@ module Concerns::TimeSlot::Validations
   included do
     validates_presence_of :start_time, :end_time, :category
 
-    validate :creatable?
     validate :restrict_booking_time
     validate :limit_sessions_in_day, number_of_sessions: 2, if: :new_record?
   end
@@ -16,13 +15,9 @@ module Concerns::TimeSlot::Validations
     end
   end
 
-  def creatable?
+  def overlap?
     time_slots = TimeSlot.all.where.not(id: self.id)
-    time_slots.each do |time_slot|
-      if self.blocked_by?(time_slot)
-        errors.add(:time_slot,'overlaps another time slot')
-      end
-    end
+    time_slots.find { |time_slot| self.blocked_by?(time_slot) }
   end
 
   def restrict_booking_time(start_hour = 8, end_hour = 22)

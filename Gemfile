@@ -61,6 +61,8 @@ group :development, :test do
   gem "capybara" # add "require 'capybara/rspec'" to spec_helper
   gem 'selenium-webdriver'
   gem 'dotenv-rails'
+
+  gem 'database_cleaner'
 end
 
 # Use ActiveModel has_secure_password
@@ -82,3 +84,4 @@ gem "letter_opener", :group => :development
 
 #paypal
 gem 'activemerchant'
+

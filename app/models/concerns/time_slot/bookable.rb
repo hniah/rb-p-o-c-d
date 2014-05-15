@@ -37,7 +37,7 @@ module Concerns::TimeSlot::Bookable
   end
 
   def blocked_by?(time_slot)
-    (self.start_time > time_slot.blocked_start_time && self.start_time < time_slot.blocked_end_time) ||
-      (self.end_time > time_slot.blocked_start_time && self.end_time < time_slot.blocked_end_time)
+    (self.start_time >= time_slot.blocked_start_time && self.start_time < time_slot.blocked_end_time) ||
+      (self.end_time > time_slot.blocked_start_time && self.end_time <= time_slot.blocked_end_time)
   end
 end

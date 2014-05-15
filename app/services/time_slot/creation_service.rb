@@ -16,6 +16,7 @@ class TimeSlot::CreationService
     @time_slot.end_time = @time_slot.start_time + @duration.hours
 
     raise TimeSlot::NotBetweenError unless @time_slot.end_time_valid?(3,5)
+    raise TimeSlot::OverlapError if @time_slot.overlap?
 
     @time_slot.save!
 

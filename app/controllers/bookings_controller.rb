@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
 
   rescue_from TimeSlot::NotAffordableError, with: :redirect_to_buy_package
   rescue_from RuntimeError, TimeSlot::UnBookableError, TimeSlot::NotBetweenError, with: :redirect_to_bookings_path
+  rescue_from TimeSlot::OverlapError, ActiveRecord::RecordNotFound, with: :redirect_to_user_info_path
 
   def index
     @time_slots = TimeSlot.all
@@ -47,11 +48,6 @@ class BookingsController < ApplicationController
 
     TimeSlot::ModificationService.new(@time_slot, time_slot_param).execute!
     flash[:notice] = "Update booking successfully"
-
-  rescue Exception => e
-    flash[:alert] = "Failed to update booking: #{e.message}"
-
-  ensure
     redirect_to user_info_path
   end
 
@@ -88,6 +84,11 @@ class BookingsController < ApplicationController
   def redirect_to_bookings_path(e)
     flash[:alert] = e.message
     redirect_to bookings_path
+  end
+
+  def redirect_to_user_info_path(e)
+    flash[:alert] = e.message
+    redirect_to user_info_path
   end
 
   def week

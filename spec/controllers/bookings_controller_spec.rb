@@ -114,8 +114,21 @@ describe BookingsController do
       context 'end time should be between 3 - 5 hours' do
         let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 1,
                                                                   remarks: "Ho Chi Minh City",
-                                                                  start_time: time_with_zone(hour: 10, min: 0),
-                                                                  end_time: time_with_zone(hour: 11, min: 0),
+                                                                  start_time: time_with_zone(hour: 10, min: 0)
+                                                                 }) }
+        let(:user) { create(:user, :with_packages) }
+
+        it "should redirect user to booking page" do
+          flash[:alert].should_not be_empty
+          response.should redirect_to bookings_path
+        end
+      end
+
+      context 'Time slot overlap another time slot' do
+        let(:time_slot) { create_time_slot(hour: 12,min: 0) }
+        let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 1,
+                                                                  remarks: "Ho Chi Minh City",
+                                                                  start_time: time_with_zone(hour: 10, min: 0)
                                                                  }) }
         let(:user) { create(:user, :with_packages) }
 
@@ -189,16 +202,14 @@ describe BookingsController do
   end
 
   describe '#update' do
-    let!(:admin) { create(:admin) }
-
-    let(:time_slot) { create(:time_slot) }
+    let!(:time_slot) { create(:time_slot) }
     let(:id) { time_slot.id }
     let(:params) { {duration: "4",
-                    remarks: 'This is test',
+    remarks: 'This is test',
                     start_time: Time.zone.now.tomorrow.change(hour: 11, min: 00)} }
 
+    before { create(:admin) }
     before { sign_in user }
-    before { do_request }
 
     def do_request
       patch :update, id: id, time_slot: params
@@ -206,6 +217,8 @@ describe BookingsController do
 
     context "user is the creator of the time slot" do
       let(:user) { time_slot.user }
+
+      before { do_request }
 
       it 'should be redirect to booking schedule' do
         flash[:notice].should eq "Update booking successfully"
@@ -216,8 +229,30 @@ describe BookingsController do
     context "user is not the creator of the time slot" do
       let(:user) { create(:user) }
 
+      before { do_request }
+
       it 'does not allow user to update' do
-        flash[:alert].should_not be_nil
+        flash[:alert].should_not be_empty
+        response.should redirect_to user_info_path
+      end
+    end
+
+    context 'Time slot overlap another time slot' do
+      let(:user) { time_slot.user }
+      let(:params) do
+        attributes_for(:time_slot).merge(
+        {
+            duration: 3,
+            remarks: "Ho Chi Minh City",
+            start_time: time_with_zone(hour: 10, min: 0)
+          })
+      end
+
+      before { create_time_slot(hour: 12, min: 0) }
+      before { do_request }
+
+      it "should redirect user to booking page" do
+        flash[:alert].should eq 'Time Slot overlaps with another time slot.'
         response.should redirect_to user_info_path
       end
     end
