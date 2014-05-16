@@ -1,7 +1,7 @@
 #bookings-index-container
   %h1 Book a session
   %div
-    =link_to 'Previous week', bookings_path(week: @week - 1), class: 'btn'
+    =link_to 'Previous week', bookings_path(week: (@week >= 1)? @week - 1 : @week = 0 ) , class: 'btn'
     =link_to 'Next week', bookings_path(week: @week + 1), class: 'btn'
   %table.table.table-bordered.calendar-table
     %thead
