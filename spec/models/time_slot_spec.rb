@@ -259,4 +259,27 @@ describe TimeSlot do
       it { time_slot.should_not be_affordable_by(user, 4) }
     end
   end
+
+  describe '#blocked_by?' do
+    context 'start at 8' do
+      let(:time_slot_existed) { create_time_slot({hour: 8, min: 0}, 3) }
+      let(:time_slot) { build_time_slot({hour: 8, min: 0}, 4) }
+
+      it { time_slot.should be_blocked_by(time_slot_existed) }
+    end
+
+    context 'start at 11' do
+      let(:time_slot_existed) { create_time_slot({hour: 8, min: 0}, 3) }
+      let(:time_slot) { build_time_slot({hour: 11, min: 0}, 4) }
+
+      it { time_slot.should be_blocked_by(time_slot_existed) }
+    end
+
+    context 'end at 13' do
+      let(:time_slot_existed) { create_time_slot({hour: 10, min: 0}, 3) }
+      let(:time_slot) { build_time_slot({hour: 8, min: 0}, 5) }
+
+      it { time_slot.should be_blocked_by(time_slot_existed) }
+    end
+  end
 end

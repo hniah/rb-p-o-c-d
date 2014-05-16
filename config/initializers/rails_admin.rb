@@ -19,13 +19,19 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      except ['Payment']
+    end
     export
     bulk_delete
     show
-    edit
+    edit do
+      except ['Payment']
+    end
     delete
-    show_in_app
+    show_in_app do
+      except ['Payment']
+    end
 
     ## With an audit adapter, you can add:
     # history_index
@@ -35,6 +41,7 @@ RailsAdmin.config do |config|
     config.authenticate_with do
       warden.authenticate! scope: :admin
     end
+
     config.current_user_method &:current_admin
   end
 
