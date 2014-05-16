@@ -1,7 +1,10 @@
 class TimeSlot::ModificationMailer < ActionMailer::Base
   default from: "from@example.com"
 
-  def send_notification
+  add_template_helper BookingsHelper
+
+  def send_notification(time_slot)
+    @time_slot = time_slot
     mail(to: recipients,
          subject: 'A booking updated!!!',
          template_path:'admin_mailer',

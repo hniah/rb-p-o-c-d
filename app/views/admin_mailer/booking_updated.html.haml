@@ -5,3 +5,18 @@
   %body
     %h1 OCD Notification
     %p New booking is updated
+    %h2 Booking information
+    %div
+      = "Start time"
+      = time_in_words @time_slot.start_time
+    %div
+      = "End time : "
+      = time_in_words @time_slot.end_time
+    %br
+    %div
+      = "User"
+      %p= @time_slot.user.name
+      %p= @time_slot.user.email
+    %div
+      Housekeeper
+      %p Coming soon !
