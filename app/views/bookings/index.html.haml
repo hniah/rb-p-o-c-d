@@ -19,7 +19,7 @@
       %tr
         %th
         - (0..6).each do |i|
-          %th= day + i
+          %th= format_day day + i
       - booking_time_range.each do |time|
         %tr
           %th= time.strftime('%l:%M%P')

@@ -35,8 +35,8 @@
       %tbody
       - current_user.time_slots.each do |t|
         %tr
-          %td= t.start_time.strftime('%H:%M %d-%m-%Y')
-          %td= t.end_time.strftime('%H:%M %d-%m-%Y')
+          %td= time_in_words t.start_time
+          %td= time_in_words t.end_time
           %td= t.remarks
           %td
             %div=button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }

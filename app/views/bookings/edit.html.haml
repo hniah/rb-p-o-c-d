@@ -2,9 +2,11 @@
 
 %div
   %label Start Time :
-  = time_in_words @time_slot.start_time
+  - start_time = time_in_words_with_zone @time_slot.start_time
+  = start_time
+
 = simple_form_for @time_slot, url: booking_path, method: :patch do |f|
-  = f.input :start_time, as: :datetimepicker, input_html: { value: @time_slot.start_time, size: 100 }
+  = f.input :start_time, as: :datetimepicker, input_html: { value: start_time, size: 100 }
   = f.input :id, as: :hidden
   = f.input :duration, collection: durations_list, prompt: "Select your duration", label: 'Duration :'
   = f.input :remarks, as: :text, label: 'Remarks :'
@@ -12,7 +14,7 @@
 :javascript
   $('input.datetimepicker').datetimepicker({
                            	timeFormat: 'HH:mm:ss z',
-                           	dateFormat: 'yy-mm-dd',
+                           	dateFormat: 'dd-mm-yy',
                            	numberOfMonths: 2,
                            	showTime: false,
                            	stepMinute: 30,

@@ -57,7 +57,15 @@ module BookingsHelper
     [["3 hours", 3], ["4 hours", 4], ["5 hours", 5]]
   end
 
+  def time_in_words_with_zone(time)
+    time.strftime("%d-%m-%Y %H:%M:%S %z")
+  end
+
   def time_in_words(time)
-    time.strftime("%H:%M %d-%B-%Y")
+    time.strftime("%d-%m-%Y %H:%M:%S")
+  end
+
+  def format_day(day)
+    day.strftime("%d-%m-%Y")
   end
 end
