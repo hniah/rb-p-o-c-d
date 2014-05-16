@@ -206,7 +206,7 @@ describe BookingsController do
     let(:id) { time_slot.id }
     let(:params) { {duration: "4",
     remarks: 'This is test',
-                    start_time: Time.zone.now.tomorrow.change(hour: 11, min: 00)} }
+                    start_time: time_with_zone(hour: 11, min: 00)} }
 
     before { create(:admin) }
     before { sign_in user }
@@ -220,7 +220,7 @@ describe BookingsController do
 
       before { do_request }
 
-      it 'should be redirect to booking schedule' do
+      it 'should be redirect to user info' do
         flash[:notice].should eq "Update booking successfully"
         response.should redirect_to user_info_path
       end
@@ -252,7 +252,7 @@ describe BookingsController do
       before { do_request }
 
       it "should redirect user to booking page" do
-        flash[:alert].should eq 'Time Slot overlaps with another time slot.'
+        flash[:alert].should eq 'Time Slot overlaps another time slot.'
         response.should redirect_to user_info_path
       end
     end

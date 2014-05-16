@@ -1,35 +1,34 @@
-class TimeSlot::ModificationService
-  attr_accessor :time_slot
-  attr_accessor :params
+class TimeSlot::ModificationService < Struct.new(:listener)
 
-  def initialize(time_slot, params)
-    @time_slot, @params = time_slot, params
-  end
+  def execute!(time_slot, params)
+    time_slot.attributes = params
 
-  def execute!
-    check_valid?
+    if params[:duration].nil? || time_slot.start_time.nil?
+      listener.redirect_to_user_info_path('Time Slot is invalid') and return
+    else
+      time_slot.end_time = time_slot.start_time + params[:duration].to_i.hours
+    end
 
-    @time_slot.attributes = @params
-    @time_slot.end_time = @time_slot.start_time + duration.hours
+    if time_slot.unbookable_after?(2)
+      listener.redirect_to_user_info_path('Time Slot is only bookable after 2 hours from current time.') and return
+    end
 
-    raise TimeSlot::NotBetweenError unless @time_slot.end_time_valid?(3,5)
-    raise TimeSlot::OverlapError if @time_slot.overlap?
+    unless time_slot.end_time_valid?(3,5)
+      listener.redirect_to_user_info_path('End time must be at between 3 to 5 hours from start time.') and return
+    end
 
-    @time_slot.save!
+    if time_slot.overlap?
+      listener.redirect_to_user_info_path('Time Slot overlaps another time slot.') and return
+    end
+
+    time_slot.save!
+    listener.update_time_slot_successful
+
     notify_admin
   end
 
   protected
   def notify_admin
     TimeSlot::ModificationMailer.send_notification
-  end
-
-  def duration
-    @params[:duration].to_i
-  end
-
-  def check_valid?
-    raise "Time Slot is invalid" if duration.nil? || @time_slot.start_time.nil?
-    raise TimeSlot::UnBookableError if @time_slot.unbookable_after?(2)
   end
 end

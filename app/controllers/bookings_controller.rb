@@ -1,9 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
 
-  rescue_from TimeSlot::NotAffordableError, with: :redirect_to_buy_package
-  rescue_from RuntimeError, TimeSlot::UnBookableError, TimeSlot::NotBetweenError, with: :redirect_to_bookings_path
-  rescue_from TimeSlot::OverlapError, ActiveRecord::RecordNotFound, with: :redirect_to_user_info_path
+  include Concerns::Booking::Redirection
 
   def index
     @time_slots = TimeSlot.all
@@ -16,20 +14,18 @@ class BookingsController < ApplicationController
   end
 
   def create
-    TimeSlot::CreationService.new(time_slot_param, current_user).execute!
-    flash[:notice] = "Booking created successfully"
-    redirect_to bookings_path
+    @time_slot = TimeSlot.new(time_slot_param)
+    @service = TimeSlot::CreationService.new(self)
+    @service.execute!(@time_slot, duration_param, current_user)
   end
 
   def destroy
     @time_slot = TimeSlot.find_by!(id: time_slot_id, user: current_user)
+    @service = TimeSlot::DestructionService.new(self)
+    @service.execute!(@time_slot)
 
-    TimeSlot::DestructionService.new(@time_slot).execute!
-    flash[:notice] = "Booking is destroyed successfully"
-
-  rescue Exception => e
-    flash[:notice] = 'Can not cancel!'
-  ensure
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Do not allow to access!"
     redirect_to user_info_path
   end
 
@@ -45,13 +41,15 @@ class BookingsController < ApplicationController
 
   def update
     @time_slot = TimeSlot.find_by!(id: time_slot_id, user: current_user)
+    @service = TimeSlot::ModificationService.new(self)
+    @service.execute!(@time_slot, time_slot_param)
 
-    TimeSlot::ModificationService.new(@time_slot, time_slot_param).execute!
-    flash[:notice] = "Update booking successfully"
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Do not allow to access!"
     redirect_to user_info_path
   end
 
-  private
+  protected
   def start_time_param
     start_time = params.permit(:day, :month, :year, :hour, :minute)
 
@@ -74,21 +72,6 @@ class BookingsController < ApplicationController
 
   def duration_param
     time_slot_param[:duration].to_i
-  end
-
-  def redirect_to_buy_package
-    flash[:alert] = "Insufficient hours (credit) in account. Please buy packages to booking."
-    redirect_to buy_package_path
-  end
-
-  def redirect_to_bookings_path(e)
-    flash[:alert] = e.message
-    redirect_to bookings_path
-  end
-
-  def redirect_to_user_info_path(e)
-    flash[:alert] = e.message
-    redirect_to user_info_path
   end
 
   def week

@@ -1,24 +1,32 @@
-class TimeSlot::CreationService
-  attr_accessor :time_slot
-  attr_accessor :user
-  attr_accessor :duration
+class TimeSlot::CreationService < Struct.new(:listener)
 
-  def initialize params, user
-    @time_slot = TimeSlot.new(params)
-    @user = user
-    @duration = params.fetch(:duration, 3).to_i
-  end
+  def execute!(time_slot, duration, user)
+    time_slot.user = user
 
-  def execute!
-    check_valid?
+    if duration.nil? || time_slot.start_time.nil?
+      listener.redirect_to_bookings_path('Time Slot is invalid') and return
+    else
+      time_slot.end_time = time_slot.start_time + duration.hours
+    end
 
-    @time_slot.user = user
-    @time_slot.end_time = @time_slot.start_time + @duration.hours
+    unless time_slot.affordable_by?(user, duration)
+      listener.redirect_to_buy_package('Insufficient hours (credit) in account. Please buy packages to booking.') and return
+    end
 
-    raise TimeSlot::NotBetweenError unless @time_slot.end_time_valid?(3,5)
-    raise TimeSlot::OverlapError if @time_slot.overlap?
+    if time_slot.unbookable_after?(2)
+      listener.redirect_to_bookings_path('Time Slot is only bookable after 2 hours from current time.') and return
+    end
 
-    @time_slot.save!
+    unless time_slot.end_time_valid?(3,5)
+      listener.redirect_to_bookings_path('End time must be at between 3 to 5 hours from start time.') and return
+    end
+
+    if time_slot.overlap?
+      listener.redirect_to_bookings_path('Time Slot overlaps another time slot.') and return
+    end
+
+    time_slot.save!
+    listener.create_time_slot_successful
 
     notify_admin
   end
@@ -26,11 +34,5 @@ class TimeSlot::CreationService
   protected
   def notify_admin
     TimeSlot::CreationMailer.send_notification
-  end
-
-  def check_valid?
-    raise "Time Slot is invalid" if @duration.nil? || @time_slot.start_time.nil?
-    raise TimeSlot::NotAffordableError unless @time_slot.affordable_by?(@user, duration)
-    raise TimeSlot::UnBookableError if @time_slot.unbookable_after?(2)
   end
 end

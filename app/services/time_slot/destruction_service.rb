@@ -1,12 +1,7 @@
-class TimeSlot::DestructionService
-  attr_accessor :time_slot
-
-  def initialize(time_slot)
-    @time_slot = time_slot
-  end
-
-  def execute!
-    @time_slot.destroy!
+class TimeSlot::DestructionService < Struct.new(:listener)
+  def execute!(time_slot)
+    time_slot.destroy!
+    listener.destroy_time_slot_successful
     notify_admin
   end
 

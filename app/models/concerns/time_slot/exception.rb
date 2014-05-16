@@ -19,7 +19,7 @@ module Concerns::TimeSlot::Exception
 
   class OverlapError < StandardError
     def message
-      'Time Slot overlaps with another time slot.'
+      'Time Slot overlaps another time slot.'
     end
   end
 
