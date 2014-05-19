@@ -282,4 +282,28 @@ describe TimeSlot do
       it { time_slot.should be_blocked_by(time_slot_existed) }
     end
   end
+
+  describe '#refundable?' do
+    context 'time slot should be refunded' do
+      let(:time_slot) {
+                      create(:time_slot,
+                         start_time: time_with_zone(hour: 10, min: 0) + 1.day,
+                         end_time: time_with_zone(hour: 13, min: 0) + 1.day
+                            )
+                      }
+
+      it { time_slot.should be_refundable }
+    end
+
+    context 'time slot should not be refunded' do
+      let(:time_slot) {
+        create(:time_slot,
+               start_time: time_with_zone(hour: 10, min: 0) - 1.day,
+               end_time: time_with_zone(hour: 13, min: 0) - 1.day
+        )
+      }
+
+      it { time_slot.should_not be_refundable }
+    end
+  end
 end

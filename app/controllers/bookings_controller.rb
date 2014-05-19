@@ -17,6 +17,10 @@ class BookingsController < ApplicationController
     @time_slot = TimeSlot.new(time_slot_param)
     @service = TimeSlot::CreationService.new(self)
     @service.execute!(@time_slot, duration_param, current_user)
+
+  rescue Exception => e
+    flash[:alert] = e.message
+    redirect_to bookings_path
   end
 
   def destroy

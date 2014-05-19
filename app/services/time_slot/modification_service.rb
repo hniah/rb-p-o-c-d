@@ -1,6 +1,7 @@
 class TimeSlot::ModificationService < Struct.new(:listener)
 
   def execute!(time_slot, params)
+
     time_slot.attributes = params
 
     if params[:duration].nil? || time_slot.start_time.nil?
@@ -13,7 +14,7 @@ class TimeSlot::ModificationService < Struct.new(:listener)
       listener.redirect_to_user_info_path('Time Slot is only bookable after 2 hours from current time.') and return
     end
 
-    unless time_slot.end_time_valid?(3,5)
+    unless time_slot.end_time_valid?(3, 5)
       listener.redirect_to_user_info_path('End time must be at between 3 to 5 hours from start time.') and return
     end
 

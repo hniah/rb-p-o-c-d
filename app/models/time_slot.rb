@@ -7,6 +7,7 @@ class TimeSlot < ActiveRecord::Base
   include Concerns::TimeSlot::Bookable
   include Concerns::TimeSlot::Association
   include Concerns::TimeSlot::Exception
+  include Concerns::TimeSlot::RailsAdminConfig
 
   attr_accessor :duration
 

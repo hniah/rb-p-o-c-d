@@ -3,20 +3,39 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1 OCD Notification
-    %p New booking is cancelled
-    %h2 Booking information
-    %div
-      = "Start time : "
-      = time_in_words @time_slot.start_time
-    %div
-      = "End time : "
-      = time_in_words @time_slot.end_time
+    %h1 Booking Cancelled !
     %br
     %div
       = "User"
-      %p= @time_slot.user.name
-      %p= @time_slot.user.email
+      %p
+        = "Customer's name: "
+        = @time_slot.user.name
+      %p
+        = "Address: "
+        = @time_slot.user.address
+      %p
+        = "Email: "
+        = @time_slot.user.email
+      %p
+        = "Hp: "
+        = @time_slot.user.contact_number
+    %br
     %div
-      Housekeeper
+      = "Date, Time and duration of booking: "
+      %p
+        = "Start time : "
+        = time_in_words @time_slot.start_time
+      %p
+        = "End time : "
+        = time_in_words @time_slot.end_time
+      %p
+        = "Duration : "
+        = to_durations(@time_slot.start_time, @time_slot.end_time)
+    %br
+    %div
+      = "Housekeeper:"
       %p Coming soon !
+    %br
+    %div
+      = "*Booking cancelled before 6.15pm the day before: "
+      = (@time_slot.refundable?) ? "Yes" : "No"

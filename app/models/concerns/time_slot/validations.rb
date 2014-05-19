@@ -23,7 +23,8 @@ module Concerns::TimeSlot::Validations
   def restrict_booking_time(start_hour = 8, end_hour = 22)
     return false if self.start_time.nil?
     if self.start_time < self.start_time.change(hour: start_hour) || self.end_time > self.start_time.change(hour: end_hour)
-      errors.add(:time_slot, "is restricted to only #{start_hour} hour to #{end_hour} hour (including PH / weekend)")
+      # errors.add(:time_slot, "is restricted to only #{start_hour} hour to #{end_hour} hour (including PH / weekend)")
+      errors[:base] << "Time Slot is restricted to only #{start_hour} hour to #{end_hour} hour (including PH / weekend)"
     end
   end
 
@@ -40,5 +41,10 @@ module Concerns::TimeSlot::Validations
 
   def affordable_by?(user, duration)
     user.total_current_hours > duration
+  end
+
+  def refundable?
+    day_check = (self.start_time - 1.day).change(hour: 18, min: 15)
+    Time.zone.now < day_check
   end
 end
