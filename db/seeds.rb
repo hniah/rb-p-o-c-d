@@ -110,7 +110,7 @@ TimeSlot.create!(
     min: 0
   ),
   category: :blocked,
-  housekeeper: nil,
+  housekeeper: housekeeper,
   user: nil
 )
 
