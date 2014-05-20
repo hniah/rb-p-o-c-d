@@ -8,6 +8,7 @@
 = simple_form_for @time_slot, url: booking_path, method: :patch do |f|
   = f.input :start_time, as: :datetimepicker, input_html: { value: start_time, size: 100 }
   = f.input :id, as: :hidden
+  = f.input :housekeeper_id, collection: housekeeper_list, prompt: "Select housekeeper", label: "Housekeeper' name :"
   = f.input :duration, collection: durations_list, prompt: "Select your duration", label: 'Duration :'
   = f.input :remarks, as: :text, label: 'Remarks :'
   = f.submit "Update this slot", class: 'btn'

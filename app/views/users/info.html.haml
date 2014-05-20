@@ -30,6 +30,8 @@
         %tr
           %th Start Time
           %th End Time
+          %th Duration
+          %th Housekeeper
           %th Remarks
           %th Action
       %tbody
@@ -37,6 +39,10 @@
         %tr
           %td= time_in_words t.start_time
           %td= time_in_words t.end_time
+          %td
+            = to_durations(t.start_time, t.end_time)
+            = " hours"
+          %td= t.housekeeper.name
           %td= t.remarks
           %td
             %div=button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }

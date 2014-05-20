@@ -210,9 +210,12 @@ describe BookingsController do
   describe '#update' do
     let!(:time_slot) { create(:time_slot) }
     let(:id) { time_slot.id }
+    let(:housekeeper) { create(:housekeeper) }
     let(:params) { {duration: "4",
-    remarks: 'This is test',
-                    start_time: time_with_zone(hour: 11, min: 00)} }
+                    remarks: 'This is test',
+                    start_time: time_with_zone(hour: 11, min: 00),
+                    housekeeper: housekeeper}
+    }
 
     before { create(:admin) }
     before { sign_in user }
@@ -243,24 +246,32 @@ describe BookingsController do
       end
     end
 
-    # context 'Time slot overlap another time slot' do
-    #   let(:user) { time_slot.user }
-    #   let(:params) do
-    #     attributes_for(:time_slot).merge(
-    #     {
-    #         duration: 3,
-    #         remarks: "Ho Chi Minh City",
-    #         start_time: time_with_zone(hour: 10, min: 0)
-    #       })
-    #   end
-    #
-    #   before { create_time_slot(hour: 12, min: 0) }
-    #   before { do_request }
-    #
-    #   it "should redirect user to booking page" do
-    #     flash[:alert].should eq 'Time Slot overlaps another time slot.'
-    #     response.should redirect_to user_info_path
-    #   end
-    # end
+    context 'Time slot overlap another time slot' do
+      let(:user) { time_slot.user }
+      let(:housekeeper) { time_slot.housekeeper }
+      let(:params) do
+        attributes_for(:time_slot).merge(
+        {
+            duration: 3,
+            remarks: "Ho Chi Minh City",
+            start_time: time_with_zone(hour: 10, min: 0),
+            housekeeper: housekeeper
+          })
+      end
+
+      before do
+        create(:time_slot,
+               start_time: time_with_zone(hour: 12, min: 0),
+               end_time: time_with_zone(hour: 15, min: 0),
+               housekeeper: housekeeper
+        )
+      end
+      before { do_request }
+
+      it "should redirect user to booking page" do
+        flash[:alert].should eq 'Time Slot overlaps another time slot.'
+        response.should redirect_to user_info_path
+      end
+    end
   end
 end

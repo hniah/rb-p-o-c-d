@@ -50,8 +50,11 @@ module BookingsHelper
   end
 
   def to_durations(start_time,end_time)
-    return if start_time.nil?
     TimeDifference.between(start_time, end_time).in_hours.to_i
+  end
+
+  def housekeeper_list
+    Housekeeper.all
   end
 
   def durations_list
@@ -63,7 +66,6 @@ module BookingsHelper
   end
 
   def time_in_words(time)
-    return if time.nil?
     time.strftime("%d-%m-%Y %H:%M:%S")
   end
 
