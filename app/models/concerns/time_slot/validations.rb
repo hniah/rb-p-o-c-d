@@ -5,7 +5,7 @@ module Concerns::TimeSlot::Validations
     validates_presence_of :start_time, :end_time, :category
 
     validate :restrict_booking_time
-    validate :limit_sessions_in_day, number_of_sessions: 2, if: :new_record?
+    validate :limit_sessions_in_day, if: :new_record?
   end
 
   def end_time_valid?(from = 3, to = 5)
@@ -15,15 +15,14 @@ module Concerns::TimeSlot::Validations
     end
   end
 
-  def overlap?
-    time_slots = TimeSlot.all.where.not(id: self.id)
+  def overlap_of?(housekeeper)
+    time_slots = TimeSlot.all.where.not(id: self.id).where(housekeeper_id: housekeeper.id)
     time_slots.find { |time_slot| self.blocked_by?(time_slot) }
   end
 
   def restrict_booking_time(start_hour = 8, end_hour = 22)
     return false if self.start_time.nil?
     if self.start_time < self.start_time.change(hour: start_hour) || self.end_time > self.start_time.change(hour: end_hour)
-      # errors.add(:time_slot, "is restricted to only #{start_hour} hour to #{end_hour} hour (including PH / weekend)")
       errors[:base] << "Time Slot is restricted to only #{start_hour} hour to #{end_hour} hour (including PH / weekend)"
     end
   end
@@ -40,7 +39,7 @@ module Concerns::TimeSlot::Validations
   end
 
   def affordable_by?(user, duration)
-    user.total_current_hours > duration
+    user.total_current_hours >= duration
   end
 
   def refundable?

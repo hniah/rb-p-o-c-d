@@ -18,7 +18,7 @@ class TimeSlot::ModificationService < Struct.new(:listener)
       listener.redirect_to_user_info_path('End time must be at between 3 to 5 hours from start time.') and return
     end
 
-    if time_slot.overlap?
+    if time_slot.overlap_of?(time_slot.housekeeper)
       listener.redirect_to_user_info_path('Time Slot overlaps another time slot.') and return
     end
 

@@ -12,7 +12,7 @@ module BookingsHelper
     time_range
   end
 
-  def display_booked_slot_info(booked_time_slots, day, time)
+  def display_booked_slot_info(booked_time_slots, day, time, housekeeper_id)
     calendar_time = create_date_time(day, time)
     booked_time_slot = time_slot_used(booked_time_slots, calendar_time)
 
@@ -23,7 +23,7 @@ module BookingsHelper
     elsif total_sessions(booked_time_slots, calendar_time) >= 2
 
     else
-      render partial: 'bookings/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time)}
+      render partial: 'bookings/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time),housekeeper_id:housekeeper_id}
     end
   end
 

@@ -22,6 +22,7 @@ describe TimeSlot::CreationService do
     end
 
     it "should redirect to booking page" do
+
       expect(listener).to receive(:create_time_slot_successful).once
       service.execute!(time_slot, duration, user)
     end

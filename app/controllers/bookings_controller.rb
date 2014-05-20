@@ -4,12 +4,22 @@ class BookingsController < ApplicationController
   include Concerns::Booking::Redirection
 
   def index
+    @locations = Location.all
     @time_slots = TimeSlot.all
+
+    if location_param.present? && location_param != 0
+      @location = Location.find(location_param)
+      @housekeepers = @location.housekeepers
+    else
+      @housekeepers = Housekeeper.all
+    end
+
     @week = week
   end
 
   def new
-    @time_slot = TimeSlot.new(start_time: start_time_param)
+    @housekeeper = Housekeeper.find(housekeeper_param)
+    @time_slot = TimeSlot.new(start_time: start_time_param, housekeeper: @housekeeper)
     render :new
   end
 
@@ -71,7 +81,15 @@ class BookingsController < ApplicationController
   end
 
   def time_slot_param
-    params.require(:time_slot).permit(:start_time, :remarks, :duration)
+    params.require(:time_slot).permit(:start_time, :remarks, :duration, :housekeeper_id)
+  end
+
+  def housekeeper_param
+    params[:housekeeper].to_i
+  end
+
+  def location_param
+    params[:location].to_i
   end
 
   def duration_param

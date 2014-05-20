@@ -74,6 +74,19 @@ housekeeper = Housekeeper.create!(
   special_remarks: 'She is nice'
 )
 housekeeper.locations << [north, east]
+
+housekeeper2 = Housekeeper.create!(
+  name: 'Example Housekeeper 2',
+  gender: 'female',
+  contact: '12345678910',
+  address: 'Somewhere in Singapore 2',
+  postal: '652342',
+  date_of_birth: 21.years.ago,
+  experience_level: '1 year',
+  language_spoken: 'English',
+  special_remarks: 'She is nice'
+)
+housekeeper2.locations << [north]
 puts "=== Housekeeper created ==="
 
 # Create sample time slots
@@ -102,19 +115,6 @@ TimeSlot.create!(
 )
 
 monday = Date.today.beginning_of_week + 1.week
-TimeSlot::CreationService.new(
-  {
-    start_time: Time.zone.now.change(
-      year: monday.year,
-      month: monday.month,
-      day: monday.day,
-      hour: 8,
-      min: 0
-    ),
-    category: :booked,
-    housekeeper: nil
-  }, customer
-).execute!
 
 puts "=== TimeSlot created ==="
 

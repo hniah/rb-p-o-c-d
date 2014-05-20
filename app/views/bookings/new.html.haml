@@ -5,6 +5,7 @@
   = time_in_words @time_slot.start_time
 = simple_form_for @time_slot, url: bookings_path, method: :post do |f|
   = f.input :start_time, as: :hidden
+  = f.association :housekeeper, as: :hidden
   = f.input :duration, collection: durations_list, prompt: "Select your duration", label: 'Duration :'
   = f.input :remarks, as: :text, label: 'Remarks :'
   = f.submit "Book this slot", class: 'btn'

@@ -3,10 +3,11 @@ require 'spec_helper'
 describe BookingsHelper do
   describe '#display_booked_slot_info' do
     let!(:time_slots) { build_list(:time_slot, 1) }
+    let!(:housekeeper) { create(:housekeeper) }
 
     it 'displays a button for user to book if the time slot is available' do
       time = Time.zone.now.change(hour: 16, minute: 0)
-      helper.display_booked_slot_info(time_slots, time_with_zone, time).should have_css ".available"
+      helper.display_booked_slot_info(time_slots, time_with_zone, time,housekeeper.id).should have_css ".available"
     end
   end
 

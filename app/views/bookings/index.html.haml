@@ -1,36 +1,8 @@
 #bookings-index-container
-  %h1 Book a session
+  %br
   %div
-    =link_to 'Previous week', bookings_path(week: (@week >= 1)? @week - 1 : @week = 0 ) , class: 'btn'
-    =link_to 'Next week', bookings_path(week: @week + 1), class: 'btn'
-  %table.table.table-bordered.calendar-table
-    %thead
-      %tr
-        %th Time
-        %th Monday
-        %th Tuesday
-        %th Wednesday
-        %th Thursday
-        %th Friday
-        %th Saturday
-        %th Sunday
-    %tbody
-      - day = Date.today.beginning_of_week + @week.week
-      %tr
-        %th
-        - (0..6).each do |i|
-          %th= format_day day + i
-      - booking_time_range.each do |time|
-        %tr
-          %th= time.strftime('%l:%M%P')
-          - (0..6).each do |i|
-            %td!= display_booked_slot_info(@time_slots, day + i, time)
-      %tr
-        %th= "10:00pm"
-        %td
-        %td
-        %td
-        %td
-        %td
-        %td
-        %td
+    = form_tag(bookings_path, method: :get) do
+      = label_tag  :location, "Region : "
+      = select_tag :location, options_for_select(@locations.collect{ |location| [location.name, location.id]}, selected: params[:location]  ) , onchange: "this.form.submit();"
+  - @housekeepers.each do |housekeeper|
+    = render partial: 'schedule', :locals => { :@housekeeper => housekeeper }
