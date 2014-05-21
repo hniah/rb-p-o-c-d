@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include Concerns::User::Association
   include Concerns::User::Validations
+  include Concerns::User::RailsAdminConfig
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
