@@ -4,6 +4,7 @@ describe 'Book a session workflow' do
   let!(:user) { create(:user, :with_packages) }
   let!(:time_slot) { create(:time_slot) }
   let!(:admin) { create(:admin) }
+  let!(:housekeeper) { create(:housekeeper) }
 
   it 'allows user to book a session' do
     visit '/'
@@ -18,7 +19,7 @@ describe 'Book a session workflow' do
     click_on "Book a session"
     my_date = Time.zone.now + 2.days
     my_date = my_date.change(hour: 11, min: 00)
-    find("##{my_date.strftime('%Y-%m-%d_%H-%M')}").click_on "Book this slot"
+    find("##{my_date.strftime('%Y-%m-%d_%H-%M')}_#{housekeeper.id}").click_on "Book this slot"
 
     page.should have_content "New Booking"
 

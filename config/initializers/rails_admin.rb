@@ -19,15 +19,11 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new do
-      except ['Payment']
-    end
+    new
     export
     bulk_delete
     show
-    edit do
-      except ['Payment']
-    end
+    edit
     delete
     show_in_app do
       except ['Payment']

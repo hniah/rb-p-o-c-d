@@ -23,7 +23,7 @@ describe BookingsController do
 
       it { should render_template :index }
       it "should assign time slots" do
-        expect(assigns(:time_slots).size).to eq 1
+        expect(assigns(:time_slots).size).to eq 2
       end
 
       context "assigned @time_slot" do

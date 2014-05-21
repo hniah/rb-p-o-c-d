@@ -9,18 +9,18 @@ Package.destroy_all
 puts "=== Package destroyed ==="
 
 packages = [
-  {session_type: 3, hours: 0, price_cents: 0},
-  {session_type: 4, hours: 4, price_cents: 11200},
-  {session_type: 3, hours: 12, price_cents: 24000},
-  {session_type: 5, hours: 5, price_cents: 14000},
-  {session_type: 4, hours: 16, price_cents: 32000},
-  {session_type: 5, hours: 20, price_cents: 40000},
-  {session_type: 4, hours: 48, price_cents: 86400},
-  {session_type: 3, hours: 36, price_cents: 64800},
-  {session_type: 3, hours: 72, price_cents: 115200},
-  {session_type: 5, hours: 60, price_cents: 108000},
-  {session_type: 4, hours: 96, price_cents: 153600},
-  {session_type: 5, hours: 120, price_cents: 192000}
+  {name: '3x0 hours', session_type: 3, hours: 0, price_cents: 0},
+  {name: '4x1 hours',session_type: 4, hours: 4, price_cents: 11200},
+  {name: '3x4 hours',session_type: 3, hours: 12, price_cents: 24000},
+  {name: '5x1 hours',session_type: 5, hours: 5, price_cents: 14000},
+  {name: '4x4 hours',session_type: 4, hours: 16, price_cents: 32000},
+  {name: '5x4 hours',session_type: 5, hours: 20, price_cents: 40000},
+  {name: '4x12 hours',session_type: 4, hours: 48, price_cents: 86400},
+  {name: '3x12 hours',session_type: 3, hours: 36, price_cents: 64800},
+  {name: '3x24 hours',session_type: 3, hours: 72, price_cents: 115200},
+  {name: '5x12 hours',session_type: 5, hours: 60, price_cents: 108000},
+  {name: '4x24 hours',session_type: 4, hours: 96, price_cents: 153600},
+  {name: '5x24 hours',session_type: 5, hours: 120, price_cents: 192000}
 ]
 
 packages.each { |p| package = Package.create!(p) }
