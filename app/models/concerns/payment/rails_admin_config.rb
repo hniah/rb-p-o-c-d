@@ -13,9 +13,14 @@ module Concerns::Payment::RailsAdminConfig
       end
 
       edit do
-        exclude_fields :express_token, :express_payer_id
+        exclude_fields :express_token, :express_payer_id, :ip_address
+        field :status, :enum do
+          help "Please choose status"
+          enum do
+            ['pending','complete']
+          end
+        end
       end
-
     end
   end
 end

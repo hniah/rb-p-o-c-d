@@ -23,7 +23,9 @@ RailsAdmin.config do |config|
     export
     bulk_delete
     show
-    edit
+    edit do
+      except ['Payment']
+    end
     delete
     show_in_app do
       except ['Payment']
