@@ -15,7 +15,7 @@ class TimeSlot::CreationMailer < ActionMailer::Base
   def send_notification_to_user(time_slot)
     @time_slot = time_slot
     mail(to: time_slot.user.email,
-         subject: 'New booking made!!!',
+         subject: 'Our Cleaning Department: Booking Confirmation',
          template_path: 'user_mailer',
          template_name: 'booking_made'
     ).deliver

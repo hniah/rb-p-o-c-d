@@ -3,4 +3,26 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1 Booking Cancelled !
+    = "Good Day!"
+    %br
+    %br
+    = "You have cancelled a scheduled cleaning session:"
+    %br
+    %br
+    %div
+      = "Date, Time and duration of booking: "
+      %p
+        = "Start time : "
+        = time_in_words @time_slot.start_time
+      %p
+        = "End time : "
+        = time_in_words @time_slot.end_time
+      %p
+        = "Duration : "
+        = to_durations(@time_slot.start_time, @time_slot.end_time)
+    %br
+    = "Feel free to make a new booking for your next cleaning session."
+    %br
+    = "For any clarifications, do not hesitate to contact us."
+  = render partial: 'user_mailer/signature'
+

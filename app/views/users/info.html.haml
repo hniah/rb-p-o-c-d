@@ -49,4 +49,4 @@
               - if modify?(t.start_time)
                 =button_to "Modify", edit_booking_path(t) , method: :get, data: { confirm: "Are you sure?" }, class: "btn"
             %div.pull-left
-              =button_to "Cancel", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }, class: "btn"
+              =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }, class: "btn"

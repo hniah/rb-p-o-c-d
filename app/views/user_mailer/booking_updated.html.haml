@@ -3,42 +3,23 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1 Booking Updated
+    = "Good Day!"
+    %br
+    %br
+    = "You have made the changes to your booking."
+    %br
+    = "Your booking has been changed to:"
+    %br
     %br
     %div
-      = "(Initial)"
-      %br
       = "Date, Time and duration of booking: "
-      %p
-        = "Start time : "
-        - start_time = (@time_slot.previous_changes['start_time'].present?) ? @time_slot.previous_changes['start_time'][0] : @time_slot.start_time
-        = time_in_words (start_time)
-      %p
-        = "End time : "
-        - end_time = (@time_slot.previous_changes['end_time'].present?) ? @time_slot.previous_changes['end_time'][0] : @time_slot.end_time
-        = time_in_words (end_time)
-      %p
-        = "Duration : "
-        = to_durations(start_time, end_time)
+      %p= "Start time : #{time_in_words @time_slot.start_time}"
+      %p= "End time : #{time_in_words @time_slot.end_time}"
+      %p= "Duration : #{to_durations(@time_slot.start_time, @time_slot.end_time)}"
+      %p= "Housekeeper Assigned: #{@time_slot.housekeeper.name}"
+      %p= "Special Remarks: #{@time_slot.remarks}"
     %br
-    %div
-      = "Housekeeper: "
-      = (@time_slot.previous_changes['housekeeper_id'].present?) ? Housekeeper.find(@time_slot.previous_changes['housekeeper_id'][0].to_i).name : @time_slot.housekeeper.name
+    = "Date the booking was amended: #{time_in_words @time_slot.updated_at}"
     %br
-    %div
-      = "(Updated)"
-      %br
-      = "Date, Time and duration of booking: "
-      %p
-        = "Start time : "
-        = time_in_words @time_slot.start_time
-      %p
-        = "End time : "
-        = time_in_words @time_slot.end_time
-      %p
-        = "Duration : "
-        = to_durations(@time_slot.start_time, @time_slot.end_time)
-    %br
-    %div
-      = "Housekeeper:"
-      = @time_slot.housekeeper.name
+    = "For any clarification, please feel free to contact us."
+  = render partial: 'user_mailer/signature'

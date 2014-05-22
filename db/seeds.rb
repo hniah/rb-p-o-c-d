@@ -57,8 +57,6 @@ customer2 = User.create!(
 )
 puts "=== User created ==="
 
-customer.packages << Package.find_by_hours(12)
-
 # Create sample housekeeper
 Housekeeper.destroy_all
 puts "=== Housekeeper destroyed ==="

@@ -22,7 +22,7 @@ describe TimeSlot::CreationMailer do
 
       it 'should send correct mail' do
         expect { mailer.send_notification_to_user(time_slot) }.to change(ActionMailer::Base.deliveries, :count).by(1)
-        expect(sent_mail_user.subject).to eq "New booking made!!!"
+        expect(sent_mail_user.subject).to eq "Our Cleaning Department: Booking Confirmation"
         expect(sent_mail_user.to).to include time_slot.user.email
       end
     end
