@@ -5,7 +5,7 @@ describe TimeSlot::CreationService do
     class StubbedListener; end
 
     let(:listener) { StubbedListener.new }
-    let(:user) { create(:user, :with_packages) }
+    let(:user) { create(:user, :with_payments) }
     let(:time_slot) { build_time_slot(hour: 10, min: 0) }
     let(:duration) { 3 }
     let(:service) { TimeSlot::CreationService.new(listener) }
@@ -13,7 +13,12 @@ describe TimeSlot::CreationService do
     before { listener.stub(:create_time_slot_successful) }
 
     it "should send mail to admin" do
-      expect(TimeSlot::CreationMailer).to receive(:send_notification)
+      expect(TimeSlot::CreationMailer).to receive(:send_notification_to_admin)
+      service.execute!(time_slot, duration, user)
+    end
+
+    it "should send mail to user" do
+      expect(TimeSlot::CreationMailer).to receive(:send_notification_to_user)
       service.execute!(time_slot, duration, user)
     end
 

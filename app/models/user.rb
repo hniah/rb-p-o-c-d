@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def total_hours_bought
-    packages.map { |p| p.hours }.inject(:+).to_i
+    payments = self.payments.where(status: 'complete')
+    payments.map { |p| p.package.hours }.inject(:+).to_i
   end
 
   def total_current_hours

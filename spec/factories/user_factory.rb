@@ -8,15 +8,15 @@ FactoryGirl.define do
     postal                '651234'
     contact_number        '6652-3568'
 
-    trait :with_packages do
+    trait :with_payments do
       ignore do
-        number_of_packages 3
+        number_of_payments 3
       end
 
       after :create do |user, evaluator|
-        evaluator.number_of_packages.times do
-          package = create :package_12_hours
-          user.packages << package
+        evaluator.number_of_payments.times do
+          payment = create :payment, :with_12_hours
+          user.payments << payment
         end
       end
     end

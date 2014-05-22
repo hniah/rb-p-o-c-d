@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1 New Booking
+    %br
+    %div
+      = "Date, Time and duration of booking: "
+      %p
+        = "Start time : "
+        = time_in_words @time_slot.start_time
+      %p
+        = "End time : "
+        = time_in_words @time_slot.end_time
+      %p
+        = "Duration : "
+        = to_durations(@time_slot.start_time, @time_slot.end_time)
+    %br
+    %div
+      = "Housekeeper:"
+      = @time_slot.housekeeper.name

@@ -28,7 +28,12 @@ describe TimeSlot::ModificationService do
     end
 
     it "should send an email to admin" do
-      expect(TimeSlot::ModificationMailer).to receive(:send_notification)
+      expect(TimeSlot::ModificationMailer).to receive(:send_notification_to_admin)
+      service.execute!(time_slot, params)
+    end
+
+    it "should send an email to user" do
+      expect(TimeSlot::ModificationMailer).to receive(:send_notification_to_user)
       service.execute!(time_slot, params)
     end
 

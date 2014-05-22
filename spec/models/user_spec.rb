@@ -17,7 +17,7 @@ describe User do
 
   describe '#total_hours_bought' do
     context '2 packages' do
-      let(:user) { create :user, :with_packages, number_of_packages: 2 }
+      let(:user) { create :user, :with_payments, number_of_payments: 2 }
 
       it 'should total hours bought' do
         user.total_hours_bought.should eq 24

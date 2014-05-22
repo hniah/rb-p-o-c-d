@@ -159,7 +159,7 @@ describe TimeSlot do
   end
 
   describe '.total_sessions_in_day' do
-    let!(:user) { create :user, :with_packages }
+    let!(:user) { create :user, :with_payments }
 
     before do
       create_time_slot(hour: 8, min: 0)
@@ -280,7 +280,7 @@ describe TimeSlot do
     let(:time_slot) { build(:time_slot, user: user) }
 
     context 'time slot should be created' do
-      let(:user)      { create(:user, :with_packages) }
+      let(:user)      { create(:user, :with_payments) }
 
       it { time_slot.should be_affordable_by(user, 4) }
     end

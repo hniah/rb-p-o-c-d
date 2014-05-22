@@ -29,10 +29,15 @@ class TimeSlot::CreationService < Struct.new(:listener)
     listener.create_time_slot_successful
 
     notify_admin(time_slot)
+    notify_user(time_slot)
   end
 
   protected
   def notify_admin(time_slot)
-    TimeSlot::CreationMailer.send_notification(time_slot)
+    TimeSlot::CreationMailer.send_notification_to_admin(time_slot)
+  end
+
+  def notify_user(time_slot)
+    TimeSlot::CreationMailer.send_notification_to_user(time_slot)
   end
 end

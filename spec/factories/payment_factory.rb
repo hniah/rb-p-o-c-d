@@ -9,5 +9,11 @@ FactoryGirl.define do
       user { create(:user) }
       package { create(:package_12_hours) }
     end
+
+    trait :with_12_hours do
+      status 'complete'
+      user { create(:user) }
+      package { create(:package_12_hours) }
+    end
   end
 end

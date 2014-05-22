@@ -23,7 +23,7 @@ describe BookingsController do
 
       it { should render_template :index }
       it "should assign time slots" do
-        expect(assigns(:time_slots).size).to eq 2
+        expect(assigns(:time_slots).size).to eq 1
       end
 
       context "assigned @time_slot" do
@@ -70,7 +70,7 @@ describe BookingsController do
     end
 
     context "params with start time" do
-      let(:user) { create(:user, :with_packages) }
+      let(:user) { create(:user, :with_payments) }
       let(:time_slot_param) { attributes_for(:time_slot).merge({duration: 4,
                                                                 remarks: "Ho Chi Minh City",
                                                                 housekeeper_id: housekeeper.id
@@ -109,7 +109,7 @@ describe BookingsController do
                                                                   remarks: "Ho Chi Minh City",
                                                                   start_time: Time.zone.now.change(hour: 10, min: 0)
                                                                  }) }
-        let(:user) { create(:user, :with_packages) }
+        let(:user) { create(:user, :with_payments) }
 
         it "should redirect user to booking page" do
           flash[:alert].should_not be_empty
@@ -122,7 +122,7 @@ describe BookingsController do
                                                                   remarks: "Ho Chi Minh City",
                                                                   start_time: time_with_zone(hour: 10, min: 0)
                                                                  }) }
-        let(:user) { create(:user, :with_packages) }
+        let(:user) { create(:user, :with_payments) }
 
         it "should redirect user to booking page" do
           flash[:alert].should_not be_empty
@@ -136,7 +136,7 @@ describe BookingsController do
                                                                   remarks: "Ho Chi Minh City",
                                                                   start_time: time_with_zone(hour: 10, min: 0)
                                                                  }) }
-        let(:user) { create(:user, :with_packages) }
+        let(:user) { create(:user, :with_payments) }
 
         it "should redirect user to booking page" do
           flash[:alert].should_not be_empty
