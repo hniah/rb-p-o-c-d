@@ -21,9 +21,9 @@ module Concerns::User::RailsAdminConfig
           end
         end
         field :number_of_hour_used do
-          label "Total left hours"
+          label "Total available hours"
           def value
-            bindings[:object].total_hours_used
+            bindings[:object].total_hours_current
           end
         end
       end
