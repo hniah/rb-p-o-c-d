@@ -3,23 +3,24 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
+    = "Dear #{@time_slot.user.name},"
+    %br
+    %br
     = "Good Day!"
     %br
     %br
-    = "You have made the changes to your booking."
+    = "There had been some amendments made to your booking. "
     %br
-    = "Your booking has been changed to:"
-    %br
+    = "Your house will now be cleaned on: #{day_in_words @time_slot.start_time}"
     %br
     %div
-      = "Date, Time and duration of booking: "
       %p= "Start time : #{time_in_words @time_slot.start_time}"
       %p= "End time : #{time_in_words @time_slot.end_time}"
-      %p= "Duration : #{to_durations(@time_slot.start_time, @time_slot.end_time)}"
+      %p= "Duration : #{to_durations(@time_slot.start_time, @time_slot.end_time)} hours"
       %p= "Housekeeper Assigned: #{@time_slot.housekeeper.name}"
       %p= "Special Remarks: #{@time_slot.remarks}"
     %br
-    = "Date the booking was amended: #{time_in_words @time_slot.updated_at}"
+    = "Date the booking was amended: #{time_in_words_with_day @time_slot.updated_at}"
     %br
     = "For any clarification, please feel free to contact us."
   = render partial: 'user_mailer/signature'

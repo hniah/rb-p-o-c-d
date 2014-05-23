@@ -65,8 +65,16 @@ module BookingsHelper
     time.strftime("%d-%m-%Y %H:%M:%S %z")
   end
 
-  def time_in_words(time)
-    time.strftime("%d-%m-%Y %H:%M:%S")
+  def time_in_words_with_day(datetime)
+    datetime.strftime("%d-%m-%Y %H:%M:%S")
+  end
+
+  def time_in_words(datetime)
+    datetime.strftime("%H:%M")
+  end
+
+  def day_in_words(datetime)
+    datetime.strftime("%d-%m-%Y")
   end
 
   def format_day(day)
