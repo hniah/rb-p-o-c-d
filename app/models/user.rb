@@ -15,9 +15,13 @@ class User < ActiveRecord::Base
     payments.map { |p| p.package.hours }.inject(:+).to_i
   end
 
-  def total_current_hours
+  def total_hours_used
     hours = self.time_slots.map { |t| t.duration }.inject(:+).to_i
-    special_hour = self.special_hours.map { |s| s.hour }.inject(:+).to_i
-    total_hours_bought - hours - special_hour
+    special_hours = self.special_hours.map { |s| s.hour }.inject(:+).to_i
+    hours + special_hours
+  end
+
+  def total_hours_current
+    self.total_hours_bought - self.total_hours_used
   end
 end

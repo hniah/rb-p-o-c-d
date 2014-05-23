@@ -39,7 +39,7 @@ module Concerns::TimeSlot::Validations
   end
 
   def affordable_by?(user, duration)
-    user.total_current_hours >= duration
+    user.total_hours_current >= duration
   end
 
   def refundable?
