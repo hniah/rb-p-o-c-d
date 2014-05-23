@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   def total_current_hours
     hours = self.time_slots.map { |t| t.duration }.inject(:+).to_i
-    total_hours_bought - hours
+    special_hour = self.special_hours.map { |s| s.hour }.inject(:+).to_i
+    total_hours_bought - hours - special_hour
   end
 end

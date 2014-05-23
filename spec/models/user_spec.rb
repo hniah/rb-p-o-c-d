@@ -12,6 +12,7 @@ describe User do
   context 'Associations' do
     it { should have_many :time_slots }
     it { should have_many :payments }
+    it { should have_many :special_hours }
     it { should have_and_belong_to_many :packages}
   end
 
