@@ -47,7 +47,8 @@
           %td
             %div.pull-left
               - if refund?(t.start_time)
-                =button_to "Modify", edit_booking_path(t) , method: :get, data: { confirm: "Are you sure?" }, class: "btn"
+                = form_tag(edit_booking_path(t), method: :get) do
+                  = button_tag "Modify", type: 'button', class: 'btn modify_button'
             %div.pull-left
               - if check_show_delete?(t.start_time)
                 - if refund?(t.start_time)
@@ -99,6 +100,30 @@
           callback: function(result) {
             if (result) {
               $('.delete_button').parents('form').submit();
+            } else {
+
+            }
+          }
+        })
+      });
+
+      $('.modify_button').click(function(e) {
+        bootbox.confirm({
+          title: "Notification",
+          message: "Are you sure you want to proceed?",
+          buttons: {
+              cancel: {
+                  label: "No, keep the booking",
+                  className: "btn-default pull-left"
+              },
+              confirm: {
+                  label: "Yes, modify",
+                  className: "btn-primary pull-right"
+              }
+          },
+          callback: function(result) {
+            if (result) {
+              $('.modify_button').parents('form').submit();
             } else {
 
             }
