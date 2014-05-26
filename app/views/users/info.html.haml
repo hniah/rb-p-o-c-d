@@ -49,7 +49,8 @@
               - if refund?(t.start_time)
                 =button_to "Modify", edit_booking_path(t) , method: :get, data: { confirm: "Are you sure?" }, class: "btn"
             %div.pull-left
-              - if refund?(t.start_time)
-                =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }, class: "btn"
-              - else
-                =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Last minute cancellation: There will not be a refund if you cancel this booking. Are you sure?" }, class: "btn"
+              - if check_show_delete?(t.start_time)
+                - if refund?(t.start_time)
+                  =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }, class: "btn"
+                - else
+                  =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Last minute cancellation: There will not be a refund if you cancel this booking. Are you sure?" }, class: "btn"
