@@ -51,6 +51,58 @@
             %div.pull-left
               - if check_show_delete?(t.start_time)
                 - if refund?(t.start_time)
-                  =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }, class: "btn"
+                  = form_tag(booking_path(t), method: :delete) do
+                    = button_tag "Delete", type: 'button', class: 'btn delete_button'
                 - else
-                  =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Last minute cancellation: There will not be a refund if you cancel this booking. Are you sure?" }, class: "btn"
+                  = form_tag(booking_path(t), method: :delete) do
+                    = button_tag "Delete", type: 'button', class: 'btn delete_button_without_refund'
+  :javascript
+    $(function() {
+      $('.delete_button_without_refund').click(function(e) {
+        bootbox.confirm({
+          title: "Notification",
+          message: "Last minute cancellation: There will not be a refund if you cancel this booking. Are you sure you want to proceed?",
+          buttons: {
+              cancel: {
+                  label: "No, keep the booking",
+                  className: "btn-default pull-left"
+              },
+              confirm: {
+                  label: "Yes, cancel without refund",
+                  className: "btn-danger pull-right"
+              }
+          },
+          callback: function(result) {
+            if (result) {
+              $('.delete_button_without_refund').parents('form').submit();
+            } else {
+
+            }
+          }
+        })
+      });
+
+      $('.delete_button').click(function(e) {
+        bootbox.confirm({
+          title: "Notification",
+          message: "Are you sure you want to proceed?",
+          buttons: {
+              cancel: {
+                  label: "No, keep the booking",
+                  className: "btn-default pull-left"
+              },
+              confirm: {
+                  label: "Yes, cancel",
+                  className: "btn-danger pull-right"
+              }
+          },
+          callback: function(result) {
+            if (result) {
+              $('.delete_button').parents('form').submit();
+            } else {
+
+            }
+          }
+        })
+      });
+    })
