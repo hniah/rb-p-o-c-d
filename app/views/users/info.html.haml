@@ -37,8 +37,8 @@
       %tbody
       - current_user.time_slots.each do |t|
         %tr
-          %td= time_in_words t.start_time
-          %td= time_in_words t.end_time
+          %td= time_in_words_with_day t.start_time
+          %td= time_in_words_with_day t.end_time
           %td
             = to_durations(t.start_time, t.end_time)
             = " hours"
@@ -46,7 +46,10 @@
           %td= t.remarks
           %td
             %div.pull-left
-              - if modify?(t.start_time)
+              - if refund?(t.start_time)
                 =button_to "Modify", edit_booking_path(t) , method: :get, data: { confirm: "Are you sure?" }, class: "btn"
             %div.pull-left
-              =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }, class: "btn"
+              - if refund?(t.start_time)
+                =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Are you sure?" }, class: "btn"
+              - else
+                =button_to "Delete", booking_path(t) , method: :delete, data: { confirm: "Last minute cancellation: There will not be a refund if you cancel this booking. Are you sure?" }, class: "btn"

@@ -24,10 +24,10 @@
       = "Date, Time and duration of booking: "
       %p
         = "Start time : "
-        = time_in_words @time_slot.start_time
+        = time_in_words_with_day @time_slot.start_time
       %p
         = "End time : "
-        = time_in_words @time_slot.end_time
+        = time_in_words_with_day @time_slot.end_time
       %p
         = "Duration : "
         = to_durations(@time_slot.start_time, @time_slot.end_time)
