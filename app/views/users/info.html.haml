@@ -47,12 +47,12 @@
           %td
             %div.pull-left
               - if refund?(t.start_time)
-                = form_tag(edit_booking_path(t), method: :get) do
+                = form_tag(edit_time_slot_path(t), method: :get) do
                   = button_tag "Modify", type: 'button', class: 'btn modify_button'
             %div.pull-left
               - if show_action_button?(t.start_time)
                 - if refund?(t.start_time)
-                  = form_tag(booking_path(t), method: :delete) do
+                  = form_tag(time_slot_path(t), method: :delete) do
                     = button_tag "Delete", type: 'button', class: 'btn delete_button'
                 - else
                   = form_tag(booking_path(t), method: :delete) do

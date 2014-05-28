@@ -1,6 +1,5 @@
-module BookingsHelper
+module TimeSlotsHelper
   def booking_time_range
-
     start_time = Time.zone.now.change(hour: 8, min: 0)
     end_time = Time.zone.now.change(hour: 22, min: 00)
     time_range = []
@@ -18,12 +17,12 @@ module BookingsHelper
 
     if booked_time_slot
       if booked_time_slot.booked? && booked_time_slot.session_contains?(calendar_time)
-        render partial: 'bookings/booked_slot'
+        render partial: 'time_slots/booked_slot'
       end
     elsif total_sessions(booked_time_slots, calendar_time) >= 2
 
     else
-      render partial: 'bookings/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time),housekeeper_id:housekeeper_id}
+      render partial: 'time_slots/available_slot', locals: {day: day, time: time, start_time: create_date_time(day, time),housekeeper_id:housekeeper_id}
     end
   end
 
@@ -86,5 +85,9 @@ module BookingsHelper
 
   def format_day(day)
     day.strftime("%d-%m-%Y")
+  end
+
+  def surcharge?(time)
+    time.saturday? || time.sunday?
   end
 end

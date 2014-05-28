@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BookingsController do
+describe TimeSlotsController do
   describe '#index' do
     let!(:user) { create(:user) }
     let!(:current_week_time_slot) { create(:time_slot) }
@@ -78,7 +78,7 @@ describe BookingsController do
 
       it "should create a block of bookings" do
         flash[:notice].should eq "Booking created successfully"
-        response.should redirect_to bookings_path
+        response.should redirect_to time_slots_path
       end
     end
 
@@ -88,7 +88,7 @@ describe BookingsController do
 
       it "should not create a block of bookings" do
         flash[:alert].should_not be_empty
-        response.should redirect_to bookings_path
+        response.should redirect_to time_slots_path
       end
     end
 
@@ -113,7 +113,7 @@ describe BookingsController do
 
         it "should redirect user to booking page" do
           flash[:alert].should_not be_empty
-          response.should redirect_to bookings_path
+          response.should redirect_to time_slots_path
         end
       end
 
@@ -126,7 +126,7 @@ describe BookingsController do
 
         it "should redirect user to booking page" do
           flash[:alert].should_not be_empty
-          response.should redirect_to bookings_path
+          response.should redirect_to time_slots_path
         end
       end
 
@@ -140,7 +140,7 @@ describe BookingsController do
 
         it "should redirect user to booking page" do
           flash[:alert].should_not be_empty
-          response.should redirect_to bookings_path
+          response.should redirect_to time_slots_path
         end
       end
     end

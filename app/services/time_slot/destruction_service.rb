@@ -1,5 +1,5 @@
 class TimeSlot::DestructionService < Struct.new(:listener)
-  include BookingsHelper
+  include TimeSlotsHelper
   include UsersHelper
 
   def execute!(time_slot)

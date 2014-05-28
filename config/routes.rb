@@ -5,7 +5,7 @@ Ocd::Application.routes.draw do
 
   root :to => 'application#home'
 
-  resources :bookings
+  resources :time_slots
 
   get 'job_scope_and_time_to_task'  => 'pages#job_scope_and_time_to_task'
   get 'terms_and_condition'         => 'pages#terms_and_condition'

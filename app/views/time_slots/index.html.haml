@@ -1,7 +1,7 @@
 #bookings-index-container
   %br
   %div
-    = form_tag(bookings_path, method: :get) do
+    = form_tag(time_slots_path, method: :get) do
       = label_tag  :location, "Region : "
       = select_tag :location, options_for_select(@locations.collect{ |location| [location.name, location.id]}, selected: params[:location]  ) , onchange: "this.form.submit();"
   - @housekeepers.each do |housekeeper|

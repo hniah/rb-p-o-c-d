@@ -16,12 +16,12 @@
       = "(Initial)"
       %br
       = "Date, Time and duration of booking: "
-      %p
-        - start_time = (@time_slot.previous_changes['start_time'].present?) ? @time_slot.previous_changes['start_time'][0] : @time_slot.start_time
-        = "Start time : #{time_in_words_with_day (start_time)}"
-      %p
-        - end_time = (@time_slot.previous_changes['end_time'].present?) ? @time_slot.previous_changes['end_time'][0] : @time_slot.end_time
-        = "End time : #{time_in_words_with_day (end_time)}"
+      - start_time = (@time_slot.previous_changes['start_time'].present?) ? @time_slot.previous_changes['start_time'][0] : @time_slot.start_time
+      - end_time = (@time_slot.previous_changes['end_time'].present?) ? @time_slot.previous_changes['end_time'][0] : @time_slot.end_time
+      - if surcharge?(start_time)
+        %p= "User booking at weekend"
+      %p= "Start time : #{time_in_words_with_day (start_time)}"
+      %p= "End time : #{time_in_words_with_day (end_time)}"
       %p= "Duration : #{to_durations(start_time, end_time)}"
     %br
     %div
@@ -31,6 +31,8 @@
       = "(Updated)"
       %br
       = "Date, Time and duration of booking: "
+      - if surcharge?(@time_slot.start_time)
+        %p= "User booking at weekend"
       %p= "Start time : #{time_in_words_with_day @time_slot.start_time}"
       %p= "End time : #{time_in_words_with_day @time_slot.end_time}"
       %p= "Duration : #{to_durations(@time_slot.start_time, @time_slot.end_time)}"

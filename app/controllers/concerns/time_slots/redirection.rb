@@ -1,4 +1,4 @@
-module Concerns::Booking::Redirection
+module Concerns::TimeSlots::Redirection
   extend ActiveSupport::Concern
 
   included do
@@ -9,7 +9,7 @@ module Concerns::Booking::Redirection
 
     def redirect_to_bookings_path(message)
       flash[:alert] = message
-      redirect_to bookings_path
+      redirect_to time_slots_path
     end
 
     def redirect_to_user_info_path(message)
@@ -19,7 +19,7 @@ module Concerns::Booking::Redirection
 
     def create_time_slot_successful
       flash[:notice] = "Booking created successfully"
-      redirect_to bookings_path
+      redirect_to time_slots_path
     end
 
     def update_time_slot_successful

@@ -14,6 +14,8 @@
     = "Your house will be cleaned on: #{day_in_words @time_slot.start_time}"
     %br
     %div
+      - if surcharge?(@time_slot.start_time)
+        %p= "Please note that the additional $10 weekend surcharge should be paid in cash, to the housekeeper, at the end of the cleaning session."
       %p= "Start time : #{time_in_words @time_slot.start_time}"
       %p= "End time : #{time_in_words @time_slot.end_time}"
       %p= "Duration : #{to_durations(@time_slot.start_time, @time_slot.end_time)} hours"

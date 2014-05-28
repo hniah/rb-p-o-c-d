@@ -1,7 +1,7 @@
-class BookingsController < ApplicationController
+class TimeSlotsController < ApplicationController
   before_action :authenticate_user!
 
-  include Concerns::Booking::Redirection
+  include Concerns::TimeSlots::Redirection
 
   def index
     @locations = Location.all
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
 
   rescue Exception => e
     flash[:alert] = e.message
-    redirect_to bookings_path
+    redirect_to time_slots_path
   end
 
   def destroy

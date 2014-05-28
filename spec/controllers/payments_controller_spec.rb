@@ -50,7 +50,7 @@ describe PaymentsController do
 
       it 'payment should be updated' do
         flash[:notice].should eq "Package bought successfully!"
-        response.should redirect_to bookings_path
+        response.should redirect_to time_slots_path
       end
     end
 
@@ -59,7 +59,7 @@ describe PaymentsController do
 
       it "should not update payment" do
         flash[:alert].should_not be_nil
-        response.should redirect_to bookings_path
+        response.should redirect_to time_slots_path
       end
     end
   end

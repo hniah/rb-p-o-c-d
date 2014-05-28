@@ -26,7 +26,7 @@ class PaymentsController < ApplicationController
 
   ensure
     flash[:notice] = "Package bought successfully!"
-    redirect_to bookings_path
+    redirect_to time_slots_path
   end
 
   def cancel_payment

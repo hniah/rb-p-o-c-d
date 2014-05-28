@@ -1,0 +1,2 @@
+.available{id: "#{day}_#{time.strftime('%H-%M')}_#{housekeeper_id}"}
+  = link_to "Book this slot", new_time_slot_path(day: start_time.day, month: start_time.month, year: start_time.year, hour: start_time.hour, minute: start_time.min, housekeeper: housekeeper_id), class: 'btn'

@@ -2,7 +2,7 @@ class TimeSlot < ActiveRecord::Base
   extend Enumerize
   extend Concerns::TimeSlot::Finder
 
-  include BookingsHelper
+  include TimeSlotsHelper
   include Concerns::TimeSlot::Validations
   include Concerns::TimeSlot::Bookable
   include Concerns::TimeSlot::Association

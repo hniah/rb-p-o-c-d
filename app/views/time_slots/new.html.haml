@@ -1,0 +1,17 @@
+%h2#page-heading= "New Booking"
+
+%div
+  - if surcharge?(@time_slot.start_time)
+    %b= "For weekend bookings: Please note that there will be an additional charge of $10, payable in cash to your housekeeper."
+  %br
+  %label Start Time :
+  = time_in_words @time_slot.start_time
+= simple_form_for @time_slot, url: time_slots_path, method: :post do |f|
+  = f.input :start_time, as: :hidden
+  = f.association :housekeeper, as: :hidden
+  = f.input :duration, collection: durations_list, prompt: "Select your duration", label: 'Duration :'
+  = f.input :remarks, as: :text, label: 'Remarks :', input_html: { class: 'form-control' }
+  %br
+  = f.submit "Book this slot", class: 'btn'
+  = " or "
+  = link_to "Cancel", :back

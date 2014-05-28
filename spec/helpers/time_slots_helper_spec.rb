@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BookingsHelper do
+describe TimeSlotsHelper do
   describe '#display_booked_slot_info' do
     let!(:time_slots) { build_list(:time_slot, 1) }
     let!(:housekeeper) { create(:housekeeper) }
