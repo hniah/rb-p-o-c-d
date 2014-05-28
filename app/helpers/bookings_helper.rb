@@ -61,6 +61,13 @@ module BookingsHelper
     [["3 hours", 3], ["4 hours", 4], ["5 hours", 5]]
   end
 
+  def contain_feedback?
+    feedbacks = Feedback.all
+    feedbacks.find do |feedback|
+      feedback.time_slot == self
+    end
+  end
+
   def time_in_words_with_zone(time)
     time.strftime("%d-%m-%Y %H:%M:%S %z")
   end

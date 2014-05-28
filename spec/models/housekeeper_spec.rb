@@ -36,5 +36,6 @@ describe Housekeeper do
   context 'Associations' do
     it { should have_and_belong_to_many :locations }
     it { should have_many :time_slots }
+    it { should have_many :feedbacks }
   end
 end

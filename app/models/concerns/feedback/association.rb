@@ -1,9 +1,9 @@
-module Concerns::TimeSlot::Association
+module Concerns::Feedback::Association
   extend ActiveSupport::Concern
 
   included do
     belongs_to :user
     belongs_to :housekeeper
-    has_one :feedback
+    belongs_to :time_slot
   end
 end

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   def total_hours_bought
     payments = self.payments.where(status: 'complete')
     payments.map { |p| p.package.hours }.inject(:+).to_i
+
   end
 
   def total_hours_used

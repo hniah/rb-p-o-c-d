@@ -50,13 +50,18 @@
                 = form_tag(edit_booking_path(t), method: :get) do
                   = button_tag "Modify", type: 'button', class: 'btn modify_button'
             %div.pull-left
-              - if check_show_delete?(t.start_time)
+              - if show_action_button?(t.start_time)
                 - if refund?(t.start_time)
                   = form_tag(booking_path(t), method: :delete) do
                     = button_tag "Delete", type: 'button', class: 'btn delete_button'
                 - else
                   = form_tag(booking_path(t), method: :delete) do
                     = button_tag "Delete", type: 'button', class: 'btn delete_button_without_refund'
+            - unless show_action_button?(t.start_time)
+              - unless t.contain_feedback?
+                %div.pull-left
+                  %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
+                  = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
   :javascript
     $(function() {
       $('.delete_button_without_refund').click(function(e) {

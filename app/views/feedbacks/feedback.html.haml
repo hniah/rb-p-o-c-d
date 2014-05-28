@@ -1,0 +1,76 @@
+- form_id = "feedback_form_#{@time_slot.id}"
+.modal.bs-example-modal-lg.fade{id: form_id, "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    = form_tag(feedbacks_path, method: :post, id: form_id) do
+      .modal-content
+        .modal-header
+          %button.close.bootbox-close-button{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+          %h4.modal-title Feedback
+        .modal-body
+          %table.table.borderless
+            %tbody
+              %tr
+                %td{colspan: 2}
+                  %p= "Thank you for taking time to fill up this simple form. It will only take 2-3 minutes to complete."
+                  %P= "All ratings and information submitted will be kept confidential and will only be used for service improvement purposes. "
+                  %P= "Please let us know how you found this cleaning session by rating your satisfaction level with your housekeeper’s services in the following areas :"
+              %tr
+                %td{width: "50%"}
+                  = label_tag "Punctuality : "
+                  = select_tag(:punctuality, options_for_select(rating_scale_list), class: "pull-right required", prompt: "Please choose")
+                  .help-block="How satisfied are you with your housekeeper’s punctuality?"
+                %td
+                  = label_tag "Communication : "
+                  = select_tag(:communication, options_for_select(rating_scale_list), class: "pull-right required", prompt: "Please choose")
+                  .help-block="How satisfied are you with your housekeeper’s ability to understand what you are asking for?"
+              %tr
+                %td
+                  = label_tag "Time Management : "
+                  = select_tag(:time_management, options_for_select(rating_scale_list), class: "pull-right required", prompt: "Please choose")
+                  .help-block="How satisfied are you with the way your housekeeper planned her time?"
+                %td
+                  = label_tag "Service Quality : "
+                  = select_tag(:service_quality, options_for_select(rating_scale_list), class: "pull-right required", prompt: "Please choose")
+                  .help-block="How satisfied are you with your housekeeper’s quality of work (e.g., service attitude, initiative, etc"
+              %tr
+                %td
+                  = label_tag "Areas for improvement : "
+                  = text_area_tag 'areas_for_improvement',nil , class: "feedback-textarea", rows: 3, placeholder: "If you have rated “Neutral, Dissatisfied, or Very Dissatisfied” for any of the aspects, please elaborate (Optional)"
+                %td
+                  = label_tag "Areas worthy of praise : "
+                  = text_area_tag 'areas_worthy_of_praise',nil , class: "feedback-textarea", rows: 3, placeholder: "Feel free to let us know which are the areas that we have done well in (Optional)"
+              %tr
+                %td{colspan: 2}
+                  = label_tag "Other Comments : "
+                  = text_area_tag 'other_comments',nil , class: "feedback-textarea", rows: 3, placeholder: "Other comments"
+              %tr
+                %td{colspan: 2}
+                  ="Thank you for your feedback!"
+                  %br
+                  ="We value you inputs and hope to provide the best cleaning service for your home!"
+                  %br
+                  %br
+                  ="Yours truly,"
+                  %br
+                  ="Service Excellence Team"
+                  %br
+                  ="Our Cleaning Department"
+          = hidden_field_tag(:user_id, @time_slot.user.id)
+          = hidden_field_tag(:housekeeper_id, @time_slot.housekeeper.id)
+          = hidden_field_tag(:time_slot_id, @time_slot.id)
+        .modal-footer
+          = button_tag "Close", {type: 'button', class: "btn btn-default", "data-dismiss" => "modal"}
+          = button_tag "Submit Feedback", { class: "btn btn-primary feedback_button" }
+:javascript
+  jQuery.validator.setDefaults({
+  	debug: true
+  });
+  $(document).ready(function(){
+    $('form').each(function () {
+      $(this).validate({
+        submitHandler: function(form) {
+            form.submit();
+          }
+      });
+    });
+  });

@@ -156,6 +156,7 @@ describe TimeSlot do
   context 'Association' do
     it { should belong_to :user }
     it { should belong_to :housekeeper }
+    it { should have_one :feedback }
   end
 
   describe '.total_sessions_in_day' do

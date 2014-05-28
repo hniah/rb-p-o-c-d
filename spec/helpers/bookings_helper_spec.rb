@@ -37,7 +37,7 @@ describe BookingsHelper do
     before do
       create_time_slot(hour: 10, min: 0)
       create_time_slot(hour: 16, min: 0)
-      create(:time_slot, start_time: time_with_zone + 2.days, end_time: time_with_zone + 2.days + 3.hours )
+      create(:time_slot, start_time: time_with_zone + 2.days, end_time: time_with_zone + 2.days )
     end
 
     it 'should be equal 2' do

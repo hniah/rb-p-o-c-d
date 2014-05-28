@@ -19,16 +19,18 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      except ['Feedback']
+    end
     export
     bulk_delete
     show
     edit do
-      except ['Payment']
+      except ['Payment', 'Feedback']
     end
     delete
     show_in_app do
-      except ['Payment']
+      except ['Payment','Feedback']
     end
 
     ## With an audit adapter, you can add:

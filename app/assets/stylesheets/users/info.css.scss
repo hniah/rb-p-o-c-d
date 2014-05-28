@@ -2,4 +2,23 @@
   .pull-left{
     margin: 0 10px 0 10px ;
   }
+  .modal-footer{
+    margin-top: 0;
+  }
+  .help-block{
+    font-size: 12px;
+    font-style: italic;
+  }
+  .borderless td {
+    border: none !important;
+  }
+  .feedback-textarea{
+    @extend .form-control;
+    resize: none;
+  }
 }
+.bootbox-close-button {
+  float: right;
+}
+
+

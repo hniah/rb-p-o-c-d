@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522094309) do
+ActiveRecord::Schema.define(version: 20140527033913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,25 @@ ActiveRecord::Schema.define(version: 20140522094309) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "feedbacks", force: true do |t|
+    t.string   "punctuality"
+    t.string   "communication"
+    t.string   "time_management"
+    t.string   "service_quality"
+    t.string   "areas_for_improvement"
+    t.string   "areas_worthy_of_praise"
+    t.string   "other_comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "housekeeper_id"
+    t.integer  "time_slot_id"
+  end
+
+  add_index "feedbacks", ["housekeeper_id"], name: "index_feedbacks_on_housekeeper_id", using: :btree
+  add_index "feedbacks", ["time_slot_id"], name: "index_feedbacks_on_time_slot_id", using: :btree
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "housekeepers", force: true do |t|
     t.string   "name"

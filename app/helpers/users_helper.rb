@@ -4,7 +4,11 @@ module UsersHelper
     Time.zone.now < day_check
   end
 
-  def check_show_delete?(start_time)
+  def show_action_button?(start_time)
     Time.zone.now < start_time
+  end
+
+  def rating_scale_list
+    [["Very Satisfied", "Very Satisfied"],["Satisfied", "Satisfied"], ["Neutral", "Neutral"], ["Dissatisfied", "Dissatisfied"],["Very Dissatisfied", "Very Dissatisfied"]]
   end
 end
