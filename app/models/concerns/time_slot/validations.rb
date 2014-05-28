@@ -5,7 +5,6 @@ module Concerns::TimeSlot::Validations
     validates_presence_of :start_time, :end_time, :category
 
     validate :restrict_booking_time
-    validate :limit_sessions_in_day, if: :new_record?
   end
 
   def end_time_valid?(from = 3, to = 5)
@@ -27,11 +26,8 @@ module Concerns::TimeSlot::Validations
     end
   end
 
-  def limit_sessions_in_day(number_of_sessions = 2)
-    return false if self.start_time.nil?
-    if TimeSlot.total_sessions_in_day(self.start_time) >= number_of_sessions
-      errors[:base] << "Only #{number_of_sessions} sessions in day!"
-    end
+  def limit_sessions_in_day?(number_of_sessions = 2, housekeeper)
+    TimeSlot.total_sessions_in_day(self.start_time, housekeeper) >= number_of_sessions
   end
 
   def unbookable_after?(number_of_hour = 2)

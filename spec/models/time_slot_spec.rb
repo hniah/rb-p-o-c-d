@@ -29,24 +29,31 @@ describe TimeSlot do
       end
     end
 
-    describe '#limit_sessions_in_day' do
+    describe '#limit_sessions_in_day?' do
+      let(:housekeeper) { create :housekeeper }
       context 'one session is existed' do
-        before  { create_list(:time_slot, 1) }
+        before { create(:time_slot, housekeeper: housekeeper) }
 
-        subject(:time_slot) { build_time_slot({hour: 17, min: 0}) }
+        let(:time_slot) { build (:time_slot) }
 
-        it { should be_valid }
+        it { time_slot.limit_sessions_in_day?(2,housekeeper).should_not be_true }
       end
 
       context 'two sessions are existed' do
-        subject(:time_slot)  { build(:time_slot) }
+        let(:time_slot)  { build(:time_slot) }
 
         before do
-          create_time_slot({ hour: 8, min: 0 })
-          create_time_slot({ hour: 13, min: 0})
+          create(:time_slot, housekeeper: housekeeper,
+                            start_time: time_with_zone(hour:8, min:0),
+                            end_time: time_with_zone(hour:11, min:0)
+          )
+          create(:time_slot, housekeeper: housekeeper,
+                 start_time: time_with_zone(hour:15, min:0),
+                 end_time: time_with_zone(hour:18, min:0)
+          )
         end
 
-        it { should_not be_valid }
+        it { time_slot.limit_sessions_in_day?(2,housekeeper).should be_true }
       end
     end
 
@@ -161,13 +168,20 @@ describe TimeSlot do
 
   describe '.total_sessions_in_day' do
     let!(:user) { create :user, :with_payments }
+    let(:housekeeper) { create :housekeeper }
 
     before do
-      create_time_slot(hour: 8, min: 0)
-      create_time_slot(hour: 13, min: 0)
+      create(:time_slot, housekeeper: housekeeper,
+             start_time: time_with_zone(hour:8, min:0),
+             end_time: time_with_zone(hour:11, min:0)
+      )
+      create(:time_slot, housekeeper: housekeeper,
+             start_time: time_with_zone(hour:13, min:0),
+             end_time: time_with_zone(hour:16, min:0)
+      )
     end
 
-    subject { TimeSlot.total_sessions_in_day(date) }
+    subject { TimeSlot.total_sessions_in_day(date, housekeeper) }
 
     context "sessions in today" do
       let!(:date) { time_with_zone }

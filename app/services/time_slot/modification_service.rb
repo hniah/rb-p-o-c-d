@@ -22,6 +22,10 @@ class TimeSlot::ModificationService < Struct.new(:listener)
       listener.redirect_to_user_info_path('Time Slot overlaps another time slot.') and return
     end
 
+    if time_slot.limit_sessions_in_day?(2,time_slot.housekeeper)
+      listener.redirect_to_bookings_path('Only 2 sessions in day!') and return
+    end
+
     time_slot.save!
     listener.update_time_slot_successful
 
