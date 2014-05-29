@@ -23,7 +23,7 @@
         = f.label :password, class: 'required'
         .input-group
           = f.password_field :password, autocomplete: "off"
-          .help-block (leave blank if you don't want to change it). Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.
+          .help-block="(leave blank if you don't want to change it). Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure."
 
       .password-confirmation.form-group
         = f.label :password_confirmation, class: 'required'
@@ -34,7 +34,7 @@
         = f.label :current_password
         .input-group
           = f.password_field :current_password, autocomplete: "off"
-          .help-block (we need your current password to confirm your changes)
+          .help-block="(we need your current password to confirm your changes)"
 
       .address.form-group
         = f.label :address
@@ -47,15 +47,16 @@
           = f.text_field :unit
 
       .postal.form-group
-        = f.label :postal, class: 'required'
+        = f.label :postal
         .input-group
-          = f.text_field :postal
+          = f.text_field :postal, disabled: "disabled"
+          .help-block="(Please contact OCD should you need to update a new address.)"
 
       .instruction.form-group
         = f.label :instruction, 'Special Instruction'
         .input-group
           = f.text_area :instruction
-          .help-block eg. I have two dogs at home. My main priority is ironing.
+          .help-block="eg. I have two dogs at home. My main priority is ironing."
 
       .contact_number.form-group
         = f.label :contact_number, class: 'required'
