@@ -68,7 +68,33 @@
     %h3 Cancel my account
     %p= "Unhappy about our services?"
     .cancel_acc_button
-      #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "button-warning"}
+      = form_tag(registration_path(resource_name), method: :delete) do
+        = button_tag "Cancel my account", type: 'button', class: "button-warning", id: "delete_account_button"
     .div_text.btn="or"
     .div_back_button
       #{link_to "Back", :back, class: "btn"}
+
+:javascript
+  $('#delete_account_button').click(function(e) {
+    bootbox.confirm({
+      title: "Notification",
+      message: "Are you sure you want to proceed?",
+      buttons: {
+          cancel: {
+              label: "No, keep my account",
+              className: "btn-default pull-left"
+          },
+          confirm: {
+              label: "Yes, cancel",
+              className: "btn-danger pull-right"
+          }
+      },
+      callback: function(result) {
+        if (result) {
+          $('.delete_button').parents('form').submit();
+        } else {
+
+        }
+      }
+    })
+  });
