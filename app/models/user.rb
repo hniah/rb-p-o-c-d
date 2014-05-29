@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   include Concerns::User::RailsAdminConfig
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   def total_hours_bought
     payments = self.payments.where(status: 'complete')

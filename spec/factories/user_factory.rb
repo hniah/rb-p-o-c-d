@@ -7,6 +7,7 @@ FactoryGirl.define do
     address               'Somewhere in Singapore'
     postal                '651234'
     contact_number        '6652-3568'
+    confirmed_at          7.days.ago
 
     trait :with_payments do
       ignore do
