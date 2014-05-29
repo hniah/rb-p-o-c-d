@@ -37,9 +37,9 @@
           .help-block (we need your current password to confirm your changes)
 
       .address.form-group
-        = f.label :address, class: 'required'
+        = f.label :address
         .input-group
-          = f.text_area :address
+          = f.text_area :address, disabled: "disabled"
 
       .unit.form-group
         = f.label :unit
