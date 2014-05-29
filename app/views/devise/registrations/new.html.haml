@@ -52,6 +52,11 @@
         .input-group
           = f.text_field :contact_number
 
+      .alternative_contact_number.form-group
+        = f.label :alternative_contact_number, class: 'required'
+        .input-group
+          = f.text_field :alternative_contact_number
+
       .form-group
         .col-md-offset-2.col-md-10
           .checkbox

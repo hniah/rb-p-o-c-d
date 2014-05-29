@@ -20,21 +20,15 @@
           Currently waiting confirmation for: #{resource.unconfirmed_email}
 
       .password.form-group
-        = f.label :password, class: 'required'
+        = f.label "New password"
         .input-group
           = f.password_field :password, autocomplete: "off"
-          .help-block="(leave blank if you don't want to change it). Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure."
+          .help-block="Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure."
 
       .password-confirmation.form-group
-        = f.label :password_confirmation, class: 'required'
+        = f.label "New password confirmation"
         .input-group
           = f.password_field :password_confirmation, autocomplete: "off"
-
-      .password_current.form-group
-        = f.label :current_password
-        .input-group
-          = f.password_field :current_password, autocomplete: "off"
-          .help-block="(we need your current password to confirm your changes)"
 
       .address.form-group
         = f.label :address
@@ -44,7 +38,7 @@
       .unit.form-group
         = f.label :unit
         .input-group
-          = f.text_field :unit
+          = f.text_field :unit, disabled: "disabled"
 
       .postal.form-group
         = f.label :postal
@@ -63,36 +57,46 @@
         .input-group
           = f.text_field :contact_number
 
+      .alternative_contact_number.form-group
+        = f.label :alternative_contact_number, class: 'required'
+        .input-group
+          = f.text_field :alternative_contact_number
 
-      .div= f.submit "Update", class: "button-submit"
+      .password_current.form-group
+        = f.label :current_password
+        .input-group
+          = f.password_field :current_password, autocomplete: "off"
+          .help-block="(we need your current password to confirm your changes)"
+
+      .form-group
+        .div-button
+          = f.submit "Update", class: "button-submit"
+          =" or"
+          #{link_to "Back", :back, class: "btn"}
       %br
-    %h3 Cancel my account
-    %p= "Unhappy about our services?"
+    %h3 Delete my account
+    %p= "I wish to delete my account."
     .cancel_acc_button
       = form_tag(registration_path(resource_name), method: :delete) do
-        = button_tag "Cancel my account", type: 'button', class: "button-warning", id: "delete_account_button"
-    .div_text.btn="or"
-    .div_back_button
-      #{link_to "Back", :back, class: "btn"}
-
+        = button_tag "Delete my account", type: 'button', class: "button-warning", id: "delete_account_button"
 :javascript
   $('#delete_account_button').click(function(e) {
     bootbox.confirm({
       title: "Notification",
-      message: "Are you sure you want to proceed?",
+      message: "Are you sure you want to delete your account? This action is permanent and there will not be any refund of the remaining credit in your account.",
       buttons: {
           cancel: {
               label: "No, keep my account",
               className: "btn-default pull-left"
           },
           confirm: {
-              label: "Yes, cancel",
+              label: "Yes, delete my account",
               className: "btn-danger pull-right"
           }
       },
       callback: function(result) {
         if (result) {
-          $('.delete_button').parents('form').submit();
+          $('#delete_account_button').parents('form').submit();
         } else {
 
         }

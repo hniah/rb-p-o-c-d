@@ -34,22 +34,6 @@ ActiveRecord::Schema.define(version: 20140529025629) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "ckeditor_assets", force: true do |t|
-    t.string   "data_file_name",               null: false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    limit: 30
-    t.string   "type",              limit: 30
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
-
   create_table "feedbacks", force: true do |t|
     t.string   "punctuality"
     t.string   "communication"
@@ -104,15 +88,6 @@ ActiveRecord::Schema.define(version: 20140529025629) do
     t.string  "price_currency", default: "USD", null: false
   end
 
-  create_table "pages", force: true do |t|
-    t.string   "title"
-    t.string   "intro_text"
-    t.string   "intro_image"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "payments", force: true do |t|
     t.string   "ip_address"
     t.string   "express_token"
@@ -147,12 +122,12 @@ ActiveRecord::Schema.define(version: 20140529025629) do
   add_index "time_slots", ["user_id"], name: "index_time_slots_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                      default: "", null: false
+    t.string   "encrypted_password",         default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",              default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -164,6 +139,7 @@ ActiveRecord::Schema.define(version: 20140529025629) do
     t.string   "unit"
     t.string   "postal"
     t.string   "instruction"
+    t.string   "alternative_contact_number"
     t.string   "contact_number"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
