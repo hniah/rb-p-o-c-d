@@ -58,7 +58,7 @@
                   = form_tag(time_slot_path(t), method: :delete) do
                     = button_tag "Delete", type: 'button', class: 'btn delete_button'
                 - else
-                  = form_tag(booking_path(t), method: :delete) do
+                  = form_tag(time_slot_path(t), method: :delete) do
                     = button_tag "Delete", type: 'button', class: 'btn delete_button_without_refund'
             - unless show_action_button?(t.start_time)
               - unless t.contain_feedback?
