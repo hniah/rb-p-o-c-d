@@ -13,13 +13,20 @@
  */
 
 @import 'bootstrap';
+
 @import 'jquery.ui.datepicker';
+
 @import 'theme';
 
 @import 'devise/registrations/new';
+@import 'devise/registrations/edit';
 @import 'devise/sessions/new';
+@import 'devise/passwords/new';
+@import 'devise/passwords/edit';
+@import 'devise/confirmations/new';
 
 @import 'time_slots/index';
 @import 'time_slots/new';
+
 @import 'users/info';
 

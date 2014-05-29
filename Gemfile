@@ -65,6 +65,8 @@ group :development, :test do
   gem 'dotenv-rails'
 
   gem 'database_cleaner'
+
+  gem "erb2haml"
 end
 
 # Use ActiveModel has_secure_password

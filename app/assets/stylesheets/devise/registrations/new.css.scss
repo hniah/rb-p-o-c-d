@@ -1,4 +1,4 @@
-#devise-registration-new-container {
+.devise-registration-new-container {
   @extend .row;
 
   .form-container {
@@ -28,6 +28,11 @@
         input, textarea {
           @extend .form-control;
         }
+
+        textarea{
+          height: 100px;
+          resize: none;
+        }
       }
 
       .checkbox {
@@ -37,11 +42,15 @@
         }
       }
 
-      input[type=submit] {
+      .button-submit {
         @extend .btn;
         @extend .btn-primary;
         @extend .col-md-offset-2;
-        @extend .col-md-1;
+      }
+
+      .button-warning {
+        @extend .btn;
+        @extend .btn-warning;
       }
 
       .sign-in-link {

@@ -1,0 +1,15 @@
+.cancel_acc_button{
+  float: left;
+}
+
+.div_text{
+  float: left;
+}
+
+.div_back_button{
+  float: left;
+}
+
+.devise-registration-edit-container{
+  @extend .devise-registration-new-container
+}

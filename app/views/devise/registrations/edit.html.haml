@@ -1,8 +1,8 @@
-.devise-registration-new-container
+.devise-registration-edit-container
   .form-container
-    %h2 Sign up
-
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    %h2
+      Edit #{resource_name.to_s.humanize}
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = devise_error_messages!
 
       .name.form-group
@@ -15,16 +15,26 @@
         .input-group
           = f.email_field :email
 
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %div
+          Currently waiting confirmation for: #{resource.unconfirmed_email}
+
       .password.form-group
         = f.label :password, class: 'required'
         .input-group
           = f.password_field :password, autocomplete: "off"
-          .help-block Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.
+          .help-block (leave blank if you don't want to change it). Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.
 
       .password-confirmation.form-group
         = f.label :password_confirmation, class: 'required'
         .input-group
           = f.password_field :password_confirmation, autocomplete: "off"
+
+      .password_current.form-group
+        = f.label :current_password
+        .input-group
+          = f.password_field :current_password, autocomplete: "off"
+          .help-block (we need your current password to confirm your changes)
 
       .address.form-group
         = f.label :address, class: 'required'
@@ -52,18 +62,13 @@
         .input-group
           = f.text_field :contact_number
 
-      .form-group
-        .col-md-offset-2.col-md-10
-          .checkbox
-            %label
-              = f.check_box :terms_of_service
-              I agree to the terms of service *
 
-      .form-group
-        .col-md-offset-2.col-md-10
-          .checkbox
-            %label
-              = check_box_tag :subscribe_to_mailing_list, "1", html_option: { checked: 'checked' }
-              Please subscribe me to the exciting mailing list with lots of promotion!
-
-      .div= f.submit "Sign up", class: "button-submit"
+      .div= f.submit "Update", class: "button-submit"
+      %br
+    %h3 Cancel my account
+    %p= "Unhappy about our services?"
+    .cancel_acc_button
+      #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "button-warning"}
+    .div_text.btn="or"
+    .div_back_button
+      #{link_to "Back", :back, class: "btn"}
