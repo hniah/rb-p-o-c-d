@@ -4,7 +4,7 @@ class CreatePages < ActiveRecord::Migration
       t.string :title
       t.string :intro_text
       t.string :intro_image
-      t.string :description
+      t.text :description
 
       t.timestamps
     end

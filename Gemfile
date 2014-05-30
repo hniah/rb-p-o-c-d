@@ -89,3 +89,9 @@ gem "letter_opener", :group => :development
 #paypal
 gem 'activemerchant'
 
+#store files and images
+gem 'carrierwave'
+gem 'mini_magick'
+
+#CKeditor
+gem 'ckeditor'

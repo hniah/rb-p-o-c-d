@@ -19,5 +19,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootbox
+//= require ckeditor/override
 // require_tree .
 

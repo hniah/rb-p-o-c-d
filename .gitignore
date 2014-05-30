@@ -23,3 +23,6 @@
 
 # Ignore .env
 /.env
+
+#Ignore public folder
+/puplic/uploads
