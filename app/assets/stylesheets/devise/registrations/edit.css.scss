@@ -11,5 +11,16 @@
 }
 
 .devise-registration-edit-container{
-  @extend .devise-registration-new-container
+  @extend .devise-registration-new-container;
+
+  .button-back {
+    @extend .btn;
+    @extend .btn-default;
+    margin: 0 0 0 10px;
+  }
+
+  .div-button{
+    text-align: right;
+    padding: 0 111px 0 0;
+  }
 }

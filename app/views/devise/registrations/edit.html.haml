@@ -23,7 +23,7 @@
         = f.label "New password"
         .input-group
           = f.password_field :password, autocomplete: "off"
-          .help-block="Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure."
+          .help-block="(Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.)"
 
       .password-confirmation.form-group
         = f.label "New password confirmation"
@@ -50,7 +50,7 @@
         = f.label :instruction, 'Special Instruction'
         .input-group
           = f.text_area :instruction
-          .help-block="eg. I have two dogs at home. My main priority is ironing."
+          .help-block="(eg. I have two dogs at home. My main priority is ironing.)"
 
       .contact_number.form-group
         = f.label :contact_number, class: 'required'
@@ -66,13 +66,12 @@
         = f.label :current_password
         .input-group
           = f.password_field :current_password, autocomplete: "off"
-          .help-block="(we need your current password to confirm your changes)"
+          .help-block="(We need your current password to confirm your changes.)"
 
       .form-group
         .div-button
           = f.submit "Update", class: "button-submit"
-          =" or"
-          #{link_to "Back", :back, class: "btn"}
+          #{link_to "Back", :back, class: "button-back"}
       %br
     %h3 Delete my account
     %p= "I wish to delete my account."
