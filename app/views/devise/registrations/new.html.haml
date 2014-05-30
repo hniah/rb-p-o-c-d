@@ -19,7 +19,7 @@
         = f.label :password, class: 'required'
         .input-group
           = f.password_field :password, autocomplete: "off"
-          .help-block Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.
+          .help-block= "(Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.)"
 
       .password-confirmation.form-group
         = f.label :password_confirmation, class: 'required'
@@ -45,7 +45,7 @@
         = f.label :instruction, 'Special Instruction'
         .input-group
           = f.text_area :instruction
-          .help-block eg. I have two dogs at home. My main priority is ironing.
+          .help-block= "(eg. I have two dogs at home. My main priority is ironing.)"
 
       .contact_number.form-group
         = f.label :contact_number, class: 'required'
@@ -62,13 +62,15 @@
           .checkbox
             %label
               = f.check_box :terms_of_service
-              I agree to the terms of service *
+              = "I agree to the terms of service *"
 
       .form-group
         .col-md-offset-2.col-md-10
           .checkbox
             %label
               = check_box_tag :subscribe_to_mailing_list, "1", html_option: { checked: 'checked' }
-              Please subscribe me to the exciting mailing list with lots of promotion!
+              = "Please subscribe me to the exciting mailing list with lots of promotion!"
 
-      .div= f.submit "Sign up", class: "button-submit"
+      .form-group
+        .div-button
+          = f.submit "Sign up", class: "button-submit"
