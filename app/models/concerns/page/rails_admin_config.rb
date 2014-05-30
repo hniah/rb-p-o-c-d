@@ -4,8 +4,9 @@ module Concerns::Page::RailsAdminConfig
   included do
     rails_admin do
       list do
+        field :id
         field :title
-        field :alias
+        field :article_alias
         field :intro_text
         field :description do
           formatted_value do
@@ -16,14 +17,14 @@ module Concerns::Page::RailsAdminConfig
 
       edit do
         field :title
-        field :alias
+        field :article_alias
         field :intro_text
         field :description, :ck_editor
       end
 
       show do
         field :title
-        field :alias
+        field :article_alias
         field :intro_text
         field :description do
           formatted_value do

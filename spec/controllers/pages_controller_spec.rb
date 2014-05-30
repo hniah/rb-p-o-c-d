@@ -49,7 +49,7 @@ describe PagesController do
 
   describe "#join_us" do
     def do_request
-      get :faq
+      get :join_us
     end
 
     it "should display content" do
@@ -57,5 +57,4 @@ describe PagesController do
       response.should render_template :join_us
     end
   end
-
 end
