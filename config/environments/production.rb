@@ -29,6 +29,9 @@ Ocd::Application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
+  # CKEDITOR precompilation
+  config.assets.precompile += %w{ckeditor/ckeditor.js}
+
   # Generate digests for assets URLs.
   config.assets.digest = true
 
