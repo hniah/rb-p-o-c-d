@@ -7,8 +7,12 @@ Ocd::Application.routes.draw do
 
   resources :time_slots
 
+  resources :pages
   get 'job_scope_and_time_to_task'  => 'pages#job_scope_and_time_to_task'
   get 'terms_and_condition'         => 'pages#terms_and_condition'
+  get 'disclaimer_privacy_policy'   => 'pages#disclaimer_privacy_policy'
+  get 'faq'                         => 'pages#faq'
+  get 'join_us'                     => 'pages#join_us'
 
   get 'buy_package'                 => 'packages#buy_package'
 
@@ -19,7 +23,9 @@ Ocd::Application.routes.draw do
   get 'success_payment'             => 'payments#success_payment'
   get 'cancel_payment'              => 'payments#cancel_payment'
   resources :payments
+
   resources :feedbacks
+
 
   mount Ckeditor::Engine => '/ckeditor'
 

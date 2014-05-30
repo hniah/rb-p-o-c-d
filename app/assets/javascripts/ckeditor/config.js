@@ -7,9 +7,11 @@ CKEDITOR.editorConfig = function( config )
     { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','Scayt' ] },
     { name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
     { name: 'styles', items : [ 'Styles','Format' ] },
-    { name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },
-    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
     { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+    { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
     { name: 'tools', items : [ 'Maximize','-','About' ] }
   ];
 

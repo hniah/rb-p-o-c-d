@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
     end
     delete
     show_in_app do
-      except ['Payment','Feedback']
+      except ['Payment','Feedback','Page']
     end
 
     ## With an audit adapter, you can add:

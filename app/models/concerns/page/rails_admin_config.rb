@@ -4,7 +4,9 @@ module Concerns::Page::RailsAdminConfig
   included do
     rails_admin do
       list do
-        include_all_fields
+        field :title
+        field :alias
+        field :intro_text
         field :description do
           formatted_value do
             HTML::FullSanitizer.new.sanitize(bindings[:object].description)
@@ -13,12 +15,16 @@ module Concerns::Page::RailsAdminConfig
       end
 
       edit do
-        include_all_fields
+        field :title
+        field :alias
+        field :intro_text
         field :description, :ck_editor
       end
 
       show do
-        include_all_fields
+        field :title
+        field :alias
+        field :intro_text
         field :description do
           formatted_value do
             HTML::FullSanitizer.new.sanitize(bindings[:object].description)
