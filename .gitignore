@@ -25,4 +25,4 @@
 /.env
 
 #Ignore public folder
-/public/uploads/*.*
+/public/uploads/
