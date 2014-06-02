@@ -1,6 +1,7 @@
 .pages-container
   %h2
     = @page.title
-
+  %div.text-right
+    = social_share_button_tag(@page.title)
   %div.article
     = @page.description.html_safe

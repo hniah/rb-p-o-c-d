@@ -28,7 +28,9 @@ RailsAdmin.config do |config|
     edit do
       except ['Payment', 'Feedback']
     end
-    delete
+    delete do
+      except ['Page']
+    end
     show_in_app do
       except ['Payment','Feedback','Page']
     end

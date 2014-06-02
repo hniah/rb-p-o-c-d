@@ -95,3 +95,6 @@ gem 'mini_magick'
 
 #CKeditor
 gem 'ckeditor'
+
+#social sharing
+gem 'social-share-button'
