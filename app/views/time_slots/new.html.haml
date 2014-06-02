@@ -1,4 +1,5 @@
-%h2#page-heading= "New Booking"
+#page-heading
+  = page_heading "New Booking"
 
 %div
   - if surcharge?(@time_slot.start_time)

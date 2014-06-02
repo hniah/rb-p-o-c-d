@@ -1,6 +1,6 @@
 #devise-sessions-new-container
   .form-container
-    %h2 Sign in
+    = page_heading "Sign in"
 
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 

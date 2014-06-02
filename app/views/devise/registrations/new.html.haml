@@ -1,6 +1,6 @@
 .devise-registration-new-container
   .form-container
-    %h2 Sign up
+    = page_heading "Sign up"
 
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = devise_error_messages!
