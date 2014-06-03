@@ -14,6 +14,6 @@ describe 'User Workflow' do
     page.should have_content "Signed in successfully."
     click_on "My Account"
 
-    page.should have_content "USER ACCOUNT"
+    page.should have_content "User Account"
   end
 end

@@ -1,0 +1,17 @@
+.page-category-container
+  = page_heading "Blogs"
+  - @count = 0
+  - @pages.each do |page|
+  - @count += 1
+    .item
+      .item-image
+        = image_tag (page.intro_image)
+      .item-content
+        .item-title
+          = page.title
+        .item-intro-text
+          = truncate page.intro_text, length: 200
+      .item-readmore
+        = link_to "Readmore ...", page_path(page.id)
+    - unless @count == @pages.count
+      .clr-dashed

@@ -11,4 +11,12 @@ module ApplicationHelper
     content_for(:title){ title }
     content_tag(:h1, title)
   end
+
+  def page_desc
+    content_for(:page_desc)
+  end
+
+  def page_image
+    content_for(:page_image)
+  end
 end

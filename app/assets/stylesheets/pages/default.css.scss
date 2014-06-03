@@ -19,6 +19,15 @@
     vertical-align: -22px;
   }
 
+  blockquote:after {
+    color: #ccc;
+    font-size: 60px;
+    line-height: 10px;
+    margin-left: 10px;
+    vertical-align: -25px;
+    content: "\201D";
+  }
+
   blockquote p {
     display: inline;
   }

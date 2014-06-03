@@ -3,5 +3,6 @@ module Concerns::Page::Validation
 
   included do
     validates_presence_of :title, :article_alias, :description
+    validates_uniqueness_of :article_alias
   end
 end

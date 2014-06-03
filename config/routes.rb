@@ -7,6 +7,9 @@ Ocd::Application.routes.draw do
 
   resources :time_slots
 
+  resources :page_categories
+  get 'blogs'                        => 'page_categories#blogs'
+
   resources :pages
   get 'job_scope_and_time_to_task'  => 'pages#job_scope_and_time_to_task'
   get 'terms_and_condition'         => 'pages#terms_and_condition'

@@ -2,9 +2,22 @@
 %html
   %head
     %title= page_title
+    //for facebook
     %meta{:content => page_title, :property => "og:title"}
+    %meta{:content => page_image, :property => "og:image"}
+    %meta{:content => page_desc, :property => "og:description"}
+
+
+    //for google
     %meta{:content => page_title, :name => "title"}
+    %meta{:content => page_desc, :name => "description"}
+
+    //for twitter
     %meta{:content => page_title, :name => "twitter:title"}
+    %meta{:content => page_image, :name => "twitter:image"}
+    %meta{:content => page_desc, :name => "twitter:description"}
+
+
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
@@ -38,3 +51,4 @@
         %li{ class: display_active_menu_item(job_scope_and_time_to_task_path) }= link_to 'Job scope and Time to task', job_scope_and_time_to_task_path
         %li{ class: display_active_menu_item(terms_and_condition_path) }= link_to 'Terms and Condition', terms_and_condition_path
         %li{ class: display_active_menu_item(join_us_path) }= link_to 'Join Us', join_us_path
+        %li{ class: display_active_menu_item(blogs_path) }= link_to 'Blogs', blogs_path

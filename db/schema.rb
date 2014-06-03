@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530104047) do
+ActiveRecord::Schema.define(version: 20140602095548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,14 @@ ActiveRecord::Schema.define(version: 20140530104047) do
     t.string  "price_currency", default: "USD", null: false
   end
 
+  create_table "page_categories", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "page_category_alias"
+  end
+
   create_table "pages", force: true do |t|
     t.string   "title"
     t.string   "intro_text"
@@ -112,6 +120,8 @@ ActiveRecord::Schema.define(version: 20140530104047) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "article_alias"
+    t.text     "short_description"
+    t.integer  "page_category_id"
   end
 
   create_table "payments", force: true do |t|
