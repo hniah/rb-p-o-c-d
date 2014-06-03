@@ -16,6 +16,7 @@ Ocd::Application.routes.draw do
   get 'disclaimer_privacy_policy'   => 'pages#disclaimer_privacy_policy'
   get 'faq'                         => 'pages#faq'
   get 'join_us'                     => 'pages#join_us'
+  get 'about_us'                    => 'pages#about_us'
 
   get 'buy_package'                 => 'packages#buy_package'
 

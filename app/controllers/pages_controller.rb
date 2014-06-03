@@ -20,6 +20,11 @@ class PagesController < ApplicationController
     render :info
   end
 
+  def about_us
+    @page = Page.find_by_article_alias('about_us')
+    render :info
+  end
+
   def join_us
     @page = Page.find_by_article_alias('join_us')
     render :info

@@ -28,7 +28,7 @@ describe 'Buy Packages Workflow' do
     visit '/'
 
     feature_sign_in(user)
-    click_on 'Buy Packages'
+    click_on 'Rates'
 
     page.should have_content 'ALL PACKAGES'
     find("[data-test='#{selected_package.id}']").click

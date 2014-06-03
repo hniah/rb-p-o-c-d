@@ -8,7 +8,7 @@ describe 'Book a session workflow' do
 
   it 'allows user to book a session' do
     visit '/'
-    click_on 'Book a session'
+    click_on 'Booking'
 
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
@@ -16,7 +16,7 @@ describe 'Book a session workflow' do
 
     page.should have_content "Signed in successfully."
 
-    click_on "Book a session"
+    click_on "Booking"
     my_date = Time.zone.now + 2.days
     my_date = my_date.change(hour: 11, min: 00)
     find("##{my_date.strftime('%Y-%m-%d_%H-%M')}_#{housekeeper.id}").click_on "Book this slot"
