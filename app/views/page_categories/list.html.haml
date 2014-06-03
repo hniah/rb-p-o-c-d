@@ -11,7 +11,7 @@
           = page.title
         .item-intro-text
           = truncate page.intro_text, length: 200
-      .item-readmore
-        = link_to "Readmore ...", page_path(page.id)
+        .item-readmore
+          = link_to "Readmore ...", page_path(page.id)
     - unless @count == @pages.count
       .clr-dashed
