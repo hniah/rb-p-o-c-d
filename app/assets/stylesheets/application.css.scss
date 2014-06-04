@@ -11,6 +11,8 @@
  *= require_self
  *= require jquery-ui-timepicker-addon
  *= require social-share-button
+ *= require bxslider
+ *= require_tree .
  */
 
 @import 'bootstrap';
@@ -18,6 +20,9 @@
 @import 'jquery.ui.datepicker';
 
 @import 'theme';
+@import 'application/home';
+@import 'application/about';
+@import 'application/promotion_blocks';
 
 @import 'devise/registrations/new';
 @import 'devise/registrations/edit';

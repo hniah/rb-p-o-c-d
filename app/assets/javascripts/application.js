@@ -21,5 +21,6 @@
 //= require bootbox
 //= require ckeditor/override
 //= require social-share-button
-// require_tree .
+//= require bxslider
+//= require_tree .
 

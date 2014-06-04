@@ -1,0 +1,15 @@
+.home-promotion-title{
+  @extend .home-about-title;
+}
+.block-item{
+  display: inline-block;
+  margin: 0 55px 0 55px;
+  padding: 5px;
+  border: 2px solid #428bca;
+  box-shadow: 5px 5px 5px #888888;
+  -moz-box-shadow: 5px 5px 5px #888888;
+
+  .block_image{
+    margin: 0 0 10px 0;
+  }
+}

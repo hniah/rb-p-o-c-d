@@ -5,10 +5,17 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def home
+    @sliders = Slider.all
+    @promotion_blocks = Promotion.all.order('created_at DESC').take(3)
+    render :home
+  end
+
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << [:name, :address, :unit, :postal,:contact_number,:alternative_contact_number, :instruction, :terms_of_service, :subscribe_to_mailing_list]
     devise_parameter_sanitizer.for(:account_update) << [:name, :unit, :contact_number,:alternative_contact_number, :instruction]
   end
+
 end

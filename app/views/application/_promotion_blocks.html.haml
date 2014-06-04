@@ -1,0 +1,10 @@
+- @promotion_blocks.each do |block|
+  .block-item
+    .block_image
+      %img{ :src => block.image.url(:thumb)}
+    .block-name
+      = "Name : #{block.name}"
+    .block-position
+      = "Position : #{block.position}"
+    .block-descrition
+      = "Performance : #{block.description}"
