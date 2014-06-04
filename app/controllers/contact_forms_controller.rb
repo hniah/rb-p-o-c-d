@@ -1,7 +1,7 @@
 class ContactFormsController < ApplicationController
 
   def index
-    render :index
+  
   end
 
   def create
