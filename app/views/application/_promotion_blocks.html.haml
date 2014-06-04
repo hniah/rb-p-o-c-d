@@ -2,7 +2,7 @@
   .block-item
     .block_image
       %img{ :src => block.image.url(:thumb)}
-    - if block.url
+    - if block.url.present?
       .block-url
         = "Url : #{block.url}"
     - if block.description
