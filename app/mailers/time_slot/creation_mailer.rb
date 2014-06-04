@@ -1,5 +1,5 @@
 class TimeSlot::CreationMailer < ActionMailer::Base
-  default from: "admin@ourcleaningdepartment.com"
+  default from: ENV['EMAIL_DEFAULT_FROM']
 
   add_template_helper TimeSlotsHelper
 

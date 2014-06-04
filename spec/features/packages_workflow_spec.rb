@@ -30,7 +30,7 @@ describe 'Buy Packages Workflow' do
     feature_sign_in(user)
     click_on 'Rates'
 
-    page.should have_content 'ALL PACKAGES'
+    page.should have_selector('h1', text: 'ALL PACKAGES')
     find("[data-test='#{selected_package.id}']").click
 
   end

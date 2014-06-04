@@ -1,0 +1,18 @@
+.contact-form-container{
+  @extend .devise-registration-new-container;
+
+  .left{
+    float: left;
+    width: 30%;
+  }
+
+  .right{
+    float: right;
+    width: 60%;
+
+    .button-submit{
+      float: right;
+      margin-right: 74px;
+    }
+  }
+}

@@ -5,7 +5,7 @@
   float: left;
   margin: 0 45px 0 45px;
   padding: 5px;
-  border: 2px solid #428bca;
+  border: 2px solid #43273b;
   box-shadow: 5px 5px 5px #888888;
   width: 25%;
   min-height: 350px;
@@ -13,5 +13,6 @@
   .block_image{
     margin: 0 0 10px 0;
     text-align: center;
+    min-height: 250px;
   }
 }

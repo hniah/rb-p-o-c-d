@@ -30,6 +30,8 @@ Ocd::Application.routes.draw do
 
   resources :feedbacks
 
+  resources :contact_forms
+
 
   mount Ckeditor::Engine => '/ckeditor'
 

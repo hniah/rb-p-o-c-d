@@ -99,3 +99,6 @@ gem 'ckeditor'
 
 #social sharing
 gem 'social-share-button'
+
+#pagination
+gem 'will_paginate'

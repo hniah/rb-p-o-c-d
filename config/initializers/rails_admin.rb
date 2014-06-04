@@ -16,23 +16,26 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  # config.excluded_models = ['GenreCategory']
+  # config.included_models = ['GenreCategory']
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
     new do
-      except ['Feedback']
+      except ['Feedback','ContactForm']
     end
     export
     bulk_delete
     show
     edit do
-      except ['Payment', 'Feedback']
+      except ['Payment', 'Feedback','ContactForm']
     end
     delete do
       except ['Page']
     end
     show_in_app do
-      except ['Payment','Feedback','Page']
+      except ['Payment','Feedback','Page','ContactForm']
     end
 
     ## With an audit adapter, you can add:

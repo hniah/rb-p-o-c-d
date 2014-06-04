@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    = "Dear admin OCD,"
+    %br
+    %br
+    = "(From the contact form filled up)"
+    %br
+    = "Name : #{@contact_form.name}"
+    %br
+    = "Email : #{@contact_form.email}"
+    %br
+    = "Message : #{@contact_form.message}"
+    %br
+    = "Contact : #{@contact_form.contact}"

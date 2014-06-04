@@ -8,6 +8,6 @@ describe 'Static pages workflow' do
     visit '/'
     click_on 'FAQ'
 
-    page.should have_content 'FAQ'
+    page.should have_selector('h1', text: 'FAQ')
   end
 end

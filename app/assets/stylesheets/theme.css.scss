@@ -43,6 +43,17 @@ ul.ul-nav{
     width: 450px;
     margin: 0 auto;
     padding: 10px 0 10px 0;
+
+    li.active{
+      a{
+        background: #e6d5d4;
+        color: #43273b;
+      }
+
+      a:hover{
+        background: #e6d5d4;
+      }
+    }
   }
 }
 
@@ -100,4 +111,8 @@ label.required:after {
 
 .clr{
   clear: both;
+}
+
+a{
+  color: #43273b;
 }

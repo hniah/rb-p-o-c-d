@@ -11,9 +11,9 @@ describe 'User Workflow' do
     fill_in "Password", with: user.password
     click_button "Sign in"
 
-    page.should have_content "Signed in successfully."
+    page.should have_selector('div', text: 'Signed in successfully.')
     click_on "My Account"
 
-    page.should have_content "User Account"
+    page.should have_selector('h1', text: 'User Account')
   end
 end

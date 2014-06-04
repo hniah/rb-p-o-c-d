@@ -1,0 +1,59 @@
+.contact-form-container
+  = page_heading "Contact Us"
+
+  .left
+    %p= "You can reach us at the followings:"
+    %p
+    %p{:style => 'font-size:20px; font-weight: bold'}= "Our Cleaning Department"
+    %p
+      10 Anson Road
+      %br
+      #12-14 International Plaza
+      %br
+      Singapore 079903
+      %br
+      Tel : +65 6220 9885
+      %br
+      Fax: +65 6225 9890
+      %br
+      Email: enquiries@ourcleaningdepartment.com
+    %p
+    %p
+      %b="Key firm contacts"
+    %p
+      Huiqun
+      %br
+      T: +65 6220 9885 Ext 32
+      %br
+      E: huiqun@ourcleaningdepartment.com
+      %br
+    %p
+      Geraldine
+      %br
+      T: +65 6220 9885 Ext 35
+      %br
+      E: geraldine@ourcleaningdepartment.com
+  .right
+    .form-container
+      = form_tag(contact_forms_path, method: :post) do
+        .name.form-group
+          = label_tag "Name : "
+          .input-group
+            = text_field_tag(:name)
+
+        .email.form-group
+          = label_tag "Email : "
+          .input-group
+            = text_field_tag(:email)
+
+        .contact.form-group
+          = label_tag "Contact No. : "
+          .input-group
+            =text_field_tag(:contact)
+
+        .message.form-group
+          = label_tag "Message"
+          .input-group
+            = text_area_tag 'message',nil, rows: 3
+        .form-group
+          = submit_tag("Send" , class: "button-submit")
