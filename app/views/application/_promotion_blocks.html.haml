@@ -5,7 +5,7 @@
     - if block.url.present?
       .block-url
         = "Url : "
-        = link_to block.url
+        = link_to block.url, block.url
     - if block.description
       .block-descrition
         = block.description.html_safe
