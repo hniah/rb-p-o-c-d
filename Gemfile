@@ -92,6 +92,7 @@ gem 'activemerchant'
 
 #store files and images
 gem 'carrierwave'
+gem 'fog'
 gem 'mini_magick'
 
 #CKeditor
