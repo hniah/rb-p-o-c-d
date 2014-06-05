@@ -4,36 +4,38 @@
   .left
     %p= "You can reach us at the followings: "
     %p
-    %p{:style => 'font-size:20px; font-weight: bold'}= "Our Cleaning Department"
-    %p
-      10 Anson Road
-      %br
-      #12-14 International Plaza
-      %br
-      Singapore 079903
-      %br
-      Tel : +65 6220 9885
-      %br
-      Fax: +65 6225 9890
-      %br
-      Email: enquiries@ourcleaningdepartment.com
-    %p
-    %p
-      %b="Key firm contacts"
-    %p
-      Huiqun
-      %br
-      T: +65 6220 9885 Ext 32
-      %br
-      E: huiqun@ourcleaningdepartment.com
-      %br
-    %p
-      Geraldine
-      %br
-      T: +65 6220 9885 Ext 35
-      %br
-      E: geraldine@ourcleaningdepartment.com
+    %p{:style => 'font-size:18px; font-weight: bold'}= "Our Cleaning Department LLP"
+    %p{:style => 'font-size:10px' }= "(T14LL0310H)"
+    %br
+    %p= "We welcome any feedback or enquiries regarding our housekeeping services."
+    %br
+    %p="Simply fill up the contact form to leave us a message and we will get back to you at the soonest."
+    %br
+    %table.table-text-contact
+      %tr{valign: 'top'}
+        %td
+          ="Call/Text :"
+        %td
+          ="81263759 or 81263795"
+      %tr{valign: 'top'}
+        %td
+          ="Email :"
+        %td
+          ="enquiries@ourcleaningdepartment.com"
+      %tr{valign: 'top'}
+        %td
+          ="Address : "
+        %td
+          ="Block 57 New Upper Changi Road"
+          %br
+          ="#01-1356"
+          %br
+          ="Singapore 461057"
+          %br
+          ="*Appointment is required. Thanks!"
   .right
+    %br
+    %br
     .form-container
       = form_tag(contact_forms_path, method: :post) do
         .name.form-group

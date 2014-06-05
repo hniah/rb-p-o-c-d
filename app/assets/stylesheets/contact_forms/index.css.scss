@@ -19,4 +19,13 @@
     height: 130px !important;
     overflow: hidden !important;
   }
+
+  .table-text-contact{
+    border-collapse: separate;
+    border-spacing: 0px 10px;
+
+    td:first-child{
+      width: 40%;
+    }
+  }
 }
