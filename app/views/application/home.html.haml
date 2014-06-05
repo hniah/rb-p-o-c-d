@@ -13,6 +13,12 @@
 :javascript
   $(document).ready(function(){
     $('.bxslider').bxSlider({
+      mode: 'horizontal',
+      useCSS: false,
+      infiniteLoop: true,
+      hideControlOnEnd: true,
+      easing: 'easeOutElastic',
+      speed: 2000,
       auto: true,
       autoControls: true
     });
