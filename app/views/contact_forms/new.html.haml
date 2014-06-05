@@ -2,8 +2,7 @@
   = page_heading "Contact Us"
 
   .left
-    %p= "You can reach us at the followings: "
-    %p
+    %br
     %p{:style => 'font-size:18px; font-weight: bold'}= "Our Cleaning Department LLP"
     %p{:style => 'font-size:10px' }= "(T14LL0310H)"
     %br
@@ -35,30 +34,29 @@
           ="*Appointment is required. Thanks!"
   .right
     %br
-    %br
     .form-container
       = form_tag(contact_forms_path, method: :post) do
         .name.form-group
-          = label_tag "Name : "
+          = label_tag "Name * "
           .input-group
             = text_field_tag(:name)
 
         .email.form-group
-          = label_tag "Email : "
+          = label_tag "Email * "
           .input-group
             = text_field_tag(:email)
 
         .contact.form-group
-          = label_tag "Contact No. : "
+          = label_tag "Contact No. * "
           .input-group
             =text_field_tag(:contact)
 
         .message.form-group
-          = label_tag "Message"
+          = label_tag "Message *"
           .input-group
             = text_area_tag 'message',nil, rows: 3
         .captcha.form-group
-          = label_tag "Captcha"
+          = label_tag "Captcha *"
           .input-group
             = recaptcha_tags
         .form-group

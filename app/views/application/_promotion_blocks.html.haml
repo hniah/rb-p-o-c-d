@@ -2,10 +2,9 @@
   .block-item
     .block_image
       %img{ :src => block.image.url(:thumb)}
-    - if block.url.present?
-      .block-url
-        = "Url : "
-        = link_to block.url, block.url
     - if block.description
       .block-descrition
         = block.description.html_safe
+    - if block.url.present?
+      .block-url
+        = link_to "Click here to view" , block.url
