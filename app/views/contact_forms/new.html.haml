@@ -55,5 +55,9 @@
           = label_tag "Message"
           .input-group
             = text_area_tag 'message',nil, rows: 3
+        .captcha.form-group
+          = label_tag "Captcha"
+          .input-group
+            = recaptcha_tags
         .form-group
           = submit_tag("Send" , class: "button-submit")

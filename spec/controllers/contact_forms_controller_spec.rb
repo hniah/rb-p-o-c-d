@@ -18,19 +18,7 @@ describe ContactFormsController do
 
     it 'should create contact form successful' do
       flash[:notice] = "Contact is created successfully"
-      response.should redirect_to contact_forms_path
-    end
-  end
-
-  describe '#index' do
-    before { do_request }
-
-    def do_request
-      get :index
-    end
-
-    it 'should render index layout' do
-      response.should render_template :index
+      response.should redirect_to new_contact_form_path
     end
   end
 
@@ -41,7 +29,7 @@ describe ContactFormsController do
       get :new
     end
 
-    it 'should render new layout' do
+    it 'should render index layout' do
       response.should render_template :new
     end
   end

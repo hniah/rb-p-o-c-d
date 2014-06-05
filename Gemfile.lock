@@ -238,6 +238,7 @@ GEM
     rake (10.3.0)
     rdoc (4.1.1)
       json (~> 1.4)
+    recaptcha (0.3.6)
     remotipart (1.2.1)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
@@ -358,6 +359,7 @@ DEPENDENCIES
   rails (= 4.0.4)
   rails_12factor
   rails_admin
+  recaptcha
   rspec-rails
   sass-rails (~> 4.0.2)
   sdoc

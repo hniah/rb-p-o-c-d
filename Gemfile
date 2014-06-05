@@ -102,3 +102,6 @@ gem 'social-share-button'
 
 #pagination
 gem 'will_paginate'
+
+#Recaptcha
+gem "recaptcha", :require => "recaptcha/rails"

@@ -1,17 +1,21 @@
 class ContactFormsController < ApplicationController
 
-  def index
-
-  end
-
   def new
-    render :new
+    @contact_form = ContactForm.new
   end
 
   def create
+    captcha_message = "The data you entered for the CAPTCHA wasn't correct. Please try again"
+
     @contact_form = ContactForm.new(contact_params)
     @service = ContactForm::CreationService.new(self)
-    @service.execute!(@contact_form)
+
+    if !verify_recaptcha(model: @contact_form, message: captcha_message)
+      flash[:alert] = captcha_message
+      render :new
+    else
+      @service.execute!(@contact_form)
+    end
 
   rescue Exception => e
     flash[:alert] = e.message
@@ -20,7 +24,7 @@ class ContactFormsController < ApplicationController
 
   def create_contact_form_successful
     flash[:notice] = "Contact created successfully"
-    redirect_to contact_forms_path
+    redirect_to new_contact_form_path
   end
 
   protected
