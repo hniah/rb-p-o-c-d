@@ -4,7 +4,8 @@
       %img{ :src => block.image.url(:thumb)}
     - if block.url.present?
       .block-url
-        = "Url : #{block.url}"
+        = "Url : "
+        = link_to block.url
     - if block.description
       .block-descrition
         = block.description.html_safe
