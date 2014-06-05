@@ -12,10 +12,6 @@ class ContactFormsController < ApplicationController
     @contact_form = ContactForm.new(contact_params)
     @service = ContactForm::CreationService.new(self)
     @service.execute!(@contact_form)
-
-  rescue Exception => e
-    flash[:alert] = e.message
-    redirect_to new_contact_form_path
   end
 
   def create_contact_form_successful
