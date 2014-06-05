@@ -18,6 +18,7 @@
     %meta{:content => page_image, :name => "twitter:image"}
     %meta{:content => page_desc, :name => "twitter:description"}
 
+    -#%script{:src => "http://www.google.com/recaptcha/api/js/recaptcha.js", :type => "text/javascript"}
 
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
@@ -69,7 +70,7 @@
           = link_to 'Disclaimer', disclaimer_privacy_policy_path
         %li{ class: display_active_menu_item(blogs_path) }
           = link_to 'Articles', blogs_path
-        %li{ class: display_active_menu_item(new_contact_form_path) }
+        %li{ class: display_active_menu_item(new_contact_form_path), data: { no_turbolink: true }}
           = link_to 'Contact Us', new_contact_form_path
         %li{ class: display_active_menu_item(join_us_path) }
           = link_to 'Join Us', join_us_path
@@ -83,3 +84,5 @@
 
   ga('create', 'UA-51593482-1', 'ourcleaningdepartment.com');
   ga('send', 'pageview');
+
+
