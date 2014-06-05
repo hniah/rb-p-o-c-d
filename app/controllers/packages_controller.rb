@@ -1,5 +1,4 @@
 class PackagesController < ApplicationController
-  before_action :authenticate_user!
 
   def buy_package
     @packages = Package.all_packages_in_array

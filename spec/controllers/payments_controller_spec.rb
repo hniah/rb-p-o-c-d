@@ -15,10 +15,9 @@ describe PaymentsController do
     let(:remote_ip) { "192.168.1.100" }
     let(:user) {create(:user)}
     let(:package) { create(:package_12_hours) }
-    let(:payment) { build(:payment) }
 
     def do_request
-      patch :express_checkout, user: { package_id: package.id }
+      patch :express_checkout, package_id: package.id
     end
 
     before do
