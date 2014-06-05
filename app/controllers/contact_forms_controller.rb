@@ -1,7 +1,11 @@
 class ContactFormsController < ApplicationController
 
   def index
-  
+
+  end
+
+  def new
+    render :new
   end
 
   def create
@@ -11,7 +15,7 @@ class ContactFormsController < ApplicationController
 
   rescue Exception => e
     flash[:alert] = e.message
-    redirect_to contact_forms_path
+    redirect_to new_contact_form_path
   end
 
   def create_contact_form_successful
