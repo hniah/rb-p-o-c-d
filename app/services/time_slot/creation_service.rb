@@ -3,6 +3,10 @@ class TimeSlot::CreationService < Struct.new(:listener)
   def execute!(time_slot, duration, user)
     time_slot.user = user
 
+    unless time_slot.can_book?
+      listener.redirect_to_bookings_path('Blocked user can not book. Please contact with administrator.') and return
+    end
+
     if duration.nil? || time_slot.start_time.nil?
       listener.redirect_to_bookings_path('Time Slot is invalid') and return
     else

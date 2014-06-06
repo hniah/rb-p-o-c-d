@@ -40,4 +40,8 @@ module Concerns::TimeSlot::Bookable
     (self.start_time >= time_slot.blocked_start_time && self.start_time < time_slot.blocked_end_time) ||
       (self.end_time > time_slot.blocked_start_time && self.end_time <= time_slot.blocked_end_time)
   end
+
+  def can_book?
+    return self.user.block == 'unblock'
+  end
 end

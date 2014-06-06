@@ -353,4 +353,17 @@ describe TimeSlot do
       it { time_slot.should_not be_refundable }
     end
   end
+
+  describe '#can_book?' do
+
+    context 'success' do
+      let(:time_slot) { build(:time_slot, :with_user_block) }
+      it { time_slot.can_book?.should be_false }
+    end
+
+    context 'failure' do
+      let(:time_slot) { build(:time_slot) }
+      it { time_slot.can_book?.should be_true }
+    end
+  end
 end

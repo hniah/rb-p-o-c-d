@@ -28,5 +28,9 @@ FactoryGirl.define do
       start_time  Time.zone.now.tomorrow.change(hour: 10, min: 0) + 1.week
       end_time    Time.zone.now.tomorrow.change(hour: 14, min: 0) + 1.week
     end
+
+    trait :with_user_block do
+      user { create(:user, block: 'block') }
+    end
   end
 end
