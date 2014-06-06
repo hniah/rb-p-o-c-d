@@ -32,7 +32,10 @@
       .address.form-group
         = f.label :address
         .input-group
-          = f.text_area :address, disabled: "disabled"
+          - if current_user.changeable_address == "no"
+            = f.text_area :address, disabled: "disabled"
+          - else
+            = f.text_area :address
 
       .unit.form-group
         = f.label :unit

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   enumerize :block, in: [:block, :unblock]
+  enumerize :changeable_address, in: [:no, :yes]
 
   def total_hours_bought
     payments = self.payments.where(status: 'complete')

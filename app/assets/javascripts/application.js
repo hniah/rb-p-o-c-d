@@ -22,5 +22,5 @@
 //= require ckeditor/override
 //= require social-share-button
 //= require bxslider
-//= require_tree .
+// require_tree
 

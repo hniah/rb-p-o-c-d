@@ -10,6 +10,7 @@ FactoryGirl.define do
     alternative_contact_number '6652-3578'
     confirmed_at          7.days.ago
     block                 "unblock"
+    changeable_address    "no"
 
     trait :with_payments do
       ignore do
