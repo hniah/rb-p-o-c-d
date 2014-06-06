@@ -30,10 +30,8 @@ FactoryGirl.define do
       end
 
       after :create do |user, evaluator|
-        i = 0
-        evaluator.number_of_time_slots.times do
-          i = i + 1
-          time_slot = create(:time_slot, start_time: (Time.zone.now.tomorrow + i.days).change(hour: 10, min: 00), end_time: (Time.zone.now.tomorrow + i.days).change(hour: 14, min: 00))
+        evaluator.number_of_time_slots.times do |n|
+          time_slot = create(:time_slot, start_time: (Time.zone.now.tomorrow + (n + 1).days).change(hour: 10, min: 00), end_time: (Time.zone.now.tomorrow + (n + 1).days).change(hour: 14, min: 00))
           user.time_slots << time_slot
         end
       end
