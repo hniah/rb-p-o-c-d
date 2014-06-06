@@ -1,7 +1,8 @@
 - @promotion_blocks.each do |block|
   .block-item
-    .block_image
-      %img{ :src => block.image.url(:thumb)}
+    - if block.image.present?
+      .block_image
+        %img{ :src => block.image.url(:thumb)}
     - if block.description
       .block-descrition
         = block.description.html_safe
