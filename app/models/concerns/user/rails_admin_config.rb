@@ -60,6 +60,7 @@ module Concerns::User::RailsAdminConfig
         field :last_sign_in_ip
         field :created_at
         field :updated_at
+        field :block
       end
     end
   end

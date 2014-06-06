@@ -8,6 +8,8 @@ describe User do
     it { should validate_presence_of :contact_number }
     it { should validate_presence_of :alternative_contact_number }
     it { should validate_acceptance_of :terms_of_service }
+    it { should validate_presence_of :block }
+    it { should enumerize(:block).in(:block, :unblock)}
   end
 
   context 'Associations' do

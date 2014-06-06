@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  extend Enumerize
   attr_accessor :package_id
 
   # Include default devise modules. Others available are:
@@ -10,10 +11,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  enumerize :block, in: [:block, :unblock]
+
   def total_hours_bought
     payments = self.payments.where(status: 'complete')
     payments.map { |p| p.package.hours }.inject(:+).to_i
-
   end
 
   def total_hours_used
