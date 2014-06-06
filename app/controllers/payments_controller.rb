@@ -1,5 +1,10 @@
 class PaymentsController < ApplicationController
+  before_action :store_location
   before_action :authenticate_user!
+
+  def store_location
+    store_location_for(:user, buy_package_path)
+  end
 
   def index
 

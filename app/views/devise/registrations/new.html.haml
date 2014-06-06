@@ -62,7 +62,7 @@
           .checkbox
             %label
               = f.check_box :terms_of_service
-              = "I agree to the terms of service *"
+              = link_to "I agree to the terms of service *", terms_and_condition_path , :target => "_blank"
 
       .form-group
         .col-md-offset-2.col-md-10
