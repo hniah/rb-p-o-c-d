@@ -40,12 +40,19 @@
       .unit.form-group
         = f.label :unit
         .input-group
-          = f.text_field :unit, disabled: "disabled"
+          - if current_user.changeable_address == "no"
+            = f.text_field :unit, disabled: "disabled"
+          - else
+            = f.text_field :unit
 
       .postal.form-group
         = f.label :postal
         .input-group
-          = f.text_field :postal, disabled: "disabled"
+          - if current_user.changeable_address == "no"
+            = f.text_field :postal, disabled: "disabled"
+          - else
+            = f.text_field :postal
+
           .help-block="(Please contact OCD should you need to update a new address.)"
 
       .instruction.form-group
