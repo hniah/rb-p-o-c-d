@@ -1,5 +1,5 @@
 .buy_packages
-  = page_heading "ALL PACKAGES"
+  = page_heading "OCD Packages"
   %table.table.table-bordered.text-center
     %thead
       %tr
@@ -25,4 +25,13 @@
         %th= "#{session_type}-hours session"
         - @packages[session_type].each do |package|
           %td!= show_buy_package_button(package, current_user)
-
+  %div
+    = "All sessions to be utilized within 12 months"
+    %br
+    %br
+    %u
+      = "Additional charges"
+    %br
+    = "Extended hour: $28/hr"
+    %br
+    = "Weekend charges: $10/hr"
