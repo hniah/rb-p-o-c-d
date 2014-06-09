@@ -4,7 +4,7 @@ class TimeSlot::CreationService < Struct.new(:listener)
     time_slot.user = user
 
     unless time_slot.can_book?
-      listener.redirect_to_bookings_path('Blocked user can not book. Please contact with administrator.') and return
+      listener.redirect_to_bookings_path('Your booking was unsuccessful. Please contact us for more information. Thanks.') and return
     end
 
     if duration.nil? || time_slot.start_time.nil?
