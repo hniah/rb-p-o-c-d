@@ -1,0 +1,12 @@
+#shared-main-nav-container
+  %ul.main-nav
+    %li{class: display_active_menu_item(root_path)}
+      = link_to 'Home', root_path
+    %li{ class: display_active_menu_item(job_scope_and_time_to_task_path) }
+      = link_to "Getting Started", job_scope_and_time_to_task_path
+    %li{class: display_active_menu_item(buy_package_path)}
+      = link_to 'Rates', buy_package_path
+    %li{class: display_active_menu_item(time_slots_path)}
+      = link_to 'Booking', time_slots_path
+    %li{ class: display_active_menu_item(faq_path) }
+      = link_to 'FAQ', faq_path

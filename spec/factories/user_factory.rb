@@ -11,6 +11,7 @@ FactoryGirl.define do
     confirmed_at          7.days.ago
     block                 "unblock"
     changeable_address    "no"
+    subscribe_to_mailing_list false
 
     trait :with_payments do
       ignore do

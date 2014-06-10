@@ -37,18 +37,7 @@
             = link_to 'Sign in', new_user_session_path
     .banner-container
       OCD BANNER
-    .main-nav-container
-      %ul.main-nav
-        %li{class: display_active_menu_item(root_path)}
-          = link_to 'Home', root_path
-        %li{ class: display_active_menu_item(job_scope_and_time_to_task_path) }
-          = link_to "Getting Started", job_scope_and_time_to_task_path
-        %li{class: display_active_menu_item(buy_package_path)}
-          = link_to 'Rates', buy_package_path
-        %li{class: display_active_menu_item(time_slots_path)}
-          = link_to 'Booking', time_slots_path
-        %li{ class: display_active_menu_item(faq_path) }
-          = link_to 'FAQ', faq_path
+    = render 'shared/main_nav'
 
     .main-body
       - if notice.present?
@@ -57,23 +46,8 @@
         %p.warning= alert
 
       = yield
-
-    .footer
-      %ul.ul-nav
-        %li{ class: display_active_menu_item(about_us_path) }
-          = link_to 'About Us', about_us_path
-        %li{ class: display_active_menu_item(terms_and_condition_path) }
-          = link_to 'Terms & Condition', terms_and_condition_path
-        %li{ class: display_active_menu_item(disclaimer_privacy_policy_path) }
-          = link_to 'Disclaimer', disclaimer_privacy_policy_path
-        %li{ class: display_active_menu_item(blogs_path) }
-          = link_to 'Articles', blogs_path
-        %li{ class: display_active_menu_item(new_contact_form_path), data: { no_turbolink: true }}
-          = link_to 'Contact Us', new_contact_form_path
-        %li{ class: display_active_menu_item(join_us_path) }
-          = link_to 'Join Us', join_us_path
-        %li{ }
-          = link_to 'Site map'
+    = render 'shared/mailing_list'
+    = render 'shared/footer'
 :javascript
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -106,3 +106,6 @@ gem 'will_paginate'
 
 #Recaptcha
 gem "recaptcha", :require => "recaptcha/rails"
+
+#Mailchimp
+gem 'gibbon'

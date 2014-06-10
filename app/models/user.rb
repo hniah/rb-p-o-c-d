@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   enumerize :block, in: [:block, :unblock]
   enumerize :changeable_address, in: [:no, :yes]
 
+  after_create do
+    subscribe_to_mailchimp if self.subscribe_to_mailing_list
+  end
+
   def total_hours_bought
     payments = self.payments.where(status: 'complete')
     payments.map { |p| p.package.hours }.inject(:+).to_i
@@ -27,5 +31,18 @@ class User < ActiveRecord::Base
 
   def total_hours_current
     self.total_hours_bought - self.total_hours_used
+  end
+
+  def subscribe_to_mailchimp testing=false
+    return true if (Rails.env.test? && !testing)
+    list_id = ENV['MAILCHIMP_USER_OCD_ID']
+
+    response = Rails.configuration.mailchimp.lists.subscribe({
+                                                               id: list_id,
+                                                               email: {email: self.email},
+                                                               name: {name: self.name},
+                                                               double_optin: false,
+                                                             })
+    response
   end
 end

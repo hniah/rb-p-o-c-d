@@ -39,4 +39,32 @@ describe User do
       user.total_hours_used.should eq 10
     end
   end
+
+  describe "#subscribe_to_mailchimp" do
+    let(:user_with_subscribe) { create(:user, subscribe_to_mailing_list: true) }
+    it "calls mailchimp correctly" do
+      opts = {
+        email: {email: user_with_subscribe.email},
+        name: {name: user_with_subscribe.name},
+        id: ENV['MAILCHIMP_USER_OCD_ID'],
+        double_optin: false,
+      }
+      clazz = Rails.configuration.mailchimp.lists.class
+      clazz.any_instance.should_receive(:subscribe).with(opts).once
+      user_with_subscribe.send(:subscribe_to_mailchimp, true)
+    end
+
+    let(:user) { create(:user, subscribe_to_mailing_list: false) }
+    it "calls mailchimp correctly" do
+      opts = {
+        email: {email: user.email},
+        name: {name: user.name},
+        id: ENV['MAILCHIMP_USER_OCD_ID'],
+        double_optin: false,
+      }
+      clazz = Rails.configuration.mailchimp.lists.class
+      clazz.any_instance.should_not_receive(:subscribe).with(opts)
+      user.send(:subscribe_to_mailchimp, user.subscribe_to_mailing_list)
+    end
+  end
 end

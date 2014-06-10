@@ -1,3 +1,39 @@
+// form styling
+label.required:after {
+  content: " *";
+}
+
+.error{
+  @extend .text-danger;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.clr-dashed{
+  clear: both;
+  height: 1px;
+  border-top: 1px dashed #428bca;
+}
+
+.clr{
+  clear: both;
+}
+
+a{
+  color: #43273b;
+  font-family: 'Alike Angular', serif;
+}
+
+h1{
+  font-family: 'Abril Fatface', cursive;
+  color: #43273b;
+  font-size: 35px;
+}
+
+body, p{
+  font-family: 'Alike Angular', serif;
+}
+
 .user-nav-container{
   @extend .container;
 
@@ -34,7 +70,7 @@ ul.ul-nav{
   background: #00b3ee;
 }
 
-.main-nav-container {
+#shared-main-nav-container {
   @extend .container;
 
   ul.main-nav {
@@ -72,7 +108,7 @@ ul.ul-nav{
   }
 }
 
-.footer{
+#shared-footer-container{
   @extend .container;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -92,38 +128,65 @@ ul.ul-nav{
   }
 }
 
-// form styling
-label.required:after {
-  content: " *";
+#shared-mailing-list-container{
+  @extend .container;
+
+  border-top: 1px solid #428bca;
+  margin-top: 20px;
+  padding-top: 20px;
+
+  h3{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+  }
+
+  .div-mailing-list{
+    float: left;
+    width: 100%;
+
+    .left{
+      width: 30%;
+      float: left;
+      background: #43273b;
+      padding: 10px;
+      text-align: center;
+      color: #ffffff;
+      height: 52px;
+    }
+
+    .right{
+      float: right;
+      padding: 10px;
+      width: 70%;
+      background: #e6d5d4;
+      height: 52px;
+
+      h3{
+        float: left;
+        text-align: left;
+        color: #43273b;
+      }
+
+      #subscribe{
+        float: right;
+        width: 60%;
+
+        #mailchimp_email{
+          @extend .form-control;
+
+          float: left;
+          width: 65%;
+          margin-right: 10px;
+        }
+
+        input[type='submit']{
+          @extend .btn;
+        }
+      }
+    }
+  }
 }
 
-.error{
-  @extend .text-danger;
-  font-size: 13px;
-  font-weight: normal;
-}
-
-.clr-dashed{
-  clear: both;
-  height: 1px;
-  border-top: 1px dashed #428bca;
-}
-
-.clr{
-  clear: both;
-}
-
-a{
-  color: #43273b;
-  font-family: 'Alike Angular', serif;
-}
-
-h1{
-  font-family: 'Abril Fatface', cursive;
-  color: #43273b;
-  font-size: 35px;
-}
-
-body, p{
-  font-family: 'Alike Angular', serif;
-}

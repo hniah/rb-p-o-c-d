@@ -68,7 +68,7 @@
         .col-md-offset-2.col-md-10
           .checkbox
             %label
-              = check_box_tag :subscribe_to_mailing_list, "1", html_option: { checked: 'checked' }
+              = f.check_box :subscribe_to_mailing_list
               = "Please subscribe me to the exciting mailing list with lots of promotion!"
 
       .form-group

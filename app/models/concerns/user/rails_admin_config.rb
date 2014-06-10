@@ -4,7 +4,7 @@ module Concerns::User::RailsAdminConfig
   included do
     rails_admin do
       edit do
-        exclude_fields :time_slots, :payments, :packages
+        exclude_fields :time_slots, :payments, :packages, :subscribe_to_mailing_list
       end
 
       list do
