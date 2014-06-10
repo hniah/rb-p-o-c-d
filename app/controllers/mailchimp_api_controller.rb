@@ -12,14 +12,16 @@ class MailchimpApiController < ApplicationController
   flash[:notice] = "Thank you for subscribing to our mailing list. We are happy to update you with any new OCD happenings. Have a great day!"
   redirect_to root_path
 
-  rescue Exception => e
-    if e.message == "The email parameter should include an email, euid, or leid key"
-      flash[:alert] = "Please provide a valid email address to join our mailing list. "
-      redirect_to root_path
+  rescue Gibbon::MailChimpError => e
+    case e.code
+    when -100
+      flash[:alert] = "Please provide a valid email address to join our mailing list."
+    when 214
+      flash[:alert] = "This email has already subscribed to our Mailing List."
     else
       flash[:alert] = e.message
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   protected
