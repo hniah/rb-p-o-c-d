@@ -445,6 +445,55 @@ Page.create!(
 )
 
 Page.create!(
+  title: 'Sitemap',
+  article_alias: 'sitemap',
+  intro_text: '',
+  intro_image: '',
+  description: '<ol>
+	<li>
+	<h3>User menu</h3>
+	</li>
+</ol>
+
+<ul style="margin-left:40px">
+	<li><a href="/users/sign_up">Register</a></li>
+	<li><a href="/users/sign_in">Sign in</a></li>
+</ul>
+
+<ol start="2">
+	<li>
+	<h3>Main menu</h3>
+	</li>
+</ol>
+
+<ul style="margin-left:40px">
+	<li><a href="/">Home</a></li>
+	<li><a href="/job_scope_and_time_to_task">Getting Stared</a></li>
+	<li><a href="/buy_package">Rates</a></li>
+	<li><a href="/time_slots">Booking</a></li>
+	<li><a href="/faq">FAQ</a></li>
+</ul>
+
+<ol start="3">
+	<li>
+	<h3>Footer menu</h3>
+	</li>
+</ol>
+
+<ul style="margin-left:40px">
+	<li><a href="/about_us">About us</a></li>
+	<li><a href="/terms_and_condition">Terms &amp; Condition</a></li>
+	<li><a href="/disclaimer_privacy_policy">Disclaimer</a></li>
+	<li><a href="/blogs">Articles</a></li>
+	<li><a href="/contact_forms/new">Contact Us</a></li>
+	<li><a href="/join_us">Join Us</a></li>
+	<li><a href="/sitemap">Sitemap</a></li>
+</ul>
+',
+  short_description: '',
+)
+
+Page.create!(
   title: 'news 1',
   article_alias: 'news_1',
   intro_text: 'this is test 1',

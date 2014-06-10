@@ -17,6 +17,7 @@ Ocd::Application.routes.draw do
   get 'faq'                         => 'pages#faq'
   get 'join_us'                     => 'pages#join_us'
   get 'about_us'                    => 'pages#about_us'
+  get 'sitemap'                     => 'pages#sitemap'
 
   get 'buy_package'                 => 'packages#buy_package'
 

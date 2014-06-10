@@ -30,6 +30,11 @@ class PagesController < ApplicationController
     render :info
   end
 
+  def sitemap
+    @page = Page.find_by_article_alias('sitemap')
+    render :info
+  end
+
   def show
     @page = Page.find(page_id_param)
     render :info
