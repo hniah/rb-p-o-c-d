@@ -1,10 +1,6 @@
 class FeedbacksController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-
-  end
-
   def create
     @feedback = Feedback.new(feedback_params)
     @service = Feedback::CreationService.new(self)

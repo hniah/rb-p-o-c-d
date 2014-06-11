@@ -1,6 +1,4 @@
 class MailchimpApiController < ApplicationController
-  def index
-  end
 
   def subscribe
     list_id = ENV['MAILCHIMP_MAILING_LIST_OCD_ID']

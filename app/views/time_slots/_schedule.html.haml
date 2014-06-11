@@ -1,5 +1,5 @@
-- @time_slots = TimeSlot.where(housekeeper_id: @housekeeper.id)
-#schedule-container
+.time-slots-schedule-container
+  - @time_slots = TimeSlot.where(housekeeper_id: @housekeeper.id)
   %h1 Book a session
   %i
     = "Housekeeper : "
@@ -34,10 +34,4 @@
             %td!= display_booked_slot_info(@time_slots, day + i, time, @housekeeper.id)
       %tr
         %th= "10:00pm"
-        %td
-        %td
-        %td
-        %td
-        %td
-        %td
-        %td
+        %td{colspan: 7}

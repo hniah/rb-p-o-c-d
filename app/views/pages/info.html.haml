@@ -1,6 +1,6 @@
 - content_for(:page_desc) { @page.short_description }
 - content_for(:page_image) { @page.intro_image }
-.pages-container
+.pages-info-container
   = page_heading @page.title
   %div.text-right
     = social_share_button_tag(@page.title)

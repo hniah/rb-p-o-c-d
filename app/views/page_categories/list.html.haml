@@ -1,8 +1,8 @@
-.page-category-container
+.page-categories-list-container
   = page_heading "Articles"
   - @count = 0
   - @pages.each do |page|
-  - @count += 1
+    - @count += 1
     .item
       .item-image
         = image_tag (page.intro_image)
