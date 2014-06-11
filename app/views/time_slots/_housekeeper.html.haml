@@ -1,9 +1,9 @@
-.time-slots-schedule-container
-  - @time_slots = TimeSlot.where(housekeeper_id: @housekeeper.id)
+.time-slots-housekeeper-container
+  - @time_slots = TimeSlot.where(housekeeper_id: housekeeper.id)
   %h1 Book a session
   %i
     = "Housekeeper : "
-    = @housekeeper.name
+    = housekeeper.name
   %div
     =link_to 'Previous week', time_slots_path(week: (@week >= 1)? @week - 1 : @week = 0 ) , class: 'btn'
     =link_to 'Next week', time_slots_path(week: @week + 1), class: 'btn'
@@ -31,7 +31,7 @@
         %tr
           %th= time.strftime('%l:%M%P')
           - (0..6).each do |i|
-            %td!= display_booked_slot_info(@time_slots, day + i, time, @housekeeper.id)
+            %td!= display_booked_slot_info(@time_slots, day + i, time, housekeeper.id)
       %tr
         %th= "10:00pm"
         %td{colspan: 7}

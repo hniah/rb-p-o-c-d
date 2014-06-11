@@ -1,4 +1,6 @@
 #users-info-container
+  .help-link
+    = link_to image_tag("help/link.png", :border => 0, :alt => 'Tips', :title => 'Tips'), tips_user_path, {target: "_blank"}
   = page_heading "User Account"
   %div.user_info
     %h3 User information

@@ -30,10 +30,13 @@
 @import 'devise/passwords/edit';
 @import 'devise/confirmations/new';
 
-@import 'time_slots/schedule';
+@import 'time_slots/index';
+@import 'time_slots/housekeeper';
 @import 'time_slots/new';
 
 @import 'users/info';
+
+@import 'packages/buy_package';
 
 @import 'pages/info';
 

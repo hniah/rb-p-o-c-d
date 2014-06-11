@@ -1,8 +1,9 @@
 #bookings-index-container
+  .help-link
+    = link_to image_tag("help/link.png", :border => 0, :alt => 'Tips', :title => 'Tips'), tips_booking_path, {target: "_blank"}
   %br
   %div
     = form_tag(time_slots_path, method: :get) do
       = label_tag  :location, "Region : "
       = select_tag :location, options_for_select(@locations.collect{ |location| [location.name, location.id]}, selected: params[:location]  ) , onchange: "this.form.submit();"
-  - @housekeepers.each do |housekeeper|
-    = render partial: 'schedule', :locals => { :@housekeeper => housekeeper }
+  = render partial: 'housekeeper', collection: @housekeepers

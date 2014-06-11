@@ -35,6 +35,26 @@ class PagesController < ApplicationController
     render :info
   end
 
+  def tips_buy_package
+    @page = Page.find_by_article_alias('tips_buy_package')
+    render :info
+  end
+
+  def tips_booking
+    @page = Page.find_by_article_alias('tips_booking')
+    render :info
+  end
+
+  def tips_new_booking
+    @page = Page.find_by_article_alias('tips_new_booking')
+    render :info
+  end
+
+  def tips_user
+    @page = Page.find_by_article_alias('tips_user')
+    render :info
+  end
+
   def show
     @page = Page.find(page_id_param)
     render :info

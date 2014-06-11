@@ -1,4 +1,13 @@
 #users-info-container {
+  position: relative;
+
+  .help-link{
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
   .user_bookings {
     .pull-left {
       margin: 0 10px 0 10px ;

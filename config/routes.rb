@@ -10,7 +10,7 @@ Ocd::Application.routes.draw do
   resources :page_categories
   get 'blogs'                        => 'page_categories#blogs'
 
-  resources :pages
+  resources :pages, only: [:show]
   get 'job_scope_and_time_to_task'  => 'pages#job_scope_and_time_to_task'
   get 'terms_and_condition'         => 'pages#terms_and_condition'
   get 'disclaimer_privacy_policy'   => 'pages#disclaimer_privacy_policy'
@@ -18,6 +18,10 @@ Ocd::Application.routes.draw do
   get 'join_us'                     => 'pages#join_us'
   get 'about_us'                    => 'pages#about_us'
   get 'sitemap'                     => 'pages#sitemap'
+  get 'tips_buy_package'            => 'pages#tips_buy_package'
+  get 'tips_booking'                => 'pages#tips_booking'
+  get 'tips_new_booking'            => 'pages#tips_new_booking'
+  get 'tips_user'                   => 'pages#tips_user'
 
   get 'buy_package'                 => 'packages#buy_package'
 
