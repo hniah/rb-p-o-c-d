@@ -1,13 +1,20 @@
 class User < ActiveRecord::Base
+  include Concerns::RailsAdmin::User
+
   extend Enumerize
   attr_accessor :package_id
 
+  has_many :time_slots
+  has_many :feedbacks
+  has_many :payments
+  has_many :special_hours
+  has_and_belongs_to_many :packages, join_table: 'payments'
+
+  validates_presence_of :name, :address, :postal, :contact_number, :alternative_contact_number, :block
+  validates_acceptance_of :terms_of_service
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  include Concerns::User::Association
-  include Concerns::User::Validations
-  include Concerns::User::RailsAdminConfig
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 

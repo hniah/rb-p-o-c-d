@@ -1,4 +1,4 @@
-module Concerns::Housekeeper::RailsAdminConfig
+module Concerns::RailsAdmin::Housekeeper
   extend ActiveSupport::Concern
 
   included do

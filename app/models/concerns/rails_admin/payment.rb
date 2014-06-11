@@ -1,4 +1,4 @@
-module Concerns::Payment::RailsAdminConfig
+module Concerns::RailsAdmin::Payment
   extend ActiveSupport::Concern
 
   included do

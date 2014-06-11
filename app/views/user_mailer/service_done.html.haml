@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    = "Dear #{@time_slot.user.name},"
+    %br
+    %br
+    = "Good Day!"
+    %br
+    %br
+    = "Your booking has been finished!"
+    %br
+    %br
+    = render partial: 'user_mailer/signature'

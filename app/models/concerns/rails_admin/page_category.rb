@@ -1,4 +1,4 @@
-module Concerns::PageCategory::RailsAdminConfig
+module Concerns::RailsAdmin::PageCategory
   extend ActiveSupport::Concern
 
   included do

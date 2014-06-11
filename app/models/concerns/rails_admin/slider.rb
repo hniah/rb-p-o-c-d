@@ -1,4 +1,4 @@
-module Concerns::Slider::RailsAdminConfig
+module Concerns::RailsAdmin::Slider
   extend ActiveSupport::Concern
 
   included do

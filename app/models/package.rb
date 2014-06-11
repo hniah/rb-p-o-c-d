@@ -1,8 +1,12 @@
 class Package < ActiveRecord::Base
   extend Enumerize
 
-  include Concerns::Package::Association
-  include Concerns::Package::Validations
+  has_and_belongs_to_many :users, join_table: 'payments'
+  has_many :payments
+
+  validates_presence_of :session_type, :price, :name
+  validates_numericality_of :hours
+  validates_numericality_of :price_cents
 
   monetize :price_cents
 

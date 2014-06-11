@@ -1,7 +1,10 @@
 class Page < ActiveRecord::Base
-  include Concerns::Page::Validation
-  include Concerns::Page::RailsAdminConfig
-  include Concerns::Page::Association
+  belongs_to :page_category
+
+  include Concerns::RailsAdmin::Page
+
+  validates_presence_of :title, :article_alias, :description
+  validates_uniqueness_of :article_alias
 
   mount_uploader :intro_image, ImagePageUploader
 end

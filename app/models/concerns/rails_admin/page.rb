@@ -1,4 +1,4 @@
-module Concerns::Page::RailsAdminConfig
+module Concerns::RailsAdmin::Page
   extend ActiveSupport::Concern
 
   included do

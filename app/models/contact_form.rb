@@ -1,3 +1,3 @@
 class ContactForm < ActiveRecord::Base
-  include Concerns::ContactForm::Validation
+  validates_presence_of :name, :email, :message, :contact
 end

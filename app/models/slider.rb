@@ -1,8 +1,10 @@
 class Slider < ActiveRecord::Base
+  include Concerns::RailsAdmin::Slider
+
   extend Enumerize
   enumerize :published, in: [:publish, :unpublish]
 
-  include Concerns::Slider::Validation
-  include Concerns::Slider::RailsAdminConfig
+  validates_presence_of :title
+
   mount_uploader :image, ImageSliderUploader
 end

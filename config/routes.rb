@@ -27,7 +27,7 @@ Ocd::Application.routes.draw do
 
   get 'success_payment'             => 'payments#success_payment'
   get 'cancel_payment'              => 'payments#cancel_payment'
-  resources :payments
+  resources :payments , except: [:index]
 
   resources :feedbacks
 

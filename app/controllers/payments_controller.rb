@@ -6,10 +6,6 @@ class PaymentsController < ApplicationController
     store_location_for(:user, buy_package_path)
   end
 
-  def index
-
-  end
-
   def express_checkout
     package = selected_package
     response = create_response(package)

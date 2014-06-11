@@ -1,5 +1,8 @@
 class PageCategory < ActiveRecord::Base
-  include Concerns::PageCategory::Validation
-  include Concerns::PageCategory::Association
-  include Concerns::PageCategory::RailsAdminConfig
+  has_many :page
+
+  validates_presence_of :title, :page_category_alias
+  validates_uniqueness_of :page_category_alias
+
+  include Concerns::RailsAdmin::PageCategory
 end
