@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Promotion do
+describe LatestUpdate do
 
   context 'Validation' do
 

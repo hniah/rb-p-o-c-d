@@ -1,4 +1,4 @@
-module Concerns::RailsAdmin::Promotion
+module Concerns::RailsAdmin::LatestUpdate
   extend ActiveSupport::Concern
 
   included do

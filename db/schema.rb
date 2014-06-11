@@ -99,6 +99,14 @@ ActiveRecord::Schema.define(version: 20140609084642) do
     t.integer "location_id"
   end
 
+  create_table "latest_updates", force: true do |t|
+    t.string   "image"
+    t.string   "url"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locations", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -142,14 +150,6 @@ ActiveRecord::Schema.define(version: 20140609084642) do
     t.string   "status",           default: "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "promotions", force: true do |t|
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "url"
-    t.text     "description"
   end
 
   create_table "sliders", force: true do |t|
@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 20140609084642) do
     t.datetime "confirmation_sent_at"
     t.string   "block",                      default: "unblock"
     t.string   "changeable_address",         default: "no"
-    t.boolean  "subscribe_to_mailing_list"
+    t.boolean  "subscribe_to_mailing_list",  default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

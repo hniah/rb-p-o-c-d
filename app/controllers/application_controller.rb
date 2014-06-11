@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def home
     @sliders = Slider.all
-    @promotion_blocks = Promotion.all.order('created_at DESC').take(3)
+    @latest_update_blocks = LatestUpdate.all.order('created_at DESC').take(3)
     render :home
   end
 
