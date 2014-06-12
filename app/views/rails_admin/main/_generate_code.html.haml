@@ -1,2 +1,1 @@
-= text_field_tag 'code', rand_code = rand(36**8).to_s(36)
-
+%input#promotion_code_code{:maxlength => "255", :name => "promotion_code[code]", :size => "50", :type => "text", value: rand(36**8).to_s(36)}
