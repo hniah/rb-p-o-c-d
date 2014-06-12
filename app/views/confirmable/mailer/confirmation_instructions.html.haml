@@ -1,14 +1,4 @@
 %p
   Welcome #{@email}!
-%br
-%p
-  Thank you for signing up.
-%br
-%p
-  You can verify your email address through the link below:
-%p
-  = link_to 'Verify my email', confirmation_url(@resource, confirmation_token: @token)
-%br
-%p
-  Have a great day ahead!
-
+%p You can confirm your account email through the link below:
+%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)

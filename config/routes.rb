@@ -1,7 +1,7 @@
 Ocd::Application.routes.draw do
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, :controllers => { :registrations => :registrations }
 
   root :to => 'application#home'
 
