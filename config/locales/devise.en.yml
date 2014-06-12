@@ -3,7 +3,7 @@
 en:
   devise:
     confirmations:
-      confirmed: "Your account was successfully confirmed."
+      confirmed: "Your email address was successfully verified."
       send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
     failure:
@@ -15,7 +15,7 @@ en:
       not_found_in_database: "Invalid email or password."
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
-      unconfirmed: "You have to confirm your account before continuing."
+      unconfirmed: "Your email address has not been verified. Kindly do so through the link sent to your email. Thanks!"
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
