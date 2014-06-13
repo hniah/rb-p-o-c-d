@@ -7,6 +7,7 @@ class CreatePayments < ActiveRecord::Migration
       t.references :user
       t.references :package
       t.string :status, default: :pending
+      t.string :description
       t.timestamps
     end
   end

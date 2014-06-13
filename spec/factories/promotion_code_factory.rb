@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :promotion_code do
     code '123ABC'
-    hours 2
-    permanent false
+    package { create( :package_12_hours ) }
+    used false
   end
 end

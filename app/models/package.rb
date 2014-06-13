@@ -3,6 +3,7 @@ class Package < ActiveRecord::Base
 
   has_and_belongs_to_many :users, join_table: 'payments'
   has_many :payments
+  has_many :promotion_codes
 
   validates_presence_of :session_type, :price, :name
   validates_numericality_of :hours

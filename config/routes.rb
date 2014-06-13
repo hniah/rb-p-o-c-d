@@ -28,6 +28,8 @@ Ocd::Application.routes.draw do
   patch 'express_checkout'          => 'payments#express_checkout'
 
   get 'user_info'                   => 'users#info'
+  get 'user_new_promotion'          => 'users#new_promotion'
+  patch 'user_add_promotion'        => 'users#add_promotion'
 
   get 'success_payment'             => 'payments#success_payment'
   get 'cancel_payment'              => 'payments#cancel_payment'

@@ -12,6 +12,7 @@ describe Package do
   context 'Association' do
     it { should have_and_belong_to_many :users }
     it { should have_many :payments }
+    it { should have_many :promotion_codes }
   end
 
   describe ".all_packages_in_array" do

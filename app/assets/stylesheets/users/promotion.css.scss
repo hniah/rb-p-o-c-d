@@ -1,0 +1,35 @@
+#user-promotion-container {
+  position: relative;
+  @extend .row;
+
+  .help-link {
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .form-container {
+    @extend .col-md-12;
+
+    form {
+      @extend .form-horizontal;
+      label {
+        @extend .control-label;
+        @extend .col-sm-2;
+      }
+
+      .input-group {
+        @extend .col-md-4;
+
+        input {
+          @extend .form-control;
+        }
+      }
+
+      .div-button {
+        @extend .col-sm-offset-2;
+        @extend .col-sm-10;
+      }
+    }
+  }
+}
