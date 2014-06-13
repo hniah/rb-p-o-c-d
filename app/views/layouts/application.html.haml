@@ -24,7 +24,7 @@
 
   %body
     = render 'shared/top'
-
+    .clr
     = render 'shared/flash'
 
     #main-body-container
@@ -34,9 +34,9 @@
       -#    %img{:src => '/images/hand.gif'}
       .main-body
         = yield
-
+    .clr
     = render 'shared/mailing_list'
-
+    .clr
     = render 'shared/footer'
 
     :javascript
