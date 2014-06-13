@@ -1,7 +1,7 @@
 #page-heading
   = page_heading "Edit Booking"
 
-%div
+.content-box
   - if surcharge?(@time_slot.start_time)
     %b= "For weekend bookings: Please note that there will be an additional charge of $10, payable in cash to your housekeeper."
   %br
@@ -9,15 +9,15 @@
   - start_time = time_in_words_with_zone @time_slot.start_time
   = start_time
 
-= simple_form_for @time_slot, url: time_slot_path, method: :patch do |f|
-  = f.input :start_time, as: :datetimepicker, input_html: { value: start_time, size: 100 }
-  = f.input :id, as: :hidden
-  = f.input :housekeeper_id, collection: housekeeper_list, prompt: "Select housekeeper", label: "Housekeeper' name :"
-  = f.input :duration, collection: durations_list, prompt: "Select your duration", label: 'Duration :'
-  = f.input :remarks, as: :text, label: 'Remarks :'
-  = f.submit "Update this slot", class: 'btn'
-  = " or "
-  = link_to "Cancel", :back
+  = simple_form_for @time_slot, url: time_slot_path, method: :patch do |f|
+    = f.input :start_time, as: :datetimepicker, input_html: { value: start_time, size: 100 }
+    = f.input :id, as: :hidden
+    = f.input :housekeeper_id, collection: housekeeper_list, prompt: "Select housekeeper", label: "Housekeeper' name :"
+    = f.input :duration, collection: durations_list, prompt: "Select your duration", label: 'Duration :'
+    = f.input :remarks, as: :text, label: 'Remarks :'
+    = f.submit "Update this slot", class: 'btn'
+    = " or "
+    = link_to "Cancel", :back
 :javascript
   $('input.datetimepicker').datetimepicker({
                            	timeFormat: 'HH:mm:ss z',

@@ -1,7 +1,7 @@
 #contact-forms-new-container
   = page_heading "Contact Us"
-
-  .left
+  .content-box
+    .left
     %br
     %p{:style => 'font-size:18px; font-weight: bold'}= "Our Cleaning Department LLP"
     %p{:style => 'font-size:10px' }= "(T14LL0310H)"
@@ -32,7 +32,7 @@
           ="Singapore 461057"
           %br
           ="*Appointment is required. Thanks!"
-  .right
+    .right
     %br
     .form-container
       = form_tag(contact_forms_path, method: :post) do

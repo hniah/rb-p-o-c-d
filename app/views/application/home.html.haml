@@ -1,11 +1,12 @@
-.home-container
-  %ul.bxslider
-    - @sliders.each do |slider|
-      %li
-        %img{:src => slider.image, title: slider.caption}
-  .home-about
+#application-home-container
+  #home-slider
+    %ul.bxslider
+      - @sliders.each do |slider|
+        %li
+          %img{:src => slider.image, title: slider.caption}
+  #home-about
     = render partial: 'about'
-  .home-promotion-blocks
+  #home-promotion-blocks
     .home-promotion-title
       = "Latest Updates"
     = render partial: 'promotion_blocks'

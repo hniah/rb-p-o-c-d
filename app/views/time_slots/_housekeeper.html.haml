@@ -1,37 +1,37 @@
 .time-slots-housekeeper-container
-  - @time_slots = TimeSlot.where(housekeeper_id: housekeeper.id)
-  %h1 Book a session
-  %i
-    = "Housekeeper : "
-    = housekeeper.name
-  %div
-    =link_to 'Previous week', time_slots_path(week: (@week >= 1)? @week - 1 : @week = 0 ) , class: 'btn'
-    =link_to 'Next week', time_slots_path(week: @week + 1), class: 'btn'
-  %div
-    %b="Note: For weekend bookings, an additional charge of $10 (per session) applies."
-  %br
-  %table.table.table-bordered.calendar-table
-    %thead
-      %tr
-        %th Time
-        %th Monday
-        %th Tuesday
-        %th Wednesday
-        %th Thursday
-        %th Friday
-        %th Saturday
-        %th Sunday
-    %tbody
-      - day = Date.today.beginning_of_week + @week.week
-      %tr
-        %th
-        - (0..6).each do |i|
-          %th= format_day day + i
-      - booking_time_range.each do |time|
+  .content-box
+    - @time_slots = TimeSlot.where(housekeeper_id: housekeeper.id)
+    %i
+      = "Housekeeper : "
+      = housekeeper.name
+    %div
+      =link_to 'Previous week', time_slots_path(week: (@week >= 1)? @week - 1 : @week = 0 ) , class: 'btn'
+      =link_to 'Next week', time_slots_path(week: @week + 1), class: 'btn'
+    %div
+      %b="Note: For weekend bookings, an additional charge of $10 (per session) applies."
+    %br
+    %table.table.table-bordered.calendar-table
+      %thead
         %tr
-          %th= time.strftime('%l:%M%P')
+          %th Time
+          %th Monday
+          %th Tuesday
+          %th Wednesday
+          %th Thursday
+          %th Friday
+          %th Saturday
+          %th Sunday
+      %tbody
+        - day = Date.today.beginning_of_week + @week.week
+        %tr
+          %th
           - (0..6).each do |i|
-            %td!= display_booked_slot_info(@time_slots, day + i, time, housekeeper.id)
-      %tr
-        %th= "10:00pm"
-        %td{colspan: 7}
+            %th= format_day day + i
+        - booking_time_range.each do |time|
+          %tr
+            %th= time.strftime('%l:%M%P')
+            - (0..6).each do |i|
+              %td!= display_booked_slot_info(@time_slots, day + i, time, housekeeper.id)
+        %tr
+          %th= "10:00pm"
+          %td{colspan: 7}

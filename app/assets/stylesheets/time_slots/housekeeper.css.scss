@@ -1,6 +1,9 @@
 .time-slots-housekeeper-container {
-  table.calendar-table {
+  float: left;
+  width: 100%;
+  margin-bottom: 50px;
 
+  table.calendar-table {
     td {
       padding: 0;
       text-align: center;
@@ -16,10 +19,10 @@
     }
 
     .available {
-      background-color: #5BC0DE;
+      background-color: #7DB0AE;
 
       a {
-        color: #5BC0DE;
+        color: #ffffff;
 
         &:hover {
           color: #ffffff;

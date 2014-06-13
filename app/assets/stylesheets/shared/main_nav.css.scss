@@ -1,0 +1,30 @@
+#shared-main-nav-container {
+  float: left;
+  margin: 15px 0 0 0;
+
+  ul.main-nav {
+    @extend .nav;
+    @extend .nav-pills;
+    width: 450px;
+    margin: 0 auto;
+    padding: 10px 0 10px 0;
+
+    li.active{
+      a{
+        background: #e6d5d4;
+        color: #43273b;
+      }
+
+      a:hover{
+        background: #e6d5d4;
+        color: #ffffff;
+      }
+    }
+
+    li{
+      a.hover{
+        color: #43273b;
+      }
+    }
+  }
+}

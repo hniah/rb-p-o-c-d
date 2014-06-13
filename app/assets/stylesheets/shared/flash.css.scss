@@ -1,0 +1,14 @@
+#shared-flash-container{
+  @extend .container;
+
+  .notice {
+    @extend .alert;
+    background: #cfd9d1;
+    color: #306F3E;
+  }
+
+  .warning {
+    @extend .alert;
+    @extend .alert-danger;
+  }
+}

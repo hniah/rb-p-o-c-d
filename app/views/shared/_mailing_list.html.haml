@@ -1,10 +1,11 @@
 #shared-mailing-list-container
-  .div-mailing-list
-    .left
-      %h3= "Sign up for mailing list"
-    .right
-      %h3= ">>> type your email here >>>"
-      = form_tag( mailchimp_api_path , method: :post, id: "subscribe") do
-        .div_input
-          = text_field_tag :mailchimp_email
-          = submit_tag("Sign me up!")
+  #shared-mailing-list
+    .div-mailing-list
+      .left
+        %h3= "Sign up for mailing list"
+      .right
+        %h3= ">>> type your email here >>>"
+        = form_tag( mailchimp_api_path , method: :post, id: "subscribe") do
+          .div_input
+            = text_field_tag :mailchimp_email
+            = submit_tag("Sign me up!")

@@ -1,0 +1,25 @@
+#shared-footer-container{
+  float: left;
+  width: 100%;
+
+  #shared-footer{
+    @extend .container;
+
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-top: 1px solid #BAC5C5;
+    padding-top: 10px;
+
+    ul.ul-nav{
+      margin: 0 auto;
+      width: 760px;
+
+      li{
+
+        a{
+          color: #000000;
+        }
+      }
+    }
+  }
+}

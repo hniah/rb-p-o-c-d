@@ -1,29 +1,28 @@
 #devise-sessions-new-container
   .form-container
     = page_heading "Sign in"
+    .content-box
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .email.form-group
+          = f.label :email
+          .input-group
+            = f.email_field :email, autofocus: true
 
-      .email.form-group
-        = f.label :email
-        .input-group
-          = f.email_field :email, autofocus: true
+        .password.form-group
+          = f.label :password
+          .input-group
+            = f.password_field :password, autocomplete: "off"
 
-      .password.form-group
-        = f.label :password
-        .input-group
-          = f.password_field :password, autocomplete: "off"
-
-      .form-group
-        .col-md-offset-2.col-md-10
-          .checkbox
-            = f.check_box :remember_me
-            = f.label :remember_me
-        .col-md-offset-2.col-md-10
-          %ul.navigation
-            %li
-              = link_to "Forgot your password?", new_user_password_path
-            %li
-              = link_to "New to OCD? Sign up here.", new_user_registration_path
-
-      .submit= f.submit "Sign in"
+        .form-group
+          .col-md-offset-2.col-md-10
+            .checkbox
+              = f.check_box :remember_me
+              = f.label :remember_me
+          .col-md-offset-2.col-md-10
+            %ul.navigation
+              %li
+                = link_to "Forgot your password?", new_user_password_path
+              %li
+                = link_to "New to OCD? Sign up here.", new_user_registration_path
+        .submit= f.submit "Sign in"

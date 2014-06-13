@@ -1,13 +1,13 @@
 !!!
 %html
   %head
-    = favicon_link_tag 'favicon.ico'
+    = favicon_link_tag 'logo.ico'
+
     %title= page_title
     //for facebook
     %meta{:content => page_title, :property => "og:title"}
     %meta{:content => page_image, :property => "og:image"}
     %meta{:content => page_desc, :property => "og:description"}
-
 
     //for google
     %meta{:content => page_title, :name => "title"}
@@ -23,31 +23,22 @@
     = csrf_meta_tags
 
   %body
-    .user-nav-container
-      %ul.ul-nav
-        - unless user_signed_in?
-          %li{class: display_active_menu_item(new_user_registration_path)}
-            = link_to 'Register', new_user_registration_path
-        - if user_signed_in?
-          %li{class: display_active_menu_item(user_info_path)}
-            = link_to 'My Account', user_info_path
-          %li= link_to 'Sign out', destroy_user_session_path, method: :delete
-        - else
-          %li{class: display_active_menu_item(new_user_session_path)}
-            = link_to 'Sign in', new_user_session_path
-    .banner-container
-      OCD BANNER
-    = render 'shared/main_nav'
+    = render 'shared/top'
 
-    .main-body
-      - if notice.present?
-        %p.notice= notice
-      - if alert.present?
-        %p.warning= alert
+    = render 'shared/flash'
 
-      = yield
+    #main-body-container
+
+      -#- if current_page?(buy_package_path)
+      -#  #image-package-page
+      -#    %img{:src => '/images/hand.gif'}
+      .main-body
+        = yield
+
     = render 'shared/mailing_list'
+
     = render 'shared/footer'
+
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -56,5 +47,3 @@
 
       ga('create', 'UA-51593482-1', 'ourcleaningdepartment.com');
       ga('send', 'pageview');
-
-

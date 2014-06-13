@@ -1,92 +1,93 @@
 .devise-registration-edit-container
   .form-container
     = page_heading "Edit #{resource_name.to_s.humanize}"
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      = devise_error_messages!
+    .content-box
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        = devise_error_messages!
 
-      .name.form-group
-        = f.label :name, class: 'required'
-        .input-group
-          = f.text_field :name, autofocus: true
+        .name.form-group
+          = f.label :name, class: 'required'
+          .input-group
+            = f.text_field :name, autofocus: true
 
-      .email.form-group
-        = f.label :email, class: 'required'
-        .input-group
-          = f.email_field :email
+        .email.form-group
+          = f.label :email, class: 'required'
+          .input-group
+            = f.email_field :email
 
-      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        %div
-          Currently waiting confirmation for: #{resource.unconfirmed_email}
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %div
+            Currently waiting confirmation for: #{resource.unconfirmed_email}
 
-      .password.form-group
-        = f.label "New password"
-        .input-group
-          = f.password_field :password, autocomplete: "off"
-          .help-block="(Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.)"
+        .password.form-group
+          = f.label "New password"
+          .input-group
+            = f.password_field :password, autocomplete: "off"
+            .help-block="(Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.)"
 
-      .password-confirmation.form-group
-        = f.label "New password confirmation"
-        .input-group
-          = f.password_field :password_confirmation, autocomplete: "off"
+        .password-confirmation.form-group
+          = f.label "New password confirmation"
+          .input-group
+            = f.password_field :password_confirmation, autocomplete: "off"
 
-      .address.form-group
-        = f.label :address
-        .input-group
-          - if current_user.changeable_address == "no"
-            = f.text_area :address, disabled: "disabled"
-          - else
-            = f.text_area :address
+        .address.form-group
+          = f.label :address
+          .input-group
+            - if current_user.changeable_address == "no"
+              = f.text_area :address, disabled: "disabled"
+            - else
+              = f.text_area :address
 
-      .unit.form-group
-        = f.label :unit
-        .input-group
-          - if current_user.changeable_address == "no"
-            = f.text_field :unit, disabled: "disabled"
-          - else
-            = f.text_field :unit
+        .unit.form-group
+          = f.label :unit
+          .input-group
+            - if current_user.changeable_address == "no"
+              = f.text_field :unit, disabled: "disabled"
+            - else
+              = f.text_field :unit
 
-      .postal.form-group
-        = f.label :postal
-        .input-group
-          - if current_user.changeable_address == "no"
-            = f.text_field :postal, disabled: "disabled"
-          - else
-            = f.text_field :postal
+        .postal.form-group
+          = f.label :postal
+          .input-group
+            - if current_user.changeable_address == "no"
+              = f.text_field :postal, disabled: "disabled"
+            - else
+              = f.text_field :postal
 
-          .help-block="(Please contact OCD should you need to update a new address.)"
+            .help-block="(Please contact OCD should you need to update a new address.)"
 
-      .instruction.form-group
-        = f.label :instruction, 'Special Instruction'
-        .input-group
-          = f.text_area :instruction
-          .help-block="(eg. I have two dogs at home. My main priority is ironing.)"
+        .instruction.form-group
+          = f.label :instruction, 'Special Instruction'
+          .input-group
+            = f.text_area :instruction
+            .help-block="(eg. I have two dogs at home. My main priority is ironing.)"
 
-      .contact_number.form-group
-        = f.label :contact_number, class: 'required'
-        .input-group
-          = f.text_field :contact_number
+        .contact_number.form-group
+          = f.label :contact_number, class: 'required'
+          .input-group
+            = f.text_field :contact_number
 
-      .alternative_contact_number.form-group
-        = f.label :alternative_contact_number, class: 'required'
-        .input-group
-          = f.text_field :alternative_contact_number
+        .alternative_contact_number.form-group
+          = f.label :alternative_contact_number, class: 'required'
+          .input-group
+            = f.text_field :alternative_contact_number
 
-      .password_current.form-group
-        = f.label :current_password
-        .input-group
-          = f.password_field :current_password, autocomplete: "off"
-          .help-block="(We need your current password to confirm your changes.)"
+        .password_current.form-group
+          = f.label :current_password
+          .input-group
+            = f.password_field :current_password, autocomplete: "off"
+            .help-block="(We need your current password to confirm your changes.)"
 
-      .form-group
-        .div-button
-          = f.submit "Update", class: "button-submit"
-          #{link_to "Back", :back, class: "button-back"}
-      %br
-    %h3 Delete my account
-    %p= "I wish to delete my account."
-    .cancel_acc_button
-      = form_tag(registration_path(resource_name), method: :delete) do
-        = button_tag "Delete my account", type: 'button', class: "button-warning", id: "delete_account_button"
+        .form-group
+          .div-button
+            = f.submit "Update", class: "button-submit"
+            #{link_to "Back", :back, class: "button-back"}
+        %br
+      %h3 Delete my account
+      %p= "I wish to delete my account."
+      .cancel_acc_button
+        = form_tag(registration_path(resource_name), method: :delete) do
+          = button_tag "Delete my account", type: 'button', class: "button-warning", id: "delete_account_button"
 :javascript
   $('#delete_account_button').click(function(e) {
     bootbox.confirm({

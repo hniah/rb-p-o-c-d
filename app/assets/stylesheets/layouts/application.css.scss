@@ -1,0 +1,101 @@
+// form styling
+label.required:after {
+  content: " *";
+}
+
+.error{
+  @extend .text-danger;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.clr-dashed{
+  clear: both;
+  height: 1px;
+  border-top: 1px dashed #428bca;
+}
+
+.clr{
+  clear: both;
+}
+
+a{
+  color: #43273b;
+  font-family: 'Alike Angular', serif;
+}
+
+h1{
+  font-family: 'Abril Fatface', cursive;
+  color: #000000;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  font-weight: bold;
+}
+
+body, p{
+  font-family: 'Alike Angular', serif;
+  color: #000000;
+}
+
+
+
+ul.ul-nav{
+  margin: 10px 0 10px 0;
+
+  li{
+    list-style: none;
+    float: left;
+    margin-left: 10px ;
+    padding-left: 10px;
+    border-left: 1px solid #BAC5C5;
+  }
+
+  li:first-child{
+    border: none;
+  }
+
+  li.active a{
+    color: #2a6496;
+    text-decoration: underline;
+  }
+}
+
+.content-box{
+  float: left;
+  width: 100%;
+  box-shadow: -5px 15px 35px 15px #888888;
+  background: #ffffff;
+  padding: 35px 15px 20px 15px;
+  border: 1px solid #a4b2a6;
+}
+
+
+#main-body-container{
+  float: left;
+  width: 100%;
+  background: url("/images/main-body-bg.png") repeat-x top;
+
+  .main-body {
+    @extend .container;
+    min-height: 500px;
+  }
+
+  #image-package-page{
+    position: absolute;
+    left: 0;
+    top: 45%;
+    z-index: 1;
+
+    img{
+      width: 40%;
+    }
+  }
+}
+.modal-header .close{
+  float: right;
+}
+
+
+

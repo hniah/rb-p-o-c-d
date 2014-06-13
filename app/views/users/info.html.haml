@@ -2,146 +2,147 @@
   .help-link
     = link_to image_tag("help/link.png", :border => 0, :alt => 'Tips', :title => 'Tips'), tips_user_path, {target: "_blank"}
   = page_heading "User Account"
-  %div.user_info
-    %h3 User information
-    %label Name :
-    = current_user.name
-    %br
-    %label Email :
-    = current_user.email
-    %br
-    %label Address :
-    = current_user.address
-    %br
-    %label Postal :
-    = current_user.postal
-    %br
-    %label Total bought hours  :
-    = current_user.total_hours_bought
-    %br
-    %label Current number of available hours :
-    = current_user.total_hours_current
-    %div
-      %ul
-        %li
-          = link_to "Edit account", edit_user_registration_path
-        %li
-          = link_to "Put Promotion Code", user_new_promotion_path
-    %br
-    %div
-      %p DID YOU KNOW?
-      %p You have the choice of varying the duration of each cleaning session according to your household needs.
-      %p Your remaining sessions are denominated in hours so that you could book 3-/4-/5-hour sessions accordingly.
-  .user_bookings
-    %h3 User bookings
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Start Time
-          %th End Time
-          %th Duration
-          %th Housekeeper
-          %th Remarks
-          %th Action
-      %tbody
-      - current_user.time_slots.each do |t|
-        %tr
-          %td= time_in_words_with_day t.start_time
-          %td= time_in_words_with_day t.end_time
-          %td
-            = to_durations(t.start_time, t.end_time)
-            = " hours"
-          %td= t.housekeeper.name
-          %td= t.remarks
-          %td
-            %div.pull-left
-              - if refund?(t.start_time)
-                = form_tag(edit_time_slot_path(t), method: :get) do
-                  = button_tag "Modify", type: 'button', class: 'btn modify_button'
-            %div.pull-left
-              - if show_action_button?(t.start_time)
+  .content-box
+    .user_info
+      %h3 User information
+      %label Name :
+      = current_user.name
+      %br
+      %label Email :
+      = current_user.email
+      %br
+      %label Address :
+      = current_user.address
+      %br
+      %label Postal :
+      = current_user.postal
+      %br
+      %label Total bought hours  :
+      = current_user.total_hours_bought
+      %br
+      %label Current number of available hours :
+      = current_user.total_hours_current
+      %div
+        %ul
+          %li
+            = link_to "Edit account", edit_user_registration_path
+          %li
+            = link_to "Enter Promotion Code", user_new_promotion_path
+      %br
+      %div
+        %p DID YOU KNOW?
+        %p You have the choice of varying the duration of each cleaning session according to your household needs.
+        %p Your remaining sessions are denominated in hours so that you could book 3-/4-/5-hour sessions accordingly.
+    .user_bookings
+      %h3 User bookings
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Start Time
+            %th End Time
+            %th Duration
+            %th Housekeeper
+            %th Remarks
+            %th Action
+        %tbody
+        - current_user.time_slots.each do |t|
+          %tr
+            %td= time_in_words_with_day t.start_time
+            %td= time_in_words_with_day t.end_time
+            %td
+              = to_durations(t.start_time, t.end_time)
+              = " hours"
+            %td= t.housekeeper.name
+            %td= t.remarks
+            %td
+              %div.pull-left
                 - if refund?(t.start_time)
-                  = form_tag(time_slot_path(t), method: :delete) do
-                    = button_tag "Delete", type: 'button', class: 'btn delete_button'
-                - else
-                  = form_tag(time_slot_path(t), method: :delete) do
-                    = button_tag "Delete", type: 'button', class: 'btn delete_button_without_refund'
-            - unless show_action_button?(t.start_time)
-              - unless t.contain_feedback?
-                %div.pull-left
-                  %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
-                  = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
-  :javascript
-    $(function() {
-      $('.delete_button_without_refund').click(function(e) {
-        bootbox.confirm({
-          title: "Notification",
-          message: "Last minute cancellation: There will not be a refund if you cancel this booking. Are you sure you want to proceed?",
-          buttons: {
-              cancel: {
-                  label: "No, keep the booking",
-                  className: "btn-default pull-left"
-              },
-              confirm: {
-                  label: "Yes, cancel without refund",
-                  className: "btn-danger pull-right"
-              }
-          },
-          callback: function(result) {
-            if (result) {
-              $('.delete_button_without_refund').parents('form').submit();
-            } else {
-
+                  = form_tag(edit_time_slot_path(t), method: :get) do
+                    = button_tag "Modify", type: 'button', class: 'btn modify_button'
+              %div.pull-left
+                - if show_action_button?(t.start_time)
+                  - if refund?(t.start_time)
+                    = form_tag(time_slot_path(t), method: :delete) do
+                      = button_tag "Delete", type: 'button', class: 'btn delete_button'
+                  - else
+                    = form_tag(time_slot_path(t), method: :delete) do
+                      = button_tag "Delete", type: 'button', class: 'btn delete_button_without_refund'
+              - unless show_action_button?(t.start_time)
+                - unless t.contain_feedback?
+                  %div.pull-left
+                    %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
+                    = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
+:javascript
+  $(function() {
+    $('.delete_button_without_refund').click(function(e) {
+      bootbox.confirm({
+        title: "Notification",
+        message: "Last minute cancellation: There will not be a refund if you cancel this booking. Are you sure you want to proceed?",
+        buttons: {
+            cancel: {
+                label: "No, keep the booking",
+                className: "btn-default pull-left"
+            },
+            confirm: {
+                label: "Yes, cancel without refund",
+                className: "btn-danger pull-right"
             }
+        },
+        callback: function(result) {
+          if (result) {
+            $('.delete_button_without_refund').parents('form').submit();
+          } else {
+
           }
-        })
-      });
+        }
+      })
+    });
 
-      $('.delete_button').click(function(e) {
-        bootbox.confirm({
-          title: "Notification",
-          message: "Are you sure you want to proceed?",
-          buttons: {
-              cancel: {
-                  label: "No, keep the booking",
-                  className: "btn-default pull-left"
-              },
-              confirm: {
-                  label: "Yes, cancel",
-                  className: "btn-danger pull-right"
-              }
-          },
-          callback: function(result) {
-            if (result) {
-              $('.delete_button').parents('form').submit();
-            } else {
-
+    $('.delete_button').click(function(e) {
+      bootbox.confirm({
+        title: "Notification",
+        message: "Are you sure you want to proceed?",
+        buttons: {
+            cancel: {
+                label: "No, keep the booking",
+                className: "btn-default pull-left"
+            },
+            confirm: {
+                label: "Yes, cancel",
+                className: "btn-danger pull-right"
             }
+        },
+        callback: function(result) {
+          if (result) {
+            $('.delete_button').parents('form').submit();
+          } else {
+
           }
-        })
-      });
+        }
+      })
+    });
 
-      $('.modify_button').click(function(e) {
-        bootbox.confirm({
-          title: "Notification",
-          message: "Are you sure you want to proceed?",
-          buttons: {
-              cancel: {
-                  label: "No, keep the booking",
-                  className: "btn-default pull-left"
-              },
-              confirm: {
-                  label: "Yes, modify",
-                  className: "btn-primary pull-right"
-              }
-          },
-          callback: function(result) {
-            if (result) {
-              $('.modify_button').parents('form').submit();
-            } else {
-
+    $('.modify_button').click(function(e) {
+      bootbox.confirm({
+        title: "Notification",
+        message: "Are you sure you want to proceed?",
+        buttons: {
+            cancel: {
+                label: "No, keep the booking",
+                className: "btn-default pull-left"
+            },
+            confirm: {
+                label: "Yes, modify",
+                className: "btn-primary pull-right"
             }
+        },
+        callback: function(result) {
+          if (result) {
+            $('.modify_button').parents('form').submit();
+          } else {
+
           }
-        })
-      });
-    })
+        }
+      })
+    });
+  })
