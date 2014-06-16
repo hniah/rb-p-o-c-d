@@ -57,6 +57,11 @@
           .input-group
             = f.text_field :alternative_contact_number
 
+        .how_did_you_hear_about_us.form-group
+          = f.label :how_did_you_hear_about_us
+          .input-group
+            = f.select :how_did_you_hear_about_us, options_for_select(how_did_you_hear_about_us_list), {:prompt => "Please choose"}
+
         .form-group
           .col-md-offset-2.col-md-10
             .checkbox

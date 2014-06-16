@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20140611094005) do
     t.string   "postal"
     t.string   "instruction"
     t.string   "alternative_contact_number"
+    t.string   "how_did_you_hear_about_us"
     t.string   "contact_number"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"

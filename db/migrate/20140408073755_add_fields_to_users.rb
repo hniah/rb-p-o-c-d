@@ -6,5 +6,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
     add_column :users, :postal,      :string
     add_column :users, :instruction, :string
     add_column :users, :alternative_contact_number, :string
+    add_column :users, :how_did_you_hear_about_us, :string
   end
 end

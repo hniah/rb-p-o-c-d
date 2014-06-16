@@ -53,6 +53,7 @@ module Concerns::RailsAdmin::User
         field :postal
         field :instruction
         field :contact_number
+        field :how_did_you_hear_about_us
         field :sign_in_count
         field :current_sign_in_at
         field :last_sign_in_at
