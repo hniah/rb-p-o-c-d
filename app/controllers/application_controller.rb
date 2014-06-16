@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   def home
     @sliders = Slider.all
     @latest_update_blocks = LatestUpdate.all.order('created_at DESC').take(3)
+
+    @about_intro = Page.find_by_article_alias('about_intro')
     render :home
   end
 
