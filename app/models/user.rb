@@ -44,12 +44,20 @@ class User < ActiveRecord::Base
     return true if (Rails.env.test? && !testing)
     list_id = ENV['MAILCHIMP_USER_OCD_ID']
 
-    response = Rails.configuration.mailchimp.lists.subscribe({
+    Rails.configuration.mailchimp.lists.subscribe({
                                                                id: list_id,
                                                                email: {email: self.email},
                                                                name: {name: self.name},
                                                                double_optin: false,
                                                              })
-    response
+  rescue Gibbon::MailChimpError => e
+    case e.code
+    when -100
+      errors[:base] << "Please provide a valid email address to join our mailing list."
+    when 214
+      errors[:base] << "This email has already subscribed to our Mailing List."
+    else
+      errors[:base] << e.message
+    end
   end
 end
