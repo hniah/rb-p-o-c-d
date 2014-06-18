@@ -29,7 +29,7 @@ RailsAdmin.config do |config|
     bulk_delete
     show
     edit do
-      except ['Payment', 'Feedback','ContactForm']
+      except ['Feedback','ContactForm']
     end
     delete do
       except ['Page']
