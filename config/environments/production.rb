@@ -86,7 +86,7 @@ Ocd::Application.configure do
 
   #Paypal
   config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :production
+    # ActiveMerchant::Billing::Base.mode = :production
     paypal_options = {
       login: ENV['PAYPAL_LOGIN'],
       password: ENV["PAYPAL_PASSWORD"],
