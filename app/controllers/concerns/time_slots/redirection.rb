@@ -18,17 +18,17 @@ module Concerns::TimeSlots::Redirection
     end
 
     def create_time_slot_successful
-      flash[:notice] = "Booking created successfully"
+      flash[:notice] = "You have booked a session successfully."
       redirect_to time_slots_path
     end
 
     def update_time_slot_successful
-      flash[:notice] = "Update booking successfully"
+      flash[:notice] = "Your booking has been updated successfully."
       redirect_to user_info_path
     end
 
     def destroy_time_slot_successful
-      flash[:notice] = "Booking is destroyed successfully"
+      flash[:notice] = "Your booking has been cancelled successfully."
       redirect_to user_info_path
     end
   end

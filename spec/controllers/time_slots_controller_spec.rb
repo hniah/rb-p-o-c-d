@@ -77,7 +77,7 @@ describe TimeSlotsController do
                                                                }) }
 
       it "should create a block of bookings" do
-        flash[:notice].should eq "Booking created successfully"
+        flash[:notice].should eq "You have booked a session successfully."
         response.should redirect_to time_slots_path
       end
     end
@@ -162,7 +162,7 @@ describe TimeSlotsController do
       let(:user) { time_slot.user }
 
       it 'should be destroyed' do
-        flash[:notice].should eq "Booking is destroyed successfully"
+        flash[:notice].should eq "Your booking has been cancelled successfully."
         expect { TimeSlot.find(id) }.to raise_error
         response.should redirect_to user_info_path
       end
@@ -230,7 +230,7 @@ describe TimeSlotsController do
       before { do_request }
 
       it 'should be redirect to user info' do
-        flash[:notice].should eq "Update booking successfully"
+        flash[:notice].should eq "Your booking has been updated successfully."
         response.should redirect_to user_info_path
       end
     end

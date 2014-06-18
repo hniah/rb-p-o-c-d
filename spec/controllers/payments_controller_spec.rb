@@ -48,7 +48,7 @@ describe PaymentsController do
       let(:token) { payment.express_token }
 
       it 'payment should be updated' do
-        flash[:notice].should eq "Package bought successfully!"
+        flash[:notice].should eq "You have purchased a package."
         response.should redirect_to time_slots_path
       end
     end
@@ -75,7 +75,7 @@ describe PaymentsController do
     end
 
     it 'payment should be destroyed' do
-      flash[:alert].should eq "Transaction destroyed!"
+      flash[:alert].should eq "Transaction cancelled."
       response.should redirect_to buy_package_path
     end
   end

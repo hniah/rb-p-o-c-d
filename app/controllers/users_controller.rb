@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def add_promotion_code_successful
-    flash[:notice] = "Added promotion code successfully"
+    flash[:notice] = "Your promotion code has been accepted."
     redirect_to user_info_path
   end
 

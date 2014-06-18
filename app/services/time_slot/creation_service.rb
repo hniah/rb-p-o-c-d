@@ -14,11 +14,11 @@ class TimeSlot::CreationService < Struct.new(:listener)
     end
 
     unless time_slot.affordable_by?(user, duration)
-      listener.redirect_to_buy_package('Insufficient hours (credit) in account. Please buy packages to booking.') and return
+      listener.redirect_to_buy_package('You do not have sufficient hours left to proceed with the booking. Please purchase a new package to continue.') and return
     end
 
     if time_slot.unbookable_after?(2)
-      listener.redirect_to_bookings_path('Time Slot is only bookable after 2 hours from current time.') and return
+      listener.redirect_to_bookings_path('Next earliest timeslot available for booking is 2 hours from current time.') and return
     end
 
     unless time_slot.end_time_valid?(3,5)

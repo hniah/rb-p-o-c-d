@@ -14,7 +14,7 @@ describe 'Book a session workflow' do
     fill_in "Password", with: user.password
     click_button "Sign in"
 
-    page.should have_selector('div', text: "Signed in successfully.")
+    page.should have_selector('div', text: "You are now signed in.")
 
     click_on "Booking"
     my_date = Time.zone.now + 1.days
@@ -27,7 +27,7 @@ describe 'Book a session workflow' do
     fill_in "Remarks", with: "Ho Chi Minh City"
     click_on "Book this slot"
 
-    page.should have_selector('div', text: "Booking created successfully")
+    page.should have_selector('div', text: "You have booked a session successfully.")
 
     my_date = my_date.change(hour: 14, min: 00)
 

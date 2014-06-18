@@ -26,14 +26,14 @@ class PaymentsController < ApplicationController
     flash[:alert] = e.message
 
   ensure
-    flash[:notice] = "Package bought successfully!"
+    flash[:notice] = "You have purchased a package."
     redirect_to time_slots_path
   end
 
   def cancel_payment
     payment = Payment.find_by_express_token(express_token)
     if payment.destroy!
-      flash[:alert] = "Transaction destroyed!"
+      flash[:alert] = "Transaction cancelled."
       redirect_to buy_package_path
     end
   end

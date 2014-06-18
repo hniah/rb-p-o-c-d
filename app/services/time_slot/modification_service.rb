@@ -11,7 +11,7 @@ class TimeSlot::ModificationService < Struct.new(:listener)
     end
 
     if time_slot.unbookable_after?(2)
-      listener.redirect_to_user_info_path('Time Slot is only bookable after 2 hours from current time.') and return
+      listener.redirect_to_user_info_path('Next earliest timeslot available for booking is 2 hours from current time.') and return
     end
 
     unless time_slot.end_time_valid?(3, 5)
