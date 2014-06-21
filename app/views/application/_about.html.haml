@@ -1,5 +1,6 @@
 #application-about-container
   .home-about-title
     Our Cleaning Department
-  = @about_intro.description.html_safe
-  = link_to 'more ...', about_us_path
+  - unless @about_intro.nil?
+    = @about_intro.description.html_safe
+    = link_to 'more ...', about_us_path

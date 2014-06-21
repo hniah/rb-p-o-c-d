@@ -1,10 +1,11 @@
 #users-info-container
   .help-link
     = link_to image_tag("help/link.png", :border => 0, :alt => 'Tips', :title => 'Tips'), tips_user_path, {target: "_blank"}
-  = page_heading "User Account"
+  = page_heading "My Account"
   .content-box
     .user_info
-      %h3 User information
+      %h3
+        ="My Information"
       %label Name :
       = current_user.name
       %br
@@ -34,7 +35,8 @@
         %p You have the choice of varying the duration of each cleaning session according to your household needs.
         %p Your remaining sessions are denominated in hours so that you could book 3-/4-/5-hour sessions accordingly.
     .user_bookings
-      %h3 User bookings
+      %h3
+        ="My Bookings"
       %table.table.table-striped
         %thead
           %tr

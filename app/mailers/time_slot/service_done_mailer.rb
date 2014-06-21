@@ -11,9 +11,4 @@ class TimeSlot::ServiceDoneMailer < ActionMailer::Base
          template_name: 'service_done'
     ).deliver
   end
-
-  protected
-  def recipients
-    Admin.pluck(:email)
-  end
 end

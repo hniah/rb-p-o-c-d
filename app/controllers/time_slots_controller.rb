@@ -1,5 +1,5 @@
 class TimeSlotsController < ApplicationController
-  before_action :authenticate_user!
+  before_filter :authenticate_user!
 
   include Concerns::TimeSlots::Redirection
 

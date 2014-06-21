@@ -14,6 +14,6 @@ describe 'User Workflow' do
     page.should have_selector('div', text: 'Signed in successfully.')
     click_on "My Account"
 
-    page.should have_selector('h1', text: 'User Account')
+    page.should have_selector('h1', text: 'My Account')
   end
 end
