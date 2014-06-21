@@ -6,7 +6,7 @@ class TimeSlot::ServiceDoneMailer < ActionMailer::Base
   def send_notification_to_user(time_slot)
     @time_slot = time_slot
     mail(to: time_slot.user.email,
-         subject: 'Our Cleaning Department: Service Done',
+         subject: 'Our Cleaning Department: We would like to hear from you!',
          template_path: 'user_mailer',
          template_name: 'service_done'
     ).deliver

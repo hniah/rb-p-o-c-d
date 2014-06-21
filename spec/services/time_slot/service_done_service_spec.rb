@@ -35,15 +35,27 @@ describe TimeSlot::ServiceDoneService do
                                   end_time: Time.zone.now.change(hour: 11, min: 0),
                                   user: user
         ) }
-        let!(:time_slot2) { create(:time_slot,
-                                  start_time: time_with_zone(hour: 8, min: 0) - 1.day,
-                                  end_time: time_with_zone(hour: 11, min: 0) - 1.day,
-                                  user: user
-        ) }
 
-        it 'should send an email to user' do
-          expect(TimeSlot::ServiceDoneMailer).to receive(:send_notification_to_user).exactly(0).times
-          service.execute
+        context 'without feedback' do
+          let!(:time_slot2) { create(:time_slot,
+                                     start_time: time_with_zone(hour: 8, min: 0) - 1.day,
+                                     end_time: time_with_zone(hour: 11, min: 0) - 1.day,
+                                     user: user
+                            )}
+
+          it 'should not send an email to user' do
+            expect(TimeSlot::ServiceDoneMailer).to receive(:send_notification_to_user).exactly(0).times
+            service.execute
+          end
+        end
+
+        context 'with feedback' do
+          let!(:feedback) { create(:feedback, time_slot: time_slot) }
+
+          it 'should not send an email to user' do
+            expect(TimeSlot::ServiceDoneMailer).to receive(:send_notification_to_user).exactly(0).times
+            service.execute
+          end
         end
       end
     end
@@ -86,7 +98,7 @@ describe TimeSlot::ServiceDoneService do
             user: user
           )}
 
-        it 'should send an email to user' do
+        it 'should not send an email to user' do
           expect(TimeSlot::ServiceDoneMailer).to receive(:send_notification_to_user).exactly(0).times
           service.execute
         end

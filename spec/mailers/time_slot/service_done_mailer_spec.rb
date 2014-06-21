@@ -11,7 +11,7 @@ describe TimeSlot::ServiceDoneMailer do
 
       it 'should send correct mail' do
         expect { mailer.send_notification_to_user(time_slot) }.to change(ActionMailer::Base.deliveries, :count).by(1)
-        expect(sent_mail_user.subject).to eq "Our Cleaning Department: Service Done"
+        expect(sent_mail_user.subject).to eq "Our Cleaning Department: We would like to hear from you!"
         expect(sent_mail_user.to).to include time_slot.user.email
       end
     end

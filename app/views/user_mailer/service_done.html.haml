@@ -4,12 +4,24 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
     = "Dear #{@time_slot.user.name},"
+    %p
+      = "Now that you have had your house cleaned by our OCD housekeeper, we would like to hear from you!"
+    %p
+      = "Please take a moment to fill out a feedback form. Your total satisfaction of our service is extremely important to us. We greatly appreciate your inputs to help us meet your household cleaning needs."
+    %p
+      ="To ensure continual improvement, a ‘feedback’ button can be found next to each completed cleaning session on your OCD Accounts page. Do feel free to give us your feedback whenever you wish. We welcome any inputs that will help make your experience better."
+    %p
+      ="Should you require any immediate assistance, or would prefer to respond by telephone, please feel free to contact us at 81263795 or 81263759."
+    %br
+    ="We look forward to hearing from you."
+    %br
+    ="Thank you."
     %br
     %br
-    = "Good Day!"
+    = "Yours truly,"
     %br
+    = "Service Excellence Team"
     %br
-    = "Your booking has been finished!"
+    = "Our Cleaning Department"
     %br
-    %br
-    = render partial: 'user_mailer/signature'
+    = image_tag("logoOCD.png")
