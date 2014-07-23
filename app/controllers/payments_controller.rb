@@ -19,8 +19,34 @@ class PaymentsController < ApplicationController
   end
 
   def success_payment
-    payment = Payment.find_by_express_token(express_token)
-    payment.purchase!(payer_id)
+    package = Package.find(package_id)
+    details = EXPRESS_GATEWAY.details_for(express_token)
+    response = EXPRESS_GATEWAY.purchase(package.price_cents,
+                                        return_url: success_payment_url(id: package.id),
+                                        cancel_return_url: cancel_payment_url,
+                                        currency: "SGD",
+                                        allow_guest_checkout: true,
+                                        brand_name: ENV['SITE_NAME'],
+                                        items: [
+                                          {
+                                            name: package.id,
+                                            description: package.id,
+                                            quantity: 1,
+                                            amount: package.price_cents
+                                          }
+                                        ],
+                                        ip_address:   request.remote_ip,
+                                        token:        express_token,
+                                        payer_id:    details.payer_id
+    )
+
+    if response.success?
+      payment = Payment.find_by_express_token(express_token)
+      payment.purchase!(payer_id)
+    else
+      flash[:error] = "Your transaction could not be compelted"
+      redirect_to buy_package_path
+    end
 
   rescue Exception => e
     flash[:alert] = e.message
@@ -51,23 +77,29 @@ class PaymentsController < ApplicationController
 
   def create_response(package)
     EXPRESS_GATEWAY.setup_purchase(package.price_cents,
-       return_url: success_payment_url,
-       cancel_return_url: cancel_payment_url,
-       currency: "SGD",
-       allow_guest_checkout: true,
-       items: [
+      ip_address: request.remote_ip,
+      return_url: success_payment_url(id: package.id),
+      cancel_return_url: cancel_payment_url,
+      currency: "SGD",
+      allow_guest_checkout: true,
+      brand_name: ENV['SITE_NAME'],
+      items: [
          {
            name: package.id,
            description: package.id,
            quantity: 1,
            amount: package.price_cents
          }
-       ]
+      ]
     )
   end
 
   def express_token
     params.require(:token)
+  end
+
+  def package_id
+    params.require(:id)
   end
 
   def payer_id
