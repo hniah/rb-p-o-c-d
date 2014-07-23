@@ -26,7 +26,6 @@ class PaymentsController < ApplicationController
                                         cancel_return_url: cancel_payment_url,
                                         currency: "SGD",
                                         allow_guest_checkout: true,
-                                        brand_name: ENV['SITE_NAME'],
                                         items: [
                                           {
                                             name: package.id,
@@ -82,7 +81,6 @@ class PaymentsController < ApplicationController
       cancel_return_url: cancel_payment_url,
       currency: "SGD",
       allow_guest_checkout: true,
-      brand_name: ENV['SITE_NAME'],
       items: [
          {
            name: package.id,
