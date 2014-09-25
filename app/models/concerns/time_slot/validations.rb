@@ -15,7 +15,7 @@ module Concerns::TimeSlot::Validations
   end
 
   def overlap_of?(housekeeper)
-    time_slots = TimeSlot.all.where.not(id: self.id).where(housekeeper_id: housekeeper.id)
+    time_slots = TimeSlot.all.where.not(id: self.id).where(housekeeper: housekeeper)
     time_slots.find { |time_slot| self.blocked_by?(time_slot) }
   end
 
