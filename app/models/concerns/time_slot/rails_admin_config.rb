@@ -8,7 +8,7 @@ module Concerns::TimeSlot::RailsAdminConfig
         field :overlap? do
           def value
             if bindings[:object].overlap_of?(bindings[:object].housekeeper)
-              "Overlap with " + bindings[:object].overlap_of?(bindings[:object].housekeeper).id.to_s
+              "Overlap with #{bindings[:object].overlap_of?(bindings[:object].housekeeper)}"
             end
           end
         end
