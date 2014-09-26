@@ -90,4 +90,12 @@ module TimeSlotsHelper
   def surcharge?(time)
     time.saturday? || time.sunday?
   end
+
+  def next_week(week)
+    week + 1
+  end
+
+  def previous_week(week)
+    [0, @week - 1].max
+  end
 end
