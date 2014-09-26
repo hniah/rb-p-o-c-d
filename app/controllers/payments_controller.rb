@@ -29,7 +29,6 @@ class PaymentsController < ApplicationController
                                         items: [
                                           {
                                             name: package.name,
-                                            description: package.id,
                                             quantity: 1,
                                             amount: package.price_cents
                                           }
