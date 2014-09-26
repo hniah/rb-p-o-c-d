@@ -6,7 +6,7 @@ class TimeSlot::CreationMailer < ActionMailer::Base
   def send_notification_to_admin(time_slot)
     @time_slot = time_slot
     mail(to: recipients,
-         subject: 'New booking made!!!',
+         subject: 'New booking made',
          template_path: 'admin_mailer',
          template_name: 'booking_made'
     ).deliver if recipients.any?

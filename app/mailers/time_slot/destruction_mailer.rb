@@ -6,7 +6,7 @@ class TimeSlot::DestructionMailer < ActionMailer::Base
   def send_notification_to_admin(time_slot)
     @time_slot = time_slot
     mail(to: recipients,
-         subject: 'A booking cancelled!!!',
+         subject: 'A booking cancelled',
          template_path:'admin_mailer',
          template_name: 'booking_cancelled'
     ).deliver

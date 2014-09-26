@@ -7,7 +7,7 @@ class TimeSlot::ModificationMailer < ActionMailer::Base
     @time_slot = time_slot
 
     mail(to: recipients,
-         subject: 'A booking updated!!!',
+         subject: 'A booking updated',
          template_path:'admin_mailer',
          template_name: 'booking_updated'
     ).deliver
