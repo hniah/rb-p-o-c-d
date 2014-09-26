@@ -16,7 +16,7 @@ class Package < ActiveRecord::Base
 
   class << self
     def all_packages_in_array
-      packages = Package.all
+      packages = Package.order(:hours)
       return_packages = {}
 
       packages.each do |package|
