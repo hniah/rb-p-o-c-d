@@ -13,7 +13,7 @@ describe ContactForm::CreationMailer do
       it "should send correct mail" do
         expect { mailer.send_notification_to_admin(contact_form) }.to change(ActionMailer::Base.deliveries, :count).by(1)
         expect(sent_mail_admin.subject).to eq "New Enquiry- OCD contact form"
-        expect(sent_mail_admin.to).to include "enquiries@ourcleaningdepartment.com"
+        expect(sent_mail_admin.to).to include ENV['EMAIL_CONTACT_DEFAULT_TO']
       end
     end
 
