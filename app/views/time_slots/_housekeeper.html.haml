@@ -5,8 +5,8 @@
       = "Housekeeper : "
       = housekeeper.name
     %div
-      =link_to 'Previous week', time_slots_path(week: (@week >= 1)? @week - 1 : @week = 0 ) , class: 'btn'
-      =link_to 'Next week', time_slots_path(week: @week + 1), class: 'btn'
+      =link_to 'Previous week', time_slots_path(params.merge(week: [0, @week - 1].max)) , class: 'btn'
+      =link_to 'Next week', time_slots_path(params.merge(week: @week + 1)), class: 'btn'
     %div
       %b="Note: For weekend bookings, an additional charge of $10 (per session) applies."
     %br
