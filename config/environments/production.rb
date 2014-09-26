@@ -94,4 +94,14 @@ Ocd::Application.configure do
     }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
+
+  ActionMailer::Base.smtp_settings = {
+    :address         => "smtp.sendgrid.net",
+    :port            => "587",
+    :user_name       => ENV["SENDGRID_USERNAME"],
+    :password        => ENV["SENDGRID_PASSWORD"],
+    :domain          => "heroku.com",
+    :authentication  => :plain,
+    :enable_starttls_auto => true
+  }
 end
