@@ -25,7 +25,7 @@
             ($16/hr)
       - @sessions_type_list.each do |session_type|
         %tr
-          %th= "#{session_type}-hours session"
+          %th= "#{session_type}-hour session"
           - @packages[session_type].each do |package|
             %td!= show_buy_package_button(package, current_user)
     %div
