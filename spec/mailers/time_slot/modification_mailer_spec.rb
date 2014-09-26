@@ -15,7 +15,7 @@ describe TimeSlot::ModificationMailer do
 
     it 'should send email' do
       #expect{ mailer.send_notification_to_admin(time_slot) }.to change(ActionMailer::Base.deliveries, :count).by(1)
-      #expect(last_email.subject).to eq 'A booking updated!!!'
+      #expect(last_email.subject).to eq 'A booking updated'
     end
   end
 end
