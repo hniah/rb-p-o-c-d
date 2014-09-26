@@ -80,6 +80,8 @@
 :javascript
   $(function() {
     $('.delete_button_without_refund').click(function(e) {
+      button = $(this)
+      form = button.parents('form')
       bootbox.confirm({
         title: "Notification",
         message: "Last minute cancellation: There will not be a refund if you cancel this booking. Are you sure you want to proceed?",
@@ -95,15 +97,15 @@
         },
         callback: function(result) {
           if (result) {
-            $('.delete_button_without_refund').parents('form').submit();
-          } else {
-
-          }
+            form.submit();
+          } 
         }
       })
     });
 
     $('.delete_button').click(function(e) {
+      button = $(this)
+      form = button.parents('form')
       bootbox.confirm({
         title: "Notification",
         message: "Are you sure you want to proceed?",
@@ -119,15 +121,15 @@
         },
         callback: function(result) {
           if (result) {
-            $('.delete_button').parents('form').submit();
-          } else {
-
-          }
+            form.submit();
+          } 
         }
       })
     });
 
     $('.modify_button').click(function(e) {
+      button = $(this)
+      form = button.parents('form')
       bootbox.confirm({
         title: "Notification",
         message: "Are you sure you want to proceed?",
@@ -143,9 +145,7 @@
         },
         callback: function(result) {
           if (result) {
-            $('.modify_button').parents('form').submit();
-          } else {
-
+            form.submit();
           }
         }
       })
