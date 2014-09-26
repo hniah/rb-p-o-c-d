@@ -6,5 +6,5 @@
   #filter-location-container
     = form_tag(time_slots_path, method: :get) do
       = label_tag  :location, "Region : "
-      = select_tag :location, options_for_select(@locations.collect{ |location| [location.name, location.id]}, selected: params[:location]  ) , onchange: "this.form.submit();"
+      = select_tag :location, options_for_select(@locations.collect{ |location| [location.name, location.id]}, selected: params[:location]  ) , onchange: "this.form.submit();", prompt: "Select a region"
   = render partial: 'housekeeper', collection: @housekeepers
