@@ -82,8 +82,7 @@ class PaymentsController < ApplicationController
       allow_guest_checkout: true,
       items: [
          {
-           name: package.id,
-           description: package.id,
+           name: package.name,
            quantity: 1,
            amount: package.price_cents
          }
