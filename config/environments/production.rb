@@ -95,13 +95,14 @@ Ocd::Application.configure do
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
 
+  # Heroku Mandrill configuration
   ActionMailer::Base.smtp_settings = {
-    :address         => "smtp.sendgrid.net",
-    :port            => "587",
-    :user_name       => ENV["SENDGRID_USERNAME"],
-    :password        => ENV["SENDGRID_PASSWORD"],
-    :domain          => "heroku.com",
-    :authentication  => :plain,
-    :enable_starttls_auto => true
+      :port =>           '587',
+      :address =>        'smtp.mandrillapp.com',
+      :user_name =>      ENV['MANDRILL_USERNAME'],
+      :password =>       ENV['MANDRILL_APIKEY'],
+      :domain =>         'heroku.com',
+      :authentication => :plain
   }
+  ActionMailer::Base.delivery_method = :smtp
 end
