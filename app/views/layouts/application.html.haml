@@ -23,6 +23,8 @@
     = csrf_meta_tags
 
   %body
+    #loader
+      = image_tag 'ajax-loader.gif', class: 'ajax-loader'
     = render 'shared/top'
     .clr
     = render 'shared/flash'
