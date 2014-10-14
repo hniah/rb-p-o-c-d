@@ -2,13 +2,13 @@ class MailchimpApiController < ApplicationController
 
   def subscribe
     list_id = ENV['MAILCHIMP_MAILING_LIST_OCD_ID']
-    Rails.configuration.mailchimp.lists.subscribe({
-                                                   id: list_id,
-                                                   email: {email: mailchimp_param['mailchimp_email']},
-                                                   double_optin: false,
-                                                 })
-  flash[:notice] = "Thank you for subscribing to our mailing list. We are happy to update you with any new OCD happenings. Have a great day!"
-  redirect_to root_path
+    Rails.configuration.mailchimp.lists.subscribe(
+      id: list_id,
+      email: {email: mailchimp_param['mailchimp_email']},
+      double_optin: false
+    )
+    flash[:notice] = "Thank you for subscribing to our mailing list. We are happy to update you with any new OCD happenings. Have a great day!"
+    redirect_to root_path
 
   rescue Gibbon::MailChimpError => e
     case e.code
