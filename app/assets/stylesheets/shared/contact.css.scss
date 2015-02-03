@@ -1,0 +1,20 @@
+#shared-contact-container{
+  float:right;
+  .contact-phone{
+    position: relative;
+    margin: 25px 25px 0 0;
+    padding-left: 25px;
+    i.fa{
+      position: absolute;
+      left: 0;
+      top: 14px;
+      font-size: 20px;
+    }
+    span{
+      display: block;
+      font-family: 'robotolight';
+      color:#43253b;
+      font-size: 16px;
+    }
+  }
+}

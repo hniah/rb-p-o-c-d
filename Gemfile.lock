@@ -375,6 +375,7 @@ DEPENDENCIES
   erb2haml
   factory_girl_rails
   fog
+  font-awesome-rails
   gibbon
   haml
   jbuilder (~> 1.2)

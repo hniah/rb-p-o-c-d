@@ -44,6 +44,7 @@ gem 'money-rails'
 gem 'validates_timeliness', '~> 3.0'
 gem 'time_difference'
 gem 'rails_admin'
+gem 'font-awesome-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -1,8 +1,39 @@
 #shared-user-nav-container{
-  margin: 25px 20px 0 0;
+  padding: 38px 25px;
+  margin: 0;
   float: right;
-
+  background: #58304d;
+  color:#fff;
   ul.ul-nav{
-    @extend .pull-right;
+    margin: 0;
+    padding: 0;
+    li{
+      border: 0;
+      padding: 0;
+      a:hover{
+        border-color:#fff;
+        &:after{
+          color:#fff;
+        }
+      }
+
+      a{
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: 'robotoblack';
+        font-size: 14px;
+        color:#fff;
+        padding: 8px 10px 8px 10px;
+        border-radius: 3px;
+        border:2px solid #58304d;
+        &:after{
+          padding-left: 5px;
+          font: normal normal normal 11px/1 FontAwesome;
+          content: '\f178';
+          color: #58304d;
+        }
+      }
+    }
+
   }
 }
