@@ -1,30 +1,43 @@
 #shared-main-nav-container {
   float: left;
-  margin: 15px 0 0 0;
+  margin: 0;
 
   ul.main-nav {
-    @extend .nav;
-    @extend .nav-pills;
-    width: 450px;
     margin: 0 auto;
-    padding: 10px 0 10px 0;
-
-    li.active{
-      a{
-        background: #e6d5d4;
-        color: #43273b;
-      }
-
-      a:hover{
-        background: #e6d5d4;
-        color: #ffffff;
-      }
+    padding: 0;
+    list-style: none;
+    li:first-child{
+      border-left: 1px solid #eaeaea;
     }
-
     li{
-      a:hover{
-        color: #43273b;
+      float:left;
+      border-right: 1px solid #eaeaea;
+
+      &.active a:after, a:hover:after{
+        background: #ba2f95;
+        bottom: 0px;
+        height: 5px;
+        content: '';
+        position: absolute;
+        width: 100%; left: 0;
       }
+
+      a{
+        font-family: 'robotomedium';
+        font-size: 16px;
+        display: block;
+        padding: 34px 18px;
+        color: #43253b;
+        text-transform: uppercase;
+        text-decoration: none;
+        line-height: 15px;
+        position: relative;
+        span{
+          display: block; color: #999999;
+          font-size: 12px;
+        }
+      }
+
     }
   }
 }
