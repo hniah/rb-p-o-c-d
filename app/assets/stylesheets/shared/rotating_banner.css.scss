@@ -1,0 +1,69 @@
+.slider-wrapper-home{
+  position: relative;
+  #share-description{
+    position: absolute;
+    top: 12%;
+    z-index: 99999;
+    width: 450px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    color:#43253b;
+    h2{
+      font-size: 34px;
+      line-height: 20px;
+      font-family: 'fira_sansmedium';
+    }
+    .tip{
+      font-size: 18px;
+      font-family: 'fira_sansregular';
+    }
+    a.btn{
+      border: 1px solid #43253b;
+      background: transparent;
+      font-family: 'robotoregular';
+      font-size: 18px;
+      &:hover{
+        background-color:#43253b;
+        color:#fff;
+      }
+    }
+    .control{
+      margin: 30px 0 25px 0;
+    }
+    ul.desc-info{
+      font-family: 'fira_sansregular';
+      list-style: none;
+      font-size: 16px;
+      margin: 30px 0 0 0; padding: 0;
+      li{
+        background: url("bullet_green.png") 0 no-repeat;
+        padding-left: 35px;
+        line-height: 30px;
+      }
+    }
+  }
+}
+.theme-default{
+  .nivoSlider{
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+  .nivo-directionNav {
+    a{
+      background: url('arrows_nivo.png') no-repeat !important;
+      width: 47px !important;
+      height: 128px !important;
+      top: 36% !important;
+      &.nivo-nextNav{
+        background-position: -53px 0 !important;
+        right:0px;
+      }
+      &.nivo-prevNav{
+        left:0px;
+      }
+    }
+
+  }
+}

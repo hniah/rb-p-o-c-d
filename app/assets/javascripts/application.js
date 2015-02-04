@@ -23,5 +23,6 @@
 //= require social-share-button
 //= require bxslider
 //= require _turbolink_events
+//= require jquery.nivo.slider.pack
 // require_tree
 

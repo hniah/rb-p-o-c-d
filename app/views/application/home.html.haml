@@ -1,27 +1,7 @@
 #application-home-container
-  #home-slider
-    %ul.bxslider
-      - @sliders.each do |slider|
-        %li
-          %img{:src => slider.image, title: slider.caption}
   #home-about
     = render partial: 'about'
   #home-promotion-blocks
     .home-promotion-title
       = "Latest Updates"
     = render partial: 'promotion_blocks'
-
-:javascript
-  $(document).ready(function(){
-    $('.bxslider').bxSlider({
-      mode: 'horizontal',
-      useCSS: false,
-      infiniteLoop: true,
-      hideControlOnEnd: true,
-      //easing: 'easeInExpo',
-      speed: 2000,
-      auto: true,
-      autoControls: true,
-      controls: false
-    });
-  });
