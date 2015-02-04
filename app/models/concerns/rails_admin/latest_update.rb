@@ -6,6 +6,7 @@ module Concerns::RailsAdmin::LatestUpdate
       edit do
         field :image
         field :url
+        field :title_link
         field :description, :ck_editor
       end
 

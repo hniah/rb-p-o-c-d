@@ -1,7 +1,7 @@
 #application-home-container{
-  float: left;
   margin: 0;
-  padding: 0;
+  padding: 0 0 100px 0;
+
 
   #home-about{
     float: left;
@@ -17,12 +17,14 @@
   }
   .welcome-cleaning-department{
     margin: 50px 0 0 0;
+    h2{
+      text-align: center;
+      font-size: 28px;
+      font-family: 'robotobold';
+    }
     .service{
       text-align: center;
-      .h2{
-        font-size: 28px;
-        font-family: 'robotobold';
-      }
+      margin: 0 0 50px 0;
       .tip{
         @extend .tip-separate
       }
@@ -39,24 +41,41 @@
       }
       .control{
         a{
-          color: #ba2f95;
-          border: 1px solid #cb8ab8;
-          font-family: 'robotoregular';
-          padding: 6px 18px;
+          @extend .btn-custom-01
+        }
+      }
+    }
+
+    .get_to_know_us{
+      .tip{
+        @extend .tip-separate
+      }
+      .content-block{
+        .bound{
+          padding: 0 25px;
+          width: 340px;
+        }
+        .block-image{
           &:after{
             content: '';
-            background: url("arrow_btn_01.png") 0px 0px no-repeat;
-            display: inline-block;
-            width: 5px;
-            height: 8px;
-            margin: 0px 0 0 5px;
+            background: url("bg_shadow.png") 15px -35px no-repeat;
+            display: block;
+            width: 100%;
+            height: 10px;
+            position: absolute;
           }
-          &:hover{
-            background: #ba2f95;
-            color: #fff;
-            &:after{
-              background: url("arrow_btn_white_01.png") 0px 0px no-repeat;
-            }
+        }
+        .block-title{
+          font-family: 'robotobold';
+          font-size: 16px;
+          margin: 15px 0 15px 0;
+          text-transform: uppercase;
+        }
+        .block-description{
+          font-size: 15px;
+          a.btn{
+            margin-top: 15px;
+            text-transform: uppercase;
           }
         }
       }
@@ -65,6 +84,7 @@
 }
 
 .tip-separate{
+  text-align: center;
   position: relative;
   background: url('line_1px.png') 0 repeat-x;
   margin: 15px 0;
@@ -80,5 +100,27 @@
     font-size: 18px;
     padding: 0 30px;
     color: #662f57;
+  }
+}
+
+.btn-custom-01{
+  color: #ba2f95;
+  border: 1px solid #cb8ab8;
+  font-family: 'robotoregular';
+  padding: 6px 18px;
+  &:after{
+    content: '';
+    background: url("arrow_btn_01.png") 0px 0px no-repeat;
+    display: inline-block;
+    width: 5px;
+    height: 8px;
+    margin: 0px 0 0 5px;
+  }
+  &:hover{
+    background: #ba2f95;
+    color: #fff;
+    &:after{
+      background: url("arrow_btn_white_01.png") 0px 0px no-repeat;
+    }
   }
 }

@@ -7,9 +7,12 @@ class ApplicationController < ActionController::Base
 
   def home
     @sliders = Slider.all
-    @latest_update_blocks = LatestUpdate.all.order('created_at DESC').take(3)
+    #@latest_update_blocks = LatestUpdate.all.order('created_at DESC').take(3)
+    @get_to_know = []
+    @get_to_know[2] = Page.find_by_article_alias('drop_us_a_call')
+    @get_to_know[1] = Page.find_by_article_alias('what_our_customers_are_saying')
+    @get_to_know[0] = Page.find_by_article_alias('we_here_to_help')
 
-    @about_intro = Page.find_by_article_alias('about_intro')
     render :home
   end
 

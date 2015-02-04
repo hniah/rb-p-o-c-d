@@ -35,7 +35,7 @@ h1{
 }
 
 body, p{
-  font-family: 'Alike Angular', serif;
+  font-family: 'robotolight';
   color: #000000;
 }
 
@@ -73,9 +73,8 @@ ul.ul-nav{
 
 
 #main-body-container{
-  float: left;
   width: 100%;
-
+  background: url('bg_bottom_content_home.png') 0 bottom repeat-x;
   .main-body {
     @extend .container;
     min-height: 500px;

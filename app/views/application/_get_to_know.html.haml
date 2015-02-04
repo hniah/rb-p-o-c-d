@@ -1,0 +1,16 @@
+.get_to_know_us
+  .tip
+    %span Get To Know Us
+  .content-block.row
+    - @get_to_know.each do |block|
+      .block.col-md-4
+        .bound
+          - if block.intro_image.present?
+            .block-image
+              %img{ :src => block.intro_image.url()}
+          .block-title
+            = block.title
+          - if block.description
+            .block-description
+              = block.description.html_safe
+
