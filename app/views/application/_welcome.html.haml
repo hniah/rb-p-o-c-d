@@ -1,0 +1,19 @@
+.service
+  %h2 Welcome to Our Cleaning Department
+  .tip
+    %span Services We Provide
+  .images-wrap.row
+    .col-md-4
+      = image_tag('/images/welcome/routine_cleaning.png', border: 0)
+    .col-md-4
+      = image_tag('/images/welcome/one_time_cleaning.png', border: 0, class: 'one-time')
+    .col-md-4
+      = image_tag('/images/welcome/spring_cleaning.png', border: 0)
+  .desc-info
+    Looking for part-time domestic housekeeping services for your home?
+    %br
+    OCD provides routine and ad-hoc home cleaning services to help free up your time
+    %br
+    for the more important things in life.
+  .control
+    = link_to 'Find out more', '#', class: 'btn btn-default'
