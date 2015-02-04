@@ -21,7 +21,7 @@
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
-  
+
 
   %body
     #loader
@@ -30,6 +30,7 @@
     .clr
     = render 'shared/flash'
 
+    = render 'shared/rotating_banner'
     #main-body-container
       .main-body
         = yield
@@ -38,6 +39,7 @@
     .clr
     = render 'shared/footer'
 
+    #fb-root
     :javascript
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -46,3 +48,10 @@
 
       ga('create', 'UA-51593482-1', 'ourcleaningdepartment.com');
       ga('send', 'pageview');
+
+      (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=746122898793292&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
