@@ -2,3 +2,12 @@
   .welcome-cleaning-department
     = render partial: 'welcome'
     = render partial: 'get_to_know'
+:javascript
+  $( window ).scroll(function() {
+    var position = $(window).scrollTop();
+
+    if(position < 300)
+      $('div.addthis-smartlayers-desktop').hide();
+    else
+      $('div.addthis-smartlayers-desktop').show();
+  });
