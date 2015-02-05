@@ -27,4 +27,36 @@
   blockquote p {
     display: inline;
   }
+
+  .static-banner{
+    position: relative;
+    img{
+      width: 100%;
+    }
+    .banner-text{
+      padding: 8px;
+      position: absolute;
+      width:550px;
+      left: 0;
+      top:18%;
+      right: 0;
+      margin: 0 auto;
+      background: url('bg_banner_text.png') repeat;
+      .bound{
+        text-align: center;
+        border: 1px solid #979797;
+        padding: 40px 0;
+        h3{
+          font-family: 'fira_sansbold'; font-size: 44px;
+          color: #43253b;
+          margin: 0 0 20px 0; padding: 0;
+          background: url("bg_title_banner_txt.png") bottom center no-repeat;
+        }
+        .short-desc{
+          font-family: 'fira_sansregular';
+          font-size: 17px;
+        }
+      }
+    }
+  }
 }

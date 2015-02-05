@@ -17,6 +17,7 @@ module Concerns::RailsAdmin::Page
         field :article_alias
         field :intro_text
         field :intro_image
+        field :full_image
         field :short_description
         field :description, :ck_editor
       end

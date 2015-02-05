@@ -16,7 +16,6 @@
 //= require jquery-ui-timepicker-addon
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-//= require turbolinks
 //= require bootstrap
 //= require bootbox
 //= require ckeditor/override

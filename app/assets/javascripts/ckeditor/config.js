@@ -14,7 +14,7 @@ CKEDITOR.editorConfig = function( config )
     { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
     { name: 'tools', items : [ 'Maximize','-','About' ] }
   ];
-
+  config.allowedContent = true;
   /* Filebrowser routes */
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";

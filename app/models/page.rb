@@ -7,4 +7,5 @@ class Page < ActiveRecord::Base
   validates_uniqueness_of :article_alias
 
   mount_uploader :intro_image, ImagePageUploader
+  mount_uploader :full_image, ImagePageUploader
 end
