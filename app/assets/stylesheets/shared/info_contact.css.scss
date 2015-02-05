@@ -1,0 +1,38 @@
+#info-contact-container{
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  .bound-info-contact{
+    @extend .container;
+    .col-md-6{
+      padding: 10px 15px;
+    }
+    .contact{
+      border-right: 1px solid #e0e0e0;
+      text-align: right;
+      .bound-contact{
+        text-align: left;
+        display: inline-block;
+        background: url("ocd_logo.jpg") 0 no-repeat;
+        padding-left: 35px;
+        padding-bottom: 5px;
+        h4{
+          font-family: 'robotomedium';
+          font-size: 16px;
+          color:#662f57;
+          margin: 7px 0 10px 0;
+          span{
+            font-size: 13px;
+          }
+        }
+        .desc{
+          color:#555555;
+        }
+      }
+
+    }
+    .facebook-like{
+
+    }
+  }
+
+}
