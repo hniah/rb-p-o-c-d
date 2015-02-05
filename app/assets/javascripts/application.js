@@ -23,5 +23,8 @@
 //= require bxslider
 //= require _turbolink_events
 //= require jquery.nivo.slider.pack
+//= require ckeditor/init
+//= require ckeditor/ckeditor
+//= require ckeditor/config
 // require_tree
 
