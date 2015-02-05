@@ -4,6 +4,7 @@
   padding: 20px 0 15px 0;
   #shared-footer{
     @extend .container;
+    position: relative;
     ul.ul-nav{
       display: inline-block;
       margin: 0; padding: 0;
@@ -19,6 +20,28 @@
     .copyright{
       font-size: 11px;
       color:#abaaaa; text-align: right;
+    }
+
+    #back-to-top{
+      cursor: pointer;
+      position: absolute;
+      right: 0px;
+      top: -52px;
+      background: #1d1c1c;
+      color:#fff;
+      padding: 8px 15px;
+      text-decoration: none;
+      &:after{
+        content: "\f0d8";
+        margin-left: 5px;
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transform: translate(0, 0);
+      }
     }
   }
 }

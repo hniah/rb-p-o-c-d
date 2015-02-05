@@ -18,3 +18,10 @@
           = link_to 'Site map', sitemap_path
     .copyright.col-md-5
       © 2014 OUR CLEANING DEPARTMENT  |  ALL RIGHTS RESERVED.
+
+    %span#back-to-top back to top
+:javascript
+  $("#back-to-top").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+  });
