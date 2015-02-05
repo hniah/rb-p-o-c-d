@@ -1,66 +1,51 @@
 #shared-mailing-list-container{
-  float: left;
   width: 100%;
-  margin-top: 50px;
-
+  background: url('bg_mailing_list.jpg') top center no-repeat;
+  background-size: cover;
   #shared-mailing-list{
-    margin: 0 auto;
-
-    border-top: 1px solid #BAC5C5;
-    margin-top: 20px;
-    padding-top: 20px;
-
-    h3{
-      font-family: 'Abril Fatface', cursive;
-      font-size: 20px;
-      margin: 0;
-      padding: 0;
-      line-height: 30px;
-    }
-
+    @extend .container;
     .div-mailing-list{
-      float: left;
-      width: 100%;
-
-      .left{
-        width: 30%;
-        float: left;
-        background: #43273b;
-        padding: 10px;
-        text-align: center;
-        color: #ffffff;
-        height: 52px;
+      text-align: center;
+      margin: 25px 0;
+      label{
+        font-family: 'fira_sansmedium';
+        font-size: 16px;
+        color:#222222;
+        display: inline-block;
+        text-transform: uppercase;
       }
-
-      .right{
-        float: right;
-        padding: 10px;
-        width: 70%;
-        background: #e6d5d4;
-        height: 52px;
-
-        h3{
-          float: left;
-          text-align: left;
-          color: #43273b;
+      form{
+        display: inline-block;
+        .div_input{
+          width: 650px;
         }
-
-        #subscribe{
-          float: right;
-          width: 60%;
-
-          #mailchimp_email{
-            @extend .form-control;
-
-            float: left;
-            width: 65%;
-            margin-right: 10px;
-          }
-
-          input[type='submit']{
-            @extend .btn;
-          }
-        }
+      }
+      #mailchimp_email{
+        border: 0;
+        padding: 8px 10px;
+        font-family: 'fira_sansregular';
+        color:#888888;
+        background: #fff;
+        border-radius: 4px;
+        outline: none;
+        margin: 0 8px 0 8px;
+        box-shadow: 0px 3px 2px #ccc;
+        width: 65%;
+        float:left;
+        line-height: 22px;
+      }
+      .btn-submit{
+        padding: 5px 15px;
+        color: #fff;
+        font-size: 15px;
+        text-transform: uppercase;
+        background: #eb7070;
+        border-radius: 4px;
+        box-shadow: 0px 3px 2px #ccc;
+        border: 0;
+        display: block;
+        font-family: 'fira_sansbold';
+        line-height: 28px;
       }
     }
   }
