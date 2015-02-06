@@ -1,3 +1,5 @@
 = form_tag(express_checkout_path, method: :patch) do
+  %span.price= number_to_currency(package.price, precision: 0)
+  %br
   = hidden_field_tag 'package_id', package.id
-  = submit_tag(number_to_currency(package.price, precision: 0) , class: "btn", data: { test: package.id })
+  = submit_tag(btn_title, class: btn_class, data: { test: package.id })

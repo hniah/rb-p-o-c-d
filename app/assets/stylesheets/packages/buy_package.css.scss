@@ -7,4 +7,95 @@
     right: 0;
     top: 0px;
   }
+  .note-info{
+    text-align: center;
+  }
+  .list-sessions{
+    text-align: center;
+    margin: 30px 0;
+    .head{
+      .col-md-3{
+        .bound{
+          border: 1px solid #e4d7e1;
+          padding: 15px 0;
+        }
+        span.title{
+          color: #ba2f95;
+          font-size: 18px;
+          font-family: 'robotobold';
+          text-transform: uppercase;
+        }
+        span.price{
+          color:#008cb1;
+          .sym{ font-size: 26px; }
+          .val{ font-size: 28px; }
+          .per{ font-size: 16px}
+        }
+      }
+    }
+    .items{
+
+      .bound{
+        border: 1px solid #e4d7e1;
+      }
+      .subtitle{
+        background: #ebe2e8;
+        font-size: 14px; color: #43253b;
+        font-family: 'robotobold';
+        padding: 6px 0;
+      }
+      .control{
+        min-height: 100px;
+        padding: 10px 0 0 0;
+        .price{
+          color:#ba2f95;
+          font-size: 18px;
+        }
+        .no-price{
+          color:#ba2f95;
+          font-size: 20px;
+          font-family: 'robotobold';
+        }
+      }
+    }
+
+  }
+
+  .desc-info{
+    .additional-charges{
+      .subtitle{
+        color:#222222;
+        font-size: 16px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-family: 'robotobold';
+      }
+      .desc{
+        margin: 0 0 20px 0;
+        span{
+          color:#008cb1;
+        }
+      }
+    }
+    a.more-info{
+      font-family: 'robotoblack';
+      font-size: 15px;
+      background: #58304d;
+      color:#fff;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      margin: 20px 0 0 0;
+      float: left;
+      &:before{
+        @extend .fa;
+        content: "\f05a";
+        margin-right: 5px;
+      }
+      &:after{
+        @extend .fa;
+        content: "\f0da";
+        margin-left: 5px;
+      }
+    }
+  }
 }

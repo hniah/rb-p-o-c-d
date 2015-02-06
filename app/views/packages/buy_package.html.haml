@@ -1,40 +1,84 @@
-#packages-buy-package-container
-  .help-link
-    = link_to image_tag("help/link.png", :border => 0, :alt => 'Tips on choosing the right package', :title => 'Tips on choosing the right package'), tips_buy_package_path, {target: "_blank"}
-  = page_heading "OCD Packages"
-  .content-box
-    %table.table.table-bordered.text-center
-      %thead
-        %tr
-          %th
-          %th.text-center
-            Ad-hoc
+#packages-buy-package-container.has_bg
+  .static-banner
+    = image_tag('static-banners/ocd-package.jpg', border: 0)
+    .banner-text
+      .bound
+        %h3 OCD Packages
+        .short-desc Buy a package. Ad-hoc. Sessions and hours.
+
+  .content-text.main-container
+    .tip-separate.size-large
+      %span Routine Housekeeping Rates
+    .note-info
+      The chart below is our rates for routine housekeeping services only.
+      %br
+      = "For one-time or spring cleaning service, please #{link_to 'contact us', new_contact_form_path} for a quotation.".html_safe
+
+    .list-sessions
+      .row.head
+        .col-md-3.ad-hoc
+          .bound
+            %span.title Ad-hoc
             %br
-            ($28/hr)
-          %th.text-center
-            4 sessions
+            %span.price
+              %span.sym $
+              %span.val 28
+              %span.per /hour
+        .col-md-3.four-sessions
+          .bound
+            %span.title 4 sessions
             %br
-            ($20/hr)
-          %th.text-center
-            12 sessions
+            %span.price
+              %span.sym $
+              %span.val 20
+              %span.per /hour
+        .col-md-3.twelve-sessions
+          .bound
+            %span.title 12 sessions
             %br
-            ($18/hr)
-          %th.text-center
-            24 sessions
+            %span.price
+              %span.sym $
+              %span.val 18
+              %span.per /hour
+        .col-md-3.twenty-four-sessions
+          .bound
+            %span.title 24 sessions
             %br
-            ($16/hr)
+            %span.price
+              %span.sym $
+              %span.val 16
+              %span.per /hour
       - @sessions_type_list.each do |session_type|
-        %tr
-          %th= "#{session_type}-hour session"
+        - @index = 0
+        .row.items
           - @packages[session_type].each do |package|
-            %td!= show_buy_package_button(package, current_user)
-    %div
-      = "All sessions to be utilized within 12 months"
-      %br
-      %br
-      %u
-        = "Additional charges"
-      %br
-      = "Extended hour: $28/hr"
-      %br
-      = "Weekend charges: $10/hr"
+            - @index+=1
+            .col-md-3
+              .bound
+                .subtitle
+                  ="#{session_type}-hour session"
+                .control
+                  = show_buy_package_button(package, current_user, @index)
+
+    .desc-info.row
+      .col-md-9
+        %p
+          = "If you are new to OCD and are unsure which package will best suit your house’s cleaning needs, #{link_to 'here is a guide to help you', '#'}.".html_safe
+        %p
+          Also, do note that as all purchased packages are tagged to your account, you will be directed to
+          the sign in page prior to purchasing any packages with us.
+        %p
+          = "For new users, simply #{link_to 'register an account', new_user_registration_path, class:'register'} with us. (Signing up is free and takes only 2 minutes.)".html_safe
+        %p
+          = link_to 'What to consider when choosing a package', '#', class: 'more-info'
+      .col-md-3.additional-charges
+        .subtitle Additional charges
+        .desc
+          = "- Extended hour:"
+          %span $28/hr
+          %br
+          = "- Weekend charges:"
+          %span $10/hr
+        .subtitle Mode of payment accepted:
+        .card-pay
+          = image_tag('stories/card-pay.png', border: 0)

@@ -26,5 +26,5 @@
 //= require ckeditor/init
 //= require ckeditor/ckeditor
 //= require ckeditor/config
-// require_tree
+
 
