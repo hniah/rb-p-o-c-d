@@ -1,22 +1,17 @@
+﻿/*
+Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.html or http://ckeditor.com/license
+*/
+
 CKEDITOR.editorConfig = function( config )
 {
   // Define changes to default configuration here. For example:
-  config.toolbar = [
-    { name: 'document', items : [ 'Source','Preview', 'Maximize', 'ShowBlocks' ] },
-    { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
-    { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','Scayt' ] },
-    { name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
-    { name: 'styles', items : [ 'Styles','Format' ] },
-    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
-    { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-    { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-    { name: 'tools', items : [ 'Maximize','-','About' ] }
-  ];
-  config.allowedContent = true;
-  /* Filebrowser routes */
+  // config.language = 'fr';
+  // config.uiColor = '#AADC6E';
 
+  config.allowedContent = true
+
+  /* Filebrowser routes */
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
 
@@ -41,8 +36,8 @@ CKEDITOR.editorConfig = function( config )
   // Rails CSRF token
   config.filebrowserParams = function(){
     var csrf_token, csrf_param, meta,
-      metas = document.getElementsByTagName('meta'),
-      params = new Object();
+        metas = document.getElementsByTagName('meta'),
+        params = new Object();
 
     for ( var i = 0 ; i < metas.length ; i++ ){
       meta = metas[i];
