@@ -16,8 +16,23 @@
     .head{
       .col-md-3{
         .bound{
+          position: relative;
           border: 1px solid #e4d7e1;
           padding: 15px 0;
+          span.popular{
+            background: #e1a900;
+            padding: 4px 15px;
+            left: 0;
+            right: 0;
+            top: -12px;
+            margin: 0 auto;
+            position: absolute;
+            font-family: 'robotobold';
+            font-size: 11px;
+            color: #fff;
+            text-transform: uppercase;
+            width: 155px;
+          }
         }
         span.title{
           color: #ba2f95;
