@@ -102,6 +102,7 @@ ul.ul-nav{
 
 .static-banner{
   position: relative;
+  min-height: 220px;
   img{
     width: 100%;
   }
@@ -241,4 +242,13 @@ ul.ul-nav{
 .btn-3c:active {
   box-shadow: 0 0 #d5d3d3;
   top: 3px;
+}
+b.roboto{
+  font-family: 'robotobold';
+  &.up{
+    text-transform: uppercase;
+  }
+}
+span.red{
+  color:red;
 }

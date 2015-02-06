@@ -60,6 +60,9 @@ class PagesController < ApplicationController
     render :info
   end
 
+  def booking
+    render :booking
+  end
 
   private
   def page_id_param

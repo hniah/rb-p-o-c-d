@@ -1,0 +1,72 @@
+#bookings-page-container.has_bg
+  .static-banner
+    = image_tag('static-banners/ocd-booking.jpg', border: 0)
+    .banner-text
+      .bound
+        %h3 Booking
+        .short-desc Book your trusted and efficient housekeeper.
+
+  .content-text.main-container
+    .book-a-cleaning
+      .tip-separate.size-large
+        %span Book A Cleaning Session In 4 Simple Step
+      .step-booking.row
+        .col-md-3
+          = image_tag('stories/booking-step1.png', border: 0)
+          %br
+          %span.title-step Step 1
+          %br
+          %span.label Choose a Package
+        .col-md-3
+          = image_tag('stories/booking-step2.png', border: 0)
+          %br
+          %span.title-step Step 2
+          %br
+          %span.label Contact Us
+        .col-md-3
+          = image_tag('stories/booking-step3.png', border: 0)
+          %br
+          %span.title-step Step 3
+          %br
+          %span.label Make Payment
+        .col-md-3
+          = image_tag('stories/booking-step4.png', border: 0)
+          %br
+          %span.title-step Step 4
+          %br
+          %span.label Confirm Booking
+      .desc-note
+        %p
+        %b.roboto Note:
+        %br
+        All bookings are made on a first-come, first-served basis.
+        %br
+        In case of any changes, please be sure to notify us before 6pm
+        %span.red*
+        on the day prior to the scheduled appointment
+        %br
+        %i.roboto
+          %span.red *
+          Changes made after 6pm will be regarded as last minute cancellations. No refund will be given for such instances.
+    .coming-soon
+      .tip-separate.size-large
+        %span Coming Soon!
+      %p
+        A clean house will be just a couple of clicks away.
+      %p
+        At OCD, we understand the need for convenience and aim to get your house in order with a simple 3-step process of click, book, clean.
+        We are currently in the midst of developing our online booking system. With this system, you will be able to manage your own bookings 24/7.
+      %p
+        In the meantime, we are here to take care of your bookings.
+        = "Simply #{ link_to 'contact us', new_contact_form_path } and we will get back to you within one working day.".html_safe
+      %br
+      %p
+        %b.roboto.up Want to be notified when our booking system is ready?
+      %p
+        We would be more than happy to notify you when our online booking system is launched!
+      %br
+      %p
+        Please subscribe to our mailing list for our latest updates:
+      .mailing-form
+        = render 'shared/form_mailing_list'
+

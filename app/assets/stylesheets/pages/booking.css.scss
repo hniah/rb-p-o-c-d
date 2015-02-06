@@ -1,0 +1,40 @@
+#bookings-page-container{
+  .book-a-cleaning{
+    .step-booking{
+      .col-md-3{
+        text-align: center;
+        .title-step{
+          font-size: 19px;
+          color:#444444;
+          font-family: 'fira_sansbold';
+          margin: 20px 0 0 10px 0;
+          text-transform: uppercase;
+          display: inline-block;
+          margin: 20px 0 0px 0;
+        }
+        .label{
+          color:#8a3573;
+          font-family: 'fira_sansregular';
+          font-size: 16px;
+
+        }
+      }
+    }
+  }
+  .coming-soon{
+    .btn-submit{
+      @extend .btn-effect;
+      @extend .btn-2;
+      @extend .btn-2c;
+      margin: 0 0 0 10px;
+    }
+    #mailchimp_email{
+      color: #666666;
+      border: 1px solid #cacaca;
+      padding: 8px 20px;
+      width: 300px;
+      outline: none;
+      box-shadow: 0px 3px 2px #ccc;
+    }
+  }
+}

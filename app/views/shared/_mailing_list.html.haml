@@ -2,10 +2,5 @@
   #shared-mailing-list
     .div-mailing-list
       %label SubScribe TO OUR mailing list :
-      = form_tag( mailchimp_api_path , method: :post, id: 'subscribe') do
-        .div_input
-          = text_field_tag :mailchimp_email
-          = submit_tag 'Sign me up!', class: 'btn-submit'
-          .clr
-:javascript
-  $('#mailchimp_email').attr('placeholder','Enter your email address');
+      = render 'shared/form_mailing_list'
+

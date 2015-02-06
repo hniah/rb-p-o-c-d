@@ -22,6 +22,7 @@ Ocd::Application.routes.draw do
   get 'tips_booking'                => 'pages#tips_booking'
   get 'tips_new_booking'            => 'pages#tips_new_booking'
   get 'tips_user'                   => 'pages#tips_user'
+  get 'booking'                     => 'pages#booking'
 
   get 'buy_package'                 => 'packages#buy_package'
 
