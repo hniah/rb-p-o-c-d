@@ -5,7 +5,7 @@ Ocd::Application.routes.draw do
 
   root :to => 'application#home'
 
-  resources :time_slots
+  #resources :time_slots
 
   resources :page_categories
   get 'blogs'                        => 'page_categories#blogs'

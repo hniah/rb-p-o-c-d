@@ -1,7 +1,7 @@
 = form_tag( mailchimp_api_path , method: :post, id: 'subscribe') do
   .div_input
-    = text_field_tag :mailchimp_email
+    = text_field_tag :mailchimp_email, '', class: 'input-email'
     = submit_tag 'Sign me up!', class: 'btn-submit'
     .clr
 :javascript
-  $('#mailchimp_email').attr('placeholder','Enter your email address');
+  $('.input-email').attr('placeholder','Enter your email address');
