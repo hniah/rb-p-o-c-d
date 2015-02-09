@@ -19,6 +19,11 @@
 
         }
       }
+      .step-hover{
+        &:hover{
+          opacity: 0.75;
+        }
+      }
     }
   }
   .coming-soon{
