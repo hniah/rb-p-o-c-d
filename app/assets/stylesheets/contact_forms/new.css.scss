@@ -1,31 +1,31 @@
 #contact-forms-new-container{
-  @extend .devise-registration-new-container;
-
-  .left{
-    float: left;
-    width: 30%;
-  }
-
-  .right{
-    float: right;
-    width: 60%;
-
-    .button-submit{
-      float: right;
-      margin-right: 74px;
+  .contact-form{
+    line-height: 20px;
+    margin-top: 50px;
+    p{
+      margin: 0 0 20px 0;
     }
   }
-  #recaptcha_area{
-    height: 130px !important;
-    overflow: hidden !important;
-  }
-
-  .table-text-contact{
-    border-collapse: separate;
-    border-spacing: 0px 10px;
-
-    td:first-child{
-      width: 40%;
+  .form-fields{
+    label{
+      color:#222222;
+    }
+    input[type='text'], textarea{
+      border: 1px solid #bdbdbd;
+      width: 100%;
+      outline: none;
+      padding: 5px 6px;
+      resize: none;
+    }
+    textarea{
+      height: 160px;
+    }
+    .btn-submit{
+      padding: 6px 30px;
+      margin: 0;
+    }
+    table#recaptcha_table{
+      width: 100%;
     }
   }
 }

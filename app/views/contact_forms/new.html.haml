@@ -1,63 +1,63 @@
-#contact-forms-new-container
-  = page_heading "Contact Us"
-  .content-box
-    .left
-      %br
-      %p{:style => 'font-size:18px; font-weight: bold'}= "Our Cleaning Department LLP"
-      %p{:style => 'font-size:10px' }= "(T14LL0310H)"
-      %br
-      %p= "We welcome any feedback or enquiries regarding our housekeeping services."
-      %br
-      %p="Simply fill up the contact form to leave us a message and we will get back to you at the soonest."
-      %br
-      %table.table-text-contact
-        %tr{valign: 'top'}
-          %td
-            ="Call/Text :"
-          %td
-            ="81263759 or 81263795"
-        %tr{valign: 'top'}
-          %td
-            ="Email :"
-          %td
-            ="enquiries@ourcleaningdepartment.com"
-        %tr{valign: 'top'}
-          %td
-            ="Address : "
-          %td
-            ="Block 57 New Upper Changi Road"
-            %br
-            ="#01-1356"
-            %br
-            ="Singapore 461057"
-            %br
-            ="*Appointment is required. Thanks!"
-    .right
-      %br
-      .form-container
-        = form_tag(contact_forms_path, method: :post) do
-          .name.form-group
-            = label_tag "Name * "
-            .input-group
-              = text_field_tag(:name)
+#contact-forms-new-container.has_bg
+  .static-banner
+    = image_tag('static-banners/ocd-contact.jpg', border: 0)
+    .banner-text
+      .bound
+        %h3 Contact us
+        .short-desc We'd love to hear from you!
 
-          .email.form-group
-            = label_tag "Email * "
-            .input-group
-              = text_field_tag(:email)
+  .content-text.main-container
+    .tip-separate.size-large
+      %span Our Cleaning Department LLP
+    .contact-form.row
+      .col-md-4.desc-info
+        %p We welcome any feedback or enquiries regarding our housekeeping services.
+        %p Simply fill up the contact form to send us a message and we will get back to you at the soonest possible time.
+        %p
+          %b Call/Text
+          %br
+          81263759 or 81263795
+        %p
+          %b Email
+          %br
+          For enquires on booking-related matters:
+          %br
+          %a{href: 'mailto:bookings@ourcleaningdepartment.com', target: '_top'} bookings@ourcleaningdepartment.com
+        %p
+          Account related or billing issues:
+          %br
+          %a{href: 'mailto:admin@ourcleaningdepartment.com', target: '_top'} admin@ourcleaningdepartment.com
+        %p
+          Rates, services or any general clarifications:
+          %br
+          %a{href: 'mailto:enquiries@ourcleaningdepartment.com', target: '_top'} enquiries@ourcleaningdepartment.com
+      .col-md-8
+        .form-fields
+          = form_tag(contact_forms_path, method: :post) do
+            .row
+              .col-md-4
+                .name.form-group
+                  = label_tag 'Name *'
+                  .input-group
+                    = text_field_tag(:name)
+              .col-md-4
+                .email.form-group
+                  = label_tag 'Email *'
+                  .input-group
+                    = text_field_tag(:email)
+              .col-md-4
+                .contact.form-group
+                  = label_tag 'Contact No. *'
+                  .input-group
+                    =text_field_tag(:contact)
 
-          .contact.form-group
-            = label_tag "Contact No. * "
-            .input-group
-              =text_field_tag(:contact)
-
-          .message.form-group
-            = label_tag "Message *"
-            .input-group
-              = text_area_tag 'message',nil, rows: 3
-          .captcha.form-group
-            = label_tag "Captcha *"
-            .input-group
-              = recaptcha_tags
-          .form-group
-            = submit_tag("Send" , class: "button-submit")
+            .message.form-group
+              = label_tag 'Message *'
+              .input-group
+                = text_area_tag 'message',nil, rows: 3
+            .captcha.form-group
+              = label_tag 'Captcha *'
+              .input-group
+                = recaptcha_tags display: { theme: 'clean' }
+            .form-group
+              = submit_tag('Submit' , class: 'btn-submit btn-effect btn-2 btn-2c')
