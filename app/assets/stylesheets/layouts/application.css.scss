@@ -124,6 +124,7 @@ ul.ul-nav{
         color: #43253b;
         margin: 0 0 20px 0; padding: 0;
         background: url("bg_title_banner_txt.png") bottom center no-repeat;
+        text-transform: uppercase;
       }
       .short-desc{
         font-family: 'fira_sansregular';
@@ -244,10 +245,12 @@ ul.ul-nav{
   top: 3px;
 }
 b.roboto{
-  font-family: 'robotobold';
   &.up{
     text-transform: uppercase;
   }
+}
+b,strong{
+  font-family: 'robotobold';
 }
 span.red{
   color:red;

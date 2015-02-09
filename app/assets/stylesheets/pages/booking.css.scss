@@ -2,6 +2,10 @@
   .book-a-cleaning{
     .step-booking{
       .col-md-3{
+        a{
+          text-decoration: none;
+          color:#444444;
+        }
         text-align: center;
         .title-step{
           font-size: 19px;

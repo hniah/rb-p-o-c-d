@@ -3,7 +3,7 @@
     = image_tag('static-banners/ocd-booking.jpg', border: 0)
     .banner-text
       .bound
-        %h3 Booking
+        %h3 Bookings
         .short-desc Book your trusted and efficient housekeeper.
 
   .content-text.main-container
@@ -12,23 +12,26 @@
         %span Book A Cleaning Session In 4 Simple Step
       .step-booking.row
         .col-md-3.step-hover
-          = image_tag('stories/booking-step1.png', border: 0)
-          %br
-          %span.title-step Step 1
-          %br
-          %span.label Choose a Package
+          %a{:href => buy_package_path}
+            = image_tag('stories/booking-step1.png', border: 0)
+            %br
+            %span.title-step Step 1
+            %br
+            %span.label Choose a Package
         .col-md-3.step-hover
-          = image_tag('stories/booking-step2.png', border: 0)
-          %br
-          %span.title-step Step 2
-          %br
-          %span.label Contact Us
+          %a{:href => new_contact_form_path}
+            = image_tag('stories/booking-step2.png', border: 0)
+            %br
+            %span.title-step Step 2
+            %br
+            %span.label Contact Us
         .col-md-3.step-hover
-          = image_tag('stories/booking-step3.png', border: 0)
-          %br
-          %span.title-step Step 3
-          %br
-          %span.label Make Payment
+          %a{:href => buy_package_path}
+            = image_tag('stories/booking-step3.png', border: 0)
+            %br
+            %span.title-step Step 3
+            %br
+            %span.label Make Payment
         .col-md-3.step4
           = image_tag('stories/booking-step4.png', border: 0)
           %br
