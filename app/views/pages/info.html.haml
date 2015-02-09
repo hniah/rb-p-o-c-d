@@ -1,13 +1,1 @@
-- content_for(:page_desc) { @page.short_description }
-- content_for(:page_image) { @page.intro_image }
-#pages-info-container.has_bg
-  - if @page.full_image.present?
-    .static-banner
-      = image_tag(@page.full_image, border: 0)
-      .banner-text
-        .bound
-          %h3= @page.title
-          .short-desc= @page.intro_text
-
-  .content-text.main-container
-    = @page.description.html_safe
+= render 'pages/content'

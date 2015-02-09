@@ -17,7 +17,7 @@ class PagesController < ApplicationController
 
   def faq
     @page = Page.find_by_article_alias('faq')
-    render :info
+    render :fag
   end
 
   def about_us

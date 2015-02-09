@@ -1,0 +1,40 @@
+#fag-page-container{
+  .block{
+    margin: 0 0 20px 0;
+    color:#222222;
+    .question{
+      font-family: 'robotomedium';
+      font-size: 16px;
+      background: #e7e7e7;
+      padding: 8px 15px;
+      position: relative;
+      cursor: pointer;
+      &:after{
+        @extend .fa;
+        content: "\f067";
+        position: absolute;
+        right: 15px;
+        top: 12px;
+      }
+    }
+
+    .answer{
+      background: #e7e7e7;
+      padding: 15px 15px;
+      display: none;
+    }
+  }
+  .block.active{
+    .question{
+      background: #58304d;
+      color:#fff;
+      &:after{
+        content: "\f00d";
+        color: #fff;
+      }
+    }
+    .answer{
+      display: block;
+    }
+  }
+}
