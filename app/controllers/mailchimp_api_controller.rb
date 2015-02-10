@@ -7,7 +7,7 @@ class MailchimpApiController < ApplicationController
       email: {email: mailchimp_param['mailchimp_email']},
       double_optin: false
     )
-    flash[:notice] = "Thank you for subscribing to our mailing list. We are happy to update you with any new OCD happenings. Have a great day!"
+    flash[:notice] = "Thank you for subscribing to our mailing list."
     redirect_to root_path
 
   rescue Gibbon::MailChimpError => e
