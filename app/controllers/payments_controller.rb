@@ -42,7 +42,7 @@ class PaymentsController < ApplicationController
       payment = Payment.find_by_express_token(express_token)
       payment.purchase!(payer_id)
     else
-      flash[:error] = "Your transaction could not be compelted"
+      flash[:error] = 'Your transaction could not be completed'
       redirect_to buy_package_path
     end
 
@@ -50,14 +50,14 @@ class PaymentsController < ApplicationController
     flash[:alert] = e.message
 
   ensure
-    flash[:notice] = "You have purchased a package."
+    flash[:notice] = 'Thank you for your purchase. Please contact us to book your cleaning session(s).'
     redirect_to time_slots_path
   end
 
   def cancel_payment
     payment = Payment.find_by_express_token(express_token)
     if payment.destroy!
-      flash[:alert] = "Transaction cancelled."
+      flash[:alert] = 'Your transaction has been cancelled.'
       redirect_to buy_package_path
     end
   end
