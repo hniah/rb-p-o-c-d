@@ -10,8 +10,8 @@ class PagesController < ApplicationController
     render :info
   end
 
-  def review
-    @page = Page.find_by_article_alias('review')
+  def reviews
+    @page = Page.find_by_article_alias('reviews')
     render :info
   end
 
