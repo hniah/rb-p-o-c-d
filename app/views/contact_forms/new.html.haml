@@ -33,31 +33,76 @@
           %a{href: 'mailto:enquiries@ourcleaningdepartment.com', target: '_top'} enquiries@ourcleaningdepartment.com
       .col-md-8
         .form-fields
-          = form_tag(contact_forms_path, method: :post) do
+          = form_tag(contact_forms_path, method: :post, id: 'contact-form') do
             .row
               .col-md-4
-                .name.form-group
+                .name_field.form-group
                   = label_tag 'Name *'
                   .input-group
                     = text_field_tag(:name)
+                  %label.error This field is required.
               .col-md-4
-                .email.form-group
+                .email_field.form-group
                   = label_tag 'Email *'
                   .input-group
                     = text_field_tag(:email)
+                  %label.error This field is required.
               .col-md-4
-                .contact.form-group
+                .contact_field.form-group
                   = label_tag 'Contact No. *'
                   .input-group
                     =text_field_tag(:contact)
+                  %label.error This field is required.
 
-            .message.form-group
+            .message_field.form-group
               = label_tag 'Message *'
               .input-group
                 = text_area_tag 'message',nil, rows: 3
-            .captcha.form-group
+              %label.error This field is required.
+            .captcha_field.form-group
               = label_tag 'Captcha *'
               .input-group
                 = recaptcha_tags display: { theme: 'clean' }
+              %label.error This field is required.
             .form-group
               = submit_tag('Submit' , class: 'btn-submit btn-effect btn-2 btn-2c')
+:javascript
+  $("#contact-form").submit(function( event ) {
+    if(validate_form() == false)
+      event.preventDefault();
+  });
+
+  function validate_form(){
+    var name_field = $('input#name');
+    var email_field = $('input#email');
+    var contact_field = $('input#contact');
+    var message_field = $('textarea#message');
+    var recaptcha_response_field = $('#recaptcha_response_field');
+
+    if($.trim(name_field.val()) == '')
+      $('.name_field').addClass('required');
+    else
+      $('.name_field').removeClass('required');
+
+    if($.trim(email_field.val()) == '')
+      $('.email_field').addClass('required');
+    else
+      $('.email_field').removeClass('required');
+
+    if($.trim(contact_field.val()) == '')
+      $('.contact_field').addClass('required');
+    else
+      $('.contact_field').removeClass('required');
+
+    if($.trim(message_field.val()) == '')
+      $('.message_field').addClass('required');
+    else
+      $('.message_field').removeClass('required');
+
+    if($.trim(recaptcha_response_field.val()) == '')
+      $('.captcha_field').addClass('required');
+    else
+      $('.captcha_field').removeClass('required');
+
+    return !$('#contact-form').find('.form-group').hasClass('required');
+  }

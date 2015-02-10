@@ -23,7 +23,7 @@ class ContactFormsController < ApplicationController
   end
 
   def create_contact_form_successful
-    flash[:notice] = "Contact created successfully"
+    flash[:notice] = 'Thank you for leaving us a message. We will get in touch with you within two working days.'
     redirect_to new_contact_form_path
   end
 
