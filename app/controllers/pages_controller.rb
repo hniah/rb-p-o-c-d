@@ -10,8 +10,8 @@ class PagesController < ApplicationController
     render :info
   end
 
-  def disclaimer_privacy_policy
-    @page = Page.find_by_article_alias('disclaimer_privacy_policy')
+  def review
+    @page = Page.find_by_article_alias('review')
     render :info
   end
 

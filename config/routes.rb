@@ -13,7 +13,7 @@ Ocd::Application.routes.draw do
   resources :pages, only: [:show]
   get 'job_scope_and_time_to_task'  => 'pages#job_scope_and_time_to_task'
   get 'terms_and_condition'         => 'pages#terms_and_condition'
-  get 'disclaimer_privacy_policy'   => 'pages#disclaimer_privacy_policy'
+  get 'review'                      => 'pages#review'
   get 'faq'                         => 'pages#faq'
   get 'join_us'                     => 'pages#join_us'
   get 'about_us'                    => 'pages#about_us'

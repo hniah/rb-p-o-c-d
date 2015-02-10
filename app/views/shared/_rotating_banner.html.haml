@@ -8,8 +8,8 @@
       %h2 Book trusted home cleaners
       .tip Pick a time and we'll get your place cleaned.
       .control
-        = link_to 'Book a Timeslot', '#', class: 'btn'
-        = link_to 'Buy a Package & Save', '#', class: 'btn'
+        = link_to 'Book a Timeslot', booking_path, class: 'btn'
+        = link_to 'Buy a Package & Save', buy_package_path, class: 'btn'
       .facebook-share
         .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/ourcleaningdepartment", "data-layout" => "standard", "data-share" => "true", "data-show-faces" => "false"}
       %ul.desc-info
