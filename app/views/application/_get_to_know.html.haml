@@ -1,17 +1,17 @@
 .get_to_know_us
   .tip
     %span Get To Know Us
-  - if @get_to_know.count > 0
+  - if @latest_update_blocks.count > 0
     .content-block.row
-      - @get_to_know.each do |block|
+      - @latest_update_blocks.each do |block|
         .block.col-md-4
           .bound
-            - if block.intro_image.present?
+            - if block.image.present?
               .block-image
-                %img{ :src => block.intro_image.url()}
-            .block-title
-              = block.title
+                = image_tag(block.image.url(:thumb), border: 0)
             - if block.description
               .block-description
                 = block.description.html_safe
-
+            - if block.url.present?
+              .block-url
+                = link_to (block.title_link.present? ? block.title_link : 'Click here to view') , block.url, class: 'btn btn-custom-01'

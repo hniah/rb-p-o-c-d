@@ -11,7 +11,7 @@ module Concerns::RailsAdmin::LatestUpdate
       end
 
       list do
-        exclude_fields :description, :url
+        exclude_fields :description, :url, :title_link
       end
 
       show do
