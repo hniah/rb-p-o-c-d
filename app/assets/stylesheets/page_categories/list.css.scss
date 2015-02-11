@@ -1,34 +1,56 @@
-.page-categories-list-container{
+#page-categories-list-container{
+  .content-text{
+    margin-top: 50px;
+  }
   .item{
-    width: 100%;
+    border: 1px solid #e0e0e0;
     margin-bottom: 20px;
-    margin-top: 20px;
-    float: left;
-
+    background: #fff;
+    .row{
+      padding: 20px;
+    }
     .item-image{
-      float: left;
-      width: 15%;
-      margin-right: 20px;
-
       img{
         @extend .img-thumbnail;
         width: 100%;
+        border: 0;
       }
     }
-
     .item-content{
-      float: left;
-      width: 80%;
       min-height: 120px;
 
       .item-title{
-        font-size: 20px;
-        margin-bottom: 20px;
+        font-size: 24px;
+        margin: 10px 0 30px 0;
+        font-family: 'robotobold';
+      }
+      .item-readmore{
+        margin: 20px 0 0 0;
+        a.readmore{
+          background: #43253b;
+          color: #fff; text-decoration: none;
+          &:after{
+            content: '';
+            display: inline-block;
+            background: url("arrow_btn_white_01.png") 0 no-repeat;
+            width: 5px;
+            height: 10px;
+            margin-left: 5px;
+          }
+        }
       }
     }
-
-    .item-readmore{
-      float: left;
+  }
+  .wrap-pagination{
+    text-align: center;
+    border-top: 2px solid #ba2f95;
+    background: #fff;
+    .pagination{
+      display: inline-block;
+      margin: 10px 0 10px 0;
+      a, em, span{
+        margin: 0 8px;
+      }
     }
   }
 }

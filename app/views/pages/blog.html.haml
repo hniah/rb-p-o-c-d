@@ -1,0 +1,8 @@
+- content_for(:page_desc) { @page.short_description }
+- content_for(:page_image) { @page.intro_image }
+#blog-info-container
+  .content-text.main-container
+    .update-at
+      = @page.updated_at.strftime('%d %B %Y');
+    %h3.title= @page.title
+    = @page.description.html_safe

@@ -1,0 +1,17 @@
+#blog-info-container{
+  background: url('bg-simple-post.jpg') repeat-x;
+  padding: 80px 0;
+  .content-text{
+    padding: 50px 100px;
+    background: #fff;
+    .update-at{
+      color:#666666;
+      font-size: 16px;
+    }
+    h3.title{
+      font-size: 24px;
+      margin: 10px 0 30px 0;
+      font-family: 'robotobold';
+    }
+  }
+}

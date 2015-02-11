@@ -57,7 +57,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(page_id_param)
-    render :info
+    render :blog
   end
 
   def booking

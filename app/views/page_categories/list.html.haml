@@ -1,19 +1,27 @@
-.page-categories-list-container
-  = page_heading "Articles"
-  .content-box
+#page-categories-list-container.has_bg
+  .static-banner
+    = image_tag('static-banners/ocd-package.jpg', border: 0)
+    .banner-text
+      .bound
+        %h3 Blog
+        .short-desc Our blog. Conversations and everything in-between.
+
+  .content-text.main-container
     - @count = 0
     - @pages.each do |page|
       - @count += 1
       .item
-        .item-image
-          = image_tag (page.intro_image)
-        .item-content
-          .item-title
-            = page.title
-          .item-intro-text
-            = truncate page.intro_text, length: 200
-          .item-readmore
-            = link_to "Readmore ...", page_path(page.id)
-      - unless @count == @pages.count
-        .clr-dashed
-    = will_paginate @pages
+        .row
+          .col-sm-4.item-image
+            = image_tag (page.intro_image)
+          .col-sm-8.item-content
+            .item-update-date
+              = page.updated_at.strftime('%d %B %Y');
+            .item-title
+              = page.title
+            .item-intro-text
+              = truncate page.intro_text, length: 200
+            .item-readmore
+              = link_to 'Read More', page_path(page.id), class: 'btn readmore'
+    .wrap-pagination
+      = will_paginate @pages
