@@ -1,0 +1,15 @@
+.bound-session
+  %span.title
+    = session
+  %br
+  %span.price
+    %span.sym $
+    %span.val= val
+    %span.per /hour
+.items
+  - packages.each do |package|
+    .bound-item
+      .subtitle
+        ="#{package.session_type}-hour session"
+      .control
+        = show_buy_package_button(package, current_user, index)

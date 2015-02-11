@@ -18,68 +18,37 @@
       .row.head
         .col-md-3.ad-hoc
           .bound
-            %span.title Ad-hoc
-            %br
-            %span.price
-              %span.sym $
-              %span.val 28
-              %span.per /hour
+            = render partial: 'packages/packages', locals: {packages: @packages_follow_session[0], session: 'Ad-hoc', val: 28, index: 1}
         .col-md-3.four-sessions
           .bound
             %span.popular Most popular option
-            %span.title 4 sessions
-            %br
-            %span.price
-              %span.sym $
-              %span.val 20
-              %span.per /hour
+            = render partial: 'packages/packages', locals: {packages: @packages_follow_session[1], session: '4 session', val: 20, index: 2}
         .col-md-3.twelve-sessions
           .bound
-            %span.title 12 sessions
-            %br
-            %span.price
-              %span.sym $
-              %span.val 18
-              %span.per /hour
+            = render partial: 'packages/packages', locals: {packages: @packages_follow_session[2], session: '12 session', val: 18, index: 3}
         .col-md-3.twenty-four-sessions
           .bound
-            %span.title 24 sessions
-            %br
-            %span.price
-              %span.sym $
-              %span.val 16
-              %span.per /hour
-      - @sessions_type_list.each do |session_type|
-        - @index = 0
-        .row.items
-          - @packages[session_type].each do |package|
-            - @index+=1
-            .col-md-3
-              .bound
-                .subtitle
-                  ="#{session_type}-hour session"
-                .control
-                  = show_buy_package_button(package, current_user, @index)
+            = render partial: 'packages/packages', locals: {packages: @packages_follow_session[3], session: '24 session', val: 16, index: 4}
 
     .desc-info.row
       .col-md-9
         %p
-          = "If you are new to OCD and are unsure which package will best suit your house’s cleaning needs, #{link_to 'here is a guide to help you', '#'}.".html_safe
+          = "If you are new to OCD and are unsure which package will best suit your house’s cleaning needs, #{link_to 'here is a guide to help you', tips_buy_package_path}.".html_safe
         %p
           Also, do note that as all purchased packages are tagged to your account, you will be directed to
           the sign in page prior to purchasing any packages with us.
         %p
           = "For new users, simply #{link_to 'register an account', new_user_registration_path, class:'register'} with us. (Signing up is free and takes only 2 minutes.)".html_safe
         %p
-          = link_to 'What to consider when choosing a package', '#', class: 'more-info'
+          = link_to 'What to consider when choosing a package', tips_buy_package_path, class: 'more-info'
       .col-md-3.additional-charges
         .subtitle Additional charges
         .desc
-          = "- Extended hour:"
+          = '- Extended hour:'
           %span $28/hr
           %br
-          = "- Weekend charges:"
-          %span $10/hr
+          = '- Weekend charges:'
+          %span $10/session
         .subtitle Mode of payment accepted:
         .card-pay
           = image_tag('stories/card-pay.png', border: 0)
