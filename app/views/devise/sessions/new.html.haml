@@ -1,28 +1,63 @@
-#devise-sessions-new-container
-  .form-container
-    = page_heading "Sign in"
-    .content-box
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+#devise-sessions-new-container.user-devise
+  .content-text.main-container
+    .tip-separate.size-large
+      %span Sign in
+    .form-sign-container.row
+      .col-sm-6.form-fields
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .bound-form
+            .email_field.form-group
+              = f.label :email
+              .input-group
+                = f.email_field :email, autofocus: true
+              %label.error invalid email.
 
-        .email.form-group
-          = f.label :email
-          .input-group
-            = f.email_field :email, autofocus: true
+            .password_field.form-group
+              = f.label :password
+              .input-group
+                = f.password_field :password, autocomplete: 'off'
+              %label.error invalid password.
 
-        .password.form-group
-          = f.label :password
-          .input-group
-            = f.password_field :password, autocomplete: "off"
+            .form-group.row
+              .col-xs-6
+                .checkbox
+                  = f.check_box :remember_me
+                  = f.label :remember_me
+              .col-xs-6.forgot
+                = link_to 'Forgot your password?', new_user_password_path
+            .submit= f.submit 'Log in', class:'btn-effect btn-2 btn-2c btn-login'
+          .clr
+      .col-sm-6.more-fields
+        %span.welcome
+          %span.hello Hello!
+          %br
+          %span.desc Not an existing OCD customer?
+        .action-link
+          = link_to 'Create an Account', new_user_registration_path
+          %br
+          or
+          %br
+          = link_to 'Check out our services', '#'
 
-        .form-group
-          .col-md-offset-2.col-md-10
-            .checkbox
-              = f.check_box :remember_me
-              = f.label :remember_me
-          .col-md-offset-2.col-md-10
-            %ul.navigation
-              %li
-                = link_to "Forgot your password?", new_user_password_path
-              %li
-                = link_to "New to OCD? Sign up here.", new_user_registration_path
-        .submit= f.submit "Sign in"
+:javascript
+  $("#new_user").submit(function( event ) {
+    if(validate_form() == false)
+      event.preventDefault();
+  });
+
+  function validate_form(){
+    var email_field = $('input#user_email');
+    var password_field = $('input#user_password');
+
+    if($.trim(email_field.val()) == '')
+      $('.email_field').addClass('required');
+    else
+      $('.email_field').removeClass('required');
+
+    if($.trim(password_field.val()) == '')
+      $('.password_field').addClass('required');
+    else
+      $('.password_field').removeClass('required');
+
+    return !$('#new_user').find('.form-group').hasClass('required');
+  }

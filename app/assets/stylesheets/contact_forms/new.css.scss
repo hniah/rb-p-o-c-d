@@ -31,19 +31,6 @@
     table#recaptcha_table{
       width: 100%;
     }
-    .form-group{
-      label.error{
-        display: none;
-      }
-      &.required{
-        label.error{
-          display: block;
-          color: red;
-        }
-        input[type='text'], textarea{
-          border: 1px solid red !important;
-        }
-      }
-    }
+
   }
 }

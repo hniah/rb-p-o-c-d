@@ -75,7 +75,7 @@ ul.ul-nav{
   width: 100%;
   background: url('bg_bottom_content_home.png') 0 bottom repeat-x;
   .main-body {
-    min-height: 500px;
+    min-height: 400px;
   }
 
   #image-package-page{
@@ -104,6 +104,7 @@ ul.ul-nav{
 .static-banner{
   position: relative;
   min-height: 220px;
+  margin-bottom: 20px;
   img{
     width: 100%;
   }
@@ -259,4 +260,36 @@ span.red{
 }
 i{
   font-family: 'robotolight';
+}
+.user-devise{
+  background: url('static-banners/ocd-signin.jpg') 0 no-repeat;
+  background-size: cover;
+  padding: 50px 0;
+  .content-text{
+    background: #fff;
+  }
+  .tip-separate{
+    margin: 30px 0;
+    span{
+      background: #fff;
+      text-transform: uppercase;
+    }
+  }
+}
+.form-group{
+  label.error{
+    color:red !important;
+    display: none;
+    font-family: 'robotoregular';
+  }
+  &.required{
+    label.error{
+      display: block;
+      color: red;
+    }
+    input[type='text'],input[type='email'],input[type='password'], textarea{
+      border:1px solid #ffdada !important;
+      box-shadow: 0px 1px 8px #ffdada !important;
+    }
+  }
 }

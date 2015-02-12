@@ -1,35 +1,50 @@
 #devise-sessions-new-container {
-  .form-container {
-    @extend .col-md-12;
-
-    form {
-      @extend .form-horizontal;
-
-      label {
-        @extend .control-label;
-        @extend .col-md-2;
-      }
-
-      .input-group {
-        @extend .col-md-8;
-
-        input {
-          @extend .form-control;
+  .form-sign-container{
+    a{
+      font-family: 'robotomedium';
+      text-decoration: underline;
+    }
+    .form-fields{
+      border-right:1px solid #cccccc;
+      .bound-form{
+        width: 290px;
+        float: right; margin-right: 40px;
+        label{
+          color: #222222;
+        }
+        .input-group{
+          input{
+            width: 100%;
+            padding: 5px 5px;
+          }
         }
       }
+      .btn-login{
+        width: 100%; display: block; margin: 0; padding: 8px 0;
+      }
+      .checkbox{
+        color:#222222;
+        margin: 0;
+      }
+      .forgot{
+        padding-left: 0;
+      }
+    }
 
-      .checkbox {
-        label {
-          @extend .col-md-6;
-          text-align: left;
+    .more-fields{
+      text-align: center;
+      padding-top: 40px;
+      span.welcome{
+        color:#444444;
+        font-size: 18px;
+        span.hello{
+          font-family: 'robotobold';
+          text-transform: uppercase;
         }
       }
-
-      input[type=submit] {
-        @extend .btn;
-        @extend .btn-primary;
-        @extend .col-md-offset-2;
-        @extend .col-md-1;
+      .action-link{
+        line-height: 30px;
+        margin-top: 20px;
       }
     }
   }
