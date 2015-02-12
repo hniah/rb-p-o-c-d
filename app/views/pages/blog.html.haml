@@ -6,3 +6,10 @@
       = @page.updated_at.strftime('%d %B %Y');
     %h3.title= @page.title
     = @page.description.html_safe
+  .page-navigation.main-container
+    .col-xs-6.prev
+      - if @page.previous
+        = link_to '« Previous Post', @page.previous
+    .col-xs-6.next
+      - if @page.next
+        = link_to 'Next Post »', @page.next

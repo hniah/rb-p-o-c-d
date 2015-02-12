@@ -8,4 +8,12 @@ class Page < ActiveRecord::Base
 
   mount_uploader :intro_image, ImagePageUploader
   mount_uploader :full_image, ImagePageUploader
+
+  def previous
+    Page.where(["id < ? AND page_category_id = ?", id, page_category_id]).last
+  end
+
+  def next
+    Page.where(["id > ? AND page_category_id = ?", id, page_category_id]).first
+  end
 end
