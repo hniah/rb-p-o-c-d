@@ -1,81 +1,175 @@
-.devise-registration-new-container
-  .form-container
-    = page_heading "Sign up"
-    .content-box
+#devise-registration-new-container.user-devise
+  .content-text.main-container
+    .tip-separate.size-large
+      %span
+        Create
+        %span.your your
+        account
+    .desc-info
+      Already have an account?
+      = link_to 'Sign In.', user_info_path, class: 'link-sign-in'
+    .form-register-container
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = devise_error_messages!
+        .bound-form
+          = devise_error_messages!
+          .row
+            .col-xs-6
+              .name_field.form-group
+                = f.label :name, class: 'required'
+                .input-group
+                  = f.text_field :name, autofocus: true
+                %label.error This field is required
+            .col-xs-6
+              .email_field.form-group
+                = f.label :email, class: 'required'
+                .input-group
+                  = f.email_field :email
+                %label.error This field is required
+          .row
+            .col-xs-6
+              .password_field.form-group
+                = f.label :password, class: 'required'
+                .input-group
+                  = f.password_field :password, autocomplete: 'off'
+                %label.error This field is required
+            .col-xs-6
+              .password_confirmation_field.form-group
+                = f.label :password_confirmation, class: 'required'
+                .input-group
+                  = f.password_field :password_confirmation, autocomplete: 'off'
+                %label.error This field is required
+          .help-block (Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.)
 
-        .name.form-group
-          = f.label :name, class: 'required'
-          .input-group
-            = f.text_field :name, autofocus: true
+          .address_field.form-group
+            = f.label :address, class: 'required'
+            .input-group
+              = f.text_area :address
+            %label.error This field is required
 
-        .email.form-group
-          = f.label :email, class: 'required'
-          .input-group
-            = f.email_field :email
+          .row
+            .col-xs-6
+              .unit_field.form-group
+                = f.label :unit
+                .input-group
+                  = f.text_field :unit
+            .col-xs-6
+              .postal_field.form-group
+                = f.label :postal, class: 'required'
+                .input-group
+                  = f.text_field :postal
+                %label.error This field is required
 
-        .password.form-group
-          = f.label :password, class: 'required'
-          .input-group
-            = f.password_field :password, autocomplete: "off"
-            .help-block= "(Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.)"
+          .instruction_field.form-group
+            = f.label :instruction, 'Special Instruction'
+            .input-group
+              = f.text_area :instruction
+              .help-block (eg. I have two dogs at home. My main priority is ironing.)
 
-        .password-confirmation.form-group
-          = f.label :password_confirmation, class: 'required'
-          .input-group
-            = f.password_field :password_confirmation, autocomplete: "off"
+          .row
+            .col-xs-6
+              .contact_number_field.form-group
+                = f.label :contact_number, class: 'required'
+                .input-group
+                  = f.text_field :contact_number
+                %label.error This field is required
+            .col-xs-6
+              .alternative_contact_number_field.form-group
+                = f.label :alternative_contact_number, class: 'required'
+                .input-group
+                  = f.text_field :alternative_contact_number
+                %label.error This field is required
 
-        .address.form-group
-          = f.label :address, class: 'required'
-          .input-group
-            = f.text_area :address
+          .how_did_you_hear_about_us.form-group
+            = f.label :how_did_you_hear_about_us
+            .input-group
+              = f.select :how_did_you_hear_about_us, options_for_select(how_did_you_hear_about_us_list), {:prompt => 'Please choose'}
 
-        .unit.form-group
-          = f.label :unit
-          .input-group
-            = f.text_field :unit
-
-        .postal.form-group
-          = f.label :postal, class: 'required'
-          .input-group
-            = f.text_field :postal
-
-        .instruction.form-group
-          = f.label :instruction, 'Special Instruction'
-          .input-group
-            = f.text_area :instruction
-            .help-block= "(eg. I have two dogs at home. My main priority is ironing.)"
-
-        .contact_number.form-group
-          = f.label :contact_number, class: 'required'
-          .input-group
-            = f.text_field :contact_number
-
-        .alternative_contact_number.form-group
-          = f.label :alternative_contact_number, class: 'required'
-          .input-group
-            = f.text_field :alternative_contact_number
-
-        .how_did_you_hear_about_us.form-group
-          = f.label :how_did_you_hear_about_us
-          .input-group
-            = f.select :how_did_you_hear_about_us, options_for_select(how_did_you_hear_about_us_list), {:prompt => "Please choose"}
-
-        .form-group
-          .col-md-offset-2.col-md-10
-            .checkbox
-              %label
-                = f.check_box :terms_of_service
-                = link_to "I agree to the terms of service *", terms_and_condition_path , :target => "_blank"
-
-        .form-group
-          .col-md-offset-2.col-md-10
+          .form-group
             .checkbox
               %label
                 = f.check_box :subscribe_to_mailing_list, checked: true
-                = "I would like to join OCD’s mailing list."
+                = 'I would like to join OCD’s mailing list.'
 
-        .form-group
-          .div-button
-            = f.submit "Sign up", class: "button-submit"
+          .control
+            = f.submit 'Next', class: 'btn-effect btn-2 btn-2c button-submit'
+
+/ Button trigger modal
+%button#link-tern-condition.rb-hide{'data-target' => '#myModal', 'data-toggle' => 'modal', type: 'button'}
+
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+      .modal-body
+        - if Page.by_alias('terms_and_conditions_sign')
+          = Page.by_alias('terms_and_conditions_sign').description.html_safe
+      .modal-footer
+        %button#agree-term.btn-effect.btn-2.btn-2c{"data-dismiss" => "modal", :type => "button"} I agree
+        %button#cancel-term.btn-effect.btn-3.btn-3c{"data-dismiss" => "modal", :type => "button"} Cancel
+
+:javascript
+  var check = false;
+  var valid = false;
+  $('#agree-term').click(function(){
+      check = true;
+      $("#new_user").submit();
+  });
+  $('#cancel-term').click(function(){
+      check = false;
+      valid = false;
+  });
+  $("#new_user").submit(function( event ) {
+
+    if(validate_form() == true && !check)
+      $('#link-tern-condition').trigger('click');
+
+    if (!valid || !check)
+      event.preventDefault();
+
+  });
+
+  function validate_form(){
+    if(valid) return valid;
+
+    var name_field = $('input#user_name');
+    var email_field = $('input#user_email');
+    var password_field = $('input#user_password');
+    var password_confirmation_field = $('input#user_password_confirmation');
+    var address_field = $('#user_address');
+    var postal_field = $('input#user_postal');
+    var contact_number_field = $('input#user_contact_number');
+    var alternative_contact_number_field = $('input#user_alternative_contact_number');
+
+    //reset
+    $('#new_user').find('.form-group').removeClass('required');
+
+    if($.trim(name_field.val()) == '')
+      $('.name_field').addClass('required');
+
+    if($.trim(email_field.val()) == '')
+      $('.email_field').addClass('required');
+
+    if($.trim(password_field.val()) == '')
+      $('.password_field').addClass('required');
+
+    if($.trim(password_confirmation_field.val()) == '')
+      $('.password_confirmation_field').addClass('required');
+
+    if($.trim(address_field.val()) == '')
+      $('.address_field').addClass('required');
+
+    if($.trim(postal_field.val()) == '')
+      $('.postal_field').addClass('required');
+
+    if($.trim(contact_number_field.val()) == '')
+      $('.contact_number_field').addClass('required');
+
+    if($.trim(alternative_contact_number_field.val()) == '')
+      $('.alternative_contact_number_field').addClass('required');
+
+
+    valid = !$('#new_user').find('.form-group').hasClass('required');
+    return valid;
+  }

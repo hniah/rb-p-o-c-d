@@ -1,67 +1,57 @@
-.devise-registration-new-container {
-  @extend .row;
-
-  .form-container {
-    @extend .col-md-12;
-
-    #error_explanation {
-      @extend .alert;
-      @extend .alert-danger;
-
-      h2 {
-        font-size: 20px;
-        margin: 0 0 10px 0;
-      }
+#devise-registration-new-container {
+  font-family: 'robotoregular';
+  .tip-separate span{
+    font-family: 'robotoregular';
+    span.your{
+      font-family: 'robotoblack';
+      margin: 0; padding: 0;
     }
-
-    form {
-      @extend .form-horizontal;
-
-      label {
-        @extend .control-label;
-        @extend .col-md-3;
-      }
-
-      .input-group {
-        @extend .col-md-8;
-
-        input, textarea {
-          @extend .form-control;
+  }
+  .desc-info{
+    text-align: center;
+    font-family: 'robotomedium';
+    a.link-sign-in{
+      color: #ba2f95; text-decoration: underline;
+    }
+  }
+  .form-register-container{
+    margin: 40px 0 0 0;
+    .bound-form{
+      width: 560px;
+      margin: 0 auto;
+      .input-group{
+        input, textarea{
+          width: 100%;
+          padding: 5px;
         }
-
-        textarea{
-          height: 100px;
-          resize: none;
-        }
-      }
-
-      .checkbox {
-        label {
-          @extend .col-md-8;
-          text-align: left;
+        select{
+          border: 1px solid #bdbdbd;
+          background: none;
+          width: 100%;
+          border-radius: 0;
+          height: 30px;
         }
       }
 
-      .button-submit {
-        @extend .btn;
-        @extend .btn-primary;
-        @extend .col-md-offset-2;
+      .help-block{
+        color: #666666; font-size: 12px;
+      }
+      .control{
+        text-align: center;
+        .button-submit{
+          margin: 20px 0 0 0;
+          padding: 6px 40px;
+        }
       }
 
-      .button-warning {
-        @extend .btn;
-        @extend .btn-warning;
-      }
-
-      .sign-in-link {
-        @extend .col-md-12;
-        text-align: right;
-      }
-
-      .div-button{
-        text-align: right;
-        padding: 0 111px 0 0;
+      #error_explanation{
+        margin-bottom: 25px;
+        h2{
+          font-size: 18px;
+          color: red;
+        }
       }
     }
   }
+
 }

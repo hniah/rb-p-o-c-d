@@ -16,4 +16,8 @@ class Page < ActiveRecord::Base
   def next
     Page.where(["id > ? AND page_category_id = ?", id, page_category_id]).first
   end
+
+  def self.by_alias(page_alias)
+    Page.where(['article_alias = ?', page_alias]).first
+  end
 end
