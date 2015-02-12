@@ -315,10 +315,12 @@ i{
     }
   }
   .modal-header{
+    border: 0;
     button.close{
       background: #000;
       border: 0;
-      margin-top: -11px;
+      padding: 1px 7px;
+      border-radius: 2px;
       span{
         color: #fff;
       }
