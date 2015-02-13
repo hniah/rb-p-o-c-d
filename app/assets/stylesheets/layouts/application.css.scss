@@ -251,6 +251,27 @@ ul.ul-nav{
   box-shadow: 0 0 #d5d3d3;
   top: 3px;
 }
+
+.btn-4 {
+  background: #e5b31d;
+  color: #fff;
+  box-shadow: 0 4px #c69c20;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
+}
+.btn-4c {
+  border-radius: 4px;
+}
+.btn-4c:hover {
+  box-shadow: 0 2px #c69c20;
+  top: 2px;
+}
+.btn-4c:active {
+  box-shadow: 0 0 #c69c20;
+  top: 3px;
+}
+
 b.roboto{
   &.up{
     text-transform: uppercase;
@@ -281,14 +302,6 @@ i{
     }
   }
 
-  #error_explanation{
-    margin-bottom: 25px;
-    h2{
-      font-size: 16px;
-      color: red;
-      margin: 0 0 10px 0;
-    }
-  }
   .more-fields{
     .devise-links{
       text-align: left;
@@ -300,6 +313,15 @@ i{
     }
   }
 }
+#error_explanation{
+  margin-bottom: 25px;
+  h2{
+    font-size: 16px;
+    color: red;
+    margin: 0 0 10px 0;
+  }
+}
+
 .form-group{
   .input-group{
     input, textarea{
@@ -342,6 +364,7 @@ i{
       border: 0;
       padding: 1px 7px;
       border-radius: 2px;
+      color: #fff;
       span{
         color: #fff;
       }

@@ -1,21 +1,73 @@
-.cancel_acc_button{
-  float: left;
-}
+#devise-registration-edit-container{
+  .wrap-header{
+    margin: 50px 0 0 0;
+    border-bottom: 1px solid #b9a9b4;
+    .title{
+      color:#ba2f95; font-size: 22px;
+      font-family: 'robotobold';
+      line-height: 25px;
+    }
+    .back-link{
+      text-align: right;
+      a{
+        background: #ebe2e8; padding: 6px 10px;
+        color:#222222; text-decoration: none;
+        font-family: 'robotomedium';
+        &:before{
+          @extend .fa;
+          content: "\f0d9";
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  .form-container{
+    margin-bottom: 50px;
+    .bound-basic {
+      .input-group {
+        input, textarea {
+          width: 100%;
+          padding: 6px 5px;
+          border: 1px solid #f0f0f0;
+        }
+      }
 
-.div_text{
-  float: left;
-}
+      .read-only {
+        input, textarea {
+          background: #f0f0f0 !important;
+        }
+      }
+      .control {
+        .btn-effect {
+          margin: 0;
+          padding: 5px 0;
+          width: 100%;
+        }
+        a.btn-effect {
+          color: #666666;
+          text-decoration: none;
+          text-align: center;
+        }
+      }
+      .help-block{
+        font-size: 11.5px; font-family: 'robotoregular';
+      }
+    }
+  }
 
-.div_back_button{
-  float: left;
-}
+  .wrap-delete-user {
+    border-top: 1px solid #d9d1d7;
+    .desc-info {
+      color: #222222;
+      font-family: 'robotomedium';
+    }
+    .button-warning {
+      margin: 0;
+    }
+  }
 
-.devise-registration-edit-container{
-  @extend .devise-registration-new-container;
-
-  .button-back {
-    @extend .btn;
-    @extend .btn-default;
-    margin: 0 0 0 10px;
+  .subtitle{
+    color:#222222; font-size: 28px; text-transform: uppercase;
+    margin: 50px 0 20px 0; font-family: 'robotoregular';
   }
 }
