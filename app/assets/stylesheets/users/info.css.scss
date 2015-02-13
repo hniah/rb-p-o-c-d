@@ -1,33 +1,139 @@
 #users-info-container {
   position: relative;
-
-  .help-link{
-    text-align: right;
-    position: absolute;
-    right: 0;
-    top: 0;
+  hr{
+    margin: 0;
+  }
+  .wrap-welcome{
+    border-bottom: 1px solid #b9a9b4;
+    margin-top: 50px;
+    .welcome{
+      color:#222222;
+      font-size: 18px;
+      font-family: 'robotoregular';
+    }
+    .help-link{
+      text-align: right;
+      a{
+        background: #ebe2e8; padding: 6px 10px;
+        color:#222222; text-decoration: none;
+        font-family: 'robotomedium';
+        &:before{
+          @extend .fa;
+          content: "\f05a";
+          margin-right: 5px;
+        }
+        &:after{
+          @extend .fa;
+          content: "\f0da";
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .head-title{
+    color:#222222; font-size: 28px;
+    text-transform: uppercase;
+    margin: 50px 0 25px 0;
   }
 
-  .user_bookings {
-    .pull-left {
-      margin: 0 10px 0 10px ;
-    }
-    .modal-footer {
-      margin-top: 0;
-    }
-    .help-block {
-      font-size: 12px;
-      font-style: italic;
-    }
-    .borderless td {
-      border: none !important;
-    }
-    .feedback-textarea {
-      @extend .form-control;
-      resize: none;
+  .wrap-user-info{
+    margin-bottom: 20px;
+    .user-info{
+      .bound{
+        background: #fff;
+        padding: 15px;
+      }
+      .table-user-info{
+        td{
+          padding: 6px 0;
+          .val{
+            color:#58304d;
+          }
+        }
+      }
+
+      label{
+        color:#58304d; font-family: 'robotobold';
+        padding-right: 20px;
+      }
+      .full-name{
+        color:#ba2f95;  font-family: 'robotobold'; font-size: 22px;
+
+      }
     }
   }
-  .bootbox-close-button {
-    float: right;
+
+  .bound-total-bought{
+    margin-bottom: 20px;
+    font-family: 'robotoregular';
+    text-align: center; background: #fff;
+    .bound{
+      padding: 18px 15px;
+    }
+    .available-hours{
+      color:#a7a7a7;
+      font-size: 18px;
+      border-bottom: 1px dotted;
+    }
+    span.val-hour{
+      font-size: 55px; color: #008cb1;
+    }
+    .expire-hour{
+      color:#008cb1;
+    }
+    .total-hours{
+      font-size: 16px; color:#a7a7a7;
+    }
+    span.val-total{
+      font-size: 30px; color: #ba2f95;
+    }
+
   }
+
+  .wrap-user-photo{
+    margin-bottom: 20px;
+    .photo{
+      img{
+        width: 100%;
+      }
+    }
+    .control{
+      margin-top: 10px;
+      a{
+        color:#ba2f95; text-decoration: none;
+        text-transform: uppercase;
+        font-family: 'robotoregular';
+        line-height: 22px;
+      }
+      .edit-account{
+        &:before{
+          @extend .fa;
+          content: "\f013";
+          margin-right: 10px;
+        }
+      }
+      .promotion-code{
+        &:before {
+          @extend .fa;
+          content: "\f005";
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .did-you-know{
+    .subtitle{
+      color:#222222; text-transform: uppercase; font-family: 'robotobold';
+      font-size: 18px;
+    }
+    margin: 50px 0 0 0;
+    background: url('bg-did-you-know.png') no-repeat;
+    padding-left: 60px;
+    a.find-out{
+      font-family: 'robotomedium';
+      color:#ba2f95; text-decoration: underline; text-transform: uppercase;
+    }
+  }
+
 }

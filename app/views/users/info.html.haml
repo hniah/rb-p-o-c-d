@@ -1,78 +1,101 @@
-#users-info-container
-  .help-link
-    = link_to image_tag("help/link.png", :border => 0, :alt => 'Tips', :title => 'Tips'), tips_user_path, {target: "_blank"}
-  = page_heading "My Account"
-  .content-box
-    .user_info
-      %h3
-        ="My Information"
-      %label Name :
-      = current_user.name
-      %br
-      %label Email :
-      = current_user.email
-      %br
-      %label Contact number :
-      = current_user.contact_number
-      %br
-      %label Address :
-      = current_user.address
-      %br
-      %label Postal :
-      = current_user.postal
-      %br
-      %label Total bought hours  :
-      = current_user.total_hours_bought
-      %br
-      %label Current number of available hours :
-      = current_user.total_hours_current
-      %div
-        %ul
-          %li
-            = link_to "Edit account", edit_user_registration_path
-          %li
-            = link_to "Enter Promotion Code", user_new_promotion_path
-      %br
-      %div
-        %p DID YOU KNOW?
+#users-info-container.has_bg
+  .content-text.main-container
+    .wrap-welcome
+      .row
+        .col-sm-6.welcome
+          ="Welcome back, #{current_user.name} !"
+        .col-sm-6.help-link
+          = link_to 'Tips on managing my account', tips_user_path, {target: '_blank'}
+    %h3.head-title My Account
+    .wrap-user-info.row
+      .col-sm-6.user-info
+        .bound
+          .full-name
+            = current_user.name
+        %hr
+        .bound
+          %table.table-user-info
+            %tr
+              %td
+                %label Email
+              %td.val=": #{current_user.email}"
+            %tr
+              %td
+                %label Contact number
+              %td.val=": #{current_user.contact_number}"
+            %tr
+              %td
+                %label Address
+              %td.val=": #{current_user.address}"
+            %tr
+              %td
+                %label Postal:
+              %td.val=": #{current_user.postal}"
+      .col-sm-3.bound-total-bought
+        .bound
+          %span.available-hours{'data-placement' => 'top', 'data-toggle' => 'tooltip', :title => 'Your purchased package is now denominated in hours.'} Available hours
+          %br
+          %span.val-hour
+            = current_user.total_hours_current
+          .expire-hour
+            Expires on 28 Mar 2015
+        %hr
+        .bound
+          .total-hours Total hours bought
+          %span.val-total
+            = current_user.total_hours_bought
+      .col-sm-3.wrap-user-photo
+        .photo
+          = image_tag('user-missing.jpg', :border => 0)
+        .control
+          = link_to 'Edit account', edit_user_registration_path, class: 'edit-account'
+          %br
+          = link_to 'Enter Promotion Code', user_new_promotion_path, class: 'promotion-code'
+    .did-you-know.row
+      .col-md-12
+        %p.subtitle DID YOU KNOW?
         %p You have the choice of varying the duration of each cleaning session according to your household needs.
         %p Your remaining sessions are denominated in hours so that you could book 3-/4-/5-hour sessions accordingly.
-    .user_bookings
-      %h3
-        ="My Bookings"
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Start Time
-            %th End Time
-            %th Duration
-            %th Housekeeper
-            %th Remarks
-            %th Action
-        %tbody
-        - current_user.time_slots.each do |t|
-          %tr
-            %td= time_in_words_with_day t.start_time
-            %td= time_in_words_with_day t.end_time
-            %td
-              = to_durations(t.start_time, t.end_time)
-              = " hours"
-            %td= t.housekeeper.name
-            %td= t.remarks
-            %td
-              %div.pull-left
-                - if show_action_button?(t.start_time)
-                  - if refund?(t.start_time)
-                    = form_tag(time_slot_path(t), method: :delete) do
-                      = button_tag "Delete", type: 'button', class: 'btn delete_button'
-                  - else
-                    = form_tag(time_slot_path(t), method: :delete) do
-                      = button_tag "Delete", type: 'button', class: 'btn delete_button_without_refund'
-              - unless show_action_button?(t.start_time)
-                - unless t.contain_feedback?
-                  %div.pull-left
-                    %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
-                    = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
+        %p
+          =link_to 'Find out more about the conversion >', '#', class:'find-out'
+
+      // hidden
+      .user_bookings.rb-hide
+        %h3
+          ="My Bookings"
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Start Time
+              %th End Time
+              %th Duration
+              %th Housekeeper
+              %th Remarks
+              %th Action
+          %tbody
+          - current_user.time_slots.each do |t|
+            %tr
+              %td= time_in_words_with_day t.start_time
+              %td= time_in_words_with_day t.end_time
+              %td
+                = to_durations(t.start_time, t.end_time)
+                = " hours"
+              %td= t.housekeeper.name
+              %td= t.remarks
+              %td
+                %div.pull-left
+                  - if show_action_button?(t.start_time)
+                    - if refund?(t.start_time)
+                      = form_tag(time_slot_path(t), method: :delete) do
+                        = button_tag "Delete", type: 'button', class: 'btn delete_button'
+                    - else
+                      = form_tag(time_slot_path(t), method: :delete) do
+                        = button_tag "Delete", type: 'button', class: 'btn delete_button_without_refund'
+                - unless show_action_button?(t.start_time)
+                  - unless t.contain_feedback?
+                    %div.pull-left
+                      %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
+                      = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
 :javascript
   $(function() {
     $('.delete_button_without_refund').click(function(e) {
