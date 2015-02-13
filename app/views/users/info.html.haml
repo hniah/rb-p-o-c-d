@@ -29,7 +29,7 @@
               %td.val=": #{current_user.address}"
             %tr
               %td
-                %label Postal:
+                %label Postal
               %td.val=": #{current_user.postal}"
       .col-sm-3.bound-total-bought
         .bound
@@ -98,6 +98,7 @@
                       = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
 :javascript
   $(function() {
+    $('[data-toggle="tooltip"]').tooltip();
     $('.delete_button_without_refund').click(function(e) {
       button = $(this)
       form = button.parents('form')
