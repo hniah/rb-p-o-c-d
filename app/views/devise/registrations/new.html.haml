@@ -31,14 +31,14 @@
                 = f.label :password, class: 'required'
                 .input-group
                   = f.password_field :password, autocomplete: 'off'
-                %label.error This field is required
+                %label.password.error This field is required
             .col-xs-6
               .password_confirmation_field.form-group
                 = f.label :password_confirmation, class: 'required'
                 .input-group
                   = f.password_field :password_confirmation, autocomplete: 'off'
-                %label.error This field is required
-          .help-block (Using numbers, symbols and mix of upper and lower case letters in your password makes it more secure.)
+                %label.password_confirmation.error This field is required
+          .help-block (A minimum of 6 characters is required. Using an alpha-numeric password makes it more secure.)
 
           .address_field.form-group
             = f.label :address, class: 'required'
@@ -151,11 +151,36 @@
     if($.trim(email_field.val()) == '')
       $('.email_field').addClass('required');
 
+    var password = true;
     if($.trim(password_field.val()) == '')
+    {
+      $('label.password').html('This field is required');
       $('.password_field').addClass('required');
+      password = false;
+    }
+    else if(password_field.val().length < 6){
+      $('.password_field').addClass('required');
+      $('label.password').html('Password needs to contain at least 6 characters.');
+      password = false;
+    }
+
 
     if($.trim(password_confirmation_field.val()) == '')
+    {
+      $('label.password_confirmation').html('This field is required');
       $('.password_confirmation_field').addClass('required');
+      password = false;
+    }
+    else if(password_confirmation_field.val().length < 6){
+      $('.password_confirmation_field').addClass('required');
+      $('label.password_confirmation').html('Password needs to contain at least 6 characters.');
+      password = false;
+    }
+
+    if(password && password_field.val() != password_confirmation_field.val()){
+      $('.password_confirmation_field').addClass('required');
+      $('label.password_confirmation').html('Password confirmation does not match password.');
+    }
 
     if($.trim(address_field.val()) == '')
       $('.address_field').addClass('required');

@@ -266,7 +266,7 @@ i{
 }
 .user-devise{
   background: url('static-banners/ocd-signin.jpg') no-repeat;
-  background-size: 100%;
+  background-size: cover;
   padding: 50px 0;
   .content-text{
     background: #fff;
@@ -276,6 +276,25 @@ i{
     span{
       background: #fff;
       text-transform: uppercase;
+    }
+  }
+
+  #error_explanation{
+    margin-bottom: 25px;
+    h2{
+      font-size: 16px;
+      color: red;
+      margin: 0 0 10px 0;
+    }
+  }
+  .more-fields{
+    .devise-links{
+      text-align: left;
+      ul{
+        li{
+          line-height: 30px;
+        }
+      }
     }
   }
 }
