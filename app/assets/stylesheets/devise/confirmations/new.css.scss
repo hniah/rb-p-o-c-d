@@ -1,3 +1,6 @@
-.devise-confirmations-new-container{
-  @extend .devise-passwords-new-container
+#devise-confirmations-new-container{
+  @extend #devise-sessions-new-container;
+  .more-fields{
+    padding-top: 25px !important;
+  }
 }

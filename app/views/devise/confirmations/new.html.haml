@@ -1,16 +1,37 @@
-.devise-confirmations-new-container
-  .form-container
-    %h2= "Resend confirmation instructions"
-    .content-box
-      = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-        = devise_error_messages!
-        .email.form-group
-          = f.label :email, class: 'required'
-          .input-group
-            = f.email_field :email
+#devise-confirmations-new-container.user-devise
+  .content-text.main-container
+    .tip-separate.size-large
+      %span Resend confirmation instructions
+    .form-sign-container.row
+      .col-sm-6.form-fields
+        = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+          .bound-form
+            = devise_error_messages!
+            .email_field.form-group
+              = f.label :email, class: 'required'
+              .input-group
+                = f.email_field :email
+              %label.error This field is required.
 
-        .form-group
-          .div-button
-            = f.submit "Resend confirmation instructions", class: "button-submit"
+            .form-group
+              .div-button
+                = f.submit 'Continue >', class: 'btn-effect btn-2 btn-2c'
+      .col-sm-6.more-fields
+        .devise-links= render 'devise/shared/links'
 
-      .devise-links= render "devise/shared/links"
+:javascript
+  $("#new_user").submit(function( event ) {
+    if(validate_form() == false)
+      event.preventDefault();
+  });
+
+  function validate_form(){
+    var email_field = $('input#user_email');
+
+    if($.trim(email_field.val()) == '')
+      $('.email_field').addClass('required');
+    else
+      $('.email_field').removeClass('required');
+
+    return !$('#new_user').find('.form-group').hasClass('required');
+  }
