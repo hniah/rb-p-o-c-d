@@ -1,52 +1,6 @@
-.devise-passwords-new-container{
-  @extend .row;
-
-  .form-container {
-    @extend .col-md-12;
-
-    #error_explanation {
-      @extend .alert;
-      @extend .alert-danger;
-
-      h2 {
-        font-size: 20px;
-        margin: 0 0 10px 0;
-      }
-    }
-
-    form{
-      @extend .form-horizontal;
-      label {
-        @extend .control-label;
-        @extend .col-sm-2;
-      }
-
-      .input-group {
-        @extend .col-md-4;
-
-        input {
-          @extend .form-control;
-        }
-      }
-
-      .div-button {
-        @extend .col-sm-offset-2;
-        @extend .col-sm-10;
-      }
-
-      .button-submit{
-        @extend .btn;
-        @extend .btn-primary
-      }
-
-      .submit{
-        float: left;
-        width: 100%;
-      }
-    }
-    .devise-links{
-      float: left;
-      width: 100%;
-    }
+#devise-passwords-new-container{
+  @extend #devise-sessions-new-container;
+  .more-fields{
+    padding-top: 25px !important;
   }
 }

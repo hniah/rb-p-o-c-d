@@ -1,16 +1,37 @@
-.devise-passwords-new-container
-  .form-container
-    %h2="Forgot your password?"
-    .content-box
-      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-        = devise_error_messages!
+#devise-passwords-new-container.user-devise
+  .content-text.main-container
+    .tip-separate.size-large
+      %span Forgot your password?
+    .form-sign-container.row
+      .col-sm-6.form-fields
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          .bound-form
+            = devise_error_messages!
+            .email_field.form-group
+              = f.label :email, class: 'required'
+              .input-group
+                = f.email_field :email
+              %label.error This field is required.
 
-        .email.form-group
-          = f.label :email, class: 'required'
-          .input-group
-            = f.email_field :email
+            .form-group
+              .div-button
+                = f.submit 'Continue >' , class: 'btn-effect btn-2 btn-2c'
+      .col-sm-6.more-fields
+        .devise-links= render 'devise/shared/links'
 
-        .form-group
-          .div-button
-            = f.submit "Send me reset password instructions" , class: "button-submit"
-      .devise-links= render "devise/shared/links"
+:javascript
+  $("#new_user").submit(function( event ) {
+    if(validate_form() == false)
+      event.preventDefault();
+  });
+
+  function validate_form(){
+    var email_field = $('input#user_email');
+
+    if($.trim(email_field.val()) == '')
+      $('.email_field').addClass('required');
+    else
+      $('.email_field').removeClass('required');
+
+    return !$('#new_user').find('.form-group').hasClass('required');
+  }
