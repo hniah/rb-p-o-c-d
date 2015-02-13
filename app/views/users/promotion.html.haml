@@ -1,15 +1,19 @@
-#user-promotion-container
-  .help-link
-    = link_to image_tag("help/link.png", :border => 0, :alt => 'Tips', :title => 'Tips'), tips_user_path, {target: "_blank"}
-  = page_heading "User Account"
-  .content-box
+#user-promotion-container.has_bg
+  .content-text.main-container
+    .wrap-header
+      .row
+        .col-xs-6.title Promotion
+        .col-xs-6.help-link
+          = link_to 'Tip', tips_user_path, {target: '_blank'}
     .form-container
       = form_tag user_add_promotion_path, method: :patch do
-        .form-group
-          = label_tag 'code','Promotion Code', class: 'required'
-          .input-group
-            = text_field_tag :code
-        .form-group
-          .div-button
-            = submit_tag "Submit" , class: "btn btn-primary"
-        = hidden_field_tag :authenticity_token, form_authenticity_token
+        .row
+          .col-sm-6
+            .form-group
+              = label_tag 'code','Promotion Code', class: 'required'
+              .input-group
+                = text_field_tag :code
+            .form-group
+              .control
+                = submit_tag 'Submit' , class: 'button-submit btn-effect btn-2 btn-2c'
+            = hidden_field_tag :authenticity_token, form_authenticity_token

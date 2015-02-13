@@ -1,35 +1,45 @@
 #user-promotion-container {
-  position: relative;
-  @extend .row;
-
-  .help-link {
-    text-align: right;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .form-container {
-    @extend .col-md-12;
-
-    form {
-      @extend .form-horizontal;
-      label {
-        @extend .control-label;
-        @extend .col-sm-2;
-      }
-
-      .input-group {
-        @extend .col-md-4;
-
-        input {
-          @extend .form-control;
+  .wrap-header{
+    border-bottom: 1px solid #b9a9b4;
+    margin: 50px 0 20px 0;
+    .title{
+      color:#ba2f95; font-size: 22px;
+      font-family: 'robotobold';
+      line-height: 25px;
+    }
+    .help-link{
+      text-align: right;
+      a{
+        background: #ebe2e8; padding: 6px 10px;
+        color:#222222; text-decoration: none;
+        font-family: 'robotomedium';
+        &:before{
+          @extend .fa;
+          content: "\f05a";
+          margin-right: 5px;
         }
-      }
-
-      .div-button {
-        @extend .col-sm-offset-2;
-        @extend .col-sm-10;
+        &:after{
+          @extend .fa;
+          content: "\f0da";
+          margin-left: 5px;
+        }
       }
     }
   }
+  .form-container{
+    .input-group{
+      input[type='text']{
+        width: 100%;
+        padding: 6px 5px;
+        border: 1px solid #f0f0f0;
+      }
+    }
+    .control {
+      .btn-effect {
+        margin: 0;
+        padding: 5px 30px;
+      }
+    }
+  }
+
 }
