@@ -54,12 +54,13 @@
     .wrap_user_bookings.row
       .col-md-12
         %h3.subtitle My Bookings
-        .control
-          = link_to 'Make a new Booking', booking_path, class: 'btn make-booking'
+
         - if @upcoming_booking.present?
           .upcoming-booking
             .label-tab-booking Upcoming bookings
             = render partial: 'users/bookings', locals: {bookings: @upcoming_booking}
+        .control
+          = link_to 'Make a new Booking', booking_path, class: 'btn make-booking'
         - if @previous_booking.present?
           .previous-booking
             .label-tab-booking Previous bookings
