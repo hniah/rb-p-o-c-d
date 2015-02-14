@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   include Concerns::Users::Redirection
 
   def info
-     current_user.expire_date
+    @upcoming_booking = current_user.time_slots.where('start_time > ?', Time.now)
+    @previous_booking = current_user.time_slots.where('start_time < ?', Time.now)
   end
 
   def new_promotion

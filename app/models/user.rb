@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def expire_date
-    payment = self.payments.where(status: 'complete').order(created_at: :desc).first
+    self.payments.where(status: 'complete').order(created_at: :desc).first
   end
 
   def total_hours_used

@@ -1,0 +1,33 @@
+%table.table.list-booking{:with => '100%'}
+  %thead
+    %tr
+      %th{:width => '15%'} Date
+      %th{:width => '15%'} Time
+      %th{:width => '10%'} Duration
+      %th{:width => '20%'} Housekeeper
+      %th Remark
+      %th{:width => '10%'}
+  %tbody
+  - bookings.each do |t|
+    %tr
+      %td= date_format_dby t.start_time
+      %td= booking_time_from_to(t.start_time, t.end_time)
+      %td
+        = to_durations(t.start_time, t.end_time)
+        = ' hours'
+      %td= t.housekeeper.name
+      %td= t.remarks
+      %td
+        %div.pull-left
+          - if show_action_button?(t.start_time)
+            - if refund?(t.start_time)
+              = form_tag(time_slot_path(t), method: :delete) do
+                = button_tag 'Cancel', type: 'button', class: 'btn delete_button'
+            - else
+              = form_tag(time_slot_path(t), method: :delete) do
+                = button_tag 'Cancel', type: 'button', class: 'btn delete_button_without_refund'
+          - unless show_action_button?(t.start_time)
+            - unless t.contain_feedback?
+              %div.pull-left
+                %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
+                = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
