@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   include Concerns::Users::Redirection
 
   def info
+     current_user.expire_date
   end
 
   def new_promotion
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def add_promotion_code_successful
-    flash[:notice] = "Your promotion code has been accepted."
+    flash[:notice] = 'Your promotion code has been accepted.'
     redirect_to user_info_path
   end
 

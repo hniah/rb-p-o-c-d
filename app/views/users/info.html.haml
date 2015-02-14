@@ -38,7 +38,7 @@
           %span.val-hour
             = current_user.total_hours_current
           .expire-hour
-            Expires on 28 Mar 2015
+            = show_expire_date(current_user.expire_date)
         %hr
         .bound
           .total-hours Total hours bought
@@ -51,51 +51,55 @@
           = link_to 'Edit account', edit_user_registration_path, class: 'edit-account'
           %br
           = link_to 'Enter Promotion Code', user_new_promotion_path, class: 'promotion-code'
+    .wrap_user_bookings.row
+      .col-md-12
+        %h3.subtitle My Bookings
+        .control
+          = link_to 'Make a new Booking', booking_path, class: 'btn make-booking'
+        - if current_user.time_slots.present?
+          %table.table.list-booking
+            %thead
+              %tr
+                %th Date
+                %th Time
+                %th Duration
+                %th Housekeeper
+                %th Remark
+                %th
+            %tbody
+            - current_user.time_slots.each do |t|
+              %tr
+                %td= date_format_dby t.start_time
+                %td= booking_time_from_to(t.start_time, t.end_time)
+                %td
+                  = to_durations(t.start_time, t.end_time)
+                  = ' hours'
+                %td= t.housekeeper.name
+                %td= t.remarks
+                %td
+                  %div.pull-left
+                    - if show_action_button?(t.start_time)
+                      - if refund?(t.start_time)
+                        = form_tag(time_slot_path(t), method: :delete) do
+                          = button_tag 'Cancel', type: 'button', class: 'btn delete_button'
+                      - else
+                        = form_tag(time_slot_path(t), method: :delete) do
+                          = button_tag 'Cancel', type: 'button', class: 'btn delete_button_without_refund'
+                  - unless show_action_button?(t.start_time)
+                    - unless t.contain_feedback?
+                      %div.pull-left
+                        %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
+                        = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
     .did-you-know.row
       .col-md-12
         %p.subtitle DID YOU KNOW?
         %p You have the choice of varying the duration of each cleaning session according to your household needs.
         %p Your remaining sessions are denominated in hours so that you could book 3-/4-/5-hour sessions accordingly.
         %p
-          =link_to 'Find out more about the conversion >', '#', class:'find-out'
+          =link_to 'Find out more about the conversion >', tips_user_path, class:'find-out'
 
-      // hidden
-      .user_bookings.rb-hide
-        %h3
-          ="My Bookings"
-        %table.table.table-striped
-          %thead
-            %tr
-              %th Start Time
-              %th End Time
-              %th Duration
-              %th Housekeeper
-              %th Remarks
-              %th Action
-          %tbody
-          - current_user.time_slots.each do |t|
-            %tr
-              %td= time_in_words_with_day t.start_time
-              %td= time_in_words_with_day t.end_time
-              %td
-                = to_durations(t.start_time, t.end_time)
-                = " hours"
-              %td= t.housekeeper.name
-              %td= t.remarks
-              %td
-                %div.pull-left
-                  - if show_action_button?(t.start_time)
-                    - if refund?(t.start_time)
-                      = form_tag(time_slot_path(t), method: :delete) do
-                        = button_tag "Delete", type: 'button', class: 'btn delete_button'
-                    - else
-                      = form_tag(time_slot_path(t), method: :delete) do
-                        = button_tag "Delete", type: 'button', class: 'btn delete_button_without_refund'
-                - unless show_action_button?(t.start_time)
-                  - unless t.contain_feedback?
-                    %div.pull-left
-                      %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
-                      = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
+
+
 :javascript
   $(function() {
     $('[data-toggle="tooltip"]').tooltip();

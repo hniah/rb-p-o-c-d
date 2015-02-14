@@ -3,8 +3,8 @@
     .wrap-header
       .row
         .col-xs-6.title Promotion
-        .col-xs-6.help-link
-          = link_to 'Tip', tips_user_path, {target: '_blank'}
+        .col-xs-6.back-link
+          = link_to 'Back to main', user_info_path
     .form-container
       = form_tag user_add_promotion_path, method: :patch do
         .row

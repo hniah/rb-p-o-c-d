@@ -3,12 +3,25 @@
 
   .notice {
     @extend .alert;
-    background: #cfd9d1;
-    color: #306F3E;
+    background: #e9fcec;
+    color: #1d852d;
+    border: 1px solid #cae7ce;
+    border-radius: 0;
+    margin: 1px;
+    font-family: 'robotoregular';
+    font-size: 16px;
+    &:before{
+      @extend .fa;
+      content: "\f05d";
+      margin-right: 5px;
+      color: #1d852d; font-size: 18px;
+    }
   }
 
   .warning {
     @extend .alert;
     @extend .alert-danger;
+    border-radius: 0;
+    margin: 1px;
   }
 }

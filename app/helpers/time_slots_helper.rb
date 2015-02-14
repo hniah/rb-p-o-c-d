@@ -98,4 +98,12 @@ module TimeSlotsHelper
   def previous_week(week)
     [0, @week - 1].max
   end
+
+  def date_format_dby(date)
+    date.strftime('%d %b %Y')
+  end
+
+  def booking_time_from_to(date_start, date_end)
+    "#{date_start.strftime('%H:%M')} to #{date_end.strftime('%H:%M')}"
+  end
 end

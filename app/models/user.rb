@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     payments.map { |p| p.package.hours }.inject(:+).to_i
   end
 
+  def expire_date
+    payment = self.payments.where(status: 'complete').order(created_at: :desc).first
+  end
+
   def total_hours_used
     hours = self.time_slots.map { |t| t.duration }.inject(:+).to_i
     special_hours = self.special_hours.map { |s| s.hour }.inject(:+).to_i

@@ -8,6 +8,15 @@ module UsersHelper
     Time.zone.now < start_time
   end
 
+  def show_expire_date(payment)
+    if payment.present?
+      @next_year = payment.created_at+ 1.years
+      "Expires on #{@next_year.strftime('%d %b %Y')}"
+    else
+      ''
+    end
+  end
+
   def rating_scale_list
     [["Very Satisfied", "Very Satisfied"],["Satisfied", "Satisfied"], ["Neutral", "Neutral"], ["Dissatisfied", "Dissatisfied"],["Very Dissatisfied", "Very Dissatisfied"]]
   end

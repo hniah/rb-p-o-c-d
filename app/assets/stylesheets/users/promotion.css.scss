@@ -7,21 +7,16 @@
       font-family: 'robotobold';
       line-height: 25px;
     }
-    .help-link{
+    .back-link{
       text-align: right;
       a{
         background: #ebe2e8; padding: 6px 10px;
         color:#222222; text-decoration: none;
-        font-family: 'robotomedium';
+        font-family: 'robotomedium'; border-radius: 3px 3px 0 0;
         &:before{
           @extend .fa;
-          content: "\f05a";
+          content: "\f0d9";
           margin-right: 5px;
-        }
-        &:after{
-          @extend .fa;
-          content: "\f0da";
-          margin-left: 5px;
         }
       }
     }
