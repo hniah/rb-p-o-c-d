@@ -9,8 +9,8 @@ module UsersHelper
   end
 
   def show_expire_date(payment)
-    if payment.present?
-      @next_year = payment.created_at+ 1.years
+    if payment.present? && payment.created_at.present?
+      @next_year = payment.created_at + 1.years
       "Expires on #{@next_year.strftime('%d %b %Y')}"
     else
       ''
