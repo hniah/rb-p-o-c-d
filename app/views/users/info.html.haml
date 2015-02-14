@@ -90,6 +90,15 @@
                       %div.pull-left
                         %button.btn{"data-target" => "#feedback_form_#{t.id}", "data-toggle" => "modal"} Feedback
                         = render template: 'feedbacks/feedback', :locals => { :@time_slot => t }
+        - else
+          .no-bookings
+            = image_tag('ic-calandar.png', border: 0, class:'ic-calendar')
+            %br
+            %span.you-dont You don't have any upcoming bookings.
+            %br
+            %span.make-booking
+              Make a new booking
+              = link_to 'here', booking_path, class: 'booking-here'
     .did-you-know.row
       .col-md-12
         %p.subtitle DID YOU KNOW?
