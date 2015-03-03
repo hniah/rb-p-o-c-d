@@ -5,26 +5,28 @@
     position: absolute;
     top: 12%;
     z-index: 99999;
-    width: 450px;
+    width: 470px;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
     color:#43253b;
     h2{
-      font-size: 34px;
+      font-size: 36px;
       line-height: 20px;
       font-family: 'fira_sansmedium';
     }
     .tip{
       font-size: 18px;
       font-family: 'fira_sansregular';
+      color: #43253b;
     }
     a.btn{
       border: 1px solid #43253b;
       background: transparent;
       font-family: 'robotoregular';
       font-size: 18px;
+      color: #43253b;
       &:hover{
         background-color:#43253b;
         color:#fff;

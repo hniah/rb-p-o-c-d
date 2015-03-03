@@ -11,8 +11,10 @@
       li{
         a{
           color: #fff;
+          font-family: 'robotolight';
+          font-size: 13px;
         }
-        padding:0 20px 0 0;
+        padding: 0 26px 0 0;
         margin: 0;
         border: 0;
       }
@@ -20,17 +22,22 @@
     .copyright{
       font-size: 11px;
       color:#abaaaa; text-align: right;
+      font-family: 'robotolight';
+      line-height: 25px; letter-spacing: 0.1em;
+      padding-right: 0;
     }
 
     #back-to-top{
       cursor: pointer;
       position: absolute;
-      right: 0px;
-      top: -52px;
+      right: 15px;
+      top: -50px;
       background: #1d1c1c;
       color:#fff;
       padding: 8px 15px;
       text-decoration: none;
+      font-family: 'robotolight';
+      font-size: 11.5px;
       &:after{
         content: "\f0d8";
         margin-left: 5px;

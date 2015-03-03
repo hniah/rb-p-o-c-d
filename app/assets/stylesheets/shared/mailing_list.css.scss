@@ -17,25 +17,25 @@
       form{
         display: inline-block;
         .div_input{
-          width: 650px;
+          width: 580px;
         }
       }
       #mailchimp_email{
         border: 0;
-        padding: 8px 10px;
+        padding: 10px 10px;
         font-family: 'fira_sansregular';
-        color:#888888;
+        color: #888888;
         background: #fff;
         border-radius: 4px;
         outline: none;
         margin: 0 8px 0 8px;
         box-shadow: 0px 3px 2px #ccc;
-        width: 65%;
-        float:left;
+        width: 76%;
+        float: left;
         line-height: 22px;
       }
       .btn-submit{
-        padding: 5px 15px;
+        padding: 8px 15px;
         color: #fff;
         font-size: 15px;
         text-transform: uppercase;
@@ -43,7 +43,7 @@
         border-radius: 4px;
         box-shadow: 0px 3px 2px #ccc;
         border: 0;
-        display: block;
+        display: inline-block;
         font-family: 'fira_sansbold';
         line-height: 28px;
       }
