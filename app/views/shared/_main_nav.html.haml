@@ -8,5 +8,6 @@
       = link_to 'Rates<span>Buy a package</span>'.html_safe, buy_package_path
     %li{class: display_active_menu_item(booking_path)}
       = link_to 'Booking<span>Make a booking</span>'.html_safe, booking_path
-    %li{ class: display_active_menu_item(faq_path) }
+    %li.last{ class: display_active_menu_item(faq_path) }
       = link_to 'FAQ<span>Answers & Info'.html_safe, faq_path
+    .clr

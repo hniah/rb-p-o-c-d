@@ -2,7 +2,7 @@
   %ul.ul-nav
     - unless user_signed_in?
       %li{class: display_active_menu_item(new_user_registration_path)}
-        = link_to 'Register', new_user_registration_path, class:'register'
+        = link_to 'Register', new_user_registration_path, class:'register btn-bound'
     - if user_signed_in?
       %li{class: display_active_menu_item(user_info_path)}
         = link_to 'My Account', user_info_path
