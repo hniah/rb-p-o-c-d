@@ -2,12 +2,7 @@
 - content_for(:page_image) { @page.intro_image }
 #pages-info-container.has_bg
   - if @page.full_image.present?
-    .static-banner
-      = image_tag(@page.full_image, border: 0)
-      .banner-text
-        .bound
-          %h3= @page.title
-          .short-desc= @page.intro_text
+    = render partial: 'shared/static_banner', locals: {img_url: @page.full_image.url, title: @page.title, desc: @page.intro_text}
 
   .content-text.main-container
     = @page.description.html_safe

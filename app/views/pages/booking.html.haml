@@ -1,10 +1,5 @@
 #bookings-page-container.has_bg
-  .static-banner
-    = image_tag('static-banners/ocd-booking.jpg', border: 0)
-    .banner-text
-      .bound
-        %h3 Bookings
-        .short-desc Book your trusted and efficient housekeeper.
+  = render partial: 'shared/static_banner', locals: {img_url: image_path('static-banners/ocd-booking.jpg'), title: 'Bookings', desc: "Book your trusted and efficient housekeeper."}
 
   .content-text.main-container
     .book-a-cleaning

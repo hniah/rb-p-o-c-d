@@ -1,10 +1,5 @@
 #contact-forms-new-container.has_bg
-  .static-banner
-    = image_tag('static-banners/ocd-contact.jpg', border: 0)
-    .banner-text
-      .bound
-        %h3 Contact us
-        .short-desc We'd love to hear from you!
+  = render partial: 'shared/static_banner', locals: {img_url: image_path('static-banners/ocd-contact.jpg'), title: 'Contact us', desc: "We'd love to hear from you!"}
 
   .content-text.main-container
     .tip-separate.size-large

@@ -1,10 +1,5 @@
 #page-categories-list-container.has_bg
-  .static-banner
-    = image_tag('static-banners/ocd-blog.png', border: 0)
-    .banner-text
-      .bound
-        %h3 Blog
-        .short-desc Conversations, promotions and everything in-between.
+  = render partial: 'shared/static_banner', locals: {img_url: image_path('static-banners/ocd-blog.png'), title: 'Blog', desc: "Conversations, promotions and everything in-between."}
 
   .content-text.main-container
     - @count = 0
