@@ -37,7 +37,7 @@
           %br
           %span.val-hour
             = current_user.total_hours_current
-          .expire-hour
+          .expire-hour.clr
             = show_expire_date(current_user.expire_date)
         %hr
         .bound
@@ -60,7 +60,7 @@
             .label-tab-booking Upcoming bookings
             = render partial: 'users/bookings', locals: {bookings: @upcoming_booking}
         .control
-          = link_to 'Make a new Booking', booking_path, class: 'btn make-booking'
+          = link_to 'Make a new Booking', new_contact_form_path, class: 'btn make-booking'
         - if @previous_booking.present?
           .previous-booking
             .label-tab-booking Previous bookings
@@ -73,7 +73,7 @@
             %br
             %span.make-booking
               Make a new booking
-              = link_to 'here', booking_path, class: 'booking-here'
+              = link_to 'here', new_contact_form_path, class: 'booking-here'
     .did-you-know.row
       .col-md-12
         %p.subtitle DID YOU KNOW?
