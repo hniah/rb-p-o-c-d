@@ -148,7 +148,7 @@ ul.ul-nav{
   text-align: center;
   position: relative;
   background: url('line_1px.png') 0 repeat-x;
-  margin: 20px 0;
+  margin: 35px 0;
   font-family: 'robotoregular';
   &:after{
     background:#e0e0e0;
@@ -160,7 +160,7 @@ ul.ul-nav{
     background: #fff;
     font-size: 18px;
     padding: 0 30px;
-    color: #662f57;
+    color: #222;
   }
 }
 .tip-separate.size-large{
@@ -168,7 +168,6 @@ ul.ul-nav{
     font-size: 28px;
     font-family: 'robotobold';
     background: #f9f9f9;
-    color: #222222;
   }
 
 }
