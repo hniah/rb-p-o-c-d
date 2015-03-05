@@ -6,13 +6,10 @@
     margin: 0 auto;
     padding: 0;
     list-style: none;
-    li:first-child{
-      border-left: 1px solid #eaeaea;
-    }
     li{
 
       float:left;
-      border-right: 1px solid #eaeaea;
+      border-left: 1px solid #eaeaea;
 
       &.active a:after, a:hover:after{
         background: #ba2f95;
@@ -28,7 +25,7 @@
         font-family: 'robotomedium';
         font-size: 16px;
         display: block;
-        padding: 30px 18px;
+        padding: 25px 18px;
         color: #43253b;
         text-transform: uppercase;
         text-decoration: none;
@@ -40,9 +37,6 @@
           font-family: 'robotoregular';
           padding-top: 5px;
         }
-      }
-      &:last-child{
-        border: none;
       }
     }
   }

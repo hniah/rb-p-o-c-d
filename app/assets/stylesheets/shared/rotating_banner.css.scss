@@ -28,10 +28,11 @@
       font-size: 18px;
       color: #43253b;
       margin-right: 6px;
-      &:hover{
+      &:hover, &.active{
         background-color:#43253b;
         color:#fff;
       }
+
     }
     .control{
       margin: 30px 0 25px 0;
