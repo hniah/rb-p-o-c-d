@@ -46,7 +46,7 @@
             = current_user.total_hours_bought
       .col-sm-3.wrap-user-photo
         .photo
-          = image_tag('user-missing.jpg', :border => 0)
+          = image_tag current_user.avatar.url(:thumb)
         .control
           = link_to 'Edit account', edit_user_registration_path, class: 'edit-account'
           %br

@@ -21,6 +21,17 @@ class User < ActiveRecord::Base
   enumerize :block, in: [:block, :unblock]
   enumerize :changeable_address, in: [:no, :yes]
 
+
+  DEFAULT_URL = '/images/users/avatars/:style/missing.jpg'
+
+  VALIDATE_SIZE = { in: 0..1.megabytes, message: 'Photo size too large. Please limit to 1 mb.' }
+  has_attached_file :avatar,
+                    styles: {small: '127x127#', thumb: '210x210#', large: '600x600#'},
+                    default_url: DEFAULT_URL
+  validates_attachment :avatar,
+                       content_type: {content_type: /\Aimage\/.*\Z/},
+                       size: VALIDATE_SIZE
+
   after_create do
     subscribe_to_mailchimp if self.subscribe_to_mailing_list
   end

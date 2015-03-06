@@ -23,6 +23,32 @@
   }
   .form-container{
     margin-bottom: 50px;
+
+    .bound-avatar{
+      .avatar{
+        padding-right: 25px;
+      }
+      .desc-control{
+        color:#222222;
+        line-height: 24px;
+        span.upload{
+          font-family: 'robotobold'; font-size: 18px;
+        }
+        span.notice{
+          font-family: 'robotoregular';
+        }
+        .input-photo{
+          margin-top: 20px;
+          .btn-upload{
+            color:#444444; background: #e1e1e1;
+            font-family: 'robotomedium';
+            padding: 7px 20px;
+            outline: none;
+          }
+        }
+      }
+    }
+
     .bound-basic {
       .input-group {
         input, textarea {

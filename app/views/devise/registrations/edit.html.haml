@@ -8,6 +8,20 @@
     .form-container
       = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
         .bound-basic
+          %h4.subtitle Profile Photo
+          %table.bound-avatar
+            %tr
+              %td.avatar
+                = image_tag resource.avatar.url(:small)
+              %td.desc-control
+                %span.upload Upload your photo.
+                %br
+                %span.notice Image should be at least 300px × 300px.
+                %br
+                .input-photo
+                  %button#btn-upload.btn.btn-upload Upload Photo
+                  %span#val_avatar
+                  = f.file_field :avatar, class: 'sr-only'
           %h4.subtitle Basic Information
           = devise_error_messages!
           .row
@@ -184,3 +198,10 @@
 
     return !$('#edit_user').find('.form-group').hasClass('required');
   }
+
+  $('#btn-upload').click(function(){
+    $('#user_avatar').trigger('click');
+  });
+  $('#user_avatar').change(function(){
+    $('#val_avatar').html($('#user_avatar').val());
+  });
