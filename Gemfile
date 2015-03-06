@@ -84,9 +84,10 @@ gem 'unicorn'
 # gem 'debugger', group: [:development, :test]
 
 gem 'simple_form'
-
+gem 'paperclip', '~> 4.2'
+  gem 'aws-sdk', '~> 1.5.7'
 #letter opener
-gem "letter_opener", :group => :development
+gem 'letter_opener', :group => :development
 
 #paypal
 gem 'activemerchant'

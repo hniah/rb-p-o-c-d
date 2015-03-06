@@ -42,4 +42,16 @@ Ocd::Application.configure do
     }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
+
+  config.paperclip_defaults = {
+      storage: :s3,
+      s3_protocol: 'http',
+      url: ":s3_domain_url",
+      path: "/development/:class/:attachment/:id_partition/:style/:filename",
+      s3_credentials: {
+          bucket: ENV['S3_BUCKET_NAME'],
+          access_key_id: ENV['S3_KEY'],
+          secret_access_key: ENV['S3_SECRET']
+      }
+  }
 end
