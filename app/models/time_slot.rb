@@ -13,6 +13,8 @@ class TimeSlot < ActiveRecord::Base
 
   enumerize :category, in: [:booked, :blocked]
 
+  enumerize :status , in: [:pending, :cancelled, :confirmed]
+
   def duration
     (start_time.nil? || end_time.nil?) ?
       3 : to_durations(start_time, end_time)

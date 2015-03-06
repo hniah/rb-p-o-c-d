@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210015841) do
+ActiveRecord::Schema.define(version: 20150214084521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20150210015841) do
     t.integer  "user_id"
     t.integer  "housekeeper_id"
     t.text     "remarks"
+    t.string   "status"
   end
 
   add_index "time_slots", ["housekeeper_id"], name: "index_time_slots_on_housekeeper_id", using: :btree
