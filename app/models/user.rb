@@ -68,9 +68,9 @@ class User < ActiveRecord::Base
   rescue Gibbon::MailChimpError => e
     case e.code
     when -100
-      errors[:base] << "Please provide a valid email address to join our mailing list."
+      errors[:base] << 'Please provide a valid email address to join our mailing list.'
     when 214
-      errors[:base] << "This email has already subscribed to our Mailing List."
+      errors[:base] << 'This email has already subscribed to our Mailing List.'
     else
       errors[:base] << e.message
     end

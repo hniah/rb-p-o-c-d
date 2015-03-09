@@ -12,7 +12,7 @@ class FeedbacksController < ApplicationController
   end
 
   def create_feedback_successful
-    flash[:notice] = "Feedback created successfully"
+    flash[:notice] = 'Thank you for your valuable feedback!'
     redirect_to user_info_path
   end
 

@@ -5,7 +5,7 @@ class ContactFormsController < ApplicationController
   end
 
   def create
-    captcha_message = "The data you entered for the CAPTCHA wasn't correct. Please try again"
+    captcha_message = 'The data entered for CAPTCHA was incorrect. Please try again. Thank you.'
 
     @contact_form = ContactForm.new(contact_params)
     @service = ContactForm::CreationService.new(self)

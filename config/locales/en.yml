@@ -27,3 +27,7 @@ en:
           attributes:
             date_of_birth:
               on_or_before: 'must be at least 18 years old'
+        user:
+          attributes:
+            email:
+              taken: "This email address has already been used."

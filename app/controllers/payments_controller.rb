@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
     redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
 
   rescue Exception
-    flash[:alert] = "Fail to create payment!"
+    flash[:alert] = 'Payment was unsuccessful. Please contact us for clarification.'
     redirect_to buy_package_path
   end
 
@@ -42,7 +42,7 @@ class PaymentsController < ApplicationController
       payment = Payment.find_by_express_token(express_token)
       payment.purchase!(payer_id)
     else
-      flash[:error] = 'Your transaction could not be completed'
+      flash[:error] = 'Your transaction could not be completed. Please contact us for assistance. Thank you.'
       redirect_to buy_package_path
     end
 
