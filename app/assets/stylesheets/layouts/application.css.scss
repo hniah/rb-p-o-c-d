@@ -78,7 +78,7 @@ ul.ul-nav{
 
 #main-body-container{
   width: 100%;
-  background: url('bg_bottom_content_home.png') 0 bottom repeat-x;
+  background: image-url('bg_bottom_content_home.png') 0 bottom repeat-x;
   .main-body {
     min-height: 400px;
   }
@@ -121,7 +121,7 @@ ul.ul-nav{
     top: 50px;
     right: 0;
     margin: 0 auto;
-    background: url("bg_banner_text.png") repeat;
+    background: image-url("bg_banner_text.png") repeat;
 
     .bound{
       text-align: center;
@@ -132,7 +132,7 @@ ul.ul-nav{
         color: #43253b;
         margin: 0 0 25px 0;
         padding: 0 0 9px 0;
-        background: url("bg_title_banner_txt.png") bottom center no-repeat;
+        background: image-url("bg_title_banner_txt.png") bottom center no-repeat;
         text-transform: uppercase;
         line-height: 40px;
       }
@@ -147,7 +147,7 @@ ul.ul-nav{
 .tip-separate{
   text-align: center;
   position: relative;
-  background: url('line_1px.png') 0 repeat-x;
+  background: image-url('line_1px.png') 0 repeat-x;
   margin: 35px 0;
   font-family: 'robotoregular';
   &:after{
@@ -181,7 +181,7 @@ ul.ul-nav{
   font-size: 12px;
   &:after{
     content: '';
-    background: url("arrow_btn_01.png") 0px 0px no-repeat;
+    background: image-url("arrow_btn_01.png") 0px 0px no-repeat;
     display: inline-block;
     width: 5px;
     height: 8px;
@@ -191,7 +191,7 @@ ul.ul-nav{
     background: #ba2f95;
     color: #fff;
     &:after{
-      background: url("arrow_btn_white_01.png") 0px 0px no-repeat;
+      background: image-url("arrow_btn_white_01.png") 0px 0px no-repeat;
     }
   }
 }
@@ -292,7 +292,7 @@ i{
   font-family: 'robotolight';
 }
 .user-devise{
-  background: url('static-banners/ocd-signin.jpg') no-repeat;
+  background: image-url('static-banners/ocd-signin.jpg') no-repeat;
   background-size: cover;
   padding: 50px 0;
   .content-text{

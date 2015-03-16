@@ -1,6 +1,6 @@
 #shared-footer-container{
   width: 100%;
-  background: url('bg_footer.jpg') repeat-x;
+  background: image-url('bg_footer.jpg') repeat-x;
   padding: 20px 0 15px 0;
   #shared-footer{
     @extend .container;

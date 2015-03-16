@@ -29,12 +29,12 @@
   }
 
   span.quote-left{
-    background: url('stories/quote_left.png') no-repeat;
+    background: image-url('stories/quote_left.png') no-repeat;
     display: inline-block; width: 24px; height: 18px;
     margin: 0 10px 0 0;
   }
   span.quote-right{
-    background: url('stories/quote_right.png') no-repeat;
+    background: image-url('stories/quote_right.png') no-repeat;
     display: inline-block; width: 24px; height: 18px;
     margin: 10px 0 0 10px;
   }

@@ -43,7 +43,7 @@
       font-size: 16px;
       margin: 30px 0 0 0; padding: 0;
       li{
-        background: url("bullet_green.png") 0 no-repeat;
+        background: image-url("bullet_green.png") 0 no-repeat;
         padding-left: 35px;
         line-height: 30px;
       }
@@ -57,7 +57,7 @@
   }
   .nivo-directionNav {
     a{
-      background: url('arrows_nivo.png') no-repeat !important;
+      background: image-url('arrows_nivo.png') no-repeat !important;
       width: 47px !important;
       height: 128px !important;
       top: 36% !important;

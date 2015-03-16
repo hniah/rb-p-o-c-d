@@ -1,6 +1,6 @@
 #shared-mailing-list-container{
   width: 100%;
-  background: url('bg_mailing_list.jpg') top center no-repeat;
+  background: image-url('bg_mailing_list.jpg') top center no-repeat;
   background-size: cover;
   #shared-mailing-list{
     @extend .container;

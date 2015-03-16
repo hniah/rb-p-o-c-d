@@ -186,7 +186,7 @@
         border: 1px solid #008cb1;
         background: #fff; color:#008cb1;
         &:after{
-          background: url("arrow_btn_white_01.png") 0 0 no-repeat;
+          background: image-url("arrow_btn_white_01.png") 0 0 no-repeat;
           content: '';
           display: inline-block;
           width: 5px;
@@ -207,7 +207,7 @@
       font-size: 18px;
     }
     margin: 50px 0 0 0;
-    background: url('bg-did-you-know.png') no-repeat;
+    background: image-url('bg-did-you-know.png') no-repeat;
     padding-left: 60px;
     a.find-out{
       font-family: 'robotomedium';
