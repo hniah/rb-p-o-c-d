@@ -7,3 +7,8 @@ test:
   adapter: postgresql
   database: ocd_test
   host: localhost
+
+production:
+  adapter: postgresql
+  database: ocd_production
+  host: localhost
