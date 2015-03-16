@@ -90,7 +90,7 @@ gem 'paperclip', '~> 4.2'
 gem 'letter_opener', :group => :development
 
 #paypal
-gem 'activemerchant'
+#gem 'activemerchant'
 
 #store files and images
 gem 'carrierwave'

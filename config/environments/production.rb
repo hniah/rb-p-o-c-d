@@ -85,15 +85,15 @@ Ocd::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   #Paypal
-  config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :production
-    paypal_options = {
-      login: ENV['PAYPAL_LOGIN'],
-      password: ENV["PAYPAL_PASSWORD"],
-      signature: ENV["PAYPAL_SIGNATURE"]
-    }
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-  end
+  # config.after_initialize do
+  #   ActiveMerchant::Billing::Base.mode = :production
+  #   paypal_options = {
+  #     login: ENV['PAYPAL_LOGIN'],
+  #     password: ENV["PAYPAL_PASSWORD"],
+  #     signature: ENV["PAYPAL_SIGNATURE"]
+  #   }
+  #   ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  # end
 
   # Heroku Mandrill configuration
   ActionMailer::Base.smtp_settings = {

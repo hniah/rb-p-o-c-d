@@ -31,17 +31,17 @@ Ocd::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.delivery_method = :letter_opener
-
-  #Paypal
-  config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
-    paypal_options = {
-      login: ENV['PAYPAL_LOGIN'],
-      password: ENV["PAYPAL_PASSWORD"],
-      signature: ENV["PAYPAL_SIGNATURE"]
-    }
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-  end
+  #
+  # #Paypal
+  # config.after_initialize do
+  #   ActiveMerchant::Billing::Base.mode = :test
+  #   paypal_options = {
+  #     login: ENV['PAYPAL_LOGIN'],
+  #     password: ENV["PAYPAL_PASSWORD"],
+  #     signature: ENV["PAYPAL_SIGNATURE"]
+  #   }
+  #   ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  # end
 
   config.paperclip_defaults = {
       storage: :s3,
