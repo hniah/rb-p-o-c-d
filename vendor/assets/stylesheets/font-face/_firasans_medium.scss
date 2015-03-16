@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fira_sansmedium';
-  src: url('firasans-medium/firasans-medium-webfont.eot');
-  src: url('firasans-medium/firasans-medium-webfont.eot?#iefix') format('embedded-opentype'),
-  url('firasans-medium/firasans-medium-webfont.woff2') format('woff2'),
-  url('firasans-medium/firasans-medium-webfont.woff') format('woff'),
-  url('firasans-medium/firasans-medium-webfont.ttf') format('truetype'),
-  url('firasans-medium/firasans-medium-webfont.svg#fira_sansmedium') format('svg');
+  src: font-url('firasans-medium/firasans-medium-webfont.eot');
+  src: font-url('firasans-medium/firasans-medium-webfont.eot?#iefix') format('embedded-opentype'),
+  font-url('firasans-medium/firasans-medium-webfont.woff2') format('woff2'),
+  font-url('firasans-medium/firasans-medium-webfont.woff') format('woff'),
+  font-url('firasans-medium/firasans-medium-webfont.ttf') format('truetype'),
+  font-url('firasans-medium/firasans-medium-webfont.svg#fira_sansmedium') format('svg');
   font-weight: normal;
   font-style: normal;
 

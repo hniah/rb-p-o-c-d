@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: 'robotomedium';
-    src: url('roboto-medium/roboto-medium-webfont.eot');
-    src: url('roboto-medium/roboto-medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('roboto-medium/roboto-medium-webfont.woff2') format('woff2'),
-         url('roboto-medium/roboto-medium-webfont.woff') format('woff'),
-         url('roboto-medium/roboto-medium-webfont.ttf') format('truetype'),
-         url('roboto-medium/roboto-medium-webfont.svg#robotomedium') format('svg');
+    src: font-url('roboto-medium/roboto-medium-webfont.eot');
+    src: font-url('roboto-medium/roboto-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('roboto-medium/roboto-medium-webfont.woff2') format('woff2'),
+         font-url('roboto-medium/roboto-medium-webfont.woff') format('woff'),
+         font-url('roboto-medium/roboto-medium-webfont.ttf') format('truetype'),
+         font-url('roboto-medium/roboto-medium-webfont.svg#robotomedium') format('svg');
     font-weight: normal;
     font-style: normal;
 
