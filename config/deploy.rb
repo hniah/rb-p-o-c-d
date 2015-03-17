@@ -16,7 +16,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 set :term_mode, nil
 set :shared_paths, ['config/database.yml', 'log']
 set :app, 'ocd'
-set :domain, 'ourcleaningdepartment.com'
+set :domain, '52.11.241.176'
 set :repository, 'ssh://ocd@52.11.241.176/~/git/ocd.git'
 set :user, 'ocd'
 set :rvm_path, '/usr/local/rvm/scripts/rvm'
