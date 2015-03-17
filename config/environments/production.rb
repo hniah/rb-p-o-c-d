@@ -68,7 +68,7 @@ Ocd::Application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: 'ourcleaningdepartment.com' }
-  config.action_controller.asset_host = "http://ourcleaningdepartment.com/"
+  config.action_controller.asset_host = "http://ourcleaningdepartment.com"
   config.action_mailer.asset_host = config.action_controller.asset_host
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -85,15 +85,15 @@ Ocd::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   #Paypal
-  config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :production
-    paypal_options = {
-      login: ENV['PAYPAL_LOGIN'],
-      password: ENV["PAYPAL_PASSWORD"],
-      signature: ENV["PAYPAL_SIGNATURE"]
-    }
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-  end
+  # config.after_initialize do
+  #   ActiveMerchant::Billing::Base.mode = :production
+  #   paypal_options = {
+  #     login: ENV['PAYPAL_LOGIN'],
+  #     password: ENV["PAYPAL_PASSWORD"],
+  #     signature: ENV["PAYPAL_SIGNATURE"]
+  #   }
+  #   ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  # end
 
   # Heroku Mandrill configuration
   ActionMailer::Base.smtp_settings = {
