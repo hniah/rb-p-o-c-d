@@ -4,17 +4,18 @@ class TimeSlotsController < ApplicationController
   include Concerns::TimeSlots::Redirection
 
   def index
-    @locations = Location.all
-    @time_slots = TimeSlot.all
-
-    if location_param.present? && location_param != 0
-      @location = Location.find(location_param)
-      @housekeepers = @location.housekeepers
-    else
-      @housekeepers = Housekeeper.all
-    end
-
-    @week = week
+    redirect_to root_path
+    # @locations = Location.all
+    # @time_slots = TimeSlot.all
+    #
+    # if location_param.present? && location_param != 0
+    #   @location = Location.find(location_param)
+    #   @housekeepers = @location.housekeepers
+    # else
+    #   @housekeepers = Housekeeper.all
+    # end
+    #
+    # @week = week
   end
 
   def new

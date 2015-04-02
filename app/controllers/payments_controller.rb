@@ -51,7 +51,7 @@ class PaymentsController < ApplicationController
 
   ensure
     flash[:notice] = 'Thank you for your purchase. Please contact us to book your cleaning session(s).'
-    redirect_to time_slots_path
+    redirect_to new_contact_form_path
   end
 
   def cancel_payment
